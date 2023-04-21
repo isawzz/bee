@@ -2119,6 +2119,7 @@ async function load_Codebase(dir, path_allcode) {
 	for (const k in CODE.di) { for (const k1 in CODE.di[k]) keys[k1] = CODE.di[k][k1]; }
 	CODE.all = keys;
 	CODE.keylist = Object.keys(keys);
+	return CODE;
 }
 function mSearchGoLive(label, handler, dParent, styles = {}, opts = {}) {
 	let html = `
