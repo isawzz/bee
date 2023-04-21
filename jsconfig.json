@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6"
+  },
+	"include": ["vifront/**/*","allcode.js"],
+  "exclude": ["node_modules", "temp","*UCODE*","y*", "_ignore","*hallo*","**/*closure.js"]
+}
