@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-		"target": "ESNext",
-    // This must be specified if "paths" is set
-    "baseUrl": ".",
-    // Relative to "baseUrl"
-    "paths": {
-			"~/*": ["./src/*"]
-		}
+    "module": "commonjs",
+    "target": "es6"
   },
-	"exclude": ["cb2"]
+  "include": ["../**/*"],
+  "exclude": ["../*_*","../base/*","../MUELL.js","../test.js"],
 }

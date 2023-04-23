@@ -1,17 +1,19 @@
-const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
 const BLUE = '#4363d8';
 const BROWN = '#96613d';
+const CODE = {};
+const DEF_ORIENTATION = 'v';
+const DEF_SPLIT = 0.5;
+const FIREBRICK = '#800000';
 const GREEN = '#3cb44b';
 const BLUEGREEN = '#004054';
-const FIREBRICK = '#800000';
-const LIGHTGREEN = '#afff45'; //'#bfef45';
 const LIGHTBLUE = '#42d4f4';
+const LIGHTGREEN = '#afff45'; //'#bfef45';
+const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
 const OLIVE = '#808000';
 const ORANGE = '#f58231';
+const NEONORANGE = '#ff6700';
 const PURPLE = '#911eb4';
 const RED = '#e6194B';
-const TEAL = '#469990';
-const YELLOW = '#ffe119';
 const STYLE_PARAMS = {
 	align: 'text-align',
 	acontent: 'align-content',
@@ -53,25 +55,52 @@ const STYLE_PARAMS = {
 	y: 'top',
 	z: 'z-index'
 };
-const NEONORANGE = '#ff6700';
+const TEAL = '#469990';
+const YELLOW = '#ffe119';
 const NEONYELLOW = '#efff04';
-const CODE = {};
-var S = {};
-var dTable;
-var ColorDi;
-var P;
-var dParent;
-var dPage;
-var dFiddle;
-var dSidebar;
+var A;
+var activatedTests = [];
+var AREAS = {};
 var AU = {};
-var dTestButtons;
-function addDummy(dParent) {
-	let dummy = mCreate('button');
-	mAppend(dParent, dummy);
-	mStyle(dummy, { position: 'absolute', opacity: 0, h: 0, w: 0, padding: 0, margin: 0, outline: 'none', border: 'none', bg: 'transparent' });
-	dummy.id = 'dummy';
+var ByGroupSubgroup;
+var C = null;
+var c52;
+var C52;
+var C52Cards;
+var Categories;
+var Cinno;
+var ColorDi;
+var Config;
+var DA = {};
+var DB;
+var dLeft;
+var dParent;
+var dSidebar;
+var F;
+var INFO = {};
+var Info;
+var KeySets;
+var Live;
+var P;
+var PROTO;
+var Q;
+var S = {};
+var SPEC = null;
+var SymKeys;
+var Syms;
+var T;
+var UIDCounter = 0;
+var UIROOT;
+var Z;
+function addAREA(id, o) {
+	if (AREAS[id]) {
+		error('AREAS ' + id + ' exists already!!! ');
+		error(o);
+		return;
+	}
+	AREAS[id] = o;
 }
+function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
 	let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
@@ -108,6 +137,12 @@ function capitalize(s) {
 	if (typeof s !== 'string') return '';
 	return s.charAt(0).toUpperCase() + s.slice(1);
 }
+function change(arr, n) {
+	for (let i = 0; i < n; i++) {
+		let mobj = chooseRandom(arr);
+	}
+}
+function chooseRandom(arr) { return rChoose(arr); }
 function clearElement(elem) {
 	if (isString(elem)) elem = document.getElementById(elem);
 	if (window.jQuery == undefined) { elem.innerHTML = ''; return elem; }
@@ -293,13 +328,61 @@ function colorsFromBFA(bg, fg, alpha) {
 function colorTrans(cAny, alpha = 0.5) {
 	return colorFrom(cAny, alpha);
 }
-function copyKeys(ofrom, oto, except = {}, only = null) {
-	let keys = isdef(only) ? only : Object.keys(ofrom);
-	for (const k of keys) {
-		if (isdef(except[k])) continue;
-		oto[k] = ofrom[k];
+function computeClosure(symlist) {
+	let keys = {};
+	for (const k in CODE.di) { for (const k1 in CODE.di[k]) keys[k1] = CODE.di[k][k1]; }
+	CODE.all = keys;
+	CODE.keylist = Object.keys(keys)
+	let done = {};
+	let tbd = valf(symlist, ['start']);
+	let MAX = 1000000, i = 0;
+	let visited = { grid: true, jQuery: true, config: true, Number: true, sat: true, hallo: true, autocomplete: true, PI: true };
+	while (!isEmpty(tbd)) {
+		if (++i > MAX) break; //else console.log('i',i)
+		let sym = tbd[0];
+		if (isdef(visited[sym])) { tbd.shift(); continue; }
+		visited[sym] = true;
+		let o = CODE.all[sym];
+		if (nundef(o)) o = getObjectFromWindow(sym);
+		if (nundef(o)) { tbd.shift(); continue; }
+		if (o.type == 'var' && !o.name.startsWith('d') && o.name == o.name.toLowerCase()) { tbd.shift(); continue; }
+		if (o.type == 'var' || o.type == 'const') { tbd.shift(); lookupSet(done, [o.type, sym], o); continue; }
+		assertion(['cla', 'func'].includes(o.type), 'TYPE ERRROR!!!!!!!!!!!!!!!!!!!!!!!!!')
+		let olive = valf(window[sym], o.code);
+		if (nundef(olive)) { tbd.shift(); lookupSet(done, [o.type, sym], o); continue; }
+		let text = olive.toString(); //always using last function body!!!
+		let words = toWords(text, true);
+		if (words.includes('in' + 'it')) console.log('sym', sym)
+		for (const w of words) { if (nundef(done[w]) || nundef(visited[w]) && w != sym && isCodeWord(w)) addIf(tbd, w); }
+		tbd.shift();
+		lookupSet(done, [o.type, sym], o);
 	}
-	return oto;
+	return done;
+}
+function correctFuncName(specType) {
+	switch (specType) {
+		case 'list': specType = 'liste'; break;
+		case 'dict': specType = 'dicti'; break;
+		case undefined: specType = 'panel'; break;
+	}
+	return specType;
+}
+function create_card_assets_c52() {
+	let ranknames = { A: 'Ace', K: 'King', T: '10', J: 'Jack', Q: 'Queen' };
+	let suitnames = { S: 'Spades', H: 'Hearts', C: 'Clubs', D: 'Diamonds' };
+	let rankstr = '23456789TJQKA';
+	let suitstr = 'SHDC';
+	sz = 100;
+	let di = {};
+	for (const r of toLetters(rankstr)) {
+		for (const s of toLetters(suitstr)) {
+			let k = r + s;
+			let info = di[k] = { key: k, val: 1, irank: rankstr.indexOf(r), isuit: suitstr.indexOf(s), rank: r, suit: s, color: RED, c52key: 'card_' + r + s, w: sz * .7, h: sz, sz: sz, ov: .25, friendly: `${isNumber(r) ? r : ranknames[r]} of ${suitnames[s]}`, short: `${r}${s}` };
+			info.isort = info.isuit * 13 + info.irank;
+		}
+	}
+	C52Cards = di;
+	return di;
 }
 function createcircle(posx, posy, radius, stroke, fill, filter) {
 	var circle = document.createElementNS(svgns, "circle");
@@ -324,7 +407,11 @@ function dict2list(d, keyName = 'id') {
 	}
 	return res;
 }
-function divInt(a, b) { return Math.trunc(a / b); }
+function dicti(areaName, oSpec, oid, o) {
+	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
+	parent.style.display = 'inline-grid';
+	return parent;
+}
 function download(jsonObject, fname) {
 	json_str = JSON.stringify(jsonObject);
 	saveFile(fname + '.json', 'data:application/json', new Blob([json_str], { type: '' }));
@@ -335,6 +422,20 @@ function downloadAsText(s, filename, ext = 'txt') {
 		"data:application/text",
 		new Blob([s], { type: "" }));
 }
+function dynamicArea(areaName, oSpec, oid, o) {
+	func = correctFuncName(oSpec.type);
+	oSpec.ui = window[func](areaName, oSpec, oid, o);
+}
+function empty(arr) {
+	let result = arr === undefined || !arr || (isString(arr) && (arr == 'undefined' || arr == '')) || (Array.isArray(arr) && arr.length == 0) || emptyDict(arr);
+	testHelpers(typeof arr, result ? 'EMPTY' : arr);
+	return result;
+}
+function emptyDict(obj) {
+	let test = Object.entries(obj).length === 0 && obj.constructor === Object;
+	return test;
+}
+function endsWith(s, sSub) { let i = s.indexOf(sSub); return i >= 0 && i == s.length - sSub.length; }
 function ensureColorDict() {
 	if (isdef(ColorDi)) return;
 	ColorDi = {};
@@ -390,6 +491,10 @@ function ensureColorDict() {
 		ColorDi[k] = cnew;
 	}
 }
+function error(msg) {
+	let fname = getFunctionsNameThatCalledThisFunction();
+	console.log(fname, 'ERROR!!!!! ', msg);
+}
 function firstNumber(s) {
 	if (s) {
 		let m = s.match(/-?\d+/);
@@ -400,6 +505,7 @@ function firstNumber(s) {
 	}
 	return null;
 }
+function firstWord(s, allow_ = false) { return toWords(s, allow_)[0]; }
 function firstWordAfter(s, sub, allow_ = false) {
 	let s1 = stringAfter(s, sub);
 	let s2 = toWords(s1, allow_)[0]
@@ -416,6 +522,16 @@ function fisherYates(arr) {
 		arr[rnd] = temp;
 	}
 	return arr;
+}
+function get_keys(o) { return Object.keys(o); }
+function get_values(o) { return Object.values(o); }
+function getAnimals() {
+	let gr = 'Animals & Nature';
+	let result = [];
+	for (const sg in ByGroupSubgroup[gr]) {
+		if (startsWith(sg, 'anim')) result = result.concat(ByGroupSubgroup[gr][sg]);
+	}
+	return result;
 }
 function getColorHexes(x) {
 	return [
@@ -721,12 +837,95 @@ function getColorNames() {
 		'YellowGreen'
 	];
 }
+function getDynId(loc, oid) { return loc + '@' + oid; }
+function getFunctionSignature(firstline, key) {
+	let sig;
+	if (firstline.includes(') {')) sig = stringBefore(firstline, ') {') + ')';
+	else if (firstline.includes('){')) sig = stringBefore(firstline, '){') + ')';
+	else sig = `function ${key}()`;
+	sig += '{}';
+	return sig;
+}
 function getFunctionsNameThatCalledThisFunction() {
 	let c1 = getFunctionsNameThatCalledThisFunction.caller;
 	if (nundef(c1)) return 'no caller!';
 	let c2 = c1.caller;
 	if (nundef(c2)) return 'no caller!';
 	return c2.name;
+}
+function getGSGElements(gCond, sCond) {
+	let keys = [];
+	let byg = ByGroupSubgroup;
+	for (const gKey in byg) {
+		if (!gCond(gKey)) continue;
+		for (const sKey in byg[gKey]) {
+			if (!sCond(sKey)) continue;
+			keys = keys.concat(byg[gKey][sKey]);
+		}
+	}
+	return keys.sort();
+}
+function getKeySets() {
+	makeCategories();
+	let res = {};
+	for (const k in Syms) {
+		let info = Syms[k];
+		if (nundef(info.cats)) continue;
+		for (const ksk of info.cats) {
+			lookupAddIfToList(res, [ksk], k);
+		}
+	}
+	res.animals = getAnimals();
+	res.nature = getNature();
+	localStorage.setItem('KeySets', JSON.stringify(res));
+	return res;
+}
+function getNature() {
+	let gr = 'Animals & Nature';
+	let result = [];
+	for (const sg in ByGroupSubgroup[gr]) {
+		result = result.concat(ByGroupSubgroup[gr][sg]);
+	}
+	return result;
+}
+function getObjectFromWindow(key) {
+	let code, sig, type;
+	let f = window[key];
+	if (isdef(f)) {
+		type = typeof f;
+		if (type != 'function') return null; else type = 'func';
+	} else {
+		try {
+			f = eval(key);
+			if (typeof (f) == 'function') type = 'cla'; else return null;
+		} catch { return null; }
+	}
+	code = f.toString();
+	sig = type == 'func' ? getFunctionSignature(stringBefore(code, '\n'), key) : `class ${key}{}`;
+	let o = { name: key, code: code, sig: sig, region: type, filename: '', path: '', type: type };
+	CODE.justcode[key] = code;
+	CODE.all[key] = CODE.di[type][key] = o;
+	return o;
+}
+function getParams(areaName, oSpec, oid) {
+	let params = oSpec.params ? oSpec.params : {};
+	let panels = oSpec.panels ? oSpec.panels : [];
+	let num = panels.length;
+	let or = params.orientation ? params.orientation == 'h' ? 'rows'
+		: 'columns' : DEF_ORIENTATION;
+	let split = params.split ? params.split : DEF_SPLIT;
+	let bg = oSpec.color ? oSpec.color : randomColor();
+	let fg = bg ? colorIdealText(bg) : null;
+	let id = oSpec.id ? oSpec.id : areaName;
+	if (oid) { id = getDynId(id, oid); }
+	let parent = mBy(areaName);
+	if (oSpec.id) {
+		parent.id = id;
+		addAREA(id, oSpec);
+		parent.innerHTML = id;
+	}
+	if (bg) { mColor(parent, bg, fg); }
+	return [num, or, split, bg, fg, id, panels, parent];
 }
 function getRect(elem, relto) {
 	if (isString(elem)) elem = document.getElementById(elem);
@@ -748,6 +947,10 @@ function getRect(elem, relto) {
 	let r = { x: res.left, y: res.top, w: res.width, h: res.height };
 	addKeys({ l: r.x, t: r.y, r: r.x + r.w, b: r.t + r.h }, r);
 	return r;
+}
+function getUID(pref = '') {
+	UIDCounter += 1;
+	return pref + '_' + UIDCounter;
 }
 function HSLAToRGBA(hsla, isPct) {
 	let ex = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)(((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2},\s?)|((\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}\s\/\s))((0?\.\d+)|[01]|(([1-9]?\d(\.\d+)?)|100|(\.\d+))%)\)$/i;
@@ -829,9 +1032,6 @@ function hslToHex(h, s, l) {
 	};
 	return `#${f(0)}${f(8)}${f(4)}`;
 }
-function hslToHslaString(h, s, l, a = 1) {
-	return 'hsla(' + h + ', ' + s + '%, ' + l + '%, ' + a + ')';
-}
 function HSLToRGB(hsl, isPct) {
 	let ex = /^hsl\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}|(\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2})\)$/i;
 	if (ex.test(hsl)) {
@@ -900,12 +1100,14 @@ function hue(h) {
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
+function isDigit(s) { return /^[0-9]$/i.test(s); }
 function isEmpty(arr) {
 	return arr === undefined || !arr
 		|| (isString(arr) && (arr == 'undefined' || arr == ''))
 		|| (Array.isArray(arr) && arr.length == 0)
 		|| Object.entries(arr).length === 0;
 }
+function isLetter(s) { return /^[a-zA-Z]$/i.test(s); }
 function isList(arr) { return Array.isArray(arr); }
 function isNumber(x) { return x !== ' ' && x !== true && x !== false && isdef(x) && (x == 0 || !isNaN(+x)); }
 function isString(param) { return typeof param == 'string'; }
@@ -913,27 +1115,25 @@ function jsCopy(o) { return JSON.parse(JSON.stringify(o)); }
 function last(arr) {
 	return arr.length > 0 ? arr[arr.length - 1] : null;
 }
-async function loadCodebase(dir) {
-	let path_js = isdef(dir) ? (dir + '/z_all.js') : '../allcode.js';
-	dir = isdef(dir) ? dir : '../basejs';
-	let text = CODE.text = await route_path_text(path_js);
-	let keysSorted = [];
-	let lines = text.split('\r\n');
-	for (const l of lines) {
-		if (['var', 'const', 'cla', 'func'].some(x => l.startsWith(x))) {
-			let key = firstWordAfter(l, ' ', true);
-			keysSorted.push(key);
-		}
-	}
-	CODE.keysSorted = keysSorted;
-	CODE.di = await route_path_yaml_dict(dir + '/z_all.yaml');
-	CODE.justcode = await route_path_yaml_dict(dir + '/z_allcode.yaml');
-	CODE.codelist = dict2list(CODE.justcode, 'key');
-	CODE.history = await route_path_yaml_dict(dir + '/z_allhistory.yaml');
-	let keys = {};
-	for (const k in CODE.di) { for (const k1 in CODE.di[k]) keys[k1] = CODE.di[k][k1]; }
-	CODE.all = keys;
-	CODE.keylist = Object.keys(keys)
+function liste(areaName, oSpec, oid, o) {
+	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
+	parent.style.display = 'inline-grid';
+	return parent;
+}
+async function load_assets_fetch(basepath, baseminpath) {
+	let path = basepath + 'assets/';
+	Config = await route_path_yaml_dict(baseminpath + 'config.yaml');
+	DB = await route_path_yaml_dict(basepath + 'DB.yaml');
+	Syms = await route_path_yaml_dict(path + 'allSyms.yaml');
+	SymKeys = Object.keys(Syms);
+	ByGroupSubgroup = await route_path_yaml_dict(path + 'symGSG.yaml');
+	C52 = await route_path_yaml_dict(path + 'c52.yaml');
+	Cinno = await route_path_yaml_dict(path + 'fe/inno.yaml');
+	Info = await route_path_yaml_dict(path + 'lists/info.yaml');
+	create_card_assets_c52();
+	KeySets = getKeySets();
+	console.assert(isdef(Config), 'NO Config!!!!!!!!!!!!!!!!!!!!!!!!');
+	return { users: dict2list(DB.users, 'name'), games: dict2list(Config.games, 'name'), tables: [] };
 }
 function lookup(dict, keys) {
 	let d = dict;
@@ -943,6 +1143,48 @@ function lookup(dict, keys) {
 		if (k === undefined) break;
 		let e = d[k];
 		if (e === undefined || e === null) return null;
+		d = d[k];
+		if (i == ilast) return d;
+		i += 1;
+	}
+	return d;
+}
+function lookupAddIfToList(dict, keys, val) {
+	let lst = lookup(dict, keys);
+	if (isList(lst) && lst.includes(val)) return;
+	lookupAddToList(dict, keys, val);
+}
+function lookupAddToList(dict, keys, val) {
+	let d = dict;
+	let ilast = keys.length - 1;
+	let i = 0;
+	for (const k of keys) {
+		if (i == ilast) {
+			if (nundef(k)) {
+				console.assert(false, 'lookupAddToList: last key indefined!' + keys.join(' '));
+				return null;
+			} else if (isList(d[k])) {
+				d[k].push(val);
+			} else {
+				d[k] = [val];
+			}
+			return d[k];
+		}
+		if (nundef(k)) continue;
+		if (d[k] === undefined) d[k] = {};
+		d = d[k];
+		i += 1;
+	}
+	return d;
+}
+function lookupSet(dict, keys, val) {
+	let d = dict;
+	let ilast = keys.length - 1;
+	let i = 0;
+	for (const k of keys) {
+		if (nundef(k)) continue;
+		if (d[k] === undefined) d[k] = (i == ilast ? val : {});
+		if (nundef(d[k])) d[k] = (i == ilast ? val : {});
 		d = d[k];
 		if (i == ilast) return d;
 		i += 1;
@@ -969,6 +1211,42 @@ function lookupSetOverride(dict, keys, val) {
 	}
 	return d;
 }
+function makeCategories() {
+	let keys = Categories = {
+		animal: getGSGElements(g => g == 'Animals & Nature', s => startsWith(s, 'animal')),
+		clothing: getGSGElements(g => g == 'Objects', s => s == 'clothing'),
+		emotion: getGSGElements(g => g == 'Smileys & Emotion', s => startsWith(s, 'face') && !['face-costume', 'face-hat'].includes(s)),
+		food: getGSGElements(g => g == 'Food & Drink', s => startsWith(s, 'food')),
+		'game/toy': (['sparkler', 'firecracker', 'artist palette', 'balloon', 'confetti ball'].concat(ByGroupSubgroup['Activities']['game'])).sort(),
+		gesture: getGSGElements(g => g == 'People & Body', s => startsWith(s, 'hand')),
+		job: ByGroupSubgroup['People & Body']['job'],
+		mammal: ByGroupSubgroup['Animals & Nature']['animal-mammal'],
+		music: getGSGElements(g => g == 'Objects', s => startsWith(s, 'musi')),
+		object: getGSGElements(g => g == 'Objects', s => true),
+		place: getGSGElements(g => g == 'Travel & Places', s => startsWith(s, 'place')),
+		plant: getGSGElements(g => g == 'Animals & Nature' || g == 'Food & Drink', s => startsWith(s, 'plant') || s == 'food-vegetable' || s == 'food-fruit'),
+		sport: ByGroupSubgroup['Activities']['sport'],
+		tool: getGSGElements(g => g == 'Objects', s => s == 'tool'),
+		transport: getGSGElements(g => g == 'Travel & Places', s => startsWith(s, 'transport')),
+	};
+	let incompatible = DA.incompatibleCats = {
+		animal: ['mammal'],
+		clothing: ['object'],
+		emotion: ['gesture'],
+		food: ['plant', 'animal'],
+		'game/toy': ['object', 'music'],
+		gesture: ['emotion'],
+		job: ['sport'],
+		mammal: ['animal'],
+		music: ['object', 'game/toy'],
+		object: ['music', 'clothing', 'game/toy', 'tool'],
+		place: [],
+		plant: ['food'],
+		sport: ['job'],
+		tool: ['object'],
+		transport: [],
+	}
+}
 function makeUnitString(nOrString, unit = 'px', defaultVal = '100%') {
 	if (nundef(nOrString)) return defaultVal;
 	if (isNumber(nOrString)) nOrString = '' + nOrString + unit;
@@ -985,11 +1263,28 @@ function mClass(d) {
 	d = toElem(d);
 	if (arguments.length == 2) {
 		let arg = arguments[1];
-		if (isString(arg)) arg = toWords(arg, true);
-		arg.map(x => d.classList.add(x));
+		if (isString(arg) && arg.indexOf(' ') > 0) { arg = [toWords(arg)]; }
+		else if (isString(arg)) arg = [arg];
+		if (isList(arg)) {
+			for (let i = 0; i < arg.length; i++) {
+				d.classList.add(arg[i]);
+			}
+		}
 	} else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
 function mClear(d) { clearElement(toElem(d)); }
+function mColFlex(dParent, chflex = [1, 5, 1], bgs) {
+	let styles = { opacity: 1, display: 'flex', aitems: 'stretch', 'flex-flow': 'nowrap' };
+	mStyle(dParent, styles);
+	let res = [];
+	for (let i = 0; i < chflex.length; i++) {
+		let bg = isdef(bgs) ? bgs[i] : null;
+		let d1 = mDiv(dParent, { flex: chflex[i], bg: bg });
+		res.push(d1);
+	}
+	return res;
+}
+function mColor(d, bg, fg) { return mStyle(d, { 'background-color': bg, 'color': fg }); }
 function mCreate(tag, styles, id) { let d = document.createElement(tag); if (isdef(id)) d.id = id; if (isdef(styles)) mStyle(d, styles); return d; }
 function mCreateFrom(htmlString) {
 	var div = document.createElement('div');
@@ -1007,6 +1302,7 @@ function mDiv(dParent, styles, id, inner, classes, sizing) {
 	if (isdef(sizing)) { setRect(d, sizing); }
 	return d;
 }
+function mDiv100(dParent, styles, id, sizing = false) { let d = mDiv(dParent, styles, id); mSize(d, 100, 100, '%', sizing); return d; }
 function mDom(dParent, styles = {}, opts = {}) {
 	let tag = valf(opts.tag, 'div');
 	let d = document.createElement(tag);
@@ -1039,53 +1335,12 @@ function mDom(dParent, styles = {}, opts = {}) {
 	mStyle(d, styles);
 	return d;
 }
-function mDom100(dParent, styles, opts) {
-	if (nundef(styles.w) && nundef(styles.wrest)) addKeys({ w100: true }, styles);
-	if (nundef(styles.h) && nundef(styles.hrest)) addKeys({ h100: true }, styles);
-	return mDom(dParent, styles, opts);
-}
-function mFlex(d, or = 'h') {
-	d = toElem(d);
-	d.style.display = 'flex';
-	d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
-}
-function mGridFrom(d, m, cols, rows, cellstyles = {}) {
-	let gta = '';
-	let words = [];
-	for (const line of m) {
-		gta = gta + `'${line}' `;
-		let warr = toWords(line);
-		for (const w of warr) if (!words.includes(w)) words.push(w);
-	}
-	let dParent = mDom100(d, { display: 'grid', 'grid-template-areas': gta });
-	dParent.style.gridTemplateColumns = cols;
-	dParent.style.gridTemplateRows = rows;
-	for (const w of words) {
-		let st = copyKeys({ 'grid-area': w }, cellstyles);
-		let cell = window[w] = mDom(dParent, st, { id: w });//	,html:w.substring(1)})
-	}
-	return dParent;
-}
 function mInput(dParent, styles = {}, opts = {}) {
 	addKeys({ fz: 'inherit', fg: 'inherit', 'flex-grow': 1, bg: '#00000080', hpadding: 10, vpadding: 4, rounding: 8 }, styles);
 	addKeys({ id: 'inpSearch', name: 'searchResult', className: 'hop1 plain', type: 'text', tag: 'input' }, opts);
 	return mDom(dParent, styles, opts);
 }
-function mSearch(label, handler, dParent, styles = {}, opts = {}) {
-	let html = `
-    <form action="javascript:void(0);" autocomplete="off">
-		<label>${label}</label>
-    </form>
-  `;
-	let elem = mCreateFrom(html);
-	mAppend(dParent, elem);
-	mStyle(elem, { display: 'grid', 'align-items': 'center', w100: true, gap: 4, 'grid-template-columns': 'auto 1fr auto' });
-	let inp = mInput(elem, styles, opts);
-	let myhandler = () => handler(mBy(inp.id).value.trim()); // handler(toWords(mBy(inp.id).value));
-	mButton('GO', myhandler, elem);
-	elem.onsubmit = myhandler;
-	return elem;
-}
+function mSize(d, w, h, unit = 'px', sizing) { if (nundef(h)) h = w; mStyle(d, { width: w, height: h }, unit); if (isdef(sizing)) setRect(d, sizing); }
 function mStyle(elem, styles, unit = 'px') {
 	elem = toElem(elem);
 	if (isdef(styles.whrest)) { delete styles.whrest; styles.w = styles.h = 'rest'; } else if (isdef(styles.wh100)) { styles.w = styles.h = '100%'; delete styles.wh100; }
@@ -1214,58 +1469,68 @@ function myOnclickCodeInSidebar(ev) {
 	if (download) downloadAsText(text, 'hallo', 'js');
 	return text;
 }
-function mySearch(kws) {
+function mySearch(kws, onlylive) {
 	assertion(isString(kws), 'mySearch: kws should be a string')
-	console.log(`'${kws}'`);
-	ohneRegexMix(kws); //return;//keyPlusMinus(); return;
+	ohneRegexMix(kws, onlylive); //return;//keyPlusMinus(); return;
 }
 function nundef(x) { return x === null || x === undefined; }
-function onclickTest(x) {
-	console.log('TEST!', x)
+function panel(areaName, oSpec, oid, o) {
+	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
+	if (num > 0) {
+		parent.style.display = 'grid';
+		clearElement(parent);
+		for (let i = 0; i < num; i++) {
+			let d = mDiv100(parent);
+			d.id = getUID();
+			if (panels.length > i) {
+				if (oid) dynamicArea(d.id, panels[i], oid, o); else staticArea(d.id, panels[i]);
+			}
+		}
+		if (or == 'rows') {
+			console.log('====', split * 100);
+			parent.style.gridTemplateColumns = `${split * 100}% 1fr`;
+		}
+	}
+	return parent;
 }
 function pSBC(p, c0, c1, l) {
-	let r,
-		g,
-		b,
-		P,
-		f,
-		t,
-		h,
-		i = parseInt,
-		m = Math.round,
-		a = typeof c1 == 'string';
+	let r, g, b, P, f, t, h, i = parseInt, m = Math.round, a = typeof c1 == 'string';
 	if (typeof p != 'number' || p < -1 || p > 1 || typeof c0 != 'string' || (c0[0] != 'r' && c0[0] != '#') || (c1 && !a)) return null;
-	if (!this.pSBCr)
-		this.pSBCr = d => {
-			let n = d.length,
-				x = {};
-			if (n > 9) {
-				([r, g, b, a] = d = d.split(',')), (n = d.length);
-				if (n < 3 || n > 4) return null;
-				(x.r = i(r[3] == 'a' ? r.slice(5) : r.slice(4))), (x.g = i(g)), (x.b = i(b)), (x.a = a ? parseFloat(a) : -1);
-			} else {
-				if (n == 8 || n == 6 || n < 4) return null;
-				if (n < 6) d = '#' + d[1] + d[1] + d[2] + d[2] + d[3] + d[3] + (n > 4 ? d[4] + d[4] : '');
-				d = i(d.slice(1), 16);
-				if (n == 9 || n == 5) (x.r = (d >> 24) & 255), (x.g = (d >> 16) & 255), (x.b = (d >> 8) & 255), (x.a = m((d & 255) / 0.255) / 1000);
-				else (x.r = d >> 16), (x.g = (d >> 8) & 255), (x.b = d & 255), (x.a = -1);
-			}
-			return x;
-		};
-	(h = c0.length > 9),
-		(h = a ? (c1.length > 9 ? true : c1 == 'c' ? !h : false) : h),
-		(f = pSBCr(c0)),
-		(P = p < 0),
-		(t = c1 && c1 != 'c' ? pSBCr(c1) : P ? { r: 0, g: 0, b: 0, a: -1 } : { r: 255, g: 255, b: 255, a: -1 }),
-		(p = P ? p * -1 : p),
-		(P = 1 - p);
+	h = c0.length > 9;
+	h = a ? (c1.length > 9 ? true : c1 == 'c' ? !h : false) : h;
+	f = pSBCr(c0);
+	P = p < 0;
+	t = c1 && c1 != 'c' ? pSBCr(c1) : P ? { r: 0, g: 0, b: 0, a: -1 } : { r: 255, g: 255, b: 255, a: -1 };
+	p = P ? p * -1 : p;
+	P = 1 - p;
 	if (!f || !t) return null;
-	if (l) (r = m(P * f.r + p * t.r)), (g = m(P * f.g + p * t.g)), (b = m(P * f.b + p * t.b));
-	else (r = m((P * f.r ** 2 + p * t.r ** 2) ** 0.5)), (g = m((P * f.g ** 2 + p * t.g ** 2) ** 0.5)), (b = m((P * f.b ** 2 + p * t.b ** 2) ** 0.5));
-	(a = f.a), (t = t.a), (f = a >= 0 || t >= 0), (a = f ? (a < 0 ? t : t < 0 ? a : a * P + t * p) : 0);
+	if (l) { r = m(P * f.r + p * t.r); g = m(P * f.g + p * t.g); b = m(P * f.b + p * t.b); }
+	else { r = m((P * f.r ** 2 + p * t.r ** 2) ** 0.5); g = m((P * f.g ** 2 + p * t.g ** 2) ** 0.5); b = m((P * f.b ** 2 + p * t.b ** 2) ** 0.5); }
+	a = f.a;
+	t = t.a;
+	f = a >= 0 || t >= 0;
+	a = f ? (a < 0 ? t : t < 0 ? a : a * P + t * p) : 0;
 	if (h) return 'rgb' + (f ? 'a(' : '(') + r + ',' + g + ',' + b + (f ? ',' + m(a * 1000) / 1000 : '') + ')';
 	else return '#' + (4294967296 + r * 16777216 + g * 65536 + b * 256 + (f ? m(a * 255) : 0)).toString(16).slice(1, f ? undefined : -2);
 }
+function pSBCr(d) {
+	let i = parseInt, m = Math.round, a = typeof c1 == 'string';
+	let n = d.length,
+		x = {};
+	if (n > 9) {
+		([r, g, b, a] = d = d.split(',')), (n = d.length);
+		if (n < 3 || n > 4) return null;
+		(x.r = parseInt(r[3] == 'a' ? r.slice(5) : r.slice(4))), (x.g = parseInt(g)), (x.b = parseInt(b)), (x.a = a ? parseFloat(a) : -1);
+	} else {
+		if (n == 8 || n == 6 || n < 4) return null;
+		if (n < 6) d = '#' + d[1] + d[1] + d[2] + d[2] + d[3] + d[3] + (n > 4 ? d[4] + d[4] : '');
+		d = parseInt(d.slice(1), 16);
+		if (n == 9 || n == 5) (x.r = (d >> 24) & 255), (x.g = (d >> 16) & 255), (x.b = (d >> 8) & 255), (x.a = m((d & 255) / 0.255) / 1000);
+		else (x.r = d >> 16), (x.g = (d >> 8) & 255), (x.b = d & 255), (x.a = -1);
+	}
+	return x;
+}
+function randomColor() { return rColor(); }
 function range(f, t, st = 1) {
 	if (nundef(t)) {
 		t = f - 1;
@@ -1307,24 +1572,23 @@ function rColor(cbrightness, c2, alpha = null) {
 	}
 	return s;
 }
-function rColorTrans(opaPer = 100, lumPer = 70, satPer = 100, hue) {
-	if (isList(hue) && hue.length > 2) {
-		hue = rChoose(hue);
-	} else if (isList(hue)) {
-		hue = Math.random() * (hue[1] - hue[0]) + hue[0];
-	} else if (isdef(hue)) {
-		hue = divInt(rHue(), hue) * hue;
-	} else hue = Math.round(Math.random() * 360);
-	return hslToHslaString(hue, satPer, lumPer, opaPer / 100);
-}
 function removeInPlace(arr, el) {
 	arrRemovip(arr, el);
 }
-function rest() {
-}
+function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
+function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
 function rNumber(min = 0, max = 100) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function root(areaName) {
+	setTableSize(areaName, 400, 300);
+	UIROOT = jsCopy(SPEC.staticSpec.root);
+	for (const k in AREAS) delete AREAS[k];
+	PROTO = {};
+	INFO = {};
+	staticArea(areaName, UIROOT);
+	addAREA('root', UIROOT);
 }
 async function route_path_text(url) {
 	let data = await fetch(url);
@@ -1399,8 +1663,13 @@ function setRect(elem, options) {
 	}
 	return r;
 }
+function setTableSize(w, h, unit = 'px') {
+	let d = mBy('areaTable');
+	mStyle(d, { 'min-width': w, 'min-height': h }, unit);
+}
 function show_sidebar(list, handler) {
-	dSidebar = mBy('dSidebar'); mClear(dSidebar); mStyle(dSidebar, { w: 200, h: window.innerHeight - 68, overy: 'auto' });
+	dSidebar = mBy('dSidebar');
+	mClear(dSidebar);
 	for (const k of list) {
 		let d = mDiv(dSidebar, { cursor: 'pointer', wmin: 100 }, null, k, 'hop1')
 		if (isdef(handler)) d.onclick = handler;
@@ -1410,19 +1679,38 @@ function simulateClick(elem) {
 	var evt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
 	var canceled = !elem.dispatchEvent(evt);
 }
+function sortCaseInsensitive(list) {
+	list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
+	return list;
+}
 async function start() {
-	test16a();
-	await loadCodebase('../cb2');
+	test_ui_extended();
+	await load_Codebase('../basejs/cb1');
+	await load_assets_fetch('../base/', '../games/')
+	let [bundle, closure, csstext, html] = await bundleGenFromProject('codingfull', true);
+	AU.ta.value = csstext; //stringAfter(bundle, 'function getLineStart');
 }
 function startsWith(s, sSub) {
 	return s.substring(0, sSub.length) == sSub;
 }
-function step() {
+function staticArea(areaName, oSpec) {
+	func = correctFuncName(oSpec.type);
+	oSpec.ui = window[func](areaName, oSpec);
 }
+function step() { }
 function stringAfter(sFull, sSub) {
 	let idx = sFull.indexOf(sSub);
 	if (idx < 0) return '';
 	return sFull.substring(idx + sSub.length);
+}
+function stringAfterLast(sFull, sSub) {
+	let parts = sFull.split(sSub);
+	return arrLast(parts);
+}
+function stringBefore(sFull, sSub) {
+	let idx = sFull.indexOf(sSub);
+	if (idx < 0) return sFull;
+	return sFull.substring(0, idx);
 }
 function stringBeforeLast(sFull, sSub) {
 	let parts = sFull.split(sSub);
@@ -1434,31 +1722,13 @@ function test() {
 		createcircle((i * w / 10), "50%", "100", "0", "hsla(" + (i * 36) + ",100%,50%,0.5)", "url(#f" + circles + ")"); createfilter("-50%", "-50%", "200%", "200%", ["feGaussianBlur"], ["stdDeviation", "5"]);
 	}
 }
-function test16a() {
-	let d = document.body; mClass(d, 'fullpage airport'); addDummy(d);
-	let areas = [
-		'dTestButtons dTestButtons',
-		'dSearch dSidebar',
-		'dFiddle dSidebar',
-		'dTable dSidebar',
-	];
-	let cols = '1fr 200px';
-	let rows = 'auto auto auto 1fr';
-	let [bg, fg] = [rColorTrans(50, 10, 100, [150, 230]), 'contrast']; //console.log('colors:', bg, fg);	//bg='hsla(120,100%,25%,0.3)';
-	dPage = mGridFrom(d, areas, cols, rows, { padding: 4, box: true, bg: bg, fg: fg });
-	let elem = mSearch('keywords:', mySearch, dSearch, {}, { selectOnClick: true });
-	let bs = mDiv(elem, { 'grid-column': '1 / span 3', display: 'flex', gap: 4 });
-	mButton('name', onclickFulltext, bs, { align: 'center', w: 110 });
-	mButton('insensitive', onclickCase, bs, { align: 'center', w: 210 });
-	mButton('anywhere', onclickWhere, bs, { align: 'center', w: 210 });
-	mStyle(dFiddle, { h: 400 });
-	mDom(dFiddle, {}, { html: 'Edit Code:' });
-	AU.ta = mDom(dFiddle, { fz: 18, family: 'consolas', w100: true, box: true, h: 'rest', bg: colorTrans(bg, 1), fg: 'black' }, { tag: 'textarea', id: 'ta', className: 'plain' });
-	mFlex(dTestButtons);
-	mButton('TEST', onclickTest, dTestButtons); //mDom(dTestButtons, { bg: bg, hpadding: 10, vpadding: 4, rounding: 8, cursor: 'pointer' }, { onclick: onclickTest, className: 'hop1', html: 'TEST' });
-	mDom(dTable, {}, { html: 'HAAAAAAAAAALLLLLLLLLOOOOOO', editable: true, selectOnClick: true })
+function testHelpers() {
+	if (activatedTests.includes('helpers')) {
+		console.log(...arguments);
+	}
 }
 function toElem(d) { return isString(d) ? mBy(d) : d; }
+function toLetters(s) { return [...s]; }
 function toWords(s, allow_ = false) {
 	let arr = allow_ ? s.split(/[\W]+/) : s.split(/[\W|_]+/);
 	return arr.filter(x => !isEmpty(x));
@@ -1473,8 +1743,404 @@ function valf() {
 function where(o) {
 	let fname = getFunctionsNameThatCalledThisFunction();
 }
-function ohneRegexMix(s) {
-	let arr = CODE.codelist;
+function _getLineStart(line) {
+	if (isEmpty(line.trim())) { return ['', 'empty'] }
+	let type = 'in_process';
+	let w = stringBefore(line, ' ');
+	let ch = line[0];
+	let i = 0; while (line[i] == '\t') { i++; }
+	let fw = line.slice(i);
+	if (line.startsWith('//#region')) { w = 'REGION'; type = 'REGION' }
+	else if (line.startsWith('//#endregion')) { w = 'ENDREGION'; type = 'REGION' }
+	else if (line.startsWith('//')) { w = 'COMMENT'; type = 'empty' }
+	else if (isdef(fw) && fw.startsWith('//')) { w = 'COMMENT'; type = 'empty' }
+	else if (ch == '\t') { w = 'TAB'; }
+	else if (ch == '}' || ch == '{') { w = 'BRACKET' }
+	else if (nundef(ch)) { w = 'UNDEFINED'; type = 'WTF' }
+	else if (ch == ' ') { w = 'SPACE'; } //type = 'WTF' }
+	else if (ch == '\r') { type = 'WTF' }
+	else if (nundef(fw)) { w = fw; type = 'WTF' }
+	if (['async', 'class', 'const', 'function', 'var'].includes(w)) type = 'block';
+	else if (isLetter(ch)) type = 'WTF';
+	return [w, type];
+}
+function addCodeBlock(path, byKey, ckeys, kw, chunk, fname, region, blocktype, idx) {
+	let prev = lookup(byKey, [kw]);
+	//if (kw == 'addCodeBlock') console.log('kw', kw)
+	//let oldfname = prev && prev ? prev.fname : fname;
+	let o = { key: kw, code: chunk, path: path, fname: fname, region: region ?? fname, type: blocktype, idx: idx++ };
+	let codechange = !prev || prev.code != o.code;
+	if (prev) {
+		console.log('DUPLICATE', kw,'\n', path, prev.path, 'codechange', prev.code == o.code);
+		if (prev.type != o.type) { console.log('... type change from', prev.type, 'to', o.type); }
+	} else { ckeys.push(kw); }
+	if (codechange) lookupSetOverride(byKey, [kw], o); //newer one overrides older one!
+	//soll ich history overriden wenn code unveraendert?
+}
+async function bundleGenFromProject(projectname, genfiles) {
+	return await bundleGenerateFrom(`../${projectname}/index.html`, null, genfiles);
+}
+async function bundleGenerateFrom(htmlScriptsFile, htmlBodyFile = null, download = true) {
+	let html = await route_path_text(htmlScriptsFile);
+	html = removeCommentLines(html, '<!--', '-->');
+	if (htmlBodyFile) html += await route_path_text(htmlBodyFile);
+	let dirhtml = stringBeforeLast(htmlScriptsFile, '/');
+	let project = stringAfter(dirhtml, '/'); if (project.includes('/')) project = stringBefore(project, '/');
+	let files = extractFilesFromHtml(html, htmlScriptsFile);
+	let byKey = {}, ckeys = [], idx = 0, haveBundle = false;
+	if (files.length == 1) {
+		haveBundle = true;
+		console.log('bundle already generated!!!', files[0]);
+	}
+	for (const f of files) { let idxnew = await parseCodeFile(f, byKey, ckeys, idx); idx = idxnew; }
+	let bundle_code = _assemble_code_sorted(ckeys, byKey, haveBundle);
+	let knownNogos = { codingfull: ['uiGetContact'] };
+	let seed = ['start'].concat(extractOnclickFromHtml(html)); //console.log('seed',seed)
+	let byKeyMinimized = _minimizeCode(byKey, seed, valf(knownNogos[project], []));
+	let ckeysMinimized = ckeys.filter(x => isdef(byKeyMinimized[x]));
+	let closure_code = _assemble_code_sorted(ckeysMinimized, byKeyMinimized, haveBundle);
+	if (download) downloadAsText(closure_code, `${project}_closure`, 'js');
+	let scripts = `</body><script src="../${dirhtml}/closure.js"></script><script>onload = start;</script>\n</html>`;
+	let htmlcode = stringBefore(html, `</body>`) + scripts;
+	AU.ta.value = closure_code;
+	cssfiles = extractFilesFromHtml(html, htmlScriptsFile, 'css');
+	console.log('cssfiles', cssfiles)
+	let csstext = files.length > 0 ? await cssGenerateFrom(cssfiles[0], bundle_code, html) : 'no css';
+	return [bundle_code, closure_code, csstext, html];
+}
+async function cssGenerateFrom(cssfile, codefile, htmlfile) {
+	if (!isList(cssfile)) cssfile = [cssfile];
+	let tcss = '';
+	for (const f of cssfile) { tcss += await route_path_text(f); }
+	let code = codefile.endsWith('.js') ? await route_path_text(codefile) : codefile;
+	let html = htmlfile.endsWith('.html') ? await route_path_text(htmlfile) : htmlfile;
+	return cssNormalize(tcss, code, html);
+}
+function extractFilesFromHtml(html, htmlfile, ext = 'js') {
+	let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
+	let dirhtml = stringBeforeLast(htmlfile, '/');
+	let project = stringAfter(dirhtml, '/'); if (project.includes('/')) project = stringBefore(project, '/');
+	let parts = html.split(prefix);
+	parts.shift();
+	let files = parts.map(x => stringBefore(x, '"'));
+	files = files.filter(x => !x.includes('alibs/') && !x.includes('assets/')); //console.log('files', jsCopy(files))
+	let files2 = [];
+	for (const f of files) {
+		if (f.startsWith(dirhtml)) { files2.push(f); continue; }
+		if (f.startsWith('./')) { files2.push(dirhtml + f.substring(1)); continue; }
+		if (f.startsWith('../') && stringCount(dirhtml, '../') == 1) {
+			files2.push(f); continue;
+		}
+		if (!f.includes('/')) { files2.push(dirhtml + '/' + f); continue; }
+		if (isLetter(f[0])) { files2.push(dirhtml + '/' + f); continue; }
+		console.log('PROBLEM!', f)
+	}
+	files = files2;
+	return files;
+}
+function extractOnclickFromHtml(html) {
+	let symlist = [];
+	let onclicks = html.split('onclick="'); //.shift();
+	onclicks.shift();
+	for (const oncl of onclicks) {
+		let code = stringBefore(oncl, '(');
+		symlist.push(code);
+	}
+	return symlist;
+}
+async function parseCodeFile(f, byKey, ckeys, idx) {
+	let chunk = '', kw = null, blocktype = null, region = null;
+	let txt = await route_path_text(f);
+	let fname = stringAfterLast(f, '/'); fname = stringBefore(fname, '.');
+	let lines = txt.split('\n');
+	for (const line of lines) {
+		let [w, type] = _getLineStart(line);
+		if (line.trim() == '`;' && kw) { chunk += line + '\n'; continue; }
+		if (type == 'WTF') { continue; }
+		else if (type == 'empty') { continue; }
+		else if (type == 'in_process') {
+			if (line.trim().startsWith('//')) continue; // #region') || line.includes('//#endregion')) continue;
+			if (kw) { chunk += line + '\n'; }
+		}
+		else if (type == 'REGION') { if (w == type) region = stringAfter(line, '//#region ').trim(); }
+		else if (type == 'block') {
+			if (kw) addCodeBlock(f, byKey, ckeys, kw, chunk, fname, region, blocktype, idx++);
+			kw = w == 'async' ? stringAfter(line, 'function ') : stringAfter(line, ' '); kw = firstWord(kw, true);
+			let blocktypes = { function: 'func', class: 'cla', async: 'func', var: 'var', const: 'const' };
+			blocktype = blocktypes[w];
+			chunk = line + '\n';
+		} else { console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'); break; }
+	}
+	if (kw) addCodeBlock(f, byKey, ckeys, kw, chunk, fname, region, blocktype, idx++);
+	return idx;
+}
+function removeCommentLines(text, cstart, cend) {
+	let lines = text.split('\n');
+	let inComment = false, res = '';
+	for (const line of lines) {
+		let lt = line.trim();
+		if (lt.startsWith(cstart) && lt.endsWith(cend)) { continue; }
+		if (lt.startsWith(cstart)) { inComment = true; continue; }
+		if (lt.endsWith(cend)) { inComment = false; continue; }
+		res += line + '\n';
+	}
+	return res;
+}
+function _assemble_code_sorted(list, di, preserveRegions = false) {
+	let text = '';
+	for (const k of list) {
+		assertion(isdef(k), `KEY UNDEFINED ${k}`);
+		if (nundef(di[k])) continue;
+		let o = di[k];
+		text += o.code;
+	}
+	return text;
+}
+function _minimizeCode(di, symlist = ['start'], nogo = []) {
+	let done = {};
+	let tbd = symlist; //console.log('symlist', symlist)
+	let MAX = 1000000, i = 0;
+	let visited = { grid: true, jQuery: true, config: true, Number: true, sat: true, hallo: true, autocomplete: true, PI: true };
+	while (!isEmpty(tbd)) {
+		if (++i > MAX) break; //else console.log('i',i)
+		let sym = tbd[0]; //console.log('sym', sym);
+		if (isdef(visited[sym])) { tbd.shift(); continue; }
+		visited[sym] = true;
+		let o = di[sym];
+		if (nundef(o)) { tbd.shift(); continue; } //console.log('not def',sym);
+		let text = o.code; //always using last function body!!!
+		let words = toWords(text, true);
+		for (const w of words) {
+			if (nogo.some(x => w.startsWith(x))) continue; //'uiGetC'+'ontact')) {console.log('sym',sym,w);return done;}
+			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
+		}
+		assertion(sym == tbd[0], 'W T F')
+		tbd.shift();
+		done[sym] = o;
+	}
+	return done;
+}
+function cssKeysNeeded(tcss, code, html) {
+	let t = replaceAllSpecialChars(tcss, '\t', '  ');
+	let lines = t.split('\r\n');
+	let allkeys = [], newlines = []; //in newlines
+	let di = {};
+	for (const line of lines) {
+		if (cssIsKeywordLine(line)) {
+			let newline = line.startsWith('@') ? stringAfter(line, ' ') : line.startsWith(':') ? stringAfter(line, ':') : line;
+			let word = firstWordIncluding(newline, '_-: ').trim();
+			newline = word + stringAfter(newline, word);
+			addIf(allkeys, word);
+			newlines.push(newline)
+			let ch = line[0];
+			let type = isLetter(ch) ? 't' : ch == '.' ? 'c' : ch == '@' ? 'k' : ch == ':' ? 'r' : 'i';
+			di[word] = { type: type, key: word }
+		} else {
+			newlines.push(line);
+		}
+	}
+	let neededkeys = [];
+	for (const k of allkeys) {
+		if (['rubberBand'].includes(k)) continue;
+		let ktest = k.includes(' ') ? stringBefore(k, ' ') : k.includes(':') ? stringBefore(k, ':') : k;
+		if (['root'].some(x => x == k)) addIf(neededkeys, k);
+		else if (code.includes(`${ktest}`) || code.includes(`'${ktest}'`) || code.includes(`"${ktest}"`)) addIf(neededkeys, k);
+		else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
+	}
+	return [di, neededkeys, newlines];
+}
+function cssNormalize(tcss, code, html) {
+	[di, neededkeys, newlines] = cssKeysNeeded(tcss, code, html);
+	console.log('needed', sortCaseInsensitive(neededkeys))
+	let clause = '';
+	let state = 'search_kw'; // search_kw search_clause_start search_clause_end
+	for (const kw of neededkeys) {
+		let i = 0;
+		for (const line of newlines) {
+			let lt = line.trim(); //console.log('ende',lt.endsWith('\n')); //return;
+			if (line.startsWith(kw) && firstWordIncluding(line, '_-: ').trim() == kw) { //firstWordIncluding(line, '_- ').trim() == kw)	{
+				assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${line}`)
+				if (line.includes('{')) {
+					clause = '{\n'; state = 'search_clause_end';
+				} else if (line.includes(',')) {
+					state = 'search_clause_start';
+				}
+			} else if (state == 'search_clause_start' && line.includes('{')) {
+				clause = '{\n'; state = 'search_clause_end';
+			} else if (state == 'search_clause_end') {
+				if (line[0] == '}') {
+					clause += line;
+					let cleanclause = cssCleanupClause(clause, kw);
+					lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
+					lookupAddIfToList(di, [kw, 'fullclauses'], clause);
+					state = 'search_kw';
+				} else {
+					clause += line + '\n';
+				}
+			}
+		}
+	}
+	let dis = {};
+	for (const o of get_values(di)) {
+		if (nundef(o.clauses)) continue;
+		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
+		lookupSet(dis, [o.type, o.key], o);
+	}
+	let text = '';
+	for (const type in dis) {
+		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
+		let prefix = type == 't' ? '' : type == 'k' ? '@keyframes ' : type == 'c' ? '.' : type == 'r' ? ':' : '#';
+		for (const kw of ksorted) {
+			let startfix = prefix + kw;
+			for (const clause of dis[type][kw].clauses) {
+				text += startfix + clause;
+			}
+		}
+	}
+	return text;
+}
+function cssCleanupClause(t, kw) {
+	let lines = t.split('\n');
+	let comment = false;
+	let state = 'copy';
+	let res = '';
+	for (const line of lines) {
+		let lt = line.trim();
+		let [cstart, cend, mstart] = [lt.startsWith('/*'), lt.endsWith('*/'), line.includes('/*')];
+		if (state == 'skip') {
+			if (cend) state = 'copy';
+			continue;
+		} else if (state == 'copy') {
+			if (cstart && cend) { continue; }
+			else if (cstart) { state = 'skip'; continue; }
+			else if (mstart) {
+				res += stringBefore(line, '/*') + '\n';
+				if (!cend) state = 'skip';
+			} else {
+				res += line + '\n';
+			}
+		}
+	}
+	if (kw == 'bAdd') console.log(res);
+	return res;
+}
+function getLineStart(line) {
+	if (isEmpty(line.trim())) { return ['', 'empty'] }
+	let type = 'in_process';
+	let w = stringBefore(line, ' ');
+	let ch = line[0];
+	let i = 0; while (line[i] == '\t') { i++; }
+	let fw = line.slice(i);
+	if (line.startsWith('//#region')) { w = 'REGION'; type = 'REGION' }
+	else if (line.startsWith('//#endregion')) { w = 'ENDREGION'; type = 'REGION' }
+	else if (line.startsWith('//')) { w = 'COMMENT'; type = 'empty' }
+	else if (isdef(fw) && fw.startsWith('//')) { w = 'COMMENT'; type = 'empty' }
+	else if (ch == '\t') { w = 'TAB'; }
+	else if (ch == '}' || ch == '{') { w = 'BRACKET' }
+	else if (nundef(ch)) { w = 'UNDEFINED'; type = 'WTF' }
+	else if (ch == ' ') { w = 'SPACE'; type = 'WTF' }
+	else if (ch == '\r') { type = 'WTF' }
+	else if (nundef(fw)) { w = fw; type = 'WTF' }
+	if (['async', 'class', 'const', 'function', 'var'].includes(w)) type = 'block';
+	else if (isLetter(ch)) type = 'WTF';
+	return [w, type];
+}
+function firstWordIncluding(s, allowed = '_-') {
+	let res = '', i = 0;
+	while (!isLetter(s[i]) && !isDigit(s[i]) && !allowed.includes(s[i])) i++;
+	while (isLetter(s[i]) || isDigit(s[i]) || allowed.includes(s[i])) { res += s[i]; i++; }
+	return res;
+}
+function cssIsKeywordLine(line) { return line.startsWith(':') || line.startsWith('.') || line.startsWith('#') || line.startsWith('@keyframes') || isLetter(line[0]); }
+function compute_closure(code) {
+	if (nundef(code)) code = AU.ta.value;
+	let disub = CODE.closure = computeClosure();
+	let keylist = [];
+	for (const type of ['const', 'var', 'cla', 'func']) {
+		if (nundef(disub[type])) continue;
+		let knownkeys = CODE.keysSorted.filter(x => lookup(disub, [type, x]));
+		let extras = sortCaseInsensitive(get_keys(disub[type]).filter(x => !knownkeys.includes(x)));
+		keylist = keylist.concat(knownkeys).concat(extras);
+	}
+	console.log('duplicates', hasDuplicates(keylist))
+	write_code_text_file(keylist);
+}
+function create_left_side_extended() {
+	let dl = dLeft;
+	mClear(dLeft);
+	let [dt, dse, dsb, dft, dfta] = [mDiv(dl), mDiv(dl), mDiv(dl), mDiv(dl), mDiv(dl)];
+	for (const d of [dt, dse, dsb, dft, dfta]) mStyle(d, { padding: 4, hmin: 10 })
+	mSearchGoLive('keywords', mySearch, dse, { hmargin: 6 }, { selectOnClick: true });
+	let dm = mDom(dft, {}, { html: 'Edit Code:' });
+	mButton('closure', compute_closure, dm)
+	let r = getRect(dm);
+	h = window.innerHeight - (r.y + r.h + 4); mStyle(dfta, { h: h, box: true, padding: 4 });
+	AU.ta = mDom(dfta, { fz: 18, family: 'consolas', w100: true, box: true, h: '99%', bg: 'white', fg: 'black' }, { tag: 'textarea', id: 'ta', className: 'plain' });
+}
+function hasDuplicates(list) {
+	let res = [];
+	for (let i = 0; i < list.length; i++) {
+		for (let j = i + 1; j < list.length; j++) {
+			if (list[i] == list[j]) { res.push(list[i]) }
+		}
+	}
+	return res.length > 0 ? res : false;
+}
+function isCodeWord(w) {
+	return isdef(window[w]) || isdef(CODE.all[w])
+}
+function isLiveInBrowser(s) {
+	if (isdef(window[s])) return true;
+	try {
+		let res = eval(s);
+		return isdef(res);
+	} catch {
+		return false;
+	}
+	return false;
+}
+async function load_Codebase(dir, path_allcode) {
+	let path_js = isdef(path_allcode) ? path_allcode : '../basejs/cb2/allcode.js';
+	dir = isdef(dir) ? dir : '../basejs';
+	let text = CODE.text = await route_path_text(path_js);
+	let keysSorted = [];
+	let lines = text.split('\r\n');
+	for (const l of lines) {
+		if (['var', 'const', 'cla', 'func'].some(x => l.startsWith(x))) {
+			let key = firstWordAfter(l, ' ', true);
+			keysSorted.push(key);
+		}
+	}
+	CODE.keysSorted = keysSorted;
+	CODE.di = await route_path_yaml_dict(dir + '/z_all.yaml');
+	CODE.justcode = await route_path_yaml_dict(dir + '/z_allcode.yaml');
+	CODE.codelist = dict2list(CODE.justcode, 'key');
+	CODE.history = await route_path_yaml_dict(dir + '/z_allhistory.yaml');
+	let keys = {};
+	for (const type in CODE.di) { for (const k1 in CODE.di[type]) keys[k1] = CODE.di[type][k1]; }
+	CODE.all = keys;
+	CODE.keylist = Object.keys(keys);
+	return CODE;
+}
+function mSearchGoLive(label, handler, dParent, styles = {}, opts = {}) {
+	let html = `
+    <form action="javascript:void(0);" autocomplete="off">
+		<label>${label}</label>
+    </form>
+  `;
+	let elem = mCreateFrom(html);
+	mAppend(dParent, elem);
+	mStyle(elem, { display: 'grid', 'align-items': 'center', w100: true, gap: 4, 'grid-template-columns': 'auto 1fr auto auto' });
+	let inp = mInput(elem, styles, opts);
+	let allhandler = () => handler(mBy(inp.id).value.trim(), false); // handler(toWords(mBy(inp.id).value));
+	mButton('GO', allhandler, elem);
+	let livehandler = () => handler(mBy(inp.id).value.trim(), true); // handler(toWords(mBy(inp.id).value));
+	mButton('Live', livehandler, elem);
+	elem.onsubmit = livehandler;
+	return elem;
+}
+function ohneRegexMix(s, onlylive = false) {
+	let arr = onlylive ? CODE.codelist.filter(x => isLiveInBrowser(x.key)) : CODE.codelist;
 	let ws = parseSearchString(s);
 	let [sno, syes, smay] = [[], [], []];
 	for (const w of ws) {
@@ -1496,34 +2162,29 @@ function ohneRegexMix(s) {
 		if (regex.test(text)) res.push(el.key);
 	}
 	CODE.selectedKeys = res; // arr.filter(x => regex.test(x.key)).map(x => x.key);
-	console.log('res', res.length > 20 ? res.length : res)
 	if (!isEmpty(res)) show_sidebar(res, myOnclickCodeInSidebar); //console.log('keys', res);
+}
+function parseSearchString(s, sAllow = '+-_') { return toWordsX(s, sAllow); }
+function stringCount(s, sSub, caseInsensitive = true) {
+	let temp = "Welcome to W3Docs";
+	let m = new RegExp(sSub, 'g' + (caseInsensitive ? 'i' : ''));
+	let count = (s.match(m)).length;
+	return count;
 }
 function stringMinusLast(s, n = 1) {
 	return s.substring(0, s.length - n);
 }
-function lookupToggle(o, list) {
-	let x = lookup(o, list);
-	let val = !x;
-	lookupSetOverride(o, list, val);
-	return val;
+function test_ui_extended() {
+	mClear(document.body);
+	let d1 = mDom(document.body, {}, { classes: 'fullpage airport' });
+	let [dl, dr] = mColFlex(d1, [7, 2]);
+	for (const d of [dl, dr]) mStyle(d, { bg: rColor('blue', 'green', .5) })
+	mStyle(dr, { h: '100vh', fg: 'white' })
+	dSidebar = mDiv100(dr, { wmax: 240, overy: 'auto', overx: 'hidden' }, 'dSidebar'); //,{h:window.innerHeight},'dSidebar')
+	dLeft = dl;
+	onresize = create_left_side_extended;
+	create_left_side_extended();
 }
-function onclickFulltext(ev) {
-	let val = lookupToggle(CODE, ['searchOptions', 'fulltext']);
-	let b = ev.target;
-	b.innerHTML = val ? 'fulltext' : 'name';
-}
-function onclickCase(ev) {
-	let val = lookupToggle(CODE, ['searchOptions', 'case']);
-	let b = ev.target;
-	b.innerHTML = val ? 'case-sensitive' : 'insensitive';
-}
-function onclickWhere(ev) {
-	let val = lookupToggle(CODE, ['searchOptions', 'where']);
-	let b = ev.target;
-	b.innerHTML = val ? 'start' : 'anywhere';
-}
-function parseSearchString(s, sAllow = '+-_') { return toWordsX(s, sAllow); }
 function toWordsX(s, sAllow = '_') {
 	let special = ['-', '.', '*', '?', '!'];
 	let s1 = '';
@@ -1535,27 +2196,23 @@ function toWordsX(s, sAllow = '_') {
 	let arr = s.split(new RegExp(`[^(\\w|${s1})]`)); ///[^(\w|+|\-|_)]/); // // toWordsX('+hallo -rey das ist ein regal');
 	return arr.filter(x => !isEmpty(x));
 }
-function keyPlusMinus(s) {
-	let arr = CODE.codelist;
-	s = `-e -i -u -y -g -o`
-	let ws = toWordsX(s);
-	let sno = '(', syes = '(';
-	for (const w of ws) {
-		if (w[0] == '-') sno += w.substring(1) + '|';
-		else if (w[0] == '+') syes += w.substring(1) + '|';
-		else syes += w + '|';
+function write_code_text_file(keylist) {
+	let text = '';
+	for (const k of keylist) {
+		let o = lookup(CODE, ['all', k]);
+		let type, code;
+		type = isdef(o) ? o.type : null;
+		if (type == 'var') { code = CODE.justcode[k]; }
+		else if (type == 'const') { code = CODE.justcode[k]; }
+		else if (type == 'cla') { code = CODE.justcode[k]; }
+		else if (type == 'func') { code = isdef(window[k]) ? window[k].toString() : CODE.justcode[k]; }
+		else { code = window[k].toString(); }
+		if (OWNPROPS.includes(k)) { continue; } //console.log('nicht dabei',k);
+		if (k != 'write_code_text_file' && (code.includes('[native code]') || code.includes('function('))) continue;
+		if (!isEmpty(code)) text += code + '\n';
 	}
-	if (sno.length > 1) sno = stringMinusLast(sno) + ')'; else sno = null;
-	if (syes.length > 1) syes = stringMinusLast(syes) + ')'; else syes = null;
-	console.log('sno', sno, 'syes', syes);
-	let [s1, s2] = ['(e|o|i|u|y|g)', '(a)']; //ok =>pattern ^(?!.*(e|o|i|u|y|g)).*a.*$
-	console.log('s1', s1, 's2', s2)
-	let xno = 'hallo'; // `(?!${sno.substring(1)}\S+`; console.log('xno',xno)
-	xno = `^(?!(a|e)).*`;
-	let patt = sno && syes ? `^(?!.*${sno}).*${syes}.*$` : sno ? xno : syes;
-	console.log('pattern', patt)
-	let regex = new RegExp(patt, 'i');
-	let res = CODE.selectedKeys = arr.filter(x => regex.test(x.key)).map(x => x.key);
-	console.log('res', res.length > 20 ? res.length : res)
-	if (!isEmpty(res)) show_sidebar(res, myOnclickCodeInSidebar); //console.log('keys', res);
+	text = replaceAllSpecialChars(text, '\r', '');
+	AU.ta.value = text;
+	return text;
 }
+
