@@ -1239,10 +1239,11 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};
 	let tbd = symlist; //console.log('symlist', symlist)
 	let MAX = 1000000, i = 0;
-	let visited = { grid: true, jQuery: true, config: true, Number: true, sat: true, hallo: true, autocomplete: true, PI: true };
+	let visited = { Card: true, change: true, grid: true, jQuery: true, config: true, Number: true, sat: true, hallo: true, autocomplete: true, PI: true };
+
 	while (!isEmpty(tbd)) {
 		if (++i > MAX) break; //else console.log('i',i)
-		let sym = tbd[0]; //console.log('sym', sym);
+		let sym = tbd[0]; console.log('sym', sym, i);
 		if (isdef(visited[sym])) { tbd.shift(); continue; }
 		visited[sym] = true;
 		let o = di[sym];
@@ -13944,10 +13945,112 @@ function coButtonSidebarDiv_00(dParent, bCaption = '☰', bStyles = { fz: 30 }, 
 	let sb = iSidebar(d, dSide, dContent, b, 120, false);
 	return { button: b, sidebar: sb, div: dContent };
 }
+async function codebaseExtend(project) {
+	let globlist = await codeParseFile('../allglobals.js');
+	let funclist = await codeParseFile('../allfuncs.js');
+	let list = globlist.concat(funclist); //keylist in order of loading!
+	let bykey = list2dict(list, 'key');
+	let bytype = {};
+	for (const k in bykey) { let o = bykey[k]; lookupAddIfToList(bytype, [o.type], o); }
+	let htmlFile = `../${project}/index.html`;
+	let html = await route_path_text(htmlFile);
+	html = removeCommentLines(html, '<!--', '-->');
+	let dirhtml = `../${project}`;
+	let files = extractFilesFromHtml(html, htmlFile);
+	files = files.filter(x => !x.includes('../all'));
+	console.log('files', files)
+	let olist = [];
+	for (const path of files) {
+		let opath = await codeParseFile(path);
+		olist = olist.concat(opath);
+	}
+	let mytype = {}, mykey = {};
+	for (const o of olist) { mykey[o.key] = o; }
+	for (const k in mykey) { let o = mykey[k]; lookupAddIfToList(mytype, [o.type], o); }
+
+	let dupltext = '';
+	for (const k in mykey) {
+		let onew = mykey[k];
+		let oold = bykey[k];
+		if (isdef(oold) && onew.code == oold.code) {
+			console.log('override w/ SAME code', k);//brauch garnix machen!
+		} else if (isdef(oold)) {
+			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
+			oold.oldcode = oold.code;
+			oold.code = onew.code;
+			dupltext += oold.oldcode + '\n' + oold.code + '\n';
+		} else {
+			bykey[k] = onew; //add new element to bykey
+			lookupAddIfToList(bytype, [onew.type], onew);
+			list.push(onew);
+		}
+	}
+
+	let globtext = '', functext = '', functextold = '';
+	for (const type of ['const', 'var', 'class']) {
+		if (nundef(bytype[type])) continue;
+		for (const o of bytype[type]) { globtext += o.code + '\n'; }
+	}
+	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key));
+	sortedFuncKeys.map(x => functext += bykey[x].code + '\n');
+	sortedFuncKeys.map(x => functextold += (isdef(bykey[x].oldcode) ? bykey[x].oldcode : bykey[x].code) + '\n');
+
+	return [globtext, functext, functextold]
+}
 function codeNormalize(code) {
 	let res = '';
 	res = replaceAllSpecialChars(code, '\t', '  ');
 	return res.trim(); //,'\r\n','\n'); //correct_code_text(code);  
+}
+function codeParseBlock(lines, i) {
+	let l = lines[i];
+	let type = l[0] == 'a' ? ithWord(l, 1) : ithWord(l, 0);
+	let key = l[0] == 'a' ? ithWord(l, 2, true) : ithWord(l, 1, true);
+	let code = l + '\n'; i++; l = lines[i];
+	while (i < lines.length && !(['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x)) && !l.startsWith('}'))) {
+		if (!l.trim().startsWith('//') || isEmptyOrWhiteSpace(l)) code += l + '\n';
+		i++; l = lines[i];
+	}
+
+	code = replaceAllSpecialChars(code, '\t', '  ');
+	code = code.trim();
+
+	return [{ key: key, type: type, code: code }, i];
+}
+function codeParseBlocks(text) {
+	let lines = text.split('\r\n');
+	lines = lines.map(x => removeTrailingComments(x));
+	let i = 0, o = null, res = [];
+	while (i < lines.length) {
+		let l = lines[i];
+		if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
+			[o, iLineAfterBlock] = codeParseBlock(lines, i);
+			i = iLineAfterBlock;
+			res.push(o)
+		} else i++;
+	}
+	return res;
+}
+async function codeParseFile(path) {
+	let text = await route_path_text(path);
+
+	let olist = codeParseBlocks(text);
+
+	return olist; // [keys, olist];
+}
+function codeParseKeys(text) {
+	let keys = [];
+	let lines = text.split('\r\n');
+	for (const l of lines) {
+		if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
+			let key = ithWord(l, (l[0] == 'a' ? 2 : 1), true);
+			keys.push(key);
+		}
+	}
+	return keys;
+}
+async function codeUpdateCodebase(project) {
+
 }
 function coin(percent = 50) { return Math.random() * 100 < percent; }
 function collapseAll() {
@@ -32461,6 +32564,14 @@ function InitBoardVars() {
 		});
 	}
 }
+function initCodingUI() {
+	mStyle('dMain', { bg: 'silver' });
+	[dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
+	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
+	mDiv(dtitle, { padding: 10, fg: 'white' }, null, 'OUTPUT:');
+	AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
+
+}
 function InitColsRowsBrd() {
 	var index = 0;
 	var col = COLUMNS.COL_A;
@@ -35346,6 +35457,10 @@ async function iTest00() {
 	let keys = SymKeys;
 	let k = chooseRandom(keys);
 	let item = miPic(k, dTable, { w: 100, h: 100, fz: 80, bg: 'blue' });
+}
+function ithWord(s, n, allow_) {
+	let ws = toWords(s, allow_);
+	return ws[Math.min(n, ws.length - 1)];
 }
 function iTitle(item, msg) { let dm = diTitle(item); if (isdef(dm)) dm.innerHTML = msg; }
 function iToggleMultipleSelection(item, items) {
@@ -41440,6 +41555,16 @@ function mCols(dParent, arr, itemStyles = { bg: 'random' }, rowStyles, colStyles
 		}
 	}
 }
+function mCols100(dParent, spec, gap = 4) {
+	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
+	grid.style.gridTemplateColumns = spec;
+	let res = [];
+	for (const i of range(stringCount(spec, ' ') + 1)) {
+		let d = mDiv(grid, { h: '100%', w: '100%', box: true })
+		res.push(d);
+	}
+	return res;
+}
 function mColsX(dParent, arr, itemStyles = { bg: 'random' }, rowStyles, colStyles, akku) {
 	let d0 = mDiv100(dParent, { display: 'flex', 'justify-content': 'space-between' });
 	if (isdef(colStyles)) mStyle(d0, colStyles);
@@ -43765,6 +43890,16 @@ function mRows(dParent, arr, itemStyles = { bg: 'random' }, rowStyles, colStyles
 		}
 	}
 }
+function mRows100(dParent, spec, gap = 4) {
+	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
+	grid.style.gridTemplateRows = spec;
+	let res = [];
+	for (const i of range(stringCount(spec, ' ') + 1)) {
+		let d = mDiv(grid, { h: '100%', w: '100%', box: true })
+		res.push(d);
+	}
+	return res;
+}
 function mRowsX(dParent, arr, itemStyles = { bg: 'random' }, rowStyles, colStyles, akku) {
 	let d0 = mDiv100(dParent, { display: 'flex', dir: 'column', 'justify-content': 'space-between' });
 	if (isdef(rowStyles)) mStyle(d0, rowStyles);
@@ -44520,6 +44655,14 @@ function mTextarea(rows, cols, dParent, styles = {}, id) {
 	let t = mCreateFrom(html);
 	mAppend(dParent, t);
 	mStyle(t, styles);
+	return t;
+}
+function mTextArea100(dParent, styles = {}) {
+	mCenterCenterFlex(dParent)
+	let html = `<textarea style="width:100%;height:100%;box-sizing:border-box" wrap="hard"></textarea>`;
+	let t = mCreateFrom(html);
+	mStyle(t, styles);
+	mAppend(dParent, t);
 	return t;
 }
 function mTextDiv(text, dParent = null) { let d = mCreate('div'); d.innerHTML = text; return d; }
@@ -54320,6 +54463,13 @@ function removeTopNCards(deck, n) {
 	n = Math.min(getNumCards(deck), n);
 	return deck.cards.splice(-n);
 }
+function removeTrailingComments(line) {
+	let icomm = line.indexOf('//');
+	if (icomm <= 0 || ':"`\''.includes(line[icomm - 1])) return line;
+	if ([':', '"', "'", '`'].some(x => line.indexOf(x) < icomm)) return line;
+
+	return line.substring(0, icomm);
+}
 function render() {
 	canvas.width = canvas.width
 	cx.save()
@@ -62202,7 +62352,16 @@ function standardize_color(str) {
 	c.fillStyle = str;
 	return c.fillStyle;
 }
-function start() { let uname = DA.secretuser = localStorage.getItem('uname'); if (isdef(uname)) U = { name: uname }; phpPost({ app: 'simple' }, 'assets'); }
+async function start() {
+	initCodingUI();
+	AU.ta.value = 'hallo, na ENDLICH!!!!!!!!!!';
+	let [globtext, functext, functextold] = await codebaseExtend('coding');
+
+	downloadAsText(globtext, 'allglobals', 'js');
+	downloadAsText(functext, 'allfuncs', 'js');
+	downloadAsText(functextold, 'allfuncs_old', 'js');
+
+}
 function start_advanced() {
 	dTable = mBy('dTable'); dTitle = mBy('dTitle');
 	show('dTopAdvanced');
@@ -71129,44 +71288,6 @@ function updateBubbleColors(e) {
 	const g = (y - 255) * -1;
 	const b = x <= y ? y - x : 0;
 	container.style.setProperty('--colorEnd', `rgb(${r},${g},${b})`);
-}
-async function codeUpdateCodebase(project) {
-	let [superdi, di] = await getCurrentSuperdi(); console.log('superdi', superdi);
-	let codechanges = {};
-	let [dibundle, keysbundle] = await getBundleDict(project); console.log('dibundle', dibundle)
-	for (const k in dibundle) {
-		let o = dibundle[k];
-		let code = codeNormalize(o.code); //.trim();
-		let prev = di[k];
-		if (isdef(prev)) { //this k exists in superdi
-			prev.code = codeNormalize(prev.code);
-			if (prev.code != code) {
-				console.log('code changed for', k)
-				codechanges[k] = { prev: prev.code, new: code, prevpath: prev.path, newpath: o.path, prevtype: prev.type, newtype: o.type };
-			}
-		} else {
-			o.code = code;
-			o.history = [o.path];
-			o.name = k;
-			o.timestamp = Date.now();
-			o.datetime = getCompactDatetime(o.timestamp);
-			o.sig = o.type == 'func' ? getFunctionSignature(stringBefore(code, '\n'), k) : o.type == 'cla' ? stringBefore(code, '{') : `${o.type} ${k}`;
-			lookupSet(superdi, [o.type, k], o);
-		}
-	}
-	console.log('superdi', superdi);
-	console.log('codechanges', codechanges); CODE.changes = codechanges;
-	let [di2, justcode, history] = assemble_dicts(superdi);
-	console.log('di2', di2)
-	let text = '';
-	for (const k of sortCaseInsensitive(get_keys(superdi.func))) {
-		text += codeNormalize(superdi.func[k].code) + '\n';
-	}
-	text = removeEmptyLines(text);
-	downloadAsText(text, 'allfunc', 'js')
-	downloadAsYaml(di2, `z_all.yaml`);
-	downloadAsYaml(justcode, `z_allcode.yaml`);
-	downloadAsYaml(history, `z_allhistory.yaml`);
 }
 function updateCollections() {
 	S.settings.collectionTypes = { playerProps: ['hand', 'devcards'], objectProps: ['neutral'] };

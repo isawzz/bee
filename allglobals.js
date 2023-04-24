@@ -1404,32 +1404,6 @@ var CACHE_CODE = false;
 var CACHE_DEFAULTSPEC = false;
 var CACHE_USERSPEC = false;
 var CANCEL_AI;
-function Card(img, bunch, id, reverse) {
-	var self = this;
-	this.img = img;
-	this.bunch = bunch;
-	this.id = id;
-	this.reverse = reverse;
-	this.suit = Math.floor(id / self.bunch.board.deck.cardSuit);
-	this.number = Math.floor(id % self.bunch.board.deck.cardSuit) + 1;
-	this.color = Math.floor(id / self.bunch.board.deck.cardSuit) % 2;
-	this.img.card = self;
-	this.onDblClick = function () {
-		self.reverse ? self.bunch.onDblClickReverse(self) : self.bunch.onDblClickCard(self);
-	}
-	this.flip = function () {
-		self.reverse = !self.reverse;
-		self.img.src = self.bunch.board.deck.cardSrc(self.id, self.reverse);
-	}
-	this.moveTo = function (bunch) {
-		self.bunch = bunch;
-		self.img.style.zIndex = self.bunch.cardZIndex();
-		self.img.style.left = String(self.bunch.cardLeft()) + "px";
-		self.img.style.top = String(self.bunch.cardTop()) + "px";
-		self.reverse = self.bunch.cardReverse();
-		self.img.src = self.bunch.board.deck.cardSrc(self.id, self.reverse);
-	}
-}
 var Categories;
 var CCC = 0;
 var CGAP = CSZ * .05;
@@ -1444,10 +1418,6 @@ var ColBrd = new Array(BRD_SQ_NUM);
 var ColChar = "abcdefgh";
 var ColorDi;
 var ColorNames;
-function colorPalette(color, type = 'shade') {
-	color = colorFrom(color);
-	return colorShades(color);
-}
 var ColorThiefObject;
 var commandChain = [];
 var Complex = {
@@ -3498,7 +3468,6 @@ var IsAnswerCorrect;
 var IsCanvasActive = false;
 var IsControlKeyDown = false;
 var isINTERRUPT;
-function isPlaying() { return DA.isSound; }
 var isReallyMultiplayer = false;
 var isRunning = false;
 var isSpeakerRunning;
@@ -4432,10 +4401,6 @@ var Tablename;
 var Tables;
 var TCount;
 var TEST_DIR = '01mini';
-function testCards() {
-	initRSGData(); hideLobby(); hideLogin(); showGame(); initDom();
-	testPlayerHand1();
-}
 var testCardsC = null
 var testCounter = 100;
 var testDict = {};
@@ -4450,24 +4415,6 @@ var Tid;
 var TimeElapsed;
 var TimeElem;
 var TimeLeft;
-function Timer() {
-	this.reset = function () {
-		this.date = new Date();
-		this.startTime = this.date.getTime();
-		this.elapsedTime = 0;
-	}
-	this.getCurrentTime = function () {
-		this.date = new Date();
-		return this.date.getTime();
-	}
-	this.getElapsedTime = function () {
-		current = this.getCurrentTime();
-		return (current - this.startTime) / 1000;
-	}
-	this.start = this.reset;
-	this.getTimeElapsed = this.getElapsedTime;
-	this.reset();
-}
 var TimestampStarted;
 var TO = {};
 var TOAnim;

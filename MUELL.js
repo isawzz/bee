@@ -1,5 +1,256 @@
 
 
+async function cssbaseNew(dir,files) {
+	let tcss=`
+	* {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		box-sizing: border-box;
+	}
+	`;
+	for(const file of files){
+		let path = dir+'/'+file+'.css';
+		tcss += await route_path_text(path) + '\n';
+	}
+	let t = replaceAllSpecialChars(tcss, '\t', '  ');
+	let lines = t.split('\r\n');
+	let allkeys = [], newlines = []; //in newlines
+	let di = {};
+	for (const line of lines) {
+		if (cssIsKeywordLine(line)) {
+			let newline = line.startsWith('@') ? stringAfter(line, ' ') : line.startsWith(':') ? stringAfter(line, ':') : line;
+			let key = firstWordIncluding(newline, '_-: >').trim();
+			newline = key + stringAfter(newline, key);
+			addIf(allkeys, key);
+			newlines.push(newline)
+			let ch = line[0];
+			let type = isLetter(ch) ? 't' : ch == '.' ? 'c' : ch == '@' ? 'k' : ch == ':' ? 'r' : 'i';
+			if (isdef(di[key]) && type != di[key].type){
+				console.log('duplicate key',key,type,di[key].type);
+			}
+			di[key] = { type: type, key: key }
+		} else {
+			newlines.push(line);
+		}
+	}
+
+	//allkeys has all css keys in order, di is bykey
+	//add clauses
+	let neededkeys = allkeys;
+	let clause = '';
+	let state = 'search_kw'; // search_kw search_clause_start search_clause_end
+	for (const kw of neededkeys) {
+		let i = 0;
+		for (const line of newlines) {
+			let lt = line.trim(); //console.log('ende',lt.endsWith('\n')); //return;
+			if (line.startsWith(kw) && firstWordIncluding(line, '_-: ').trim() == kw) { //firstWordIncluding(line, '_- ').trim() == kw)  {
+				assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${line}`)
+				if (line.includes('{')) {
+					clause = '{\n'; state = 'search_clause_end';
+				} else if (line.includes(',')) {
+					state = 'search_clause_start';
+				}
+			} else if (state == 'search_clause_start' && line.includes('{')) {
+				clause = '{\n'; state = 'search_clause_end';
+			} else if (state == 'search_clause_end') {
+				if (line[0] == '}') {
+					clause += line;
+					let cleanclause = cssCleanupClause(clause, kw);
+					lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
+					lookupAddIfToList(di, [kw, 'fullclauses'], clause);
+					state = 'search_kw';
+				} else {
+					clause += line + '\n';
+				}
+			}
+		}
+	}
+
+	let dis = {};
+	for (const o of get_values(di)) {
+		if (nundef(o.clauses)) continue;
+		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
+		lookupSet(dis, [o.type, o.key], o);
+	}
+	let text = '';
+	for (const type in dis) {
+		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
+		let prefix = type == 't' ? '' : type == 'k' ? '@keyframes ' : type == 'c' ? '.' : type == 'r' ? ':' : '#';
+		for (const kw of ksorted) {
+			let startfix = prefix + kw;
+			for (const clause of dis[type][kw].clauses) {
+				text += startfix + clause;
+			}
+		}
+	}
+	return text;
+
+
+}
+
+async function rest() {
+	let odict = list2dict(olist, 'key');
+	for (const k in odict) {
+		if (isdef(difuncs[k])) {
+			//check if code changed, in which case alert!
+			if (odict[k].code != difuncs[k].code) {
+				console.log('NEW DUPL!', k);
+
+				if (nundef(difuncs[k].oldcode)) difuncs[k].oldcode = difuncs[k].code;
+				difuncs[k].code = odict[k].code;
+
+				dupltext += difuncs[k].oldcode + '\n' + difuncs[k].code + '\n';
+				difuncs[k].override = odict[k].code;
+			}
+			continue;
+		}
+		difuncs[k] = odict[k];
+	}
+}
+
+async function rest() {
+
+	let globtext = globlist.map(x => x.code).join('\n');
+	//downloadAsText(globtext,'allglobals','js');
+
+	let difuncs = list2dict(funclist, 'key');
+	// let keys = sortCaseInsensitive(get_keys(difuncs));
+	// let functext = '';
+	// for (const k of keys) { functext += difuncs[k].code + '\n'; }
+	//downloadAsText(functext,'allfuncs','js');
+
+	//bis jetzt hab ich nur allglobals und allfuncs rewritten!
+	let project = 'coding';
+
+	let dupltext = '';
+	for (const path of files) {
+		let olist = await codeParseFile(path);
+		let odict = list2dict(olist, 'key');
+		for (const k in odict) {
+			if (isdef(difuncs[k])) {
+				//check if code changed, in which case alert!
+				if (odict[k].code != difuncs[k].code) {
+					console.log('NEW DUPL!', k);
+
+					if (nundef(difuncs[k].oldcode)) difuncs[k].oldcode = difuncs[k].code;
+					difuncs[k].code = odict[k].code;
+
+					dupltext += difuncs[k].oldcode + '\n' + difuncs[k].code + '\n';
+					difuncs[k].override = odict[k].code;
+				}
+				continue;
+			}
+			difuncs[k] = odict[k];
+		}
+	}
+
+	let keys = sortCaseInsensitive(get_keys(difuncs));
+	let functext = '', oldtext = '';
+	for (const k of keys) {
+		let o = difuncs[k];
+		functext += o.code + '\n';
+		oldtext += (isdef(o.oldcode) ? o.oldcode : o.code) + '\n';
+	}
+	//downloadAsText(functext,'allfuncs','js');
+	//downloadAsText(oldtext, 'allfuncs_old', 'js');
+
+	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
+	let seed = ['start'].concat(extractOnclickFromHtml(html)); //console.log('seed',seed)
+	let byKeyMinimized = _minimizeCode(difuncs, seed, valf(knownNogos[project], []));
+	let keysMinimized = keys.filter(x => isdef(byKeyMinimized[x]));
+	keysMinimized = sortCaseInsensitive(keysMinimized);
+	let closuretext = '';
+	for (const k of keysMinimized) { closuretext += byKeyMinimized[k].code + '\n'; }
+	downloadAsText(closuretext, 'closure', 'js');
+
+	AU.ta.value = keysMinimized.join(', ');
+
+}
+
+
+async function codebaseExtend(project){
+	let globlist = await codeParseFile('../allglobals.js');
+	let funclist = await codeParseFile('../allfuncs.js');
+	let list = globlist.concat(funclist); //keylist in order of loading!
+	let bykey=list2dict(list,'key');
+	let bytype={};
+	for(const k in bykey){
+		let o=bykey[k];
+		lookupAddIfToList(bytype,[o.type,k],o);
+	}
+	//get .js files from project
+	let htmlFile = `../${project}/index.html`;
+	let html = await route_path_text(htmlFile);
+	html = removeCommentLines(html, '<!--', '-->');
+	let dirhtml = `../${project}`;
+	let files = extractFilesFromHtml(html, htmlFile);
+	files = files.filter(x => !x.includes('../all'));
+	console.log('files', files)
+	if (files.length < 2) {
+		console.log('ONLY FILE IS', files[0], '...aborting');
+		return;
+	}
+
+
+
+	let globtext = globlist.map(x => x.code).join('\n');
+	//downloadAsText(globtext,'allglobals','js');
+
+	let difuncs = list2dict(funclist, 'key');
+	// let keys = sortCaseInsensitive(get_keys(difuncs));
+	// let functext = '';
+	// for (const k of keys) { functext += difuncs[k].code + '\n'; }
+	//downloadAsText(functext,'allfuncs','js');
+
+	//bis jetzt hab ich nur allglobals und allfuncs rewritten!
+	let project = 'coding';
+
+	let dupltext = '';
+	for (const path of files) {
+		let olist = await codeParseFile(path);
+		let odict = list2dict(olist, 'key');
+		for (const k in odict) {
+			if (isdef(difuncs[k])) {
+				//check if code changed, in which case alert!
+				if (odict[k].code != difuncs[k].code) {
+					console.log('NEW DUPL!', k);
+
+					if (nundef(difuncs[k].oldcode)) difuncs[k].oldcode = difuncs[k].code;
+					difuncs[k].code = odict[k].code;
+
+					dupltext += difuncs[k].oldcode + '\n' + difuncs[k].code + '\n';
+					difuncs[k].override = odict[k].code;
+				}
+				continue;
+			}
+			difuncs[k] = odict[k];
+		}
+	}
+
+	let keys = sortCaseInsensitive(get_keys(difuncs));
+	let functext = '', oldtext = '';
+	for (const k of keys) {
+		let o = difuncs[k];
+		functext += o.code + '\n';
+		oldtext += (isdef(o.oldcode) ? o.oldcode : o.code) + '\n';
+	}
+	//downloadAsText(functext,'allfuncs','js');
+	//downloadAsText(oldtext, 'allfuncs_old', 'js');
+
+	let knownNogos = { codingfull: ['uiGetContact'],coding: ['uiGetContact','grid'] };
+	let seed = ['start'].concat(extractOnclickFromHtml(html)); //console.log('seed',seed)
+	let byKeyMinimized = _minimizeCode(difuncs, seed, valf(knownNogos[project], []));
+	let keysMinimized = keys.filter(x => isdef(byKeyMinimized[x]));
+	keysMinimized = sortCaseInsensitive(keysMinimized);
+	let closuretext = '';
+	for (const k of keysMinimized) { closuretext += byKeyMinimized[k].code + '\n'; }
+	downloadAsText(closuretext, 'closure', 'js');
+
+	AU.ta.value = keysMinimized.join(', ');
+
+}
+
 function mist111() {
 	if (isEmpty(line.trim()) || line.startsWith) { i++; }
 	let type = 'in_process';

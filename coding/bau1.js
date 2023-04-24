@@ -1,4 +1,88 @@
 
+function cssKeysNeeded(tcss, code, html) {
+	let t = replaceAllSpecialChars(tcss, '\t', '  ');
+	let lines = t.split('\r\n');
+	let allkeys = [], newlines = []; //in newlines
+	let di = {};
+	for (const line of lines) {
+		if (cssIsKeywordLine(line)) {
+			let newline = line.startsWith('@') ? stringAfter(line, ' ') : line.startsWith(':') ? stringAfter(line, ':') : line;
+			let word = firstWordIncluding(newline, '_-: ').trim();
+			newline = word + stringAfter(newline, word);
+			addIf(allkeys, word);
+			newlines.push(newline)
+			let ch = line[0];
+			let type = isLetter(ch) ? 't' : ch == '.' ? 'c' : ch == '@' ? 'k' : ch == ':' ? 'r' : 'i';
+			di[word] = { type: type, key: word }
+		} else {
+			newlines.push(line);
+		}
+	}
+	let neededkeys = [];
+	for (const k of allkeys) {
+		if (['rubberBand'].includes(k)) continue;
+		let ktest = k.includes(' ') ? stringBefore(k, ' ') : k.includes(':') ? stringBefore(k, ':') : k;
+		if (['root'].some(x => x == k)) addIf(neededkeys, k);
+		else if (code.includes(`${ktest}`) || code.includes(`'${ktest}'`) || code.includes(`"${ktest}"`)) addIf(neededkeys, k);
+		else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
+	}
+	return [di, neededkeys, newlines];
+}
+
+function cssNormalize(tcss, code, html) {
+	[di, neededkeys, newlines] = cssKeysNeeded(tcss, code, html);
+	console.log('needed', sortCaseInsensitive(neededkeys))
+	let clause = '';
+	let state = 'search_kw'; // search_kw search_clause_start search_clause_end
+	for (const kw of neededkeys) {
+		let i = 0;
+		for (const line of newlines) {
+			let lt = line.trim(); //console.log('ende',lt.endsWith('\n')); //return;
+			if (line.startsWith(kw) && firstWordIncluding(line, '_-: ').trim() == kw) { //firstWordIncluding(line, '_- ').trim() == kw)  {
+				assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${line}`)
+				if (line.includes('{')) {
+					clause = '{\n'; state = 'search_clause_end';
+				} else if (line.includes(',')) {
+					state = 'search_clause_start';
+				}
+			} else if (state == 'search_clause_start' && line.includes('{')) {
+				clause = '{\n'; state = 'search_clause_end';
+			} else if (state == 'search_clause_end') {
+				if (line[0] == '}') {
+					clause += line;
+					let cleanclause = cssCleanupClause(clause, kw);
+					lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
+					lookupAddIfToList(di, [kw, 'fullclauses'], clause);
+					state = 'search_kw';
+				} else {
+					clause += line + '\n';
+				}
+			}
+		}
+	}
+	let dis = {};
+	for (const o of get_values(di)) {
+		if (nundef(o.clauses)) continue;
+		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
+		lookupSet(dis, [o.type, o.key], o);
+	}
+	let text = '';
+	for (const type in dis) {
+		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
+		let prefix = type == 't' ? '' : type == 'k' ? '@keyframes ' : type == 'c' ? '.' : type == 'r' ? ':' : '#';
+		for (const kw of ksorted) {
+			let startfix = prefix + kw;
+			for (const clause of dis[type][kw].clauses) {
+				text += startfix + clause;
+			}
+		}
+	}
+	return text;
+}
+
+
+
+
 function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};
 	let tbd = symlist; //console.log('symlist', symlist)
