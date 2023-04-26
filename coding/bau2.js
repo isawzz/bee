@@ -34,7 +34,7 @@ async function closureFromProject(project) {
 		let onew = mykey[k];
 		let oold = bykey[k];
 		if (isdef(oold) && onew.code == oold.code) {
-			console.log('override w/ SAME code', k);//brauch garnix machen!
+			//console.log('override w/ SAME code', k);//brauch garnix machen!
 		} else if (isdef(oold)) {
 			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
 			oold.oldcode = oold.code;
@@ -50,12 +50,31 @@ async function closureFromProject(project) {
 	// *** here bykey contains newest code for project ***
 	//minimize
 	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
-	let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed)
+	let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed);
+
+	if (project == 'nature') seed=seed.concat(['branch_draw','leaf_draw','lsys_init','tree_init','lsys_add','tree_add','lsys_draw','tree_draw']);
+
+	//console.log('____',bykey.NATURE)
+
 	let byKeyMinimized = _minimizeCode(bykey, seed, valf(knownNogos[project], []));
+
+	for(const k in byKeyMinimized){
+		let code=byKeyMinimized[k].code;
+		let lines = code.split('\n');
+		let newcode = '';
+		for(const l of lines){
+			newcode+= removeTrailingComments(l)+'\n';
+		} 
+		byKeyMinimized[k].code = newcode.trim();
+	}
+
+	//console.log('____',byKeyMinimized.NATURE)
 
 	let cvckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type != 'function').map(x => x.key); //in order of appearance!
 	let funckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type == 'function').map(x => x.key); //in order of appearance!
 	funckeys = sortCaseInsensitive(funckeys);
+
+
 
 	//generate
 	let closuretext = '';
@@ -64,7 +83,7 @@ async function closureFromProject(project) {
 
 	//css closure as well!
 	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
-	console.log('cssfiles', cssfiles);
+	//console.log('cssfiles', cssfiles);
 	cssfiles.unshift('../allcss.css');
 
 	//generate css dict
@@ -78,7 +97,7 @@ async function closureFromProject(project) {
 	//prep dictionary by key: di = {key: type:}
 	let lines = t.split('\r\n');
 	if (lines.length <= 2) lines = t.split('\n');
-	console.log('lines', lines)
+	//console.log('lines', lines)
 	let allkeys = [], newlines = []; //in newlines
 	let di = {};
 	let testresult = '';
@@ -105,7 +124,7 @@ async function closureFromProject(project) {
 			newlines.push(line);
 		}
 	}
-	console.log('di', di)
+	//console.log('di', di)
 
 	//minimize
 	let neededkeys = [], code = closuretext;
@@ -160,14 +179,14 @@ async function closureFromProject(project) {
 	let types = ['root', 'tag', 'class', 'id', 'keyframes'];
 	let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
 	if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
-	console.log('types', types);
+	//console.log('types', types);
 	types = types.map(x => ditypes[x]);
 	for (const type of types) {
 		if (nundef(dis[type])) continue;
 		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
 		let prefix = type == 't' ? '' : String.fromCharCode(type);
 		if (prefix == '@') prefix += 'keyframes ';
-		console.log('type', type, prefix, ksorted)
+		//console.log('type', type, prefix, ksorted)
 		for (const kw of ksorted) {
 			let startfix = prefix + kw;
 			for (const clause of dis[type][kw].clauses) {
@@ -440,9 +459,11 @@ function cssKeywordType(line) {
 }
 function removeTrailingComments(line) {
 	let icomm = line.indexOf('//');
+	if (icomm>0)console.log('icomm',icomm);
 	if (icomm <= 0 || ':"`\''.includes(line[icomm - 1])) return line;
-	if ([':', '"', "'", '`'].some(x => line.indexOf(x) < icomm)) return line;
+	if ([':', '"', "'", '`'].some(x => line.indexOf(x)>=0 && line.indexOf(x) < icomm)) return line;
 
+	console.log('trail',line.substring(0, icomm))
 	return line.substring(0, icomm);
 }
 function ithWord(s, n, allow_) {

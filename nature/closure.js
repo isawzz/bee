@@ -189,20 +189,16 @@ var _sndPlayer;
 var _TOSound;
 var A;
 var AREAS = {};
-var AU = {};
 var C = null;
 var ColorDi;
 var CV;
 var CX;
 var DA = {};
 var dButtons;
-var dCenter;
-var dLeft;
-var dMain;
 var dParent;
-var dSidebar;
 var dTable;
 var F;
+var FR = 50;
 var G = null;
 var INFO = {};
 var lineWidth = 4;
@@ -210,7 +206,6 @@ var P;
 var PROTO;
 var ROOT = null;
 var SPEC = null;
-var T;
 var TO = {};
 var UIDCounter = 0;
 var UIROOT;
@@ -225,40 +220,10 @@ function _deqSound() {
 	_sndPlayer.load();
 }
 function _enqSound(key) { if (nundef(_qSound)) _qSound = []; _qSound.push(key); }
-function _minimizeCode(di, symlist = ['start'], nogo = []) {
-	let done = {};
-	let tbd = symlist;
-	let MAX = 1000000, i = 0;
-	let visited = {
-		autocomplete: true, Card: true, change: true, config: true, grid: true, hallo: true,
-		jQuery: true, init: true,
-		Number: true, sat: true, step: true, PI: true
-	};
-
-	while (!isEmpty(tbd)) {
-		if (++i > MAX) break;
-		let sym = tbd[0];
-		if (isdef(visited[sym])) { tbd.shift(); continue; }
-		visited[sym] = true;
-		let o = di[sym];
-
-		if (nundef(o)) { tbd.shift(); continue; }
-		let text = o.code;
-
-		let words = toWords(text, true);
-
-		for (const w of words) {
-			if (nogo.some(x => w.startsWith(x))) continue;
-			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
-		}
-		assertion(sym == tbd[0], 'W T F')
-		tbd.shift();
-		done[sym] = o;
-	}
-	return done;
-}
 function _mPlayPause(dParent, styles = {}, handler = null) {
 	if (!handler) handler = audio_onclick_pp;
+
+
 	let html = `
     <section id="dButtons">
       <a id="bPlay" href="#" }">
@@ -272,9 +237,13 @@ function _mPlayPause(dParent, styles = {}, handler = null) {
 	let pp = mCreateFrom(html);
 	mAppend(dParent, pp);
 	mStyle(pp, styles);
+
 	mBy('bPlay').onclick = () => { hide0('bPlay'); show0('bPause'); handler(); }
 	mBy('bPause').onclick = () => { hide0('bPause'); show0('bPlay'); handler(); }
+
+
 	return { button: pp, show_play: () => { hide0('bPause'); show0('bPlay'); }, show_pause: () => { hide0('bPlay'); show0('bPause'); } };
+
 }
 function _whenSoundPaused() {
 	_sndPlayer = null;
@@ -290,7 +259,6 @@ function addAREA(id, o) {
 	}
 	AREAS[id] = o;
 }
-function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
 	let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
@@ -307,7 +275,6 @@ function alphaToHex(zero1) {
 	return hex;
 }
 function arrLast(arr) { return arr.length > 0 ? arr[arr.length - 1] : null; }
-function arrMinus(a, b) { if (isList(b)) return a.filter(x => !b.includes(x)); else return a.filter(x => x != b); }
 function arrRange(from = 1, to = 10, step = 1) { let res = []; for (let i = from; i <= to; i += step)res.push(i); return res; }
 function arrRemovip(arr, el) {
 	let i = arr.indexOf(el);
@@ -353,19 +320,39 @@ function branch_draw(o) {
 	if (C.root.jitter) cLine(o.p1.x, o.p1.y, o.p2.x + Math.random() * 2 - 1, o.p2.y + Math.random() * 2 - 1, {}, CX);
 	else cLine(o.p1.x, o.p1.y, o.p2.x, o.p2.y, {}, CX);
 }
+function C_draw() {
+	if (!C.changed) return;
+	cClear(CV, CX);
+
+	for (const type in C.items) { let f = get_func(type, 'draw'); for (const item of C.items[type]) { f(item); } }
+	C.changed = false;
+}
+function C_update() { C.root.animated = true; get_func(C.name, 'add')(); }
 function calc_maxdepth(maxnodes, rules) {
+
 	let laus = rules.map(x => x.aus).join();
 	let lwird = rules.map(x => x.wird).join();
+
 	let naus = countAll(laus, 'ABF');
 	let nwird = countAll(lwird, 'ABF');
 	let ratio = nwird / naus;
+
 	let pow = 2;
 	while (Math.pow(ratio, pow) < maxnodes) pow++;
+
 	return pow - 1;
+
 }
 function capitalize(s) {
 	if (typeof s !== 'string') return '';
 	return s.charAt(0).toUpperCase() + s.slice(1);
+}
+function cClear(cnv = null, ctx = null) {
+	if (nundef(cnv)) { cnv = CV; ctx = CX; if (!ctx) return; }
+	ctx.save();
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	ctx.clearRect(0, 0, cnv.width, cnv.height);
+	ctx.restore();
 }
 function cEllipse(x, y, w, h, styles = null, angle = 0, ctx = null) {
 	if (nundef(ctx)) { ctx = CX; if (!ctx) return; }
@@ -394,242 +381,6 @@ function cLine(x1, y1, x2, y2, styles = null, ctx = null) {
 	ctx.moveTo(x1, y1);
 	ctx.lineTo(x2, y2)
 	ctx.stroke();
-}
-async function closureFromProject(project) {
-
-
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
-	let list = globlist.concat(funclist);
-	let bykey = list2dict(list, 'key');
-	let bytype = {};
-	for (const k in bykey) { let o = bykey[k]; lookupAddIfToList(bytype, [o.type], o); }
-
-	let htmlFile = `../${project}/index.html`;
-	let html = await route_path_text(htmlFile);
-	html = removeCommentLines(html, '<!--', '-->');
-	let dirhtml = `../${project}`;
-	let files = extractFilesFromHtml(html, htmlFile);
-	files = files.filter(x => !x.includes('../all'));
-	console.log('files', files)
-
-	let olist = [];
-	for (const path of files) {
-		let opath = await codeParseFile(path);
-		olist = olist.concat(opath);
-	}
-
-	let mytype = {}, mykey = {};
-	for (const o of olist) { mykey[o.key] = o; }
-	for (const k in mykey) { let o = mykey[k]; lookupAddIfToList(mytype, [o.type], o); }
-
-
-
-	let dupltext = '';
-	for (const k in mykey) {
-		let onew = mykey[k];
-		let oold = bykey[k];
-		if (isdef(oold) && onew.code == oold.code) {
-
-		} else if (isdef(oold)) {
-			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
-			oold.oldcode = oold.code;
-			oold.code = onew.code;
-			dupltext += oold.oldcode + '\n' + oold.code + '\n';
-		} else {
-			bykey[k] = onew;
-			lookupAddIfToList(bytype, [onew.type], onew);
-			list.push(onew);
-		}
-	}
-
-
-
-	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
-	let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed);
-
-	if (project == 'nature') seed = seed.concat(['branch_draw', 'leaf_draw', 'lsys_init', 'tree_init', 'lsys_add', 'tree_add', 'lsys_draw', 'tree_draw']);
-
-
-
-	let byKeyMinimized = _minimizeCode(bykey, seed, valf(knownNogos[project], []));
-
-	for (const k in byKeyMinimized) {
-		let code = byKeyMinimized[k].code;
-		let lines = code.split('\n');
-		let newcode = '';
-		for (const l of lines) {
-			newcode += removeTrailingComments(l) + '\n';
-		}
-		byKeyMinimized[k].code = newcode.trim();
-	}
-
-
-
-	let cvckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type != 'function').map(x => x.key); //in order of appearance!
-	let funckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type == 'function').map(x => x.key); //in order of appearance!
-	funckeys = sortCaseInsensitive(funckeys);
-
-
-
-
-	let closuretext = '';
-	for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-	for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-
-
-	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
-
-	cssfiles.unshift('../allcss.css');
-
-
-
-
-	let tcss = '';
-	for (const path of cssfiles) { tcss += await route_path_text(path) + '\r\n'; }
-	let t = replaceAllSpecialChars(tcss, '\t', '  ');
-
-
-
-	let lines = t.split('\r\n');
-	if (lines.length <= 2) lines = t.split('\n');
-
-	let allkeys = [], newlines = [];
-	let di = {};
-	let testresult = '';
-	for (const line of lines) {
-		let type = cssKeywordType(line);
-		if (type) {
-			testresult += line[0] + '=';//addIf(testresult,line[0]); 
-			let newline = isLetter(line[0]) || line[0] == '*' ? line : line[0] == '@' ? stringAfter(line, ' ') : line.substring(1);
-
-			let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
-			key = key.trim();
-
-			if (isdef(di[key]) && type != di[key].type) {
-				console.log('duplicate key', key, type, di[key].type);
-			}
-			di[key] = { type: type, key: key }
-			newline = key + stringAfter(newline, key);
-			if (key == '*') console.log('***', stringAfter(newline, key));
-
-			addIf(allkeys, key);
-			newlines.push(newline)
-			di[key] = { type: type, key: key }
-		} else {
-			newlines.push(line);
-		}
-	}
-
-
-
-	let neededkeys = [], code = closuretext;
-	for (const k of allkeys) {
-		if (['rubberBand'].includes(k)) continue;
-		let ktest = k.includes(' ') ? stringBefore(k, ' ') : k.includes(':') ? stringBefore(k, ':') : k;
-		if (['root'].some(x => x == k)) addIf(neededkeys, k);
-		else if (code.includes(`${ktest}`) || code.includes(`'${ktest}'`) || code.includes(`"${ktest}"`)) addIf(neededkeys, k);
-		else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
-	}
-
-
-	let clause = '';
-	let state = 'search_kw';
-	for (const kw of neededkeys) {
-		let i = 0;
-		for (const line of newlines) {
-			if (line.startsWith(kw)) {
-				let w1 = line.includes('{') ? stringBefore(line, '{') : stringBefore(line, ',');
-				if (w1.trim() != kw) continue;
-				assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${kw} ${line}`);
-				if (line.includes('{')) {
-					clause = '{\n'; state = 'search_clause_end';
-				} else if (line.includes(',')) {
-					state = 'search_clause_start';
-				}
-			} else if (state == 'search_clause_start' && line.includes('{')) {
-				clause = '{\n'; state = 'search_clause_end';
-			} else if (state == 'search_clause_end') {
-				if (line[0] == '}') {
-					clause += line;
-					let cleanclause = cssCleanupClause(clause, kw);
-					lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
-					lookupAddIfToList(di, [kw, 'fullclauses'], clause);
-					state = 'search_kw';
-				} else {
-					clause += line + '\n';
-				}
-			}
-		}
-	}
-
-	let dis = {};
-	for (const o of get_values(di)) {
-		if (nundef(o.clauses)) continue;
-		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
-		lookupSet(dis, [o.type, o.key], o);
-	}
-
-
-	let csstext = '';
-	let types = ['root', 'tag', 'class', 'id', 'keyframes'];
-	let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
-	if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
-
-	types = types.map(x => ditypes[x]);
-	for (const type of types) {
-		if (nundef(dis[type])) continue;
-		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
-		let prefix = type == 't' ? '' : String.fromCharCode(type);
-		if (prefix == '@') prefix += 'keyframes ';
-
-		for (const kw of ksorted) {
-			let startfix = prefix + kw;
-			for (const clause of dis[type][kw].clauses) {
-				csstext += startfix + clause;
-			}
-		}
-	}
-
-	return [closuretext, csstext];
-}
-function codeParseBlock(lines, i) {
-	let l = lines[i];
-	let type = l[0] == 'a' ? ithWord(l, 1) : ithWord(l, 0);
-	let key = l[0] == 'a' ? ithWord(l, 2, true) : ithWord(l, 1, true);
-	let code = l + '\n'; i++; l = lines[i];
-	while (i < lines.length && !(['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x)) && !l.startsWith('}'))) {
-		if (!l.trim().startsWith('//') || isEmptyOrWhiteSpace(l)) code += l + '\n';
-		i++; l = lines[i];
-	}
-
-	code = replaceAllSpecialChars(code, '\t', '  ');
-	code = code.trim();
-
-	return [{ key: key, type: type, code: code }, i];
-}
-function codeParseBlocks(text) {
-
-	let lines = text.split('\r\n');
-	lines = lines.map(x => removeTrailingComments(x));
-	let i = 0, o = null, res = [];
-	while (i < lines.length) {
-		let l = lines[i];
-		if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
-			[o, iLineAfterBlock] = codeParseBlock(lines, i);
-			i = iLineAfterBlock;
-			res.push(o)
-		} else i++;
-	}
-	return res;
-}
-async function codeParseFile(path) {
-	let text = await route_path_text(path);
-
-
-	let olist = codeParseBlocks(text);
-
-	return olist;
 }
 function coin(percent = 50) { return Math.random() * 100 < percent; }
 function colorChannelMixer(colorChannelA, colorChannelB, amountToMix) {
@@ -827,6 +578,7 @@ function create_branch(b, angle, len, color) {
 	let x = b.p2.x + Math.cos(angle) * len;
 	let y = b.p2.y - Math.sin(angle) * len;
 	let age = b.age + 1;
+
 	let o = {
 		done: false,
 		p1: b.p2,
@@ -842,6 +594,7 @@ function create_branch(b, angle, len, color) {
 	};
 	b.done = true;
 	return o;
+
 }
 function create_leaf(b, root) {
 	let o = {
@@ -871,38 +624,6 @@ function createcircle(posx, posy, radius, stroke, fill, filter) {
 	circle.setAttributeNS(null, "data-posx", posx);
 	svg.appendChild(circle);
 }
-function cssCleanupClause(t, kw) {
-	let lines = t.split('\n');
-	let comment = false;
-	let state = 'copy';
-	let res = '';
-	for (const line of lines) {
-		let lt = line.trim();
-		let [cstart, cend, mstart] = [lt.startsWith('/*'), lt.endsWith('*/'), line.includes('/*')];
-		if (state == 'skip') {
-			if (cend) state = 'copy';
-			continue;
-		} else if (state == 'copy') {
-			if (cstart && cend) { continue; }
-			else if (cstart) { state = 'skip'; continue; }
-			else if (mstart) {
-				res += stringBefore(line, '/*') + '\n';
-				if (!cend) state = 'skip';
-			} else {
-				res += line + '\n';
-			}
-		}
-	}
-	if (kw == 'bAdd') console.log(res);
-	return res;
-}
-function cssKeywordType(line) {
-	if (isLetter(line[0]) || line[0] == '*' && line[1] != '/') return 't';
-	else if (toLetters(':.#').some(x => line[0] == x)) return (line.charCodeAt(0)); //[0].charkey());
-	else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
-	else return null;
-
-}
 function cStyle(styles, ctx) {
 	if (nundef(ctx)) { ctx = CX; if (nundef(ctx)) { console.log('ctx undefined!!!!!!!'); return; } }
 	const di = { bg: 'fillStyle', fill: 'fillStyle', stroke: 'strokeStyle', fg: 'strokeStyle', thickness: 'lineWidth', thick: 'lineWidth', cap: 'lineCap', ending: 'lineCap' };
@@ -915,11 +636,24 @@ function dicti(areaName, oSpec, oid, o) {
 	parent.style.display = 'inline-grid';
 	return parent;
 }
+function draw() {
+	background(51);
+	for (let i = 0; i < tree.length; i++) {
+		tree[i].show();
+		if (jittering) tree[i].jitter();
+	}
+	for (let i = 0; i < leaves.length; i++) {
+		let l = leaves[i].current;
+		noStroke();
+		fill(0, 255, 100, 100);
+		ellipse(l.x, l.y, 8, 8);
+		if (jittering) leaves[i].current.y += random(0, 2);
+	}
+}
 function dynamicArea(areaName, oSpec, oid, o) {
 	func = correctFuncName(oSpec.type);
 	oSpec.ui = window[func](areaName, oSpec, oid, o);
 }
-function endsWith(s, sSub) { let i = s.indexOf(sSub); return i >= 0 && i == s.length - sSub.length; }
 function ensureColorDict() {
 	if (isdef(ColorDi)) return;
 	ColorDi = {};
@@ -979,38 +713,6 @@ function error(msg) {
 	let fname = getFunctionsNameThatCalledThisFunction();
 	console.log(fname, 'ERROR!!!!! ', msg);
 }
-function extractFilesFromHtml(html, htmlfile, ext = 'js') {
-	let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
-	let dirhtml = stringBeforeLast(htmlfile, '/');
-	let project = stringAfter(dirhtml, '/'); if (project.includes('/')) project = stringBefore(project, '/');
-	let parts = html.split(prefix);
-	parts.shift();
-	let files = parts.map(x => stringBefore(x, '"'));
-	files = files.filter(x => !x.includes('alibs/') && !x.includes('assets/')); //console.log('files', jsCopy(files))
-	let files2 = [];
-	for (const f of files) {
-		if (f.startsWith(dirhtml)) { files2.push(f); continue; }
-		if (f.startsWith('./')) { files2.push(dirhtml + f.substring(1)); continue; }
-		if (f.startsWith('../') && stringCount(dirhtml, '../') == 1) {
-			files2.push(f); continue;
-		}
-		if (!f.includes('/')) { files2.push(dirhtml + '/' + f); continue; }
-		if (isLetter(f[0])) { files2.push(dirhtml + '/' + f); continue; }
-		console.log('PROBLEM!', f)
-	}
-	files = files2;
-	return files;
-}
-function extractOnclickFromHtml(html) {
-	let symlist = [];
-	let onclicks = html.split('onclick="'); //.shift();
-	onclicks.shift();
-	for (const oncl of onclicks) {
-		let code = stringBefore(oncl, '(');
-		symlist.push(code);
-	}
-	return symlist;
-}
 function fireClick(elem) {
 	const evt = new Event("click", { "bubbles": true, "cancelable": false });
 	elem.dispatchEvent(evt);
@@ -1024,12 +726,6 @@ function firstNumber(s) {
 		}
 	}
 	return null;
-}
-function firstWordIncluding(s, allowed = '_-') {
-	let res = '', i = 0;
-	while (!isLetter(s[i]) && !isDigit(s[i]) && !allowed.includes(s[i])) i++;
-	while (isLetter(s[i]) || isDigit(s[i]) || allowed.includes(s[i])) { res += s[i]; i++; }
-	return res;
 }
 function fisherYates(arr) {
 	if (arr.length == 2 && coin()) { return arr; }
@@ -1045,42 +741,42 @@ function fisherYates(arr) {
 }
 function G_clear() { gameloop_stop(); clear_timeouts(); mClear('dTable'); C = G = CV = CX = null; }
 function G_init(name) {
+
 	if (CV) G_clear();
-	[dLeft, dCenter] = mColFlex(dTable, [0, 5]);
-	let res = mCanvas(dCenter, { w: 500, h: 500, bg: '#222', rounding: 10 });
+
+
+	let res = mCanvas(dTable, { w: 500, h: 500, bg: '#222', rounding: 10 });
 	[CV, CX] = [res.cv, res.cx];
-	let bpp = _mPlayPause(dCenter, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
+
+	let bpp = _mPlayPause(dTable, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
+
 	G = { running: false, bPP: bpp };
 	C = { changed: true, name: name, items: {}, root: get_func(name, 'init')() };
 }
-function gameloop_stop() { clear_timeouts(); if (G) G.running = false; }
-function generate() {
-	numgen++; if (numgen > system.max) {
-		clearInterval(interval_id);
-		console.log('done!');
-		return;
-	}
-	len *= factor;
-	let nextSentence = '';
-	for (let i = 0; i < sentence.length; i++) {
-		let current = sentence.charAt(i);
-		let done = false;
-		for (const rule of rules) {
-			if (current == rule.aus) {
-				nextSentence += rule.mach;
-				done = true;
+function gameloop_start() { C_update(); TO.iv = setInterval(C_draw, 1000 / FR); G.running = true; G.bPP.show_pause(); }
+function gameloop_stop() { clear_timeouts(); if (G) { G.running = false; G.bPP.show_play(); } }
+function gameloop_toggle() { if (G.running === true) gameloop_stop(); else gameloop_start(); }
+function generate(sentence) {
+	let root = C.root;
+	let rules = root.rules;
+	var nextSentence = '';
+	for (var i = 0; i < sentence.length; i++) {
+		var current = sentence.charAt(i);
+		var found = false;
+		for (var j = 0; j < rules.length; j++) {
+			if (current == rules[j].aus) {
+				found = true;
+				nextSentence += rules[j].wird;
 				break;
 			}
 		}
-		if (!done) nextSentence += current;
+		if (!found) {
+			nextSentence += current;
+		}
 	}
-	sentence = nextSentence;
-	createP(sentence);
-	turtle();
+	return nextSentence;
 }
 function get_func(itemtype, cmd) { return window[`${itemtype}_${cmd}`]; }
-function get_keys(o) { return Object.keys(o); }
-function get_values(o) { return Object.values(o); }
 function getColorHexes(x) {
 	return [
 		'f0f8ff',
@@ -1585,33 +1281,18 @@ function hue(h) {
 	var b = 2 - Math.abs(h * 6 - 4);
 	return [Math.floor(r * 255), Math.floor(g * 255), Math.floor(b * 255)];
 }
-function initCodingUI() {
-	mStyle('dMain', { bg: 'silver' });
-	[dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
-	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
-	mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
-	AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
-
-}
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
-function isDigit(s) { return /^[0-9]$/i.test(s); }
 function isEmpty(arr) {
 	return arr === undefined || !arr
 		|| (isString(arr) && (arr == 'undefined' || arr == ''))
 		|| (Array.isArray(arr) && arr.length == 0)
 		|| Object.entries(arr).length === 0;
 }
-function isEmptyOrWhiteSpace(s) { return isEmpty(s.trim()); }
-function isLetter(s) { return /^[a-zA-Z]$/i.test(s); }
 function isList(arr) { return Array.isArray(arr); }
 function isNumber(x) { return x !== ' ' && x !== true && x !== false && isdef(x) && (x == 0 || !isNaN(+x)); }
 function isString(param) { return typeof param == 'string'; }
-function ithWord(s, n, allow_) {
-	let ws = toWords(s, allow_);
-
-	return ws[Math.min(n, ws.length - 1)];
-}
+function isSvg(elem) { return startsWith(elem.constructor.name, 'SVG'); }
 function jsCopy(o) { return JSON.parse(JSON.stringify(o)); }
 function last(arr) {
 	return arr.length > 0 ? arr[arr.length - 1] : null;
@@ -1620,14 +1301,6 @@ function leaf_draw(o) {
 	let [x, y] = [o.p.x, o.p.y];
 	let [w, h] = [o.len * 1.5, o.len];
 	cEllipse(x, y, w, h, { bg: o.color }, o.angle);
-}
-function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
-	let di = {};
-	for (const a of arr) {
-		if (uniqueKeys) lookupSet(di, [a[keyprop]], a);
-		else lookupAddToList(di, [a[keyprop]], a);
-	}
-	return di;
 }
 function liste(areaName, oSpec, oid, o) {
 	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
@@ -1647,11 +1320,6 @@ function lookup(dict, keys) {
 		i += 1;
 	}
 	return d;
-}
-function lookupAddIfToList(dict, keys, val) {
-	let lst = lookup(dict, keys);
-	if (isList(lst) && lst.includes(val)) return;
-	lookupAddToList(dict, keys, val);
 }
 function lookupAddToList(dict, keys, val) {
 	let d = dict;
@@ -1676,36 +1344,24 @@ function lookupAddToList(dict, keys, val) {
 	}
 	return d;
 }
-function lookupSet(dict, keys, val) {
-	let d = dict;
-	let ilast = keys.length - 1;
-	let i = 0;
-	for (const k of keys) {
-		if (nundef(k)) continue;
-		if (d[k] === undefined) d[k] = (i == ilast ? val : {});
-		if (nundef(d[k])) d[k] = (i == ilast ? val : {});
-		d = d[k];
-		if (i == ilast) return d;
-		i += 1;
-	}
-	return d;
-}
 function lsys_add() {
 	C.items = {};
 	let root = C.root; root.gen++;
 	let [stack, gen, b, sentence, x, y, angle, len, id] = [[], root.gen, root, root.sentence, root.p2.x, root.p2.y, root.angle, root.len, root.id++];
 	for (let i = 0; i < gen; i++) { len *= root.dlen; sentence = generate(sentence); }
+
 	let step = 0;
 	for (var i = 0; i < sentence.length; i++) {
 		var ch = sentence[i];
 		if ('ABCFVWXYZ'.includes(ch)) {
 			b = create_branch(b, angle, len, b.color); lookupAddToList(C.items, ['branch'], b); b.id = id++;
+
 		} else if (ch == '+') {
 			angle -= root.dangle;
 		} else if (ch == '-') {
 			angle += root.dangle;
 		} else if (ch == '[') {
-			stack.push({ x: b.p2.x, y: b.p2.y, angle: angle, b: b });
+			stack.push({ x: b.p2.x, y: b.p2.y, angle: angle, b: b }); //console.log(`(${step++}) push`, toDegree(angle))
 		} else if (ch == ']') {
 			let o = stack.pop();
 			angle = o.angle; x = o.x; y = o.y; b = o.b;
@@ -1715,14 +1371,16 @@ function lsys_add() {
 	if (root.gen < root.depth) TO.iv1 = setTimeout(lsys_add, 100); else TO.iv1 = setTimeout(() => G_init('lsys'), 5000);
 }
 function lsys_init(offx = 0, offy = 0, options = {}) {
+
 	let n = NATURE.lsystems.length;
 	let i = DA.isystem = (DA.isystem + 1) % n;
 	let system = NATURE.lsystems[i];
 	let maxdepth = calc_maxdepth(12000, system.rules);
+
 	let root = {
 		axiom: system.axiom, //'F',
 		sentence: system.axiom,
-		rules: system.rules,
+		rules: system.rules, //[{ aus: 'F', wird: 'FF+[+F-F-F]-[-F+F+F]' },],
 		t: 'root',
 		p2: { x: CV.width / valf(system.xstart, 2), y: CV.height },
 		angle: toRadian(90),
@@ -1735,7 +1393,7 @@ function lsys_init(offx = 0, offy = 0, options = {}) {
 		thickness: valf(options.thick, 1),
 		dthickness: 1,
 		color: rColor(70), //'seagreen',
-		depth: Math.min(valf(system.depth, NATURE.depth), maxdepth),
+		depth: Math.min(valf(system.depth, NATURE.depth), maxdepth), // 6
 		animated: false,
 		jitter: false,
 		done: true,
@@ -1748,6 +1406,16 @@ function makeUnitString(nOrString, unit = 'px', defaultVal = '100%') {
 	return nOrString;
 }
 function mAppend(d, child) { toElem(d).appendChild(child); return child; }
+function mButton(caption, handler, dParent, styles, classes, id) {
+	let x = mCreate('button');
+	x.innerHTML = caption;
+	if (isdef(handler)) x.onclick = handler;
+	if (isdef(dParent)) toElem(dParent).appendChild(x);
+	if (isdef(styles)) mStyle(x, styles);
+	if (isdef(classes)) mClass(x, classes);
+	if (isdef(id)) x.id = id;
+	return x;
+}
 function mBy(id) { return document.getElementById(id); }
 function mCanvas(dParent, styles = {}, bstyles = {}, play = null, pause = null, origin = 'tl') {
 	let cv = mCreate('canvas');
@@ -1764,7 +1432,6 @@ function mCanvas(dParent, styles = {}, bstyles = {}, play = null, pause = null, 
 	let controls = mPlayPause(dParent, bstyles, play, pause);
 	return { cv: cv, cx: cx, origin: { x: x, y: y }, x: 0, y: 0, w: w, h: h, controls: controls.ui, play: controls.play, pause: controls.pause, stop: controls.play, stop: controls.pause };
 }
-function mCenterCenterFlex(d, gap) { mCenterFlex(d, true, true, true, gap); }
 function mCenterFlex(d, hCenter = true, vCenter = false, wrap = true, gap = null) {
 	let styles = { display: 'flex' };
 	if (hCenter) styles['justify-content'] = 'center';
@@ -1787,28 +1454,7 @@ function mClass(d) {
 	} else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
 function mClear(d) { clearElement(toElem(d)); }
-function mColFlex(dParent, chflex = [1, 5, 1], bgs) {
-	let styles = { opacity: 1, display: 'flex', aitems: 'stretch', 'flex-flow': 'nowrap' };
-	mStyle(dParent, styles);
-	let res = [];
-	for (let i = 0; i < chflex.length; i++) {
-		let bg = isdef(bgs) ? bgs[i] : null;
-		let d1 = mDiv(dParent, { flex: chflex[i], bg: bg });
-		res.push(d1);
-	}
-	return res;
-}
 function mColor(d, bg, fg) { return mStyle(d, { 'background-color': bg, 'color': fg }); }
-function mCols100(dParent, spec, gap = 4) {
-	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
-	grid.style.gridTemplateColumns = spec;
-	let res = [];
-	for (const i of range(stringCount(spec, ' ') + 1)) {
-		let d = mDiv(grid, { h: '100%', w: '100%', box: true })
-		res.push(d);
-	}
-	return res;
-}
 function mCreate(tag, styles, id) { let d = document.createElement(tag); if (isdef(id)) d.id = id; if (isdef(styles)) mStyle(d, styles); return d; }
 function mCreateFrom(htmlString) {
 	var div = document.createElement('div');
@@ -1864,15 +1510,14 @@ function mPlayPause(dParent, styles = {}, handle_play = null, handle_pause = nul
 	mStyle(mBy('bPause'), { fg: fg, fz: fz })
 	return { ui: pp, play: () => fireClick(mBy('bPlay')), pause: () => fireClick(mBy('bPause')) };
 }
-function mRows100(dParent, spec, gap = 4) {
-	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
-	grid.style.gridTemplateRows = spec;
-	let res = [];
-	for (const i of range(stringCount(spec, ' ') + 1)) {
-		let d = mDiv(grid, { h: '100%', w: '100%', box: true })
-		res.push(d);
-	}
-	return res;
+function mSection(styles = {}, id, inner, tag, classes) {
+	let d = mBy(id);
+	addKeys({ position: 'relative' }, styles);
+	mStyle(d, styles);
+	if (isdef(tag) && isdef(inner)) inner = `<${tag}>${inner}</${tag}>`;
+	if (isdef(inner)) d.innerHTML = inner;
+	if (isdef(classes)) mClass(d, classes);
+	return d;
 }
 function mSize(d, w, h, unit = 'px', sizing) { if (nundef(h)) h = w; mStyle(d, { width: w, height: h }, unit); if (isdef(sizing)) setRect(d, sizing); }
 function mStyle(elem, styles, unit = 'px') {
@@ -1995,15 +1640,16 @@ function mStyle(elem, styles, unit = 'px') {
 		}
 	}
 }
-function mTextArea100(dParent, styles = {}) {
-	mCenterCenterFlex(dParent)
-	let html = `<textarea style="width:100%;height:100%;box-sizing:border-box" wrap="hard"></textarea>`;
-	let t = mCreateFrom(html);
-	mStyle(t, styles);
-	mAppend(dParent, t);
-	return t;
+function mToolbar(buttons, handler, dParent, styles = {}, bstyles = {}, id = null, classes = null, bclasses = null) {
+	let d = mDiv(dParent, styles, id, classes);
+	for (const arg of buttons) {
+		let funcname = replaceWhite(arg);
+		mButton(arg, () => handler(arg), d, bstyles, bclasses, `b${funcname}`);
+	}
+	return d;
 }
 function mutate_colors(type, colors) {
+
 	let items = C.items[type];
 	let changed = false;
 	let lastcolor = arrLast(colors);
@@ -2018,6 +1664,8 @@ function mutate_colors(type, colors) {
 	return changed;
 }
 function nundef(x) { return x === null || x === undefined; }
+function onclick_menu_item(name) { G_init(name); onclick_playpause(); }
+function onclick_playpause() { gameloop_toggle(); }
 function panel(areaName, oSpec, oid, o) {
 	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
 	if (num > 0) {
@@ -2081,17 +1729,6 @@ function pSBCr(d) {
 	return x;
 }
 function randomColor() { return rColor(); }
-function range(f, t, st = 1) {
-	if (nundef(t)) {
-		t = f - 1;
-		f = 0;
-	}
-	let arr = [];
-	for (let i = f; i <= t; i += st) {
-		arr.push(i);
-	}
-	return arr;
-}
 function rChoose(arr, n = 1, func = null, exceptIndices = null) {
 	let indices = arrRange(0, arr.length - 1);
 	if (isdef(exceptIndices)) {
@@ -2122,31 +1759,10 @@ function rColor(cbrightness, c2, alpha = null) {
 	}
 	return s;
 }
-function removeCommentLines(text, cstart, cend) {
-	let lines = text.split('\n');
-	let inComment = false, res = '';
-	for (const line of lines) {
-		let lt = line.trim();
-		if (lt.startsWith(cstart) && lt.endsWith(cend)) { continue; }
-		if (lt.startsWith(cstart)) { inComment = true; continue; }
-		if (lt.endsWith(cend)) { inComment = false; continue; }
-		res += line + '\n';
-	}
-	return res;
-}
 function removeInPlace(arr, el) {
 	arrRemovip(arr, el);
 }
-function removeTrailingComments(line) {
-	let icomm = line.indexOf('//');
-	if (icomm > 0) console.log('icomm', icomm);
-	if (icomm <= 0 || ':"`\''.includes(line[icomm - 1])) return line;
-	if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
-
-	console.log('trail', line.substring(0, icomm))
-	return line.substring(0, icomm);
-}
-function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
+function replaceWhite(s, sby = '_') { let w = toWords(s); return w.join(sby); }
 function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
 function rNumber(min = 0, max = 100) {
@@ -2160,11 +1776,6 @@ function root(areaName) {
 	INFO = {};
 	staticArea(areaName, UIROOT);
 	addAREA('root', UIROOT);
-}
-async function route_path_text(url) {
-	let data = await fetch(url);
-	let text = await data.text();
-	return text;
 }
 function setRect(elem, options) {
 	let r = getRect(elem);
@@ -2184,24 +1795,33 @@ function setTableSize(w, h, unit = 'px') {
 	let d = mBy('areaTable');
 	mStyle(d, { 'min-width': w, 'min-height': h }, unit);
 }
-function show0(id) { mBy(id).style.display = "block"; }
-function sortCaseInsensitive(list) {
-	list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
-	return list;
+function show(elem, isInline = false) {
+	if (isString(elem)) elem = document.getElementById(elem);
+	if (isSvg(elem)) {
+		elem.setAttribute('style', 'visibility:visible');
+	} else {
+		elem.style.display = isInline ? 'inline-block' : null;
+	}
+	return elem;
 }
+function show0(id) { mBy(id).style.display = "block"; }
 async function start() {
-	initCodingUI();
 
 
 
 
 
+	FR = 25;
+	G = null;
 
-	let [text, css] = await closureFromProject('coding');
+	let menulist = ['tree', 'lsys']; //, 'flower', 'spaceco', 'fractal'];
+	dToolbar = mToolbar(menulist, onclick_menu_item, 'dToolbar', { padding: 10, display: 'flex', gap: 10, bg: 'orange' });
+	mButton('clear', G_clear, dToolbar, { position: 'absolute', right: 10 });
 
+	dTable = mSection({ bg: '#ddd', vpadding: 10, hmin: 400, w: '100vw' }, 'dTable');
+	mCenterFlex(dTable);
 
-	AU.ta.value = text;
-
+	onclick_menu_item('lsys');
 }
 function startsWith(s, sSub) {
 	return s.substring(0, sSub.length) == sSub;
@@ -2211,25 +1831,9 @@ function staticArea(areaName, oSpec) {
 	oSpec.ui = window[func](areaName, oSpec);
 }
 function stop_simple_timer() { if (isdef(DA.timer)) { DA.timer.clear(); DA.timer = null; } }
-function stringAfter(sFull, sSub) {
-	let idx = sFull.indexOf(sSub);
-	if (idx < 0) return '';
-	return sFull.substring(idx + sSub.length);
-}
-function stringBefore(sFull, sSub) {
-	let idx = sFull.indexOf(sSub);
-	if (idx < 0) return sFull;
-	return sFull.substring(0, idx);
-}
 function stringBeforeLast(sFull, sSub) {
 	let parts = sFull.split(sSub);
 	return sFull.substring(0, sFull.length - arrLast(parts).length - 1);
-}
-function stringCount(s, sSub, caseInsensitive = true) {
-	let temp = "Welcome to W3Docs";
-	let m = new RegExp(sSub, 'g' + (caseInsensitive ? 'i' : ''));
-	let count = (s.match(m)).length;
-	return count;
 }
 function test() {
 	for (i = 0; i < 10; i++) {
@@ -2237,6 +1841,7 @@ function test() {
 		createcircle((i * w / 10), "50%", "100", "0", "hsla(" + (i * 36) + ",100%,50%,0.5)", "url(#f" + circles + ")"); createfilter("-50%", "-50%", "200%", "200%", ["feGaussianBlur"], ["stdDeviation", "5"]);
 	}
 }
+function toDegree(rad) { return Math.floor(180 * rad / Math.PI); }
 function toElem(d) { return isString(d) ? mBy(d) : d; }
 function toLetters(s) { return [...s]; }
 function toRadian(deg) { return deg * (Math.PI / 180); }
@@ -2294,6 +1899,7 @@ function tree_add() {
 		C.changed = true;
 	}
 	else if (root.phase == 'over') { root.animated = false; }
+
 	if (root.animated) TO.iv1 = setTimeout(tree_add, root.speed[root.phase]); else TO.iv1 = setTimeout(() => G_init('tree'), 3000);
 }
 function tree_init(offx = 0, offy = 0, options = {}) {
@@ -2302,12 +1908,12 @@ function tree_init(offx = 0, offy = 0, options = {}) {
 		t: 'root',
 		age: 0,
 		p2: { x: offx + CV.width / 2, y: offy + CV.height },
-		len: valf(options.len, 100),
+		len: valf(options.len, 100), //length of stem
 		angle: toRadian(90),
-		thickness: valf(options.thick, 20),
-		color: valf(options.color, 'sienna'),
-		depth: NATURE.depth,
-		branching: NATURE.branching,
+		thickness: valf(options.thick, 20), //thickness of stem
+		color: valf(options.color, 'sienna'), //color of stem
+		depth: NATURE.depth, // 6
+		branching: NATURE.branching, // [25, 5, -25],
 		dlen: .7,
 		dthickness: .7,
 		phase: 'spring',
@@ -2319,19 +1925,6 @@ function tree_init(offx = 0, offy = 0, options = {}) {
 }
 function trim(str) {
 	return str.replace(/^\s+|\s+$/gm, '');
-}
-function turtle() {
-	background(51);
-	stroke(255);
-	translate(width / 2, height);
-	for (let i = 0; i < sentence.length; i++) {
-		let x = sentence.charAt(i);
-		if ('ABF'.includes(x)) { line(0, 0, 0, -len); translate(0, -len); }
-		else if (x == '+') rotate(angle);
-		else if (x == '-') rotate(-angle);
-		else if (x == '[') push();
-		else if (x == ']') pop();
-	}
 }
 function valf() {
 	for (const arg of arguments) if (isdef(arg)) return arg;

@@ -1,8 +1,8 @@
 DA.isystem = -1;
 function lsys_init(offx = 0, offy = 0, options = {}) {
 
-	let n=NATURE.lsystems.length;
-	let i=DA.isystem=(DA.isystem+1)%n;
+	let n = NATURE.lsystems.length;
+	let i = DA.isystem = (DA.isystem + 1) % n;
 	let system = NATURE.lsystems[i]; //if (DA.isystem>10) DA.isystem=0;  //rChoose(NATURE.lsystems);
 	let maxdepth = calc_maxdepth(12000, system.rules);
 
@@ -11,18 +11,18 @@ function lsys_init(offx = 0, offy = 0, options = {}) {
 		sentence: system.axiom,
 		rules: system.rules, //[{ aus: 'F', wird: 'FF+[+F-F-F]-[-F+F+F]' },],
 		t: 'root',
-		p2: { x: CV.width / valf(system.xstart,2), y: CV.height },
+		p2: { x: CV.width / valf(system.xstart, 2), y: CV.height },
 		angle: toRadian(90),
 		len: valf(system.len, 100),
 		age: 0,
 		gen: 0,
 		id: 0,
-		dangle: toRadian(valf(system.angle,25)),
+		dangle: toRadian(valf(system.angle, 25)),
 		dlen: valf(system.dlen, .5),
 		thickness: valf(options.thick, 1),
 		dthickness: 1,
 		color: rColor(70), //'seagreen',
-		depth: Math.min(valf(system.depth,NATURE.depth), maxdepth), // 6
+		depth: Math.min(valf(system.depth, NATURE.depth), maxdepth), // 6
 		animated: false,
 		jitter: false,
 		done: true,

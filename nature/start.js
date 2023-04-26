@@ -9,11 +9,12 @@ async function start() {
 	FR = 25;
 	G = null;
 
-	let menulist=['tree', 'lsys']; //, 'flower', 'spaceco', 'fractal'];
+	let menulist = ['tree', 'lsys']; //, 'flower', 'spaceco', 'fractal'];
 	dToolbar = mToolbar(menulist, onclick_menu_item, 'dToolbar', { padding: 10, display: 'flex', gap: 10, bg: 'orange' });
 	mButton('clear', G_clear, dToolbar, { position: 'absolute', right: 10 });
 
-	dTable = mSection({ bg: '#ddd', vpadding: 10, hmin: 400 }, 'dTable'); mCenterFlex(dTable);
+	dTable = mSection({ bg: '#ddd', vpadding: 10, hmin: 400, w:'100vw' }, 'dTable'); 
+	mCenterFlex(dTable);
 
 	onclick_menu_item('lsys');
 }
@@ -23,11 +24,11 @@ function G_init(name) {
 
 	if (CV) G_clear();
 
-	[dLeft, dCenter] = mColFlex(dTable, [0, 5]);
-	let res = mCanvas(dCenter, { w:500, h:500, bg: '#222', rounding: 10 });
-	[CV, CX] = [res.cv,res.cx];
+	//[dLeft, dCenter] = mColFlex(dTable, [0, 5]);
+	let res = mCanvas(dTable, { w: 500, h: 500, bg: '#222', rounding: 10 });
+	[CV, CX] = [res.cv, res.cx];
 
-	let bpp = _mPlayPause(dCenter, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
+	let bpp = _mPlayPause(dTable, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
 
 	G = { running: false, bPP: bpp };
 	C = { changed: true, name: name, items: {}, root: get_func(name, 'init')() };
@@ -69,7 +70,7 @@ function _mPlayPause(dParent, styles = {}, handler = null) {
 	mBy('bPause').onclick = () => { hide0('bPause'); show0('bPlay'); handler(); }
 
 	//deprecate:::
-	return  { button: pp, show_play: () => { hide0('bPause'); show0('bPlay'); }, show_pause: () => { hide0('bPlay'); show0('bPause'); } };
+	return { button: pp, show_play: () => { hide0('bPause'); show0('bPlay'); }, show_pause: () => { hide0('bPlay'); show0('bPause'); } };
 
 }
 
