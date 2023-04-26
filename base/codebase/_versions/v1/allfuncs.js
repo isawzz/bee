@@ -14049,9 +14049,6 @@ function codeParseKeys(text) {
 	}
 	return keys;
 }
-async function codeUpdateCodebase(project) {
-
-}
 function coin(percent = 50) { return Math.random() * 100 < percent; }
 function collapseAll() {
 	let coll = document.getElementsByClassName("collapsible");

@@ -13997,6 +13997,65 @@ async function codebaseExtend(project) {
 
 	return [globtext, functext, functextold]
 }
+async function codebaseExtendFromProject(project) {
+	let globlist = await codeParseFile('../allglobals.js');
+	let funclist = await codeParseFile('../allfuncs.js');
+	let list = globlist.concat(funclist); //keylist in order of loading!
+	let bykey = list2dict(list, 'key');
+	let bytype = {};
+	for (const k in bykey) { let o = bykey[k]; lookupAddIfToList(bytype, [o.type], o); }
+	let htmlFile = `../${project}/index.html`;
+	let html = await route_path_text(htmlFile);
+	html = removeCommentLines(html, '<!--', '-->');
+	let dirhtml = `../${project}`;
+	let files = extractFilesFromHtml(html, htmlFile);
+	files = files.filter(x => !x.includes('../all'));
+	console.log('files', files)
+	let [globtext, functext, functextold] = await codebaseFromFiles(files, bykey, bytype, list);
+	downloadAsText(globtext, 'allglobals', 'js');
+	downloadAsText(functext, 'allfuncs', 'js');
+	downloadAsText(functextold, 'allfuncs_old', 'js');
+	return [globtext, functext, functextold];
+}
+async function codebaseFromFiles(files, bykey, bytype, list) {
+	let olist = [];
+	for (const path of files) {
+		let opath = await codeParseFile(path);
+		olist = olist.concat(opath);
+	}
+	let mytype = {}, mykey = {};
+	for (const o of olist) { mykey[o.key] = o; }
+	for (const k in mykey) { let o = mykey[k]; lookupAddIfToList(mytype, [o.type], o); }
+
+	let dupltext = '';
+	for (const k in mykey) {
+		let onew = mykey[k];
+		let oold = bykey[k];
+		if (isdef(oold) && onew.code == oold.code) {
+			console.log('override w/ SAME code', k);//brauch garnix machen!
+		} else if (isdef(oold)) {
+			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
+			oold.oldcode = oold.code;
+			oold.code = onew.code;
+			dupltext += oold.oldcode + '\n' + oold.code + '\n';
+		} else {
+			bykey[k] = onew; //add new element to bykey
+			lookupAddIfToList(bytype, [onew.type], onew);
+			list.push(onew);
+		}
+	}
+
+	let globtext = '', functext = '', functextold = '';
+	for (const type of ['const', 'var', 'class']) {
+		if (nundef(bytype[type])) continue;
+		for (const o of bytype[type]) { globtext += o.code + '\n'; }
+	}
+	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key));
+	sortedFuncKeys.map(x => functext += bykey[x].code + '\n');
+	sortedFuncKeys.map(x => functextold += (isdef(bykey[x].oldcode) ? bykey[x].oldcode : bykey[x].code) + '\n');
+
+	return [globtext, functext, functextold]
+}
 function codeNormalize(code) {
 	let res = '';
 	res = replaceAllSpecialChars(code, '\t', '  ');
@@ -14048,9 +14107,6 @@ function codeParseKeys(text) {
 		}
 	}
 	return keys;
-}
-async function codeUpdateCodebase(project) {
-
 }
 function coin(percent = 50) { return Math.random() * 100 < percent; }
 function collapseAll() {
@@ -17703,6 +17759,116 @@ function cssCleanupClause(t, kw) {
 	if (kw == 'bAdd') console.log(res);
 	return res;
 }
+async function cssExtendFromProject(project) {
+	let htmlFile = `../${project}/index.html`;
+	let html = await route_path_text(htmlFile);
+	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
+	console.log('cssfiles', cssfiles);
+	cssfiles.unshift('../allcss.css');
+
+	let csstext = await cssFromFiles(cssfiles);
+	downloadAsText(csstext, 'allcss', 'css');
+	return csstext;
+}
+async function cssFromFiles(files, dir = '', types = ['root', 'tag', 'class', 'id', 'keyframes']) {
+
+	let tcss = '';
+	if (!isEmpty(dir) && !dir.endsWith('/')) dir += '/';
+	for (const file of files) {
+		let path = dir + file + (file.endsWith('.css') ? '' : '.css');
+		tcss += await route_path_text(path) + '\r\n';
+	}
+	let t = replaceAllSpecialChars(tcss, '\t', '  ');
+
+	let lines = t.split('\r\n');
+	if (lines.length <= 2) lines = t.split('\n');
+	console.log('lines', lines)
+	let allkeys = [], newlines = []; //in newlines
+	let di = {};
+	let testresult = '';
+	for (const line of lines) {
+		let type = cssKeywordType(line);
+		if (type) {
+			testresult += line[0] + '=';//addIf(testresult,line[0]); 
+			let newline = isLetter(line[0]) || line[0] == '*' ? line : line[0] == '@' ? stringAfter(line, ' ') : line.substring(1);
+			let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
+			key = key.trim();
+			if (isdef(di[key]) && type != di[key].type) {
+				console.log('duplicate key', key, type, di[key].type);
+			}
+			di[key] = { type: type, key: key }
+			newline = key + stringAfter(newline, key);
+			if (key == '*') console.log('***', stringAfter(newline, key));
+			addIf(allkeys, key);
+			newlines.push(newline)
+			di[key] = { type: type, key: key }
+		} else {
+			newlines.push(line);
+		}
+	}
+	console.log('di', di)
+
+	let neededkeys = allkeys;
+	let clause = '';
+	let state = 'search_kw'; 
+	for (const kw of neededkeys) {
+		let i = 0;
+		for (const line of newlines) {
+			if (line.startsWith(kw)) {
+				let w1 = line.includes('{') ? stringBefore(line, '{') : stringBefore(line, ',');
+				if (w1.trim() != kw) continue;
+				assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${kw} ${line}`);
+				if (line.includes('{')) {
+					clause = '{\n'; state = 'search_clause_end';
+				} else if (line.includes(',')) {
+					state = 'search_clause_start';
+				}
+			} else if (state == 'search_clause_start' && line.includes('{')) {
+				clause = '{\n'; state = 'search_clause_end';
+			} else if (state == 'search_clause_end') {
+				if (line[0] == '}') {
+					clause += line;
+					let cleanclause = cssCleanupClause(clause, kw);
+					lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
+					lookupAddIfToList(di, [kw, 'fullclauses'], clause);
+					state = 'search_kw';
+				} else {
+					clause += line + '\n';
+				}
+			}
+		}
+	}
+
+	let dis = {};
+	for (const o of get_values(di)) {
+		if (nundef(o.clauses)) continue;
+		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
+		lookupSet(dis, [o.type, o.key], o);
+	}
+
+	let text = '';
+
+	let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
+	if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
+	console.log('types', types);
+	types = types.map(x => ditypes[x]);
+	for (const type of types) {
+		if (nundef(dis[type])) continue;
+		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
+		let prefix = type == 't' ? '' : String.fromCharCode(type);
+		if (prefix == '@') prefix += 'keyframes ';
+		console.log('type', type, prefix, ksorted)
+		for (const kw of ksorted) {
+			let startfix = prefix + kw;
+			for (const clause of dis[type][kw].clauses) {
+				text += startfix + clause;
+			}
+		}
+	}
+	return text;
+
+
+}
 async function cssGenerateFrom(cssfile, codefile, htmlfile) {
 	if (!isList(cssfile)) cssfile = [cssfile];
 	let tcss = '';
@@ -17740,6 +17906,12 @@ function cssKeysNeeded(tcss, code, html) {
 		else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
 	}
 	return [di, neededkeys, newlines];
+}
+function cssKeywordType(line) {
+	if (isLetter(line[0]) || line[0] == '*' && line[1] != '/') return 't';
+	else if (toLetters(':.#').some(x => line[0] == x)) return (line.charCodeAt(0)); //[0].charkey());
+	else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
+	else return null;
 }
 function cssNormalize(tcss, code, html) {
 	[di, neededkeys, newlines] = cssKeysNeeded(tcss, code, html);
@@ -17790,6 +17962,13 @@ function cssNormalize(tcss, code, html) {
 		}
 	}
 	return text;
+}
+async function cssSelectFromFile(cssfile, types) {
+
+	let csstext = await cssFromFiles([cssfile], '', types);
+	downloadAsText(csstext, 'selectioncss', 'css');
+	return csstext;
+
 }
 function cStyle(styles, ctx) {
 	if (nundef(ctx)) { ctx = CX; if (nundef(ctx)) { console.log('ctx undefined!!!!!!!'); return; } }
@@ -32568,7 +32747,7 @@ function initCodingUI() {
 	mStyle('dMain', { bg: 'silver' });
 	[dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
 	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
-	mDiv(dtitle, { padding: 10, fg: 'white' }, null, 'OUTPUT:');
+	mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
 	AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
 
 }
@@ -62354,12 +62533,9 @@ function standardize_color(str) {
 }
 async function start() {
 	initCodingUI();
-	AU.ta.value = 'hallo, na ENDLICH!!!!!!!!!!';
-	let [globtext, functext, functextold] = await codebaseExtend('coding');
 
-	downloadAsText(globtext, 'allglobals', 'js');
-	downloadAsText(functext, 'allfuncs', 'js');
-	downloadAsText(functextold, 'allfuncs_old', 'js');
+	let [g, f, old] = await codebaseExtendFromProject('coding');
+	AU.ta.value = g; //'hallo, na ENDLICH!!!!!!!!!!';
 
 }
 function start_advanced() {

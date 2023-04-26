@@ -1,0 +1,511 @@
+autosubmit: true
+default:
+  players: felix,mimi
+  color: GREEN
+ui:
+  card:
+    h: 100
+  container:
+    padding: 0
+    h: 130
+  containertitle:
+    left: 16
+    bottom: 1
+  minicard:
+    h: 40
+  minicontainer:
+    padding: 0
+    h: 130
+games:
+  a_game:
+    friendly: Simple
+    logo: bear
+    color: gold
+    options:
+      mode: solo,hotseat,multi
+      handsize: 7,3,10
+  aristo:
+    friendly: Aristocracy
+    logo: crown
+    color: indigo
+    defaulthandsorting: none
+    options:
+      mode: solo,hotseat,multi
+      church: no,yes
+      journey: no,yes
+      commission: no,yes
+      rumors: no,yes
+    game_type: turn
+    def_startlevel: 4
+    achieve_inc: 0
+    hand_size: 7
+    farm_size: 4
+    estate_size: 5
+    chateau_size: 6
+  bluff:
+    friendly: Bluff
+    logo: beaming face with smiling eyes
+    color: red
+    defaulthandsorting: rank
+    options:
+      mode: solo,hotseat,multi
+      min_handsize: 1,3,2
+      max_handsize: 4,5,6,7
+      strategy: clairvoyant,random
+  fritz:
+    friendly: A L'Honneur!
+    logo: fencing
+    color: midnightblue
+    defaulthandsorting: suit
+    options:
+      mode: solo,hotseat,multi
+      handsize: 9,11,13,10
+      cycles: 3,2,1
+      seconds_per_game: 600,60,180,120
+      seconds_per_move: 10,3,4,5
+      jokers: 3,2,1,0
+      overlapping: yes,no
+      jokers_per_group: 3,2,1
+  feedback:
+    friendly: Feedback
+    logo: dragon
+    color: black
+    options:
+      mode: solo,hotseat,multi
+      poll: 200,2000,500,1000,3000
+      auto_weiter: no,yes
+  ferro:
+    friendly: Ferrocarril
+    logo: train
+    color: sienna
+    defaulthandsorting: rank
+    options:
+      mode: solo,hotseat,multi
+      handsize: 3,5,11
+      coins: 3,5,10
+      maxrounds: 1,3,5,7
+      phase_order: fixed,anti,choice
+      thinking_time: 3,20,5,10
+      auto_weiter: no,yes
+  goalnumber:
+    friendly: Goal Number
+    logo: abacus
+    color: GREEN
+    options:
+      nplayers: 1,2,3,4,2
+      nops: add,mult,div,power,all
+      range: 10,100,1000,5
+  reversi:
+    friendly: Reversi
+    logo: first quarter moon
+    color: "#ff93c4"
+    options:
+      nplayers: 2,3,4
+  sheriff:
+    friendly: Sheriff
+    logo: police officer
+    color: sienna
+    game_type: turn
+    options:
+      mode: solo,multi,hotseat
+      min_handsize: 1,3,2
+      max_handsize: 4,5,6,7
+  spotit:
+    friendly: Spotit
+    logo: spy
+    color: green
+    game_type: race
+    options:
+      mode: solo,hotseat,multi
+      adaptive: no,yes
+      zen_mode: no,yes
+      winning_score: 5,10,20,25
+      vocab: animals,objectPlus,lifePlus
+      num_cards: 3,2
+      num_symbols: 4,12,17,7
+    rows: 3
+    cols: 2
+    min_scale: 0.75
+    max_scale: 1.25
+    num_cards: 2
+    def_startlevel: 4
+    levels:
+      "0":
+        cols: 1
+        rows: 2
+      "1":
+        rows: 2
+      "2":
+        cols: 1
+      "3":
+        cols: 1
+        rows: 4
+      "4":
+        min_scale: 0.75
+        max_scale: 1.25
+      "5":
+        cols: 1
+        rows: 5
+      "6":
+        rows: 4
+      "7":
+        cols: 3
+        rows: 5
+      "8":
+        rows: 5
+      "9":
+        rows: 6
+      "10":
+        cols: 3
+        rows: 6
+    winnerslist: []
+apps:
+  book:
+    friendly: Book
+    logo: green book
+    color: tomato
+    options:
+      nplayers: 2,3,4
+    name: book
+  fitbit:
+    friendly: Fitbit
+    logo: cartwheeling
+    color: skyblue
+    options:
+      min: 10
+      avg: 15
+    name: fitbit
+  therapy:
+    friendly: Therapy
+    logo: accordion
+    color: orange
+    options:
+      nplayers: 2,3,4
+    name: therapy
+  meditate:
+    friendly: Meditate
+    logo: lotus position
+    color: indigo
+    options:
+      nplayers: 2,3,4
+    name: meditate
+  action:
+    friendly: Action
+    logo: ballet shoes
+    color: "#cc96c3"
+    options:
+      nplayers: 2,3,4
+    name: action
+  howto:
+    friendly: Viewer
+    logo: key
+    color: deepskyblue
+    options:
+      nplayers: 2,3,4
+    name: howto
+  magic:
+    friendly: Magic
+    logo: fairy
+    color: "#F93093"
+    options:
+      nplayers: 2,3,4
+    name: magic
+appdata:
+  book:
+    - id: cs
+      title: Intro to CS
+      pages: 4
+    - id: animals
+      title: animals
+      pages: 1
+  fitbit:
+    - d: 13.12.22
+      steps: 31
+    - d: 14.12.22
+      steps: 22
+    - d: 15.12.22
+      steps: 24
+    - d: 16.12.22
+      steps: 11
+    - d: 17.12.22
+      steps: 14
+    - d: 18.12.22
+      steps: 14
+    - d: 19.12.22
+      steps: 15
+    - d: 20.12.22
+      steps: 22
+    - d: 21.12.22
+      steps: 23
+    - d: 22.12.22
+      steps: 12
+    - d: 23.12.22
+      steps: 12
+    - d: 24.12.22
+      steps: 13
+    - d: 25.12.22
+      steps: 14
+    - d: 26.12.22
+      steps: 13
+    - d: 27.12.22
+      steps: 24
+    - d: 28.12.22
+      steps: 31
+    - d: 29.12.22
+      steps: 18
+    - d: 30.12.22
+      steps: 10
+    - d: 31.12.22
+      steps: 11
+    - d: 1.1.23
+      steps: 16
+    - d: 2.1.23
+      steps: 25
+    - d: 3.1.23
+      steps: 20
+    - d: 4.1.23
+      steps: 44
+    - d: 5.1.23
+      steps: 21
+    - d: 6.1.23
+      steps: 16
+    - d: 7.1.23
+      steps: 13
+    - d: 8.1.23
+      steps: 20
+    - d: 9.1.23
+      steps: 24
+    - d: 10.1.23
+      steps: 24
+    - d: 11.1.23
+      steps: 20
+    - d: 12.1.23
+      steps: 10
+    - d: 13.1.23
+      steps: 11
+    - d: 14.1.23
+      steps: 16
+    - d: 15.1.23
+      steps: 12
+    - d: 16.1.23
+      steps: 12
+    - d: 17.1.23
+      steps: 13
+    - d: 18.1.23
+      steps: 23
+    - d: 19.1.23
+      steps: 20
+    - d: 20.1.23
+      steps: 20
+    - d: 21.1.23
+      steps: 18
+    - d: 22.1.23
+      steps: 22
+    - d: 23.1.23
+      steps: 19
+    - d: 24.1.23
+      steps: 14
+    - d: 25.1.23
+      steps: 16
+    - d: 26.1.23
+      steps: 17
+    - d: 27.1.23
+      steps: 11
+    - d: 28.1.23
+      steps: 20
+    - d: 29.1.23
+      steps: 17
+    - d: 30.1.23
+      steps: 15
+    - d: 31.1.23
+      steps: 16
+    - d: 1.2.23
+      steps: 19
+    - d: 2.2.23
+      steps: 13
+    - d: 3.2.23
+      steps: 10
+    - d: 4.2.23
+      steps: 14
+    - d: 5.2.23
+      steps: 11
+    - d: 6.2.23
+      steps: 11
+    - d: 7.2.23
+      steps: 12
+    - d: 8.2.23
+      steps: 16
+    - d: 9.2.23
+      steps: 11
+    - d: 10.2.23
+      steps: 16
+    - d: 11.2.23
+      steps: 13
+    - d: 12.2.23
+      steps: 13
+    - d: 13.2.23
+      steps: 10
+    - d: 14.2.23
+      steps: 14
+    - d: 15.2.23
+      steps: 31
+    - d: 16.2.23
+      steps: 15
+    - d: 17.2.23
+      steps: 10
+    - d: 18.2.23
+      steps: 17
+    - d: 19.2.23
+      steps: 11
+    - d: 20.2.23
+      steps: 16
+    - d: 21.2.23
+      steps: 22
+    - d: 22.2.23
+      steps: 20
+    - d: 23.2.23
+      steps: 24
+    - d: 23.2.23
+      steps: 14
+    - d: 24.2.23
+      steps: 14
+    - d: 25.2.23
+      steps: 14
+    - d: 26.2.23
+      steps: 17
+    - d: 27.2.23
+      steps: 10
+    - d: 28.2.23
+      steps: 18
+    - d: 1.3.23
+      steps: 19
+    - d: 2.3.23
+      steps: 18
+    - d: 3.3.23
+      steps: 10
+    - d: 4.3.23
+      steps: 11
+    - d: 5.3.23
+      steps: 14
+    - d: 6.3.23
+      steps: 11
+    - d: 7.3.23
+      steps: 10
+    - d: 8.3.23
+      steps: 40
+    - d: 9.3.23
+      steps: 15
+    - d: 10.3.23
+      steps: 15
+    - d: 11.3.23
+      steps: 12
+    - d: 12.3.23
+      steps: 10
+    - d: 13.3.23
+      steps: 18
+    - d: 14.3.23
+      steps: 23
+    - d: 15.3.23
+      steps: 12
+    - d: 16.3.23
+      steps: 16
+    - d: 17.3.23
+      steps: 15
+    - d: 18.3.23
+      steps: 13
+    - d: 19.3.23
+      steps: 17
+    - d: 20.3.23
+      steps: 20
+    - d: 21.3.23
+      steps: 12
+    - d: 22.3.23
+      steps: 24
+    - d: 23.3.23
+      steps: 14
+    - d: 24.3.23
+      steps: 14
+    - d: 25.3.23
+      steps: 14
+    - d: 26.3.23
+      steps: 14
+    - d: 27.3.23
+      steps: 23
+    - d: 28.3.23
+      steps: 23
+    - d: 29.3.23
+      steps: 39
+    - d: 30.3.23
+      steps: 16
+    - d: 31.3.23
+      steps: 12
+    - d: 1.4.23
+      steps: 13
+    - d: 2.4.23
+      steps: 14
+    - d: 3.4.23
+      steps: 16
+    - d: 4.4.23
+      steps: 14
+    - d: 5.4.23
+      steps: 23
+    - d: 6.4.23
+      steps: 14
+    - d: 7.4.23
+      steps: 28
+    - d: 8.4.23
+      steps: 11
+    - d: 9.4.23
+      steps: 10
+    - d: 10.4.23
+      steps: 16
+    - d: 11.4.23
+      steps: 11
+    - d: 12.4.23
+      steps: 45
+    - d: 13.4.23
+      steps: 11
+    - d: 14.4.23
+      steps: 10
+    - d: 15.4.23
+      steps: 18
+    - d: 16.4.23
+      steps: 23
+    - d: 17.4.23
+      steps: 18
+    - d: 18.4.23
+      steps: 20
+    - d: 19.4.23
+      steps: 22
+    - d: 20.4.23
+      steps: 12
+    - d: 21.4.23
+      steps: 13
+    - d: 22.4.23
+      steps: 14
+    - d: 23.4.23
+      steps: 19
+    - d: 24.4.23
+      steps: 17
+    - d: 25.4.23
+      steps: 12
+  howto:
+    - kw: k92
+      c: hallo92
+    - kw: k78
+      c: hallo79
+    - kw: k59
+      c: hallo61
+    - kw: k67
+      c: hallo70
+    - kw: k82
+      c: hallo86
+    - kw: k84
+      c: hallo89
+  simple:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+tables: null

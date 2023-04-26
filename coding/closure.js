@@ -1,3 +1,78 @@
+const BLUE = '#4363d8';
+const BROWN = '#96613d';
+const DEF_ORIENTATION = 'v';
+const DEF_SPLIT = 0.5;
+const FIREBRICK = '#800000';
+const GREEN = '#3cb44b';
+const BLUEGREEN = '#004054';
+const LIGHTBLUE = '#42d4f4';
+const LIGHTGREEN = '#afff45'; //'#bfef45';
+const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
+const OLIVE = '#808000';
+const ORANGE = '#f58231';
+const NEONORANGE = '#ff6700';
+const PURPLE = '#911eb4';
+const RED = '#e6194B';
+const STYLE_PARAMS = {
+	align: 'text-align',
+	acontent: 'align-content',
+	aitems: 'align-items',
+	aspectRatio: 'aspect-ratio',
+	bg: 'background-color',
+	dir: 'flex-direction',
+	fg: 'color',
+	hgap: 'column-gap',
+	vgap: 'row-gap',
+	jcontent: 'justify-content',
+	jitems: 'justify-items',
+	justify: 'justify-content',
+	matop: 'margin-top',
+	maleft: 'margin-left',
+	mabottom: 'margin-bottom',
+	maright: 'margin-right',
+	origin: 'transform-origin',
+	overx: 'overflow-x',
+	overy: 'overflow-y',
+	patop: 'padding-top',
+	paleft: 'padding-left',
+	pabottom: 'padding-bottom',
+	paright: 'padding-right',
+	place: 'place-items',
+	rounding: 'border-radius',
+	w: 'width',
+	h: 'height',
+	wmin: 'min-width',
+	hmin: 'min-height',
+	hline: 'line-height',
+	wmax: 'max-width',
+	hmax: 'max-height',
+	fontSize: 'font-size',
+	fz: 'font-size',
+	family: 'font-family',
+	weight: 'font-weight',
+	x: 'left',
+	y: 'top',
+	z: 'z-index'
+};
+const TEAL = '#469990';
+const YELLOW = '#ffe119';
+const NEONYELLOW = '#efff04';
+var AREAS = {};
+var AU = {};
+var ColorDi;
+var dMain;
+var dParent;
+var dSidebar;
+var dTable;
+var F;
+var INFO = {};
+var P;
+var PROTO;
+var SPEC = null;
+var T;
+var UIDCounter = 0;
+var UIROOT;
+var Z;
 function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};
 	let tbd = symlist; //console.log('symlist', symlist)
@@ -23,6 +98,14 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	}
 	return done;
 }
+function addAREA(id, o) {
+	if (AREAS[id]) {
+		error('AREAS ' + id + ' exists already!!! ');
+		error(o);
+		return;
+	}
+	AREAS[id] = o;
+}
 function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
@@ -40,6 +123,7 @@ function alphaToHex(zero1) {
 	return hex;
 }
 function arrLast(arr) { return arr.length > 0 ? arr[arr.length - 1] : null; }
+function arrMinus(a, b) { if (isList(b)) return a.filter(x => !b.includes(x)); else return a.filter(x => x != b); }
 function arrRange(from = 1, to = 10, step = 1) { let res = []; for (let i = from; i <= to; i += step)res.push(i); return res; }
 function arrRemovip(arr, el) {
 	let i = arr.indexOf(el);
@@ -59,6 +143,174 @@ function assertion(cond) {
 function capitalize(s) {
 	if (typeof s !== 'string') return '';
 	return s.charAt(0).toUpperCase() + s.slice(1);
+}
+function clearElement(elem) {
+	if (isString(elem)) elem = document.getElementById(elem);
+	if (window.jQuery == undefined) { elem.innerHTML = ''; return elem; }
+	while (elem.firstChild) {
+		$(elem.firstChild).remove();
+	}
+	return elem;
+}
+async function closureFromProject(project) {
+
+	let globlist = await codeParseFile('../allglobals.js');
+	let funclist = await codeParseFile('../allfuncs.js');
+	let list = globlist.concat(funclist); //keylist in order of loading!
+	let bykey = list2dict(list, 'key');
+	let bytype = {};
+	for (const k in bykey) { let o = bykey[k]; lookupAddIfToList(bytype, [o.type], o); }
+	let htmlFile = `../${project}/index.html`;
+	let html = await route_path_text(htmlFile);
+	html = removeCommentLines(html, '<!--', '-->');
+	let dirhtml = `../${project}`;
+	let files = extractFilesFromHtml(html, htmlFile);
+	files = files.filter(x => !x.includes('../all'));
+	console.log('files', files)
+
+	let olist = [];
+	for (const path of files) {
+		let opath = await codeParseFile(path);
+		olist = olist.concat(opath);
+	}
+	let mytype = {}, mykey = {};
+	for (const o of olist) { mykey[o.key] = o; }
+	for (const k in mykey) { let o = mykey[k]; lookupAddIfToList(mytype, [o.type], o); }
+
+	let dupltext = '';
+	for (const k in mykey) {
+		let onew = mykey[k];
+		let oold = bykey[k];
+		if (isdef(oold) && onew.code == oold.code) {
+			console.log('override w/ SAME code', k);//brauch garnix machen!
+		} else if (isdef(oold)) {
+			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
+			oold.oldcode = oold.code;
+			oold.code = onew.code;
+			dupltext += oold.oldcode + '\n' + oold.code + '\n';
+		} else {
+			bykey[k] = onew; //add new element to bykey
+			lookupAddIfToList(bytype, [onew.type], onew);
+			list.push(onew);
+		}
+	}
+
+	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
+	let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed)
+	let byKeyMinimized = _minimizeCode(bykey, seed, valf(knownNogos[project], []));
+
+	let cvckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type != 'function').map(x => x.key); //in order of appearance!
+	let funckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type == 'function').map(x => x.key); //in order of appearance!
+	funckeys = sortCaseInsensitive(funckeys);
+
+	let closuretext = '';
+	for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
+	for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
+
+	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
+	console.log('cssfiles', cssfiles);
+	cssfiles.unshift('../allcss.css');
+
+
+	let tcss = '';
+	for (const path of cssfiles) { tcss += await route_path_text(path) + '\r\n'; }
+	let t = replaceAllSpecialChars(tcss, '\t', '  ');
+
+	let lines = t.split('\r\n');
+	if (lines.length <= 2) lines = t.split('\n');
+	console.log('lines', lines)
+	let allkeys = [], newlines = []; //in newlines
+	let di = {};
+	let testresult = '';
+	for (const line of lines) {
+		let type = cssKeywordType(line);
+		if (type) {
+			testresult += line[0] + '=';//addIf(testresult,line[0]); 
+			let newline = isLetter(line[0]) || line[0] == '*' ? line : line[0] == '@' ? stringAfter(line, ' ') : line.substring(1);
+			let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
+			key = key.trim();
+			if (isdef(di[key]) && type != di[key].type) {
+				console.log('duplicate key', key, type, di[key].type);
+			}
+			di[key] = { type: type, key: key }
+			newline = key + stringAfter(newline, key);
+			if (key == '*') console.log('***', stringAfter(newline, key));
+			addIf(allkeys, key);
+			newlines.push(newline)
+			di[key] = { type: type, key: key }
+		} else {
+			newlines.push(line);
+		}
+	}
+	console.log('di', di)
+
+	let neededkeys = [], code = closuretext;
+	for (const k of allkeys) {
+		if (['rubberBand'].includes(k)) continue;
+		let ktest = k.includes(' ') ? stringBefore(k, ' ') : k.includes(':') ? stringBefore(k, ':') : k;
+		if (['root'].some(x => x == k)) addIf(neededkeys, k);
+		else if (code.includes(`${ktest}`) || code.includes(`'${ktest}'`) || code.includes(`"${ktest}"`)) addIf(neededkeys, k);
+		else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
+	}
+
+	let clause = '';
+	let state = 'search_kw';
+	for (const kw of neededkeys) {
+		let i = 0;
+		for (const line of newlines) {
+			if (line.startsWith(kw)) {
+				let w1 = line.includes('{') ? stringBefore(line, '{') : stringBefore(line, ',');
+				if (w1.trim() != kw) continue;
+				assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${kw} ${line}`);
+				if (line.includes('{')) {
+					clause = '{\n'; state = 'search_clause_end';
+				} else if (line.includes(',')) {
+					state = 'search_clause_start';
+				}
+			} else if (state == 'search_clause_start' && line.includes('{')) {
+				clause = '{\n'; state = 'search_clause_end';
+			} else if (state == 'search_clause_end') {
+				if (line[0] == '}') {
+					clause += line;
+					let cleanclause = cssCleanupClause(clause, kw);
+					lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
+					lookupAddIfToList(di, [kw, 'fullclauses'], clause);
+					state = 'search_kw';
+				} else {
+					clause += line + '\n';
+				}
+			}
+		}
+	}
+
+	let dis = {};
+	for (const o of get_values(di)) {
+		if (nundef(o.clauses)) continue;
+		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
+		lookupSet(dis, [o.type, o.key], o);
+	}
+
+	let csstext = '';
+	let types = ['root', 'tag', 'class', 'id', 'keyframes'];
+	let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
+	if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
+	console.log('types', types);
+	types = types.map(x => ditypes[x]);
+	for (const type of types) {
+		if (nundef(dis[type])) continue;
+		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
+		let prefix = type == 't' ? '' : String.fromCharCode(type);
+		if (prefix == '@') prefix += 'keyframes ';
+		console.log('type', type, prefix, ksorted)
+		for (const kw of ksorted) {
+			let startfix = prefix + kw;
+			for (const clause of dis[type][kw].clauses) {
+				csstext += startfix + clause;
+			}
+		}
+	}
+
+	return [closuretext, csstext];
 }
 function codeParseBlock(lines, i) {
 	let l = lines[i];
@@ -273,6 +525,14 @@ function colorsFromBFA(bg, fg, alpha) {
 function colorTrans(cAny, alpha = 0.5) {
 	return colorFrom(cAny, alpha);
 }
+function correctFuncName(specType) {
+	switch (specType) {
+		case 'list': specType = 'liste'; break;
+		case 'dict': specType = 'dicti'; break;
+		case undefined: specType = 'panel'; break;
+	}
+	return specType;
+}
 function createcircle(posx, posy, radius, stroke, fill, filter) {
 	var circle = document.createElementNS(svgns, "circle");
 	circle.setAttributeNS(null, "id", "c" + circles);
@@ -285,6 +545,42 @@ function createcircle(posx, posy, radius, stroke, fill, filter) {
 	circle.setAttributeNS(null, "data-posx", posx);
 	svg.appendChild(circle);
 }
+function cssCleanupClause(t, kw) {
+	let lines = t.split('\n');
+	let comment = false;
+	let state = 'copy';
+	let res = '';
+	for (const line of lines) {
+		let lt = line.trim();
+		let [cstart, cend, mstart] = [lt.startsWith('/*'), lt.endsWith('*/'), line.includes('/*')];
+		if (state == 'skip') {
+			if (cend) state = 'copy';
+			continue;
+		} else if (state == 'copy') {
+			if (cstart && cend) { continue; }
+			else if (cstart) { state = 'skip'; continue; }
+			else if (mstart) {
+				res += stringBefore(line, '/*') + '\n';
+				if (!cend) state = 'skip';
+			} else {
+				res += line + '\n';
+			}
+		}
+	}
+	if (kw == 'bAdd') console.log(res);
+	return res;
+}
+function cssKeywordType(line) {
+	if (isLetter(line[0]) || line[0] == '*' && line[1] != '/') return 't';
+	else if (toLetters(':.#').some(x => line[0] == x)) return (line.charCodeAt(0)); //[0].charkey());
+	else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
+	else return null;
+}
+function dicti(areaName, oSpec, oid, o) {
+	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
+	parent.style.display = 'inline-grid';
+	return parent;
+}
 function download(jsonObject, fname) {
 	json_str = JSON.stringify(jsonObject);
 	saveFile(fname + '.json', 'data:application/json', new Blob([json_str], { type: '' }));
@@ -294,6 +590,10 @@ function downloadAsText(s, filename, ext = 'txt') {
 		filename + "." + ext,
 		"data:application/text",
 		new Blob([s], { type: "" }));
+}
+function dynamicArea(areaName, oSpec, oid, o) {
+	func = correctFuncName(oSpec.type);
+	oSpec.ui = window[func](areaName, oSpec, oid, o);
 }
 function endsWith(s, sSub) { let i = s.indexOf(sSub); return i >= 0 && i == s.length - sSub.length; }
 function ensureColorDict() {
@@ -351,6 +651,10 @@ function ensureColorDict() {
 		ColorDi[k] = cnew;
 	}
 }
+function error(msg) {
+	let fname = getFunctionsNameThatCalledThisFunction();
+	console.log(fname, 'ERROR!!!!! ', msg);
+}
 function extractFilesFromHtml(html, htmlfile, ext = 'js') {
 	let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
 	let dirhtml = stringBeforeLast(htmlfile, '/');
@@ -393,6 +697,12 @@ function firstNumber(s) {
 	}
 	return null;
 }
+function firstWordIncluding(s, allowed = '_-') {
+	let res = '', i = 0;
+	while (!isLetter(s[i]) && !isDigit(s[i]) && !allowed.includes(s[i])) i++;
+	while (isLetter(s[i]) || isDigit(s[i]) || allowed.includes(s[i])) { res += s[i]; i++; }
+	return res;
+}
 function fisherYates(arr) {
 	if (arr.length == 2 && coin()) { return arr; }
 	var rnd, temp;
@@ -406,6 +716,7 @@ function fisherYates(arr) {
 	return arr;
 }
 function get_keys(o) { return Object.keys(o); }
+function get_values(o) { return Object.values(o); }
 function getColorHexes(x) {
 	return [
 		'f0f8ff',
@@ -710,6 +1021,34 @@ function getColorNames() {
 		'YellowGreen'
 	];
 }
+function getDynId(loc, oid) { return loc + '@' + oid; }
+function getFunctionsNameThatCalledThisFunction() {
+	let c1 = getFunctionsNameThatCalledThisFunction.caller;
+	if (nundef(c1)) return 'no caller!';
+	let c2 = c1.caller;
+	if (nundef(c2)) return 'no caller!';
+	return c2.name;
+}
+function getParams(areaName, oSpec, oid) {
+	let params = oSpec.params ? oSpec.params : {};
+	let panels = oSpec.panels ? oSpec.panels : [];
+	let num = panels.length;
+	let or = params.orientation ? params.orientation == 'h' ? 'rows'
+		: 'columns' : DEF_ORIENTATION;
+	let split = params.split ? params.split : DEF_SPLIT;
+	let bg = oSpec.color ? oSpec.color : randomColor();
+	let fg = bg ? colorIdealText(bg) : null;
+	let id = oSpec.id ? oSpec.id : areaName;
+	if (oid) { id = getDynId(id, oid); }
+	let parent = mBy(areaName);
+	if (oSpec.id) {
+		parent.id = id;
+		addAREA(id, oSpec);
+		parent.innerHTML = id;
+	}
+	if (bg) { mColor(parent, bg, fg); }
+	return [num, or, split, bg, fg, id, panels, parent];
+}
 function getRect(elem, relto) {
 	if (isString(elem)) elem = document.getElementById(elem);
 	let res = elem.getBoundingClientRect();
@@ -730,6 +1069,10 @@ function getRect(elem, relto) {
 	let r = { x: res.left, y: res.top, w: res.width, h: res.height };
 	addKeys({ l: r.x, t: r.y, r: r.x + r.w, b: r.t + r.h }, r);
 	return r;
+}
+function getUID(pref = '') {
+	UIDCounter += 1;
+	return pref + '_' + UIDCounter;
 }
 function HSLAToRGBA(hsla, isPct) {
 	let ex = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)(((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2},\s?)|((\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}\s\/\s))((0?\.\d+)|[01]|(([1-9]?\d(\.\d+)?)|100|(\.\d+))%)\)$/i;
@@ -881,12 +1224,13 @@ function initCodingUI() {
 	mStyle('dMain', { bg: 'silver' });
 	[dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
 	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
-	mDiv(dtitle, { padding: 10, fg: 'white' }, null, 'OUTPUT:');
+	mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
 	AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
 
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
+function isDigit(s) { return /^[0-9]$/i.test(s); }
 function isEmpty(arr) {
 	return arr === undefined || !arr
 		|| (isString(arr) && (arr == 'undefined' || arr == ''))
@@ -914,6 +1258,11 @@ function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
 	}
 	return di;
 }
+function liste(areaName, oSpec, oid, o) {
+	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
+	parent.style.display = 'inline-grid';
+	return parent;
+}
 function lookup(dict, keys) {
 	let d = dict;
 	let ilast = keys.length - 1;
@@ -927,6 +1276,11 @@ function lookup(dict, keys) {
 		i += 1;
 	}
 	return d;
+}
+function lookupAddIfToList(dict, keys, val) {
+	let lst = lookup(dict, keys);
+	if (isList(lst) && lst.includes(val)) return;
+	lookupAddToList(dict, keys, val);
 }
 function lookupAddToList(dict, keys, val) {
 	let d = dict;
@@ -994,6 +1348,7 @@ function mClass(d) {
 		}
 	} else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
+function mColor(d, bg, fg) { return mStyle(d, { 'background-color': bg, 'color': fg }); }
 function mCols100(dParent, spec, gap = 4) {
 	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
 	grid.style.gridTemplateColumns = spec;
@@ -1021,6 +1376,7 @@ function mDiv(dParent, styles, id, inner, classes, sizing) {
 	if (isdef(sizing)) { setRect(d, sizing); }
 	return d;
 }
+function mDiv100(dParent, styles, id, sizing = false) { let d = mDiv(dParent, styles, id); mSize(d, 100, 100, '%', sizing); return d; }
 function mRows100(dParent, spec, gap = 4) {
 	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
 	grid.style.gridTemplateRows = spec;
@@ -1031,6 +1387,7 @@ function mRows100(dParent, spec, gap = 4) {
 	}
 	return res;
 }
+function mSize(d, w, h, unit = 'px', sizing) { if (nundef(h)) h = w; mStyle(d, { width: w, height: h }, unit); if (isdef(sizing)) setRect(d, sizing); }
 function mStyle(elem, styles, unit = 'px') {
 	elem = toElem(elem);
 	if (isdef(styles.whrest)) { delete styles.whrest; styles.w = styles.h = 'rest'; } else if (isdef(styles.wh100)) { styles.w = styles.h = '100%'; delete styles.wh100; }
@@ -1160,6 +1517,25 @@ function mTextArea100(dParent, styles = {}) {
 	return t;
 }
 function nundef(x) { return x === null || x === undefined; }
+function panel(areaName, oSpec, oid, o) {
+	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
+	if (num > 0) {
+		parent.style.display = 'grid';
+		clearElement(parent);
+		for (let i = 0; i < num; i++) {
+			let d = mDiv100(parent);
+			d.id = getUID();
+			if (panels.length > i) {
+				if (oid) dynamicArea(d.id, panels[i], oid, o); else staticArea(d.id, panels[i]);
+			}
+		}
+		if (or == 'rows') {
+			console.log('====', split * 100);
+			parent.style.gridTemplateColumns = `${split * 100}% 1fr`;
+		}
+	}
+	return parent;
+}
 function pSBC(p, c0, c1, l) {
 	let r, g, b, P, f, t, h, i = parseInt, m = Math.round, a = typeof c1 == 'string';
 	if (typeof p != 'number' || p < -1 || p > 1 || typeof c0 != 'string' || (c0[0] != 'r' && c0[0] != '#') || (c1 && !a)) return null;
@@ -1197,6 +1573,7 @@ function pSBCr(d) {
 	}
 	return x;
 }
+function randomColor() { return rColor(); }
 function range(f, t, st = 1) {
 	if (nundef(t)) {
 		t = f - 1;
@@ -1266,6 +1643,15 @@ function rHue() { return (rNumber(0, 36) * 10) % 360; }
 function rNumber(min = 0, max = 100) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+function root(areaName) {
+	setTableSize(areaName, 400, 300);
+	UIROOT = jsCopy(SPEC.staticSpec.root);
+	for (const k in AREAS) delete AREAS[k];
+	PROTO = {};
+	INFO = {};
+	staticArea(areaName, UIROOT);
+	addAREA('root', UIROOT);
+}
 async function route_path_text(url) {
 	let data = await fetch(url);
 	let text = await data.text();
@@ -1312,6 +1698,10 @@ function setRect(elem, options) {
 	}
 	return r;
 }
+function setTableSize(w, h, unit = 'px') {
+	let d = mBy('areaTable');
+	mStyle(d, { 'min-width': w, 'min-height': h }, unit);
+}
 function simulateClick(elem) {
 	var evt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
 	var canceled = !elem.dispatchEvent(evt);
@@ -1322,70 +1712,19 @@ function sortCaseInsensitive(list) {
 }
 async function start() {
 	initCodingUI();
-	AU.ta.value = 'hallo, na ENDLICH!!!!!!!!!!'
 
-	let globlist = await codeParseFile('../allglobals.js');
-	let globtext = globlist.map(x => x.code).join('\n');
-
-	let funclist = await codeParseFile('../allfuncs.js');
-	let difuncs = list2dict(funclist, 'key');
-
-	let project = 'coding';
-	let htmlFile = `../${project}/index.html`;
-	let html = await route_path_text(htmlFile);
-	html = removeCommentLines(html, '<!--', '-->');
-	let dirhtml = `../${project}`;
-	let files = extractFilesFromHtml(html, htmlFile);
-	files = files.filter(x => !x.includes('../all'));
-	console.log('files', files)
-	if (files.length < 2) {
-		console.log('ONLY FILE IS', files[0], '...aborting');
-		return;
-	}
-
-	let dupltext = '';
-	for (const path of files) {
-		let olist = await codeParseFile(path);
-		let odict = list2dict(olist, 'key');
-		for (const k in odict) {
-			if (isdef(difuncs[k])) {
-				if (odict[k].code != difuncs[k].code) {
-					console.log('NEW DUPL!', k);
-
-					if (nundef(difuncs[k].oldcode)) difuncs[k].oldcode = difuncs[k].code;
-					difuncs[k].code = odict[k].code;
-
-					dupltext += difuncs[k].oldcode + '\n' + difuncs[k].code + '\n';
-					difuncs[k].override = odict[k].code;
-				}
-				continue;
-			}
-			difuncs[k] = odict[k];
-		}
-	}
-
-	let keys = sortCaseInsensitive(get_keys(difuncs));
-	let functext = '', oldtext = '';
-	for (const k of keys) {
-		let o = difuncs[k];
-		functext += o.code + '\n';
-		oldtext += (isdef(o.oldcode) ? o.oldcode : o.code) + '\n';
-	}
-
-	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
-	let seed = ['start'].concat(extractOnclickFromHtml(html)); //console.log('seed',seed)
-	let byKeyMinimized = _minimizeCode(difuncs, seed, valf(knownNogos[project], []));
-	let keysMinimized = keys.filter(x => isdef(byKeyMinimized[x]));
-	keysMinimized = sortCaseInsensitive(keysMinimized);
-	let closuretext = '';
-	for (const k of keysMinimized) { closuretext += byKeyMinimized[k].code + '\n'; }
-	downloadAsText(closuretext, 'closure', 'js');
-
-	AU.ta.value = keysMinimized.join(', ');
+	let [text, css] = await closureFromProject('coding');
+	downloadAsText(text, 'closure', 'js');
+	downloadAsText(css, 'final', 'css');
+	AU.ta.value = css; //'hallo, na ENDLICH!!!!!!!!!!';
 
 }
 function startsWith(s, sSub) {
 	return s.substring(0, sSub.length) == sSub;
+}
+function staticArea(areaName, oSpec) {
+	func = correctFuncName(oSpec.type);
+	oSpec.ui = window[func](areaName, oSpec);
 }
 function step() { }
 function stringAfter(sFull, sSub) {
@@ -1415,6 +1754,7 @@ function test() {
 	}
 }
 function toElem(d) { return isString(d) ? mBy(d) : d; }
+function toLetters(s) { return [...s]; }
 function toWords(s, allow_ = false) {
 	let arr = allow_ ? s.split(/[\W]+/) : s.split(/[\W|_]+/);
 	return arr.filter(x => !isEmpty(x));
