@@ -234,21 +234,21 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 		jQuery: true, init: true,
 		Number: true, sat: true, step: true, PI: true
 	};
-
 	while (!isEmpty(tbd)) {
 		if (++i > MAX) break;
 		let sym = tbd[0];
 		if (isdef(visited[sym])) { tbd.shift(); continue; }
 		visited[sym] = true;
 		let o = di[sym];
-
 		if (nundef(o)) { tbd.shift(); continue; }
 		let text = o.code;
-
 		let words = toWords(text, true);
-
 		for (const w of words) {
 			if (nogo.some(x => w.startsWith(x))) continue;
+
+			//remove words within quotes that are functions
+			let [istart,iend]=[code.indexOf]
+
 			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
 		}
 		assertion(sym == tbd[0], 'W T F')
@@ -396,41 +396,31 @@ function cLine(x1, y1, x2, y2, styles = null, ctx = null) {
 	ctx.stroke();
 }
 async function closureFromProject(project) {
-
-
 	let globlist = await codeParseFile('../allglobals.js');
 	let funclist = await codeParseFile('../allfuncs.js');
 	let list = globlist.concat(funclist);
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
 	for (const k in bykey) { let o = bykey[k]; lookupAddIfToList(bytype, [o.type], o); }
-
 	let htmlFile = `../${project}/index.html`;
 	let html = await route_path_text(htmlFile);
 	html = removeCommentLines(html, '<!--', '-->');
 	let dirhtml = `../${project}`;
 	let files = extractFilesFromHtml(html, htmlFile);
 	files = files.filter(x => !x.includes('../all'));
-	console.log('files', files)
-
 	let olist = [];
 	for (const path of files) {
 		let opath = await codeParseFile(path);
 		olist = olist.concat(opath);
 	}
-
 	let mytype = {}, mykey = {};
 	for (const o of olist) { mykey[o.key] = o; }
 	for (const k in mykey) { let o = mykey[k]; lookupAddIfToList(mytype, [o.type], o); }
-
-
-
 	let dupltext = '';
 	for (const k in mykey) {
 		let onew = mykey[k];
 		let oold = bykey[k];
 		if (isdef(oold) && onew.code == oold.code) {
-
 		} else if (isdef(oold)) {
 			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
 			oold.oldcode = oold.code;
@@ -442,18 +432,10 @@ async function closureFromProject(project) {
 			list.push(onew);
 		}
 	}
-
-
-
 	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
 	let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed);
-
 	if (project == 'nature') seed = seed.concat(['branch_draw', 'leaf_draw', 'lsys_init', 'tree_init', 'lsys_add', 'tree_add', 'lsys_draw', 'tree_draw']);
-
-
-
 	let byKeyMinimized = _minimizeCode(bykey, seed, valf(knownNogos[project], []));
-
 	for (const k in byKeyMinimized) {
 		let code = byKeyMinimized[k].code;
 		let lines = code.split('\n');
@@ -463,37 +445,19 @@ async function closureFromProject(project) {
 		}
 		byKeyMinimized[k].code = newcode.trim();
 	}
-
-
-
 	let cvckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type != 'function').map(x => x.key); //in order of appearance!
 	let funckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type == 'function').map(x => x.key); //in order of appearance!
 	funckeys = sortCaseInsensitive(funckeys);
-
-
-
-
 	let closuretext = '';
 	for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
 	for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-
-
 	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
-
 	cssfiles.unshift('../allcss.css');
-
-
-
-
 	let tcss = '';
 	for (const path of cssfiles) { tcss += await route_path_text(path) + '\r\n'; }
 	let t = replaceAllSpecialChars(tcss, '\t', '  ');
-
-
-
 	let lines = t.split('\r\n');
 	if (lines.length <= 2) lines = t.split('\n');
-
 	let allkeys = [], newlines = [];
 	let di = {};
 	let testresult = '';
@@ -502,17 +466,14 @@ async function closureFromProject(project) {
 		if (type) {
 			testresult += line[0] + '=';//addIf(testresult,line[0]); 
 			let newline = isLetter(line[0]) || line[0] == '*' ? line : line[0] == '@' ? stringAfter(line, ' ') : line.substring(1);
-
 			let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
 			key = key.trim();
-
 			if (isdef(di[key]) && type != di[key].type) {
 				console.log('duplicate key', key, type, di[key].type);
 			}
 			di[key] = { type: type, key: key }
 			newline = key + stringAfter(newline, key);
 			if (key == '*') console.log('***', stringAfter(newline, key));
-
 			addIf(allkeys, key);
 			newlines.push(newline)
 			di[key] = { type: type, key: key }
@@ -520,9 +481,6 @@ async function closureFromProject(project) {
 			newlines.push(line);
 		}
 	}
-
-
-
 	let neededkeys = [], code = closuretext;
 	for (const k of allkeys) {
 		if (['rubberBand'].includes(k)) continue;
@@ -531,8 +489,6 @@ async function closureFromProject(project) {
 		else if (code.includes(`${ktest}`) || code.includes(`'${ktest}'`) || code.includes(`"${ktest}"`)) addIf(neededkeys, k);
 		else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
 	}
-
-
 	let clause = '';
 	let state = 'search_kw';
 	for (const kw of neededkeys) {
@@ -562,27 +518,22 @@ async function closureFromProject(project) {
 			}
 		}
 	}
-
 	let dis = {};
 	for (const o of get_values(di)) {
 		if (nundef(o.clauses)) continue;
 		let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
 		lookupSet(dis, [o.type, o.key], o);
 	}
-
-
 	let csstext = '';
 	let types = ['root', 'tag', 'class', 'id', 'keyframes'];
 	let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
 	if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
-
 	types = types.map(x => ditypes[x]);
 	for (const type of types) {
 		if (nundef(dis[type])) continue;
 		let ksorted = sortCaseInsensitive(get_keys(dis[type]));
 		let prefix = type == 't' ? '' : String.fromCharCode(type);
 		if (prefix == '@') prefix += 'keyframes ';
-
 		for (const kw of ksorted) {
 			let startfix = prefix + kw;
 			for (const clause of dis[type][kw].clauses) {
@@ -590,7 +541,6 @@ async function closureFromProject(project) {
 			}
 		}
 	}
-
 	return [closuretext, csstext];
 }
 function codeParseBlock(lines, i) {
@@ -599,17 +549,14 @@ function codeParseBlock(lines, i) {
 	let key = l[0] == 'a' ? ithWord(l, 2, true) : ithWord(l, 1, true);
 	let code = l + '\n'; i++; l = lines[i];
 	while (i < lines.length && !(['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x)) && !l.startsWith('}'))) {
-		if (!l.trim().startsWith('//') || isEmptyOrWhiteSpace(l)) code += l + '\n';
+		if (!(l.trim().startsWith('//') || isEmptyOrWhiteSpace(l))) code += l + '\n';
 		i++; l = lines[i];
 	}
-
 	code = replaceAllSpecialChars(code, '\t', '  ');
 	code = code.trim();
-
 	return [{ key: key, type: type, code: code }, i];
 }
 function codeParseBlocks(text) {
-
 	let lines = text.split('\r\n');
 	lines = lines.map(x => removeTrailingComments(x));
 	let i = 0, o = null, res = [];
@@ -625,10 +572,7 @@ function codeParseBlocks(text) {
 }
 async function codeParseFile(path) {
 	let text = await route_path_text(path);
-
-
 	let olist = codeParseBlocks(text);
-
 	return olist;
 }
 function coin(percent = 50) { return Math.random() * 100 < percent; }
@@ -901,7 +845,6 @@ function cssKeywordType(line) {
 	else if (toLetters(':.#').some(x => line[0] == x)) return (line.charCodeAt(0)); //[0].charkey());
 	else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
 	else return null;
-
 }
 function cStyle(styles, ctx) {
 	if (nundef(ctx)) { ctx = CX; if (nundef(ctx)) { console.log('ctx undefined!!!!!!!'); return; } }
@@ -1591,7 +1534,6 @@ function initCodingUI() {
 	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
 	mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
 	AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
-
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
@@ -1609,7 +1551,6 @@ function isNumber(x) { return x !== ' ' && x !== true && x !== false && isdef(x)
 function isString(param) { return typeof param == 'string'; }
 function ithWord(s, n, allow_) {
 	let ws = toWords(s, allow_);
-
 	return ws[Math.min(n, ws.length - 1)];
 }
 function jsCopy(o) { return JSON.parse(JSON.stringify(o)); }
@@ -2139,11 +2080,8 @@ function removeInPlace(arr, el) {
 }
 function removeTrailingComments(line) {
 	let icomm = line.indexOf('//');
-	if (icomm > 0) console.log('icomm', icomm);
 	if (icomm <= 0 || ':"`\''.includes(line[icomm - 1])) return line;
 	if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
-
-	console.log('trail', line.substring(0, icomm))
 	return line.substring(0, icomm);
 }
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
@@ -2191,17 +2129,8 @@ function sortCaseInsensitive(list) {
 }
 async function start() {
 	initCodingUI();
-
-
-
-
-
-
 	let [text, css] = await closureFromProject('coding');
-
-
 	AU.ta.value = text;
-
 }
 function startsWith(s, sSub) {
 	return s.substring(0, sSub.length) == sSub;

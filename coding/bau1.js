@@ -15,7 +15,7 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 		if (isdef(visited[sym])) { tbd.shift(); continue; }
 		visited[sym] = true;
 		let o = di[sym];
-		if (sym == 'mToolbar') console.log('!!!!!!!!!!o', o)
+		// if (sym == 'mToolbar') console.log('!!!!!!!!!!o', o)
 		if (nundef(o)) { tbd.shift(); continue; } //console.log('not def',sym);
 		let text = o.code; //always using last function body!!!
 		//if (text.includes('NATURE')) console.log('text NATURE found in', sym)

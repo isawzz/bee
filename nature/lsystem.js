@@ -3,6 +3,7 @@ function lsys_init(offx = 0, offy = 0, options = {}) {
 	let n = NATURE.lsystems.length;
 	if (nundef(DA.isystem)) DA.isystem=-1;
 	let i = DA.isystem = (DA.isystem + 1) % n;
+	console.log('n',n,'i',i)
 	let system = NATURE.lsystems[i]; //if (DA.isystem>10) DA.isystem=0;  //rChoose(NATURE.lsystems);
 	let maxdepth = calc_maxdepth(12000, system.rules);
 

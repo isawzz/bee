@@ -15,7 +15,7 @@ async function closureFromProject(project) {
 	let dirhtml = `../${project}`;
 	let files = extractFilesFromHtml(html, htmlFile);
 	files = files.filter(x => !x.includes('../all'));
-	console.log('files', files)
+	// console.log('files', files)
 
 	let olist = [];
 	for (const path of files) {
@@ -52,19 +52,19 @@ async function closureFromProject(project) {
 	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
 	let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed);
 
-	if (project == 'nature') seed=seed.concat(['branch_draw','leaf_draw','lsys_init','tree_init','lsys_add','tree_add','lsys_draw','tree_draw']);
+	if (project == 'nature') seed = seed.concat(['branch_draw', 'leaf_draw', 'lsys_init', 'tree_init', 'lsys_add', 'tree_add', 'lsys_draw', 'tree_draw']);
 
 	//console.log('____',bykey.NATURE)
 
 	let byKeyMinimized = _minimizeCode(bykey, seed, valf(knownNogos[project], []));
 
-	for(const k in byKeyMinimized){
-		let code=byKeyMinimized[k].code;
+	for (const k in byKeyMinimized) {
+		let code = byKeyMinimized[k].code;
 		let lines = code.split('\n');
 		let newcode = '';
-		for(const l of lines){
-			newcode+= removeTrailingComments(l)+'\n';
-		} 
+		for (const l of lines) {
+			newcode += removeTrailingComments(l) + '\n';
+		}
 		byKeyMinimized[k].code = newcode.trim();
 	}
 
@@ -214,7 +214,7 @@ async function codebaseExtendFromProject(project) {
 	files = files.filter(x => !x.includes('../all'));
 	console.log('files', files)
 	// let res=await codebaseFromFiles(files);	return res;
-	let [globtext, functext, functextold] = await codebaseFromFiles(files,bykey,bytype,list);
+	let [globtext, functext, functextold] = await codebaseFromFiles(files, bykey, bytype, list);
 	downloadAsText(globtext, 'allglobals', 'js');
 	downloadAsText(functext, 'allfuncs', 'js');
 	downloadAsText(functextold, 'allfuncs_old', 'js');
@@ -232,20 +232,20 @@ async function cssExtendFromProject(project) {
 	console.log('cssfiles', cssfiles);
 	cssfiles.unshift('../allcss.css');
 
-	let csstext =  await cssFromFiles(cssfiles);
+	let csstext = await cssFromFiles(cssfiles);
 	downloadAsText(csstext, 'allcss', 'css');
 	return csstext;
 }
-async function cssSelectFromFile(cssfile,types){
+async function cssSelectFromFile(cssfile, types) {
 	//nochmal die types aufschreiben!
 
-	let csstext =  await cssFromFiles([cssfile],'',types);
+	let csstext = await cssFromFiles([cssfile], '', types);
 	downloadAsText(csstext, 'selectioncss', 'css');
 	return csstext;
 
 }
 
-async function codebaseFromFiles(files,bykey,bytype,list){
+async function codebaseFromFiles(files, bykey, bytype, list) {
 	let olist = [];
 	for (const path of files) {
 		let opath = await codeParseFile(path);
@@ -329,7 +329,7 @@ function codeParseBlock(lines, i) {
 	let key = l[0] == 'a' ? ithWord(l, 2, true) : ithWord(l, 1, true);
 	let code = l + '\n'; i++; l = lines[i];
 	while (i < lines.length && !(['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x)) && !l.startsWith('}'))) {
-		if (!l.trim().startsWith('//') || isEmptyOrWhiteSpace(l)) code += l + '\n';
+		if (!(l.trim().startsWith('//') || isEmptyOrWhiteSpace(l))) code += l + '\n';
 		i++; l = lines[i];
 	}
 
@@ -338,13 +338,13 @@ function codeParseBlock(lines, i) {
 
 	return [{ key: key, type: type, code: code }, i];
 }
-async function cssFromFiles(files, dir = '', types=['root', 'tag', 'class', 'id', 'keyframes']) {
+async function cssFromFiles(files, dir = '', types = ['root', 'tag', 'class', 'id', 'keyframes']) {
 
 	//get concatenated text from files
 	let tcss = '';
 	if (!isEmpty(dir) && !dir.endsWith('/')) dir += '/';
 	for (const file of files) {
-		let path = dir + file + (file.endsWith('.css')?'':'.css');
+		let path = dir + file + (file.endsWith('.css') ? '' : '.css');
 		tcss += await route_path_text(path) + '\r\n';
 	}
 	let t = replaceAllSpecialChars(tcss, '\t', '  ');
@@ -353,7 +353,7 @@ async function cssFromFiles(files, dir = '', types=['root', 'tag', 'class', 'id'
 	//prep dictionary by key: di = {key: type:}
 	let lines = t.split('\r\n');
 	if (lines.length <= 2) lines = t.split('\n');
-	console.log('lines',lines)
+	console.log('lines', lines)
 	let allkeys = [], newlines = []; //in newlines
 	let di = {};
 	let testresult = '';
@@ -427,10 +427,10 @@ async function cssFromFiles(files, dir = '', types=['root', 'tag', 'class', 'id'
 	//combine to final text
 	let text = '';
 
-	let ditypes = {root:58, tag:'t', class:46, id:35, keyframes:64}; // : tags . # @
-	if (types.includes('root')) types=['root'].concat(arrMinus(types,['root']));
-	console.log('types',types);
-	types = types.map(x=>ditypes[x]);
+	let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
+	if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
+	console.log('types', types);
+	types = types.map(x => ditypes[x]);
 	//root als erstes!!!
 	//let types = [58, t, 46, 35, 64]; // : tags . # @
 	for (const type of types) {
@@ -459,11 +459,11 @@ function cssKeywordType(line) {
 }
 function removeTrailingComments(line) {
 	let icomm = line.indexOf('//');
-	if (icomm>0)console.log('icomm',icomm);
+	// if (icomm>0)console.log('icomm',icomm);
 	if (icomm <= 0 || ':"`\''.includes(line[icomm - 1])) return line;
-	if ([':', '"', "'", '`'].some(x => line.indexOf(x)>=0 && line.indexOf(x) < icomm)) return line;
+	if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
 
-	console.log('trail',line.substring(0, icomm))
+	// console.log('trail',line.substring(0, icomm))
 	return line.substring(0, icomm);
 }
 function ithWord(s, n, allow_) {
