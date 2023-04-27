@@ -1,129 +1,11 @@
 const BLUE = '#4363d8';
 const BROWN = '#96613d';
-const DEF_ORIENTATION = 'v';
-const DEF_SPLIT = 0.5;
 const FIREBRICK = '#800000';
 const GREEN = '#3cb44b';
 const BLUEGREEN = '#004054';
 const LIGHTBLUE = '#42d4f4';
 const LIGHTGREEN = '#afff45'; //'#bfef45';
 const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
-const NATURE = {
-	depth: 6,
-	branching: [-25, 5, 25],
-	lsystems: [
-		{
-			axiom: 'A',
-			rules: [
-				{ aus: 'A', wird: 'A+[+A-A]' },
-			],
-			angle: 25,
-			len: 500,
-			dlen: .7,
-			depth: 6
-		},
-		{
-			axiom: 'F',
-			rules: [
-				{ aus: 'F', wird: 'F[+F]F[-F]F' },
-			],
-			angle: 26,
-			len: 50,
-		},
-		{
-			axiom: 'F',
-			rules: [
-				{ aus: 'F', wird: 'F[+F]F[-F][F]' },
-			],
-			angle: 20,
-			len: 200,
-		},
-		{
-			axiom: 'X',
-			rules: [
-				{ aus: 'X', wird: 'F[+X][-X]FX' },
-				{ aus: 'F', wird: 'FF' },
-			],
-			angle: 26,
-			len: 200,
-		},
-		{
-			axiom: 'A',
-			rules: [{ aus: 'A', wird: 'AA+[+A-A-A]-[-A+A+A]' }],
-			angle: 25,
-		},
-		{
-			axiom: 'A',
-			rules: [{ aus: 'F', wird: 'FF' }, { aus: 'A', wird: 'F-[[A]+A]+F[+FA]-A' }],
-			angle: 23,
-		},
-		{
-			axiom: 'Y',
-			rules: [{ aus: 'X', wird: 'X[-FFF][+FFF]FX' }, { aus: 'Y', wird: 'YFX[+Y][-Y]' }, { aus: 'F', wird: 'X' }],
-			angle: 25,
-			len: 85,
-		},
-		{
-			axiom: 'F',
-			rules: [{ aus: 'F', wird: 'F[+FF][-FF]F[-F][+F]F' }],
-			angle: 35,
-			len: 70,
-		},
-		{
-			axiom: 'VZFFF',
-			rules: [{ aus: 'V', wird: '[+++W][---W]YV' },
-			{ aus: 'W', wird: '+X[-W]Z' },
-			{ aus: 'Y', wird: 'YZ' },
-			{ aus: 'F', wird: 'Y' },
-			{ aus: 'Z', wird: '[-FFF][+FFF]F' },
-			{ aus: 'X', wird: '-W[+X]Z' }],
-			angle: 40,
-			len: 100,
-		},
-		{
-			axiom: 'F++F++F',
-			rules: [{ aus: 'F', wird: 'F-F++F-F' }],
-			angle: 60,
-			len: 100,
-			depth: 3,
-			xstart: 3,
-		},
-		{
-			axiom: 'F+F+F+F',
-			rules: [{ aus: 'F', wird: 'FF+F+F+F+FF' }],
-			angle: 90,
-			len: 100,
-			depth: 3,
-			xstart: 6,
-		},
-		{
-			axiom: 'F+F+F+F',
-			rules: [{ aus: 'F', wird: 'F+F-F-FFF+F+F-F' }],
-			angle: 90,
-			len: 28,
-			depth: 3,
-		},
-		{
-			axiom: 'X',
-			rules: [
-				{ aus: 'X', wird: '-YF+XFX+FY-' },
-				{ aus: 'Y', wird: '+XF-YFY-FX+' },
-				{ aus: 'F', wird: 'F' },
-			],
-			angle: 90,
-			len: 150,
-			xstart: 1.3,
-			depth: 4,
-		},
-		{
-			axiom: 'X',
-			rules: [{ aus: 'F', wird: 'FF' },
-			{ aus: 'X', wird: 'F[+X]F[-X]+X' }],
-			angle: 20,
-			len: 200,
-		},
-	]
-};
 const OLIVE = '#808000';
 const ORANGE = '#f58231';
 const NEONORANGE = '#ff6700';
@@ -173,58 +55,15 @@ const STYLE_PARAMS = {
 const TEAL = '#469990';
 const YELLOW = '#ffe119';
 const NEONYELLOW = '#efff04';
-var _audioSources = {
-	incorrect1: '../base/assets/sounds/incorrect1.wav',
-	incorrect3: '../base/assets/sounds/incorrect3.mp3',
-	goodBye: "../base/assets/sounds/level1.wav",
-	down: "../base/assets/sounds/down.mp3",
-	levelComplete: "../base/assets/sounds/sound1.wav",
-	rubberBand: "../base/assets/sounds/sound2.wav",
-	hit: "../base/assets/sounds/hit.wav",
-	mozart: "../base/assets/music/mozart_s39_4.mp3",
-};
-var _idleSound = true;
-var _qSound;
-var _sndPlayer;
-var _TOSound;
-var A;
-var AREAS = {};
 var AU = {};
-var C = null;
 var ColorDi;
-var CV;
-var CX;
-var DA = {};
-var dButtons;
-var dCenter;
-var dLeft;
-var dMain;
 var dParent;
 var dSidebar;
 var dTable;
 var F;
-var G = null;
-var INFO = {};
-var lineWidth = 4;
 var P;
-var PROTO;
-var ROOT = null;
-var SPEC = null;
 var T;
-var TO = {};
-var UIDCounter = 0;
-var UIROOT;
-var V = {};
 var Z;
-function _deqSound() {
-	let key = _qSound.shift();
-	let url = _audioSources[key];
-	_sndPlayer = new Audio(url);
-	_sndPlayer.onended = _whenSoundPaused;
-	_sndPlayer.onloadeddata = () => { _loaded = true; _sndPlayer.play(); };
-	_sndPlayer.load();
-}
-function _enqSound(key) { if (nundef(_qSound)) _qSound = []; _qSound.push(key); }
 function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};
 	let tbd = symlist;
@@ -245,10 +84,10 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 		let words = toWords(text, true);
 		for (const w of words) {
 			if (nogo.some(x => w.startsWith(x))) continue;
-
-			//remove words within quotes that are functions
-			let [istart,iend]=[code.indexOf]
-
+			let idx = text.indexOf(w);
+			let ch = text[idx - 1];
+			if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
+			if (ch == "'" || '"`'.includes(ch)) continue;
 			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
 		}
 		assertion(sym == tbd[0], 'W T F')
@@ -256,39 +95,6 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 		done[sym] = o;
 	}
 	return done;
-}
-function _mPlayPause(dParent, styles = {}, handler = null) {
-	if (!handler) handler = audio_onclick_pp;
-	let html = `
-    <section id="dButtons">
-      <a id="bPlay" href="#" }">
-        <i class="fa fa-play fa-2x"></i>
-      </a>
-      <a id="bPause" href="#" style="display: none">
-        <i class="fa fa-pause fa-2x"></i>
-      </a>
-    </section>
-  `;
-	let pp = mCreateFrom(html);
-	mAppend(dParent, pp);
-	mStyle(pp, styles);
-	mBy('bPlay').onclick = () => { hide0('bPlay'); show0('bPause'); handler(); }
-	mBy('bPause').onclick = () => { hide0('bPause'); show0('bPlay'); handler(); }
-	return { button: pp, show_play: () => { hide0('bPause'); show0('bPlay'); }, show_pause: () => { hide0('bPlay'); show0('bPause'); } };
-}
-function _whenSoundPaused() {
-	_sndPlayer = null;
-	_sndPlayerIdle = true;
-	_loaded = false;
-	if (!isEmpty(_qSound)) { _deqSound(); } else { _idleSound = true; }
-}
-function addAREA(id, o) {
-	if (AREAS[id]) {
-		error('AREAS ' + id + ' exists already!!! ');
-		error(o);
-		return;
-	}
-	AREAS[id] = o;
 }
 function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
@@ -324,76 +130,9 @@ function assertion(cond) {
 		throw new Error('TERMINATING!!!')
 	}
 }
-function audio_onclick_pp() {
-	audio_toggle('mozart');
-	if (audio_playing()) { hide0('bPlay'); show0('bPause'); } else { hide0('bPause'); show0('bPlay'); }
-}
-function audio_pause() {
-	_qSound = [];
-	if (_loaded && isdef(_sndPlayer)) {
-		clearTimeout(_TOSound);
-		_sndPlayer.onended = null;
-		_sndPlayer.onpause = _whenSoundPaused;
-		_sndPlayer.pause();
-	}
-}
-function audio_play(key, wait = true) {
-	if (!wait) _qSound = [];
-	_enqSound(key);
-	if (_idleSound) { _idleSound = false; _deqSound(); }
-}
-function audio_playing() { return DA.isSound; }
-function audio_toggle(key) {
-	if (DA.isSound == true) { audio_pause(); DA.isSound = false; return; }
-	audio_play(key);
-	DA.isSound = true;
-}
-function branch_draw(o) {
-	cStyle({ fg: o.color, thickness: o.thickness, cap: 'round' }, CX);
-	if (C.root.jitter) cLine(o.p1.x, o.p1.y, o.p2.x + Math.random() * 2 - 1, o.p2.y + Math.random() * 2 - 1, {}, CX);
-	else cLine(o.p1.x, o.p1.y, o.p2.x, o.p2.y, {}, CX);
-}
-function calc_maxdepth(maxnodes, rules) {
-	let laus = rules.map(x => x.aus).join();
-	let lwird = rules.map(x => x.wird).join();
-	let naus = countAll(laus, 'ABF');
-	let nwird = countAll(lwird, 'ABF');
-	let ratio = nwird / naus;
-	let pow = 2;
-	while (Math.pow(ratio, pow) < maxnodes) pow++;
-	return pow - 1;
-}
 function capitalize(s) {
 	if (typeof s !== 'string') return '';
 	return s.charAt(0).toUpperCase() + s.slice(1);
-}
-function cEllipse(x, y, w, h, styles = null, angle = 0, ctx = null) {
-	if (nundef(ctx)) { ctx = CX; if (!ctx) return; }
-	if (styles) cStyle(styles, ctx);
-	ctx.beginPath();
-	ctx.ellipse(x, y, w / 2, h / 2, -angle, 0, 2 * Math.PI);
-	if (isdef(styles.bg) || nundef(styles.fg)) ctx.fill();
-	if (isdef(styles.fg)) ctx.stroke();
-}
-function clear_timeouts() {
-	for (const k in TO) clearTimeout(TO[k]);
-	stop_simple_timer();
-}
-function clearElement(elem) {
-	if (isString(elem)) elem = document.getElementById(elem);
-	if (window.jQuery == undefined) { elem.innerHTML = ''; return elem; }
-	while (elem.firstChild) {
-		$(elem.firstChild).remove();
-	}
-	return elem;
-}
-function cLine(x1, y1, x2, y2, styles = null, ctx = null) {
-	if (nundef(ctx)) { ctx = CX; if (!ctx) return; }
-	if (styles) cStyle(styles, ctx);
-	ctx.beginPath();
-	ctx.moveTo(x1, y1);
-	ctx.lineTo(x2, y2)
-	ctx.stroke();
 }
 async function closureFromProject(project) {
 	let globlist = await codeParseFile('../allglobals.js');
@@ -752,57 +491,6 @@ function colorsFromBFA(bg, fg, alpha) {
 function colorTrans(cAny, alpha = 0.5) {
 	return colorFrom(cAny, alpha);
 }
-function correctFuncName(specType) {
-	switch (specType) {
-		case 'list': specType = 'liste'; break;
-		case 'dict': specType = 'dicti'; break;
-		case undefined: specType = 'panel'; break;
-	}
-	return specType;
-}
-function countAll(s, scount) {
-	let letters = toLetters(scount);
-	function counter(total, ch) { if (letters.includes(ch)) return total + 1; else return total; }
-	let res = [...s].reduce(counter, 0);
-	return res;
-}
-function create_branch(b, angle, len, color) {
-	let root = C.root;
-	let x = b.p2.x + Math.cos(angle) * len;
-	let y = b.p2.y - Math.sin(angle) * len;
-	let age = b.age + 1;
-	let o = {
-		done: false,
-		p1: b.p2,
-		p2: { x: x, y: y },
-		x: x,
-		y: y,
-		t: 'branch',
-		age: age,
-		angle: angle,
-		len: len,
-		thickness: b.thickness * root.dthickness,
-		color: color,
-	};
-	b.done = true;
-	return o;
-}
-function create_leaf(b, root) {
-	let o = {
-		done: true,
-		p: b.p2,
-		x: b.p2.x,
-		y: b.p2.y,
-		t: 'leaf',
-		age: b.age + 1,
-		len: b.len * root.dlen,
-		angle: b.angle,
-		thickness: 20,
-		color: 'lawngreen',
-	};
-	b.done = true;
-	return o;
-}
 function createcircle(posx, posy, radius, stroke, fill, filter) {
 	var circle = document.createElementNS(svgns, "circle");
 	circle.setAttributeNS(null, "id", "c" + circles);
@@ -845,22 +533,6 @@ function cssKeywordType(line) {
 	else if (toLetters(':.#').some(x => line[0] == x)) return (line.charCodeAt(0)); //[0].charkey());
 	else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
 	else return null;
-}
-function cStyle(styles, ctx) {
-	if (nundef(ctx)) { ctx = CX; if (nundef(ctx)) { console.log('ctx undefined!!!!!!!'); return; } }
-	const di = { bg: 'fillStyle', fill: 'fillStyle', stroke: 'strokeStyle', fg: 'strokeStyle', thickness: 'lineWidth', thick: 'lineWidth', cap: 'lineCap', ending: 'lineCap' };
-	if (isdef(styles)) {
-		for (const k in styles) { ctx[isdef(di[k]) ? di[k] : k] = styles[k]; }
-	}
-}
-function dicti(areaName, oSpec, oid, o) {
-	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
-	parent.style.display = 'inline-grid';
-	return parent;
-}
-function dynamicArea(areaName, oSpec, oid, o) {
-	func = correctFuncName(oSpec.type);
-	oSpec.ui = window[func](areaName, oSpec, oid, o);
 }
 function endsWith(s, sSub) { let i = s.indexOf(sSub); return i >= 0 && i == s.length - sSub.length; }
 function ensureColorDict() {
@@ -918,10 +590,6 @@ function ensureColorDict() {
 		ColorDi[k] = cnew;
 	}
 }
-function error(msg) {
-	let fname = getFunctionsNameThatCalledThisFunction();
-	console.log(fname, 'ERROR!!!!! ', msg);
-}
 function extractFilesFromHtml(html, htmlfile, ext = 'js') {
 	let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
 	let dirhtml = stringBeforeLast(htmlfile, '/');
@@ -954,10 +622,6 @@ function extractOnclickFromHtml(html) {
 	}
 	return symlist;
 }
-function fireClick(elem) {
-	const evt = new Event("click", { "bubbles": true, "cancelable": false });
-	elem.dispatchEvent(evt);
-}
 function firstNumber(s) {
 	if (s) {
 		let m = s.match(/-?\d+/);
@@ -986,42 +650,6 @@ function fisherYates(arr) {
 	}
 	return arr;
 }
-function G_clear() { gameloop_stop(); clear_timeouts(); mClear('dTable'); C = G = CV = CX = null; }
-function G_init(name) {
-	if (CV) G_clear();
-	[dLeft, dCenter] = mColFlex(dTable, [0, 5]);
-	let res = mCanvas(dCenter, { w: 500, h: 500, bg: '#222', rounding: 10 });
-	[CV, CX] = [res.cv, res.cx];
-	let bpp = _mPlayPause(dCenter, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
-	G = { running: false, bPP: bpp };
-	C = { changed: true, name: name, items: {}, root: get_func(name, 'init')() };
-}
-function gameloop_stop() { clear_timeouts(); if (G) G.running = false; }
-function generate() {
-	numgen++; if (numgen > system.max) {
-		clearInterval(interval_id);
-		console.log('done!');
-		return;
-	}
-	len *= factor;
-	let nextSentence = '';
-	for (let i = 0; i < sentence.length; i++) {
-		let current = sentence.charAt(i);
-		let done = false;
-		for (const rule of rules) {
-			if (current == rule.aus) {
-				nextSentence += rule.mach;
-				done = true;
-				break;
-			}
-		}
-		if (!done) nextSentence += current;
-	}
-	sentence = nextSentence;
-	createP(sentence);
-	turtle();
-}
-function get_func(itemtype, cmd) { return window[`${itemtype}_${cmd}`]; }
 function get_keys(o) { return Object.keys(o); }
 function get_values(o) { return Object.values(o); }
 function getColorHexes(x) {
@@ -1328,34 +956,6 @@ function getColorNames() {
 		'YellowGreen'
 	];
 }
-function getDynId(loc, oid) { return loc + '@' + oid; }
-function getFunctionsNameThatCalledThisFunction() {
-	let c1 = getFunctionsNameThatCalledThisFunction.caller;
-	if (nundef(c1)) return 'no caller!';
-	let c2 = c1.caller;
-	if (nundef(c2)) return 'no caller!';
-	return c2.name;
-}
-function getParams(areaName, oSpec, oid) {
-	let params = oSpec.params ? oSpec.params : {};
-	let panels = oSpec.panels ? oSpec.panels : [];
-	let num = panels.length;
-	let or = params.orientation ? params.orientation == 'h' ? 'rows'
-		: 'columns' : DEF_ORIENTATION;
-	let split = params.split ? params.split : DEF_SPLIT;
-	let bg = oSpec.color ? oSpec.color : randomColor();
-	let fg = bg ? colorIdealText(bg) : null;
-	let id = oSpec.id ? oSpec.id : areaName;
-	if (oid) { id = getDynId(id, oid); }
-	let parent = mBy(areaName);
-	if (oSpec.id) {
-		parent.id = id;
-		addAREA(id, oSpec);
-		parent.innerHTML = id;
-	}
-	if (bg) { mColor(parent, bg, fg); }
-	return [num, or, split, bg, fg, id, panels, parent];
-}
 function getRect(elem, relto) {
 	if (isString(elem)) elem = document.getElementById(elem);
 	let res = elem.getBoundingClientRect();
@@ -1377,11 +977,6 @@ function getRect(elem, relto) {
 	addKeys({ l: r.x, t: r.y, r: r.x + r.w, b: r.t + r.h }, r);
 	return r;
 }
-function getUID(pref = '') {
-	UIDCounter += 1;
-	return pref + '_' + UIDCounter;
-}
-function hide0(id) { mBy(id).style.display = "none"; }
 function HSLAToRGBA(hsla, isPct) {
 	let ex = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)(((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2},\s?)|((\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}\s\/\s))((0?\.\d+)|[01]|(([1-9]?\d(\.\d+)?)|100|(\.\d+))%)\)$/i;
 	if (ex.test(hsla)) {
@@ -1557,11 +1152,6 @@ function jsCopy(o) { return JSON.parse(JSON.stringify(o)); }
 function last(arr) {
 	return arr.length > 0 ? arr[arr.length - 1] : null;
 }
-function leaf_draw(o) {
-	let [x, y] = [o.p.x, o.p.y];
-	let [w, h] = [o.len * 1.5, o.len];
-	cEllipse(x, y, w, h, { bg: o.color }, o.angle);
-}
 function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
 	let di = {};
 	for (const a of arr) {
@@ -1569,11 +1159,6 @@ function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
 		else lookupAddToList(di, [a[keyprop]], a);
 	}
 	return di;
-}
-function liste(areaName, oSpec, oid, o) {
-	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
-	parent.style.display = 'inline-grid';
-	return parent;
 }
 function lookup(dict, keys) {
 	let d = dict;
@@ -1631,58 +1216,6 @@ function lookupSet(dict, keys, val) {
 	}
 	return d;
 }
-function lsys_add() {
-	C.items = {};
-	let root = C.root; root.gen++;
-	let [stack, gen, b, sentence, x, y, angle, len, id] = [[], root.gen, root, root.sentence, root.p2.x, root.p2.y, root.angle, root.len, root.id++];
-	for (let i = 0; i < gen; i++) { len *= root.dlen; sentence = generate(sentence); }
-	let step = 0;
-	for (var i = 0; i < sentence.length; i++) {
-		var ch = sentence[i];
-		if ('ABCFVWXYZ'.includes(ch)) {
-			b = create_branch(b, angle, len, b.color); lookupAddToList(C.items, ['branch'], b); b.id = id++;
-		} else if (ch == '+') {
-			angle -= root.dangle;
-		} else if (ch == '-') {
-			angle += root.dangle;
-		} else if (ch == '[') {
-			stack.push({ x: b.p2.x, y: b.p2.y, angle: angle, b: b });
-		} else if (ch == ']') {
-			let o = stack.pop();
-			angle = o.angle; x = o.x; y = o.y; b = o.b;
-		}
-	}
-	C.changed = true;
-	if (root.gen < root.depth) TO.iv1 = setTimeout(lsys_add, 100); else TO.iv1 = setTimeout(() => G_init('lsys'), 5000);
-}
-function lsys_init(offx = 0, offy = 0, options = {}) {
-	let n = NATURE.lsystems.length;
-	let i = DA.isystem = (DA.isystem + 1) % n;
-	let system = NATURE.lsystems[i];
-	let maxdepth = calc_maxdepth(12000, system.rules);
-	let root = {
-		axiom: system.axiom, //'F',
-		sentence: system.axiom,
-		rules: system.rules,
-		t: 'root',
-		p2: { x: CV.width / valf(system.xstart, 2), y: CV.height },
-		angle: toRadian(90),
-		len: valf(system.len, 100),
-		age: 0,
-		gen: 0,
-		id: 0,
-		dangle: toRadian(valf(system.angle, 25)),
-		dlen: valf(system.dlen, .5),
-		thickness: valf(options.thick, 1),
-		dthickness: 1,
-		color: rColor(70), //'seagreen',
-		depth: Math.min(valf(system.depth, NATURE.depth), maxdepth),
-		animated: false,
-		jitter: false,
-		done: true,
-	};
-	return root;
-}
 function makeUnitString(nOrString, unit = 'px', defaultVal = '100%') {
 	if (nundef(nOrString)) return defaultVal;
 	if (isNumber(nOrString)) nOrString = '' + nOrString + unit;
@@ -1690,21 +1223,6 @@ function makeUnitString(nOrString, unit = 'px', defaultVal = '100%') {
 }
 function mAppend(d, child) { toElem(d).appendChild(child); return child; }
 function mBy(id) { return document.getElementById(id); }
-function mCanvas(dParent, styles = {}, bstyles = {}, play = null, pause = null, origin = 'tl') {
-	let cv = mCreate('canvas');
-	mAppend(toElem(dParent), cv);
-	addKeys({ w: 500, h: 500, bg: '#222', rounding: 10 }, styles);
-	mStyle(cv, styles);
-	let [w, h] = [cv.width, cv.height] = [styles.w, styles.h];
-	let cx = cv.getContext('2d');
-	let [x, y] = posToPoint(origin, w, h);
-	cx.translate(x, y);
-	if (!play) return { cv: cv, cx: cx, origin: { x: x, y: y }, x: 0, y: 0, w: w, h: h };
-	mLinebreak(dParent)
-	addKeys({ fz: 28, fg: 'skyblue', display: 'flex', ajcenter: true, w: styles.w }, bstyles)
-	let controls = mPlayPause(dParent, bstyles, play, pause);
-	return { cv: cv, cx: cx, origin: { x: x, y: y }, x: 0, y: 0, w: w, h: h, controls: controls.ui, play: controls.play, pause: controls.pause, stop: controls.play, stop: controls.pause };
-}
 function mCenterCenterFlex(d, gap) { mCenterFlex(d, true, true, true, gap); }
 function mCenterFlex(d, hCenter = true, vCenter = false, wrap = true, gap = null) {
 	let styles = { display: 'flex' };
@@ -1727,19 +1245,6 @@ function mClass(d) {
 		}
 	} else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
-function mClear(d) { clearElement(toElem(d)); }
-function mColFlex(dParent, chflex = [1, 5, 1], bgs) {
-	let styles = { opacity: 1, display: 'flex', aitems: 'stretch', 'flex-flow': 'nowrap' };
-	mStyle(dParent, styles);
-	let res = [];
-	for (let i = 0; i < chflex.length; i++) {
-		let bg = isdef(bgs) ? bgs[i] : null;
-		let d1 = mDiv(dParent, { flex: chflex[i], bg: bg });
-		res.push(d1);
-	}
-	return res;
-}
-function mColor(d, bg, fg) { return mStyle(d, { 'background-color': bg, 'color': fg }); }
 function mCols100(dParent, spec, gap = 4) {
 	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
 	grid.style.gridTemplateColumns = spec;
@@ -1767,44 +1272,6 @@ function mDiv(dParent, styles, id, inner, classes, sizing) {
 	if (isdef(sizing)) { setRect(d, sizing); }
 	return d;
 }
-function mDiv100(dParent, styles, id, sizing = false) { let d = mDiv(dParent, styles, id); mSize(d, 100, 100, '%', sizing); return d; }
-function mLinebreak(dParent, gap) {
-	dParent = toElem(dParent);
-	let d;
-	let display = getComputedStyle(dParent).display;
-	if (display == 'flex') {
-		d = mDiv(dParent, { fz: 2, 'flex-basis': '100%', h: 0, w: '100%' }, null, ' &nbsp; ');
-	} else {
-		d = mDiv(dParent, {}, null, '<br>');
-	}
-	if (isdef(gap)) { d.style.minHeight = gap + 'px'; d.innerHTML = ' &nbsp; '; d.style.opacity = .2; }
-	return d;
-}
-function moveTo(card, dx, dy) { card.animateTo({ delay: 1000, duration: 500, ease: 'quartOut', x: dx, y: dy }) }
-function mPlayPause(dParent, styles = {}, handle_play = null, handle_pause = null) {
-	if (!handle_play) handle_play = audio_onclick_pp;
-	if (!handle_pause) handle_pause = handle_play;
-	let html = `
-    <div id="dButtons">
-      <a id="bPlay" href="#">
-        <i class="fa fa-play fa-2x"></i>
-      </a>
-      <a id="bPause" href="#" style="display: none">
-        <i class="fa fa-pause fa-2x"></i>
-      </a>
-    </div>
-  `;
-	let pp = mCreateFrom(html);
-	mAppend(dParent, pp);
-	addKeys({ fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true, w: getRect(dParent).w }, styles);
-	mStyle(pp, styles);
-	mBy('bPlay').onclick = () => { hide0('bPlay'); show0('bPause'); handle_play(); }
-	mBy('bPause').onclick = () => { hide0('bPause'); show0('bPlay'); handle_pause(); }
-	let [fg, fz] = [styles.fg, styles.fz];
-	mStyle(mBy('bPlay'), { fg: fg, fz: fz })
-	mStyle(mBy('bPause'), { fg: fg, fz: fz })
-	return { ui: pp, play: () => fireClick(mBy('bPlay')), pause: () => fireClick(mBy('bPause')) };
-}
 function mRows100(dParent, spec, gap = 4) {
 	let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
 	grid.style.gridTemplateRows = spec;
@@ -1815,7 +1282,6 @@ function mRows100(dParent, spec, gap = 4) {
 	}
 	return res;
 }
-function mSize(d, w, h, unit = 'px', sizing) { if (nundef(h)) h = w; mStyle(d, { width: w, height: h }, unit); if (isdef(sizing)) setRect(d, sizing); }
 function mStyle(elem, styles, unit = 'px') {
 	elem = toElem(elem);
 	if (isdef(styles.whrest)) { delete styles.whrest; styles.w = styles.h = 'rest'; } else if (isdef(styles.wh100)) { styles.w = styles.h = '100%'; delete styles.wh100; }
@@ -1944,46 +1410,7 @@ function mTextArea100(dParent, styles = {}) {
 	mAppend(dParent, t);
 	return t;
 }
-function mutate_colors(type, colors) {
-	let items = C.items[type];
-	let changed = false;
-	let lastcolor = arrLast(colors);
-	for (const item of items) {
-		if (item.color == lastcolor) continue;
-		changed = true;
-		if (coin()) continue;
-		let i = colors.indexOf(item.color) + 1;
-		item.color = colors[i];
-		if (type == 'branch') item.thickness -= 1.5;
-	}
-	return changed;
-}
 function nundef(x) { return x === null || x === undefined; }
-function panel(areaName, oSpec, oid, o) {
-	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
-	if (num > 0) {
-		parent.style.display = 'grid';
-		clearElement(parent);
-		for (let i = 0; i < num; i++) {
-			let d = mDiv100(parent);
-			d.id = getUID();
-			if (panels.length > i) {
-				if (oid) dynamicArea(d.id, panels[i], oid, o); else staticArea(d.id, panels[i]);
-			}
-		}
-		if (or == 'rows') {
-			console.log('====', split * 100);
-			parent.style.gridTemplateColumns = `${split * 100}% 1fr`;
-		}
-	}
-	return parent;
-}
-function posToPoint(pos = 'cc', w, h, offx = 0, offy = 0) {
-	let di = { t: 0, b: h, l: 0, r: w };
-	let py = pos[0] == 'c' ? h / 2 : di[pos[0]];
-	let px = pos[1] == 'c' ? w / 2 : di[pos[1]];
-	return [px + offx, py + offy];
-}
 function pSBC(p, c0, c1, l) {
 	let r, g, b, P, f, t, h, i = parseInt, m = Math.round, a = typeof c1 == 'string';
 	if (typeof p != 'number' || p < -1 || p > 1 || typeof c0 != 'string' || (c0[0] != 'r' && c0[0] != '#') || (c1 && !a)) return null;
@@ -2021,7 +1448,6 @@ function pSBCr(d) {
 	}
 	return x;
 }
-function randomColor() { return rColor(); }
 function range(f, t, st = 1) {
 	if (nundef(t)) {
 		t = f - 1;
@@ -2090,15 +1516,6 @@ function rHue() { return (rNumber(0, 36) * 10) % 360; }
 function rNumber(min = 0, max = 100) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function root(areaName) {
-	setTableSize(areaName, 400, 300);
-	UIROOT = jsCopy(SPEC.staticSpec.root);
-	for (const k in AREAS) delete AREAS[k];
-	PROTO = {};
-	INFO = {};
-	staticArea(areaName, UIROOT);
-	addAREA('root', UIROOT);
-}
 async function route_path_text(url) {
 	let data = await fetch(url);
 	let text = await data.text();
@@ -2118,11 +1535,6 @@ function setRect(elem, options) {
 	}
 	return r;
 }
-function setTableSize(w, h, unit = 'px') {
-	let d = mBy('areaTable');
-	mStyle(d, { 'min-width': w, 'min-height': h }, unit);
-}
-function show0(id) { mBy(id).style.display = "block"; }
 function sortCaseInsensitive(list) {
 	list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
 	return list;
@@ -2135,11 +1547,6 @@ async function start() {
 function startsWith(s, sSub) {
 	return s.substring(0, sSub.length) == sSub;
 }
-function staticArea(areaName, oSpec) {
-	func = correctFuncName(oSpec.type);
-	oSpec.ui = window[func](areaName, oSpec);
-}
-function stop_simple_timer() { if (isdef(DA.timer)) { DA.timer.clear(); DA.timer = null; } }
 function stringAfter(sFull, sSub) {
 	let idx = sFull.indexOf(sSub);
 	if (idx < 0) return '';
@@ -2168,99 +1575,12 @@ function test() {
 }
 function toElem(d) { return isString(d) ? mBy(d) : d; }
 function toLetters(s) { return [...s]; }
-function toRadian(deg) { return deg * (Math.PI / 180); }
 function toWords(s, allow_ = false) {
 	let arr = allow_ ? s.split(/[\W]+/) : s.split(/[\W|_]+/);
 	return arr.filter(x => !isEmpty(x));
 }
-function tree_add() {
-	let root = C.root;
-	if (root.phase == 'spring') {
-		C.changed = false;
-		assertion(root, 'ROOT IS NULL BEI TREE_ADD!!!!!!!!!!!!!')
-		if (!root.done) {
-			let b = create_branch(root, root.angle, root.len * root.dlen, root.color);
-			lookupAddToList(C.items, [b.t], b);
-			C.changed = true;
-		} else {
-			for (const b of C.items.branch.filter(x => !x.done)) {
-				if (b.age < root.depth) {
-					let br = root.branching;
-					for (const a of br) {
-						let o = create_branch(b, b.angle + toRadian(a), b.len * root.dlen, colorMix(b.color, 'lime', 3)); lookupAddToList(C.items, [o.t], o);
-					}
-				} else {
-					let o = create_leaf(b, root); lookupAddToList(C.items, [o.t], o);
-				}
-				C.changed = true;
-				root.maxage = b.age + 1;
-				b.done = true;
-			}
-		}
-		if (!C.changed) { root.minage = 0; root.phase = 'summer'; }
-	}
-	else if (root.phase == 'summer') {
-		let colors = ['darkgreen', 'olive', '#8B9216', '#A79F0F', '#EDA421', '#E98604', '#DF3908', '#C91E0A', '#8C584A'];
-		let changed = mutate_colors('leaf', colors);
-		if (!changed) root.phase = 'autumn';
-		root.jitter = true;
-		C.changed = true;
-	}
-	else if (root.phase == 'autumn') {
-		root.jitter = false;
-		C.changed = true;
-		let falling = C.items.leaf.filter(l => l.p.y < CV.height);
-		if (isEmpty(falling)) {
-			C.changed = false; root.phase = 'winter';
-		} else {
-			for (const b of falling) { b.p = { x: b.p.x + Math.random() * .51, y: b.p.y + Math.random() * 3 }; }
-		}
-	}
-	else if (root.phase == 'winter') {
-		let colors = ['#8E2100', '#5C1306', '#371C0F', '#1C1B19'];
-		let changed = mutate_colors('branch', colors);
-		if (!changed) root.phase = 'over';
-		C.changed = true;
-	}
-	else if (root.phase == 'over') { root.animated = false; }
-	if (root.animated) TO.iv1 = setTimeout(tree_add, root.speed[root.phase]); else TO.iv1 = setTimeout(() => G_init('tree'), 3000);
-}
-function tree_init(offx = 0, offy = 0, options = {}) {
-	let root = {
-		done: false,
-		t: 'root',
-		age: 0,
-		p2: { x: offx + CV.width / 2, y: offy + CV.height },
-		len: valf(options.len, 100),
-		angle: toRadian(90),
-		thickness: valf(options.thick, 20),
-		color: valf(options.color, 'sienna'),
-		depth: NATURE.depth,
-		branching: NATURE.branching,
-		dlen: .7,
-		dthickness: .7,
-		phase: 'spring',
-		speed: { spring: 100, summer: 100, autumn: 25, winter: 100, over: 2000 },
-		animated: false,
-		jitter: false,
-	};
-	return root;
-}
 function trim(str) {
 	return str.replace(/^\s+|\s+$/gm, '');
-}
-function turtle() {
-	background(51);
-	stroke(255);
-	translate(width / 2, height);
-	for (let i = 0; i < sentence.length; i++) {
-		let x = sentence.charAt(i);
-		if ('ABF'.includes(x)) { line(0, 0, 0, -len); translate(0, -len); }
-		else if (x == '+') rotate(angle);
-		else if (x == '-') rotate(-angle);
-		else if (x == '[') push();
-		else if (x == ']') pop();
-	}
 }
 function valf() {
 	for (const arg of arguments) if (isdef(arg)) return arg;

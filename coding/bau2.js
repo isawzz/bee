@@ -245,6 +245,41 @@ async function cssSelectFromFile(cssfile, types) {
 
 }
 
+function _minimizeCode(di, symlist = ['start'], nogo = []) {
+	let done = {};
+	let tbd = symlist;
+	let MAX = 1000000, i = 0;
+	let visited = {
+		autocomplete: true, Card: true, change: true, config: true, grid: true, hallo: true,
+		jQuery: true, init: true,
+		Number: true, sat: true, step: true, PI: true
+	};
+	while (!isEmpty(tbd)) {
+		if (++i > MAX) break;
+		let sym = tbd[0];
+		if (isdef(visited[sym])) { tbd.shift(); continue; }
+		visited[sym] = true;
+		let o = di[sym];
+		if (nundef(o)) { tbd.shift(); continue; }
+		let text = o.code;
+		let words = toWords(text, true);
+		for (const w of words) {
+			if (nogo.some(x => w.startsWith(x))) continue;
+
+			//remove words within quotes that are functions
+			let idx=text.indexOf(w);
+			let ch = text[idx-1];
+			if (w.startsWith('lsys')) console.log('.....ch',w,ch,sym)
+			if (ch=="'" || '"`'.includes(ch)) continue;
+
+			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
+		}
+		assertion(sym == tbd[0], 'W T F')
+		tbd.shift();
+		done[sym] = o;
+	}
+	return done;
+}
 async function codebaseFromFiles(files, bykey, bytype, list) {
 	let olist = [];
 	for (const path of files) {

@@ -1,216 +1,3 @@
-const BLUE = '#4363d8';
-const BROWN = '#96613d';
-const DEF_ORIENTATION = 'v';
-const DEF_SPLIT = 0.5;
-const FIREBRICK = '#800000';
-const GREEN = '#3cb44b';
-const BLUEGREEN = '#004054';
-const LIGHTBLUE = '#42d4f4';
-const LIGHTGREEN = '#afff45'; //'#bfef45';
-const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
-const NATURE = {
-	depth: 6,
-	branching: [-25, 5, 25],
-	lsystems: [
-		{
-			axiom: 'A',
-			rules: [
-				{ aus: 'A', wird: 'A+[+A-A]' },
-			],
-			angle: 25,
-			len: 500,
-			dlen: .7,
-			depth: 6
-		},
-		{
-			axiom: 'F',
-			rules: [
-				{ aus: 'F', wird: 'F[+F]F[-F]F' },
-			],
-			angle: 26,
-			len: 50,
-		},
-		{
-			axiom: 'F',
-			rules: [
-				{ aus: 'F', wird: 'F[+F]F[-F][F]' },
-			],
-			angle: 20,
-			len: 200,
-		},
-		{
-			axiom: 'X',
-			rules: [
-				{ aus: 'X', wird: 'F[+X][-X]FX' },
-				{ aus: 'F', wird: 'FF' },
-			],
-			angle: 26,
-			len: 200,
-		},
-		{
-			axiom: 'A',
-			rules: [{ aus: 'A', wird: 'AA+[+A-A-A]-[-A+A+A]' }],
-			angle: 25,
-		},
-		{
-			axiom: 'A',
-			rules: [{ aus: 'F', wird: 'FF' }, { aus: 'A', wird: 'F-[[A]+A]+F[+FA]-A' }],
-			angle: 23,
-		},
-		{
-			axiom: 'Y',
-			rules: [{ aus: 'X', wird: 'X[-FFF][+FFF]FX' }, { aus: 'Y', wird: 'YFX[+Y][-Y]' }, { aus: 'F', wird: 'X' }],
-			angle: 25,
-			len: 85,
-		},
-		{
-			axiom: 'F',
-			rules: [{ aus: 'F', wird: 'F[+FF][-FF]F[-F][+F]F' }],
-			angle: 35,
-			len: 70,
-		},
-		{
-			axiom: 'VZFFF',
-			rules: [{ aus: 'V', wird: '[+++W][---W]YV' },
-			{ aus: 'W', wird: '+X[-W]Z' },
-			{ aus: 'Y', wird: 'YZ' },
-			{ aus: 'F', wird: 'Y' },
-			{ aus: 'Z', wird: '[-FFF][+FFF]F' },
-			{ aus: 'X', wird: '-W[+X]Z' }],
-			angle: 40,
-			len: 100,
-		},
-		{
-			axiom: 'F++F++F',
-			rules: [{ aus: 'F', wird: 'F-F++F-F' }],
-			angle: 60,
-			len: 100,
-			depth: 3,
-			xstart: 3,
-		},
-		{
-			axiom: 'F+F+F+F',
-			rules: [{ aus: 'F', wird: 'FF+F+F+F+FF' }],
-			angle: 90,
-			len: 100,
-			depth: 3,
-			xstart: 6,
-		},
-		{
-			axiom: 'F+F+F+F',
-			rules: [{ aus: 'F', wird: 'F+F-F-FFF+F+F-F' }],
-			angle: 90,
-			len: 28,
-			depth: 3,
-		},
-		{
-			axiom: 'X',
-			rules: [
-				{ aus: 'X', wird: '-YF+XFX+FY-' },
-				{ aus: 'Y', wird: '+XF-YFY-FX+' },
-				{ aus: 'F', wird: 'F' },
-			],
-			angle: 90,
-			len: 150,
-			xstart: 1.3,
-			depth: 4,
-		},
-		{
-			axiom: 'X',
-			rules: [{ aus: 'F', wird: 'FF' },
-			{ aus: 'X', wird: 'F[+X]F[-X]+X' }],
-			angle: 20,
-			len: 200,
-		},
-	]
-};
-const OLIVE = '#808000';
-const ORANGE = '#f58231';
-const NEONORANGE = '#ff6700';
-const PURPLE = '#911eb4';
-const RED = '#e6194B';
-const STYLE_PARAMS = {
-	align: 'text-align',
-	acontent: 'align-content',
-	aitems: 'align-items',
-	aspectRatio: 'aspect-ratio',
-	bg: 'background-color',
-	dir: 'flex-direction',
-	fg: 'color',
-	hgap: 'column-gap',
-	vgap: 'row-gap',
-	jcontent: 'justify-content',
-	jitems: 'justify-items',
-	justify: 'justify-content',
-	matop: 'margin-top',
-	maleft: 'margin-left',
-	mabottom: 'margin-bottom',
-	maright: 'margin-right',
-	origin: 'transform-origin',
-	overx: 'overflow-x',
-	overy: 'overflow-y',
-	patop: 'padding-top',
-	paleft: 'padding-left',
-	pabottom: 'padding-bottom',
-	paright: 'padding-right',
-	place: 'place-items',
-	rounding: 'border-radius',
-	w: 'width',
-	h: 'height',
-	wmin: 'min-width',
-	hmin: 'min-height',
-	hline: 'line-height',
-	wmax: 'max-width',
-	hmax: 'max-height',
-	fontSize: 'font-size',
-	fz: 'font-size',
-	family: 'font-family',
-	weight: 'font-weight',
-	x: 'left',
-	y: 'top',
-	z: 'z-index'
-};
-const TEAL = '#469990';
-const YELLOW = '#ffe119';
-const NEONYELLOW = '#efff04';
-var _audioSources = {
-	incorrect1: '../base/assets/sounds/incorrect1.wav',
-	incorrect3: '../base/assets/sounds/incorrect3.mp3',
-	goodBye: "../base/assets/sounds/level1.wav",
-	down: "../base/assets/sounds/down.mp3",
-	levelComplete: "../base/assets/sounds/sound1.wav",
-	rubberBand: "../base/assets/sounds/sound2.wav",
-	hit: "../base/assets/sounds/hit.wav",
-	mozart: "../base/assets/music/mozart_s39_4.mp3",
-};
-var _idleSound = true;
-var _qSound;
-var _sndPlayer;
-var _TOSound;
-var A;
-var AREAS = {};
-var C = null;
-var ColorDi;
-var CV;
-var CX;
-var DA = {};
-var dButtons;
-var dParent;
-var dTable;
-var F;
-var FR = 50;
-var G = null;
-var INFO = {};
-var lineWidth = 4;
-var P;
-var PROTO;
-var ROOT = null;
-var SPEC = null;
-var TO = {};
-var UIDCounter = 0;
-var UIROOT;
-var V = {};
-var Z;
 function _deqSound() {
 	let key = _qSound.shift();
 	let url = _audioSources[key];
@@ -222,8 +9,6 @@ function _deqSound() {
 function _enqSound(key) { if (nundef(_qSound)) _qSound = []; _qSound.push(key); }
 function _mPlayPause(dParent, styles = {}, handler = null) {
 	if (!handler) handler = audio_onclick_pp;
-
-
 	let html = `
     <section id="dButtons">
       <a id="bPlay" href="#" }">
@@ -237,13 +22,9 @@ function _mPlayPause(dParent, styles = {}, handler = null) {
 	let pp = mCreateFrom(html);
 	mAppend(dParent, pp);
 	mStyle(pp, styles);
-
 	mBy('bPlay').onclick = () => { hide0('bPlay'); show0('bPause'); handler(); }
 	mBy('bPause').onclick = () => { hide0('bPause'); show0('bPlay'); handler(); }
-
-
 	return { button: pp, show_play: () => { hide0('bPause'); show0('bPlay'); }, show_pause: () => { hide0('bPlay'); show0('bPause'); } };
-
 }
 function _whenSoundPaused() {
 	_sndPlayer = null;
@@ -323,25 +104,19 @@ function branch_draw(o) {
 function C_draw() {
 	if (!C.changed) return;
 	cClear(CV, CX);
-
 	for (const type in C.items) { let f = get_func(type, 'draw'); for (const item of C.items[type]) { f(item); } }
 	C.changed = false;
 }
 function C_update() { C.root.animated = true; get_func(C.name, 'add')(); }
 function calc_maxdepth(maxnodes, rules) {
-
 	let laus = rules.map(x => x.aus).join();
 	let lwird = rules.map(x => x.wird).join();
-
 	let naus = countAll(laus, 'ABF');
 	let nwird = countAll(lwird, 'ABF');
 	let ratio = nwird / naus;
-
 	let pow = 2;
 	while (Math.pow(ratio, pow) < maxnodes) pow++;
-
 	return pow - 1;
-
 }
 function capitalize(s) {
 	if (typeof s !== 'string') return '';
@@ -578,7 +353,6 @@ function create_branch(b, angle, len, color) {
 	let x = b.p2.x + Math.cos(angle) * len;
 	let y = b.p2.y - Math.sin(angle) * len;
 	let age = b.age + 1;
-
 	let o = {
 		done: false,
 		p1: b.p2,
@@ -594,7 +368,6 @@ function create_branch(b, angle, len, color) {
 	};
 	b.done = true;
 	return o;
-
 }
 function create_leaf(b, root) {
 	let o = {
@@ -631,11 +404,6 @@ function cStyle(styles, ctx) {
 		for (const k in styles) { ctx[isdef(di[k]) ? di[k] : k] = styles[k]; }
 	}
 }
-function dicti(areaName, oSpec, oid, o) {
-	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
-	parent.style.display = 'inline-grid';
-	return parent;
-}
 function draw() {
 	background(51);
 	for (let i = 0; i < tree.length; i++) {
@@ -649,10 +417,6 @@ function draw() {
 		ellipse(l.x, l.y, 8, 8);
 		if (jittering) leaves[i].current.y += random(0, 2);
 	}
-}
-function dynamicArea(areaName, oSpec, oid, o) {
-	func = correctFuncName(oSpec.type);
-	oSpec.ui = window[func](areaName, oSpec, oid, o);
 }
 function ensureColorDict() {
 	if (isdef(ColorDi)) return;
@@ -741,15 +505,11 @@ function fisherYates(arr) {
 }
 function G_clear() { gameloop_stop(); clear_timeouts(); mClear('dTable'); C = G = CV = CX = null; }
 function G_init(name) {
-
 	if (CV) G_clear();
-
-
 	let res = mCanvas(dTable, { w: 500, h: 500, bg: '#222', rounding: 10 });
 	[CV, CX] = [res.cv, res.cx];
-
+	mLinebreak(dTable)
 	let bpp = _mPlayPause(dTable, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
-
 	G = { running: false, bPP: bpp };
 	C = { changed: true, name: name, items: {}, root: get_func(name, 'init')() };
 }
@@ -1081,33 +841,12 @@ function getColorNames() {
 		'YellowGreen'
 	];
 }
-function getDynId(loc, oid) { return loc + '@' + oid; }
 function getFunctionsNameThatCalledThisFunction() {
 	let c1 = getFunctionsNameThatCalledThisFunction.caller;
 	if (nundef(c1)) return 'no caller!';
 	let c2 = c1.caller;
 	if (nundef(c2)) return 'no caller!';
 	return c2.name;
-}
-function getParams(areaName, oSpec, oid) {
-	let params = oSpec.params ? oSpec.params : {};
-	let panels = oSpec.panels ? oSpec.panels : [];
-	let num = panels.length;
-	let or = params.orientation ? params.orientation == 'h' ? 'rows'
-		: 'columns' : DEF_ORIENTATION;
-	let split = params.split ? params.split : DEF_SPLIT;
-	let bg = oSpec.color ? oSpec.color : randomColor();
-	let fg = bg ? colorIdealText(bg) : null;
-	let id = oSpec.id ? oSpec.id : areaName;
-	if (oid) { id = getDynId(id, oid); }
-	let parent = mBy(areaName);
-	if (oSpec.id) {
-		parent.id = id;
-		addAREA(id, oSpec);
-		parent.innerHTML = id;
-	}
-	if (bg) { mColor(parent, bg, fg); }
-	return [num, or, split, bg, fg, id, panels, parent];
 }
 function getRect(elem, relto) {
 	if (isString(elem)) elem = document.getElementById(elem);
@@ -1129,10 +868,6 @@ function getRect(elem, relto) {
 	let r = { x: res.left, y: res.top, w: res.width, h: res.height };
 	addKeys({ l: r.x, t: r.y, r: r.x + r.w, b: r.t + r.h }, r);
 	return r;
-}
-function getUID(pref = '') {
-	UIDCounter += 1;
-	return pref + '_' + UIDCounter;
 }
 function hide0(id) { mBy(id).style.display = "none"; }
 function HSLAToRGBA(hsla, isPct) {
@@ -1302,11 +1037,6 @@ function leaf_draw(o) {
 	let [w, h] = [o.len * 1.5, o.len];
 	cEllipse(x, y, w, h, { bg: o.color }, o.angle);
 }
-function liste(areaName, oSpec, oid, o) {
-	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
-	parent.style.display = 'inline-grid';
-	return parent;
-}
 function lookup(dict, keys) {
 	let d = dict;
 	let ilast = keys.length - 1;
@@ -1349,13 +1079,11 @@ function lsys_add() {
 	let root = C.root; root.gen++;
 	let [stack, gen, b, sentence, x, y, angle, len, id] = [[], root.gen, root, root.sentence, root.p2.x, root.p2.y, root.angle, root.len, root.id++];
 	for (let i = 0; i < gen; i++) { len *= root.dlen; sentence = generate(sentence); }
-
 	let step = 0;
 	for (var i = 0; i < sentence.length; i++) {
 		var ch = sentence[i];
 		if ('ABCFVWXYZ'.includes(ch)) {
 			b = create_branch(b, angle, len, b.color); lookupAddToList(C.items, ['branch'], b); b.id = id++;
-
 		} else if (ch == '+') {
 			angle -= root.dangle;
 		} else if (ch == '-') {
@@ -1371,14 +1099,12 @@ function lsys_add() {
 	if (root.gen < root.depth) TO.iv1 = setTimeout(lsys_add, 100); else TO.iv1 = setTimeout(() => G_init('lsys'), 5000);
 }
 function lsys_init(offx = 0, offy = 0, options = {}) {
-
 	let n = NATURE.lsystems.length;
 	if (nundef(DA.isystem)) DA.isystem = -1;
 	let i = DA.isystem = (DA.isystem + 1) % n;
 	console.log('n', n, 'i', i)
 	let system = NATURE.lsystems[i];
 	let maxdepth = calc_maxdepth(12000, system.rules);
-
 	let root = {
 		axiom: system.axiom, //'F',
 		sentence: system.axiom,
@@ -1456,7 +1182,6 @@ function mClass(d) {
 	} else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
 function mClear(d) { clearElement(toElem(d)); }
-function mColor(d, bg, fg) { return mStyle(d, { 'background-color': bg, 'color': fg }); }
 function mCreate(tag, styles, id) { let d = document.createElement(tag); if (isdef(id)) d.id = id; if (isdef(styles)) mStyle(d, styles); return d; }
 function mCreateFrom(htmlString) {
 	var div = document.createElement('div');
@@ -1474,7 +1199,6 @@ function mDiv(dParent, styles, id, inner, classes, sizing) {
 	if (isdef(sizing)) { setRect(d, sizing); }
 	return d;
 }
-function mDiv100(dParent, styles, id, sizing = false) { let d = mDiv(dParent, styles, id); mSize(d, 100, 100, '%', sizing); return d; }
 function mLinebreak(dParent, gap) {
 	dParent = toElem(dParent);
 	let d;
@@ -1521,7 +1245,6 @@ function mSection(styles = {}, id, inner, tag, classes) {
 	if (isdef(classes)) mClass(d, classes);
 	return d;
 }
-function mSize(d, w, h, unit = 'px', sizing) { if (nundef(h)) h = w; mStyle(d, { width: w, height: h }, unit); if (isdef(sizing)) setRect(d, sizing); }
 function mStyle(elem, styles, unit = 'px') {
 	elem = toElem(elem);
 	if (isdef(styles.whrest)) { delete styles.whrest; styles.w = styles.h = 'rest'; } else if (isdef(styles.wh100)) { styles.w = styles.h = '100%'; delete styles.wh100; }
@@ -1651,7 +1374,6 @@ function mToolbar(buttons, handler, dParent, styles = {}, bstyles = {}, id = nul
 	return d;
 }
 function mutate_colors(type, colors) {
-
 	let items = C.items[type];
 	let changed = false;
 	let lastcolor = arrLast(colors);
@@ -1668,25 +1390,6 @@ function mutate_colors(type, colors) {
 function nundef(x) { return x === null || x === undefined; }
 function onclick_menu_item(name) { G_init(name); onclick_playpause(); }
 function onclick_playpause() { gameloop_toggle(); }
-function panel(areaName, oSpec, oid, o) {
-	let [num, or, split, bg, fg, id, panels, parent] = getParams(areaName, oSpec, oid);
-	if (num > 0) {
-		parent.style.display = 'grid';
-		clearElement(parent);
-		for (let i = 0; i < num; i++) {
-			let d = mDiv100(parent);
-			d.id = getUID();
-			if (panels.length > i) {
-				if (oid) dynamicArea(d.id, panels[i], oid, o); else staticArea(d.id, panels[i]);
-			}
-		}
-		if (or == 'rows') {
-			console.log('====', split * 100);
-			parent.style.gridTemplateColumns = `${split * 100}% 1fr`;
-		}
-	}
-	return parent;
-}
 function posToPoint(pos = 'cc', w, h, offx = 0, offy = 0) {
 	let di = { t: 0, b: h, l: 0, r: w };
 	let py = pos[0] == 'c' ? h / 2 : di[pos[0]];
@@ -1730,7 +1433,6 @@ function pSBCr(d) {
 	}
 	return x;
 }
-function randomColor() { return rColor(); }
 function rChoose(arr, n = 1, func = null, exceptIndices = null) {
 	let indices = arrRange(0, arr.length - 1);
 	if (isdef(exceptIndices)) {
@@ -1808,21 +1510,13 @@ function show(elem, isInline = false) {
 }
 function show0(id) { mBy(id).style.display = "block"; }
 async function start() {
-
-
-
-
-
 	FR = 25;
 	G = null;
-
 	let menulist = ['tree', 'lsys']; //, 'flower', 'spaceco', 'fractal'];
 	dToolbar = mToolbar(menulist, onclick_menu_item, 'dToolbar', { padding: 10, display: 'flex', gap: 10, bg: 'orange' });
 	mButton('clear', G_clear, dToolbar, { position: 'absolute', right: 10 });
-
 	dTable = mSection({ bg: '#ddd', vpadding: 10, hmin: 400, w: '100vw' }, 'dTable');
 	mCenterFlex(dTable);
-
 	onclick_menu_item('lsys');
 }
 function startsWith(s, sSub) {
@@ -1901,7 +1595,6 @@ function tree_add() {
 		C.changed = true;
 	}
 	else if (root.phase == 'over') { root.animated = false; }
-
 	if (root.animated) TO.iv1 = setTimeout(tree_add, root.speed[root.phase]); else TO.iv1 = setTimeout(() => G_init('tree'), 3000);
 }
 function tree_init(offx = 0, offy = 0, options = {}) {
