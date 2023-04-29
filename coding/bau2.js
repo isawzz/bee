@@ -215,9 +215,9 @@ async function codebaseExtendFromProject(project) {
 	console.log('files', files)
 	// let res=await codebaseFromFiles(files);	return res;
 	let [globtext, functext, functextold] = await codebaseFromFiles(files, bykey, bytype, list);
-	downloadAsText(globtext, 'allglobals', 'js');
-	downloadAsText(functext, 'allfuncs', 'js');
-	downloadAsText(functextold, 'allfuncs_old', 'js');
+	// downloadAsText(globtext, 'allglobals', 'js');
+	// downloadAsText(functext, 'allfuncs', 'js');
+	// downloadAsText(functextold, 'allfuncs_old', 'js');
 	return [globtext, functext, functextold];
 }
 async function cssExtendFromProject(project) {
@@ -316,10 +316,10 @@ async function codebaseFromFiles(files, bykey, bytype, list) {
 	let globtext = '', functext = '', functextold = '';
 	for (const type of ['const', 'var', 'class']) {
 		if (nundef(bytype[type])) continue;
-		for (const o of bytype[type]) { globtext += o.code + '\n'; }
+		for (const o of bytype[type]) { if (!isEmptyOrWhiteSpace(o.code)) globtext += o.code + '\n'; }
 	}
 	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key));
-	sortedFuncKeys.map(x => functext += bykey[x].code + '\n');
+	sortedFuncKeys.map(x => functext += isEmptyOrWhiteSpace(bykey[x].code)?'':(bykey[x].code + '\n'));
 	sortedFuncKeys.map(x => functextold += (isdef(bykey[x].oldcode) ? bykey[x].oldcode : bykey[x].code) + '\n');
 
 	return [globtext, functext, functextold]

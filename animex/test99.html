@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="test0.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
+  <title>Anime Animation</title>
+</head>
+<body>
+  <div id="box" style="width:100px;height:100px;display:inline-block;background:red">
+  </div>
+  <script>
+		anime({
+			targets: '#box',
+			translateX: 200,
+			rotate: 45,
+			opacity: .5,
+			background: '#ffffff',
+			//backgroundColor: 'blue',
+			delay: 1000,
+		});
+	</script>
+</body>
+</html>
