@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link href="../base/alibs/anime/css/documentation.css" rel="stylesheet" />
+    <!-- <script src="../animex/chunk.js"></script> -->
+    <!-- <script src="../animex/anime.js"></script> -->
     <script src="../base/alibs/anime.min.js"></script>
     <script src="../allfuncs.js"></script>
     <style>
@@ -216,22 +218,23 @@
 
       function createTest(el) {
         var testHtml = el.innerHTML;
-        var testValues = testHtml.split('<br>▾<br>');
-				//let v0=stringBefore(testHtml,'<br>').trim();
-				//let v1=stringAfterLast(testHtml,'<br>').trim();
-				//testValues = [v0,v1];// testValues.map(x=>x.trim())
+        //var testValues = testHtml.split('<br>▾<br>');
+				let v0=stringBefore(testHtml,'<br>').trim();
+				let v1=stringAfterLast(testHtml,'<br>').trim();
+				testValues = [v0,v1];// testValues.map(x=>x.trim())
 				console.log('testValues',testValues);
         var colorEl = document.createElement('div');
         colorEl.classList.add('color-el');
         el.appendChild(colorEl);
         anime({
           targets: colorEl,
-          backgroundColor: ['#ffff00','#000000'], //[testValues[0], testValues[1]],
+          background: testValues, // [testValues[0], testValues[1]], //testValues, // ['#ffff00','#000000'], //[testValues[0], testValues[1]],
           scale: [0.97, 0.75],
           direction: 'alternate',
           easing: 'easeInOutSine',
           duration: 4000,
           loop: true,
+					delay: 2000,
         });
       }
 

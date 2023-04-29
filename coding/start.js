@@ -1,7 +1,7 @@
 
 async function extractKeywords(path,trimmedlines=false) {
 	let text = await route_path_text(path);
-	let lines = text.split('\r\n');
+	let lines = text.split('\n');
 	// console.log('lines',lines);
 	let kws = [];
 	for (const line of lines) {
@@ -9,6 +9,8 @@ async function extractKeywords(path,trimmedlines=false) {
 		if (l.startsWith('function')) kws.push(ithWord(l, 1, true));
 		if (l.startsWith('async')) kws.push(ithWord(l, 2, true));
 		if (l.startsWith('const')) kws.push(ithWord(l, 1, true));
+		if (l.startsWith('var')) kws.push(ithWord(l, 1, true));
+		if (l.startsWith('class')) kws.push(ithWord(l, 1, true));
 	}
 	return kws;
 }
@@ -26,8 +28,8 @@ async function start() {
 
 	//#region tests
 
-	// let [g, text, old] = await codebaseExtendFromProject('coding');
-	let text=await intersectAnimeAndAllfuncs();
+	// let text=await intersectAnimeAndAllfuncs();
+	let [g, text, old] = await codebaseExtendFromProject('coding');
 	// let [text, css] = await closureFromProject('nature');
 
 	// let csstext = await cssbaseExtend('coding');

@@ -318,7 +318,7 @@ async function codebaseFromFiles(files, bykey, bytype, list) {
 		if (nundef(bytype[type])) continue;
 		for (const o of bytype[type]) { if (!isEmptyOrWhiteSpace(o.code)) globtext += o.code + '\n'; }
 	}
-	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key));
+	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key)).filter(x=>!['step','Number'].includes(x));
 	sortedFuncKeys.map(x => functext += isEmptyOrWhiteSpace(bykey[x].code)?'':(bykey[x].code + '\n'));
 	sortedFuncKeys.map(x => functextold += (isdef(bykey[x].oldcode) ? bykey[x].oldcode : bykey[x].code) + '\n');
 
