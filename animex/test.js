@@ -1,4 +1,5 @@
 
+
 function animetest_color() {
 	let d = document.querySelector('#table');
 	let d1 = document.createElement('div'); //mDiv(d, { background: rColor(), w: 40, h: 40, display: 'inline-block' },'box');
@@ -20,88 +21,6 @@ function animetest_color() {
 }
 
 
-
-
-
-function _animetest_color() {
-	let d = document.querySelector('#table');
-	console.log('d', d);
-
-	let d1 = mDiv(d, { bg: rColor(), w: 40, h: 40, display: 'inline-block' });
-	let [x, y] = [100, 200]
-	// d1.animate([
-	// 	{ transform: `translate(${x}px,${y}px)` },
-	// ], {
-	// 	easing: 'ease',
-	// 	duration: 1000,
-	// 	fill: 'forwards'
-	// });
-	anime({targets:d1,transform: `translate(${x}px,${y}px)`});
-
-	return;
-
-	let alist = [];
-	for (const i of range(10)) {
-		let el = mShape('sq', d, { bg: rColor(), w: 40, h: 40 });
-		let a = anime({ targets: el, translateX: 200 })
-	}
-
-}
-function _animetest_color() {
-	var colorTestEls = document.querySelectorAll('.color-test');
-
-
-	function createTest(el) {
-		var testHtml = el.innerHTML;
-		var testValues = testHtml.split('<br>▾<br>');
-		var colorEl = document.createElement('div');
-		colorEl.classList.add('color-el');
-		el.appendChild(colorEl);
-		anime({
-			targets: colorEl,
-			backgroundColor: [testValues[0], testValues[1]],
-			scale: [0.97, 0.75],
-			direction: 'alternate',
-			easing: 'easeInOutSine',
-			duration: 4000,
-			loop: true,
-		});
-	}
-
-	for (var i = 0; i < colorTestEls.length; i++) createTest(colorTestEls[i]);
-
-}
-function _animetest_color() {
-	let n = 4;
-	let dParent = document.querySelectorAll('.color-tests')[0];
-	console.log('dParent', dParent, '\n', n)
-
-	function createTest(i, dParent) {
-		// var testHtml = el.innerHTML;
-		// var testValues = ['#ff0000', '#ffff00']; // testHtml.split('<br>▾<br>');
-
-		let d0 = document.createElement('div'); d0.classList.add('color-test');
-		dParent.appendChild(d0);
-
-		var el = document.createElement('div'); el.classList.add('color-el');
-		d0.appendChild(el);
-
-		var hue = Math.round((360 / n) * i);
-		let c0 = el.style.backgroundColor = '#0000ff'; // 'hsl(' + hue + ', 50%, 50%)';
-		anime({
-			targets: el,
-			backgroundColor: [c0, '#ff0000'],
-			scale: [0.97, 0.75],
-			direction: 'alternate',
-			easing: 'easeInOutSine',
-			duration: 4000,
-			loop: true,
-		});
-	}
-
-	for (var i = 0; i < n; i++) createTest(i, dParent);
-
-}
 function animetest_easing() {
 	const easingVisualizerEl = document.querySelector('.easing-visualizer');
 	const barsWrapperEl = easingVisualizerEl.querySelector('.bars-wrapper');
