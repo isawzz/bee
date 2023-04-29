@@ -17,16 +17,6 @@ function animetest_color() {
 		//backgroundColor: 'blue',
 		delay: 1000,
 	});
-	return;
-	onclick=()=>{anime({
-		targets: '#box',
-		translateX: 200,
-		rotate: 45,
-		opacity: .5,
-		background: '#ffff00',
-		//backgroundColor: 'blue',
-		delay: 1000,
-	});}
 }
 
 
