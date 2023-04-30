@@ -1,9 +1,9 @@
 
 function animetest95() {
 	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
-	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
-	let el = els[0];
-	animTo(el, { backgroundColor: 'red' }, { duration:3000 });
+	let els = animtestCreate(2, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	//animTo(els[0], { backgroundColor: 'red' }, { duration: 3000, delay: 1000 });
+	animeTo(els[1], { bg: colorHex('red') }, { duration: 3000, callback: () => console.log('DONE anime!') });
 
 }
 function animetest96() {
