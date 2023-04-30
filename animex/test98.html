@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../base/alibs/anime/anime.js"></script>
+    <title>Anime Animation</title>
+  </head>
+  <body>
+    <div id="box" style="width: 100px; height: 100px; display: inline-block; background: red"></div>
+    <div id="dTable"></div>
+    <script src="../allglobals.js"></script>
+    <script src="../allfuncs.js"></script>
+    <script>
+      dTable = mBy('dTable');
+      let els = range(5).map((i) => mDiv(dTable, {w: 25, h: 25, background: rColor()}));
+
+      function animate_el(el) {
+        anime({targets: el, translateX: 200, rotate: 45, opacity: 0.5, background: '#ffff00', delay: 1000});
+      }
+      //animate_el('#box'); //ok
+      //els.map(x=>animate_el(x)); //ok
+      animate_el(els); //ok
+    </script>
+  </body>
+</html>

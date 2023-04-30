@@ -489,6 +489,14 @@ appdata:
       steps: 17
     - d: 25.4.23
       steps: 12
+    - d: 26.4.23
+      steps: 11
+    - d: 27.4.23
+      steps: 18
+    - d: 28.4.23
+      steps: 15
+    - d: 29.4.23
+      steps: 21
   howto:
     - kw: k92
       c: hallo92
