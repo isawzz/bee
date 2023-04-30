@@ -1,13 +1,37 @@
 
+function animtestCreate(n, dParent, styles) {
+	return range(n).map((i) => mDiv(dParent, styles));
+}
+function animtestAnimate(el, styles, opts) {
+	let o = { targets: el };
+	for (const prop in styles) {
+		let k = valf(STYLE_PARAMS[prop], prop);
+		o[k] = styles[prop];
+	}
+	addKeys(opts, o);
+	anime(o);
+}
 
+
+function animetest97() {
+	dTable = mBy('dTable');
+	let hsl1 = `hsl(240, 100%, 50%)`; //`hsl()`
+	let hsl2 = `hsl(120, 100%, 50%)`; //`hsl()`
+	let rgb1 = `rgb(0, 0, 255)`; //`hsl()`
+	let rgb2 = `rgb(0, 255, 0)`; //`hsl()`
+	let c1 = `hsl(240, 100%, 20%)`; //`hsl()`
+	let c2 = `hsl(240, 100%, 80%)`; //`hsl()`
+	let els = animtestCreate(2, dTable, { w: 25, h: 25, bg: c1, margin: 10 });
+	animtestAnimate(els, { bg: c2, w: 100, h: 100 }, { duration: 5000, delay: 1000 });
+}
 function animetest_color() {
 	let d = document.querySelector('#table');
 	let d1 = document.createElement('div'); //mDiv(d, { background: rColor(), w: 40, h: 40, display: 'inline-block' },'box');
 	d.appendChild(d1);
-	d1.style.background='red';
-	d1.style.width='100px';
-	d1.style.height='100px';
-	d1.id='box';
+	d1.style.background = 'red';
+	d1.style.width = '100px';
+	d1.style.height = '100px';
+	d1.id = 'box';
 
 	anime({
 		targets: '#box',
@@ -15,12 +39,9 @@ function animetest_color() {
 		rotate: 45,
 		opacity: .5,
 		background: '#ffff00',
-		//backgroundColor: 'blue',
 		delay: 1000,
 	});
 }
-
-
 function animetest_easing() {
 	const easingVisualizerEl = document.querySelector('.easing-visualizer');
 	const barsWrapperEl = easingVisualizerEl.querySelector('.bars-wrapper');

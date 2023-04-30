@@ -6,28 +6,12 @@
     <title>Anime Animation</title>
   </head>
   <body>
-    <div id="box" style="width: 100px; height: 100px; display: inline-block; background: red"></div>
     <div id="dTable"></div>
     <script src="../allglobals.js"></script>
     <script src="../allfuncs.js"></script>
+    <script src="../animex/test.js"></script>
     <script>
-      function animtestCreate(n, styles) {
-        return range(n).map((i) => mDiv(dTable, styles));
-      }
-
-      function animtestAnimate(el, styles, opts) {
-        let o = {targets: el};
-        for (const prop in styles) {
-          let k = valf(STYLE_PARAMS[prop], prop);
-          o[k] = styles[prop];
-        }
-        addKeys(opts, o);
-        anime(o);
-      }
-
-      dTable = mBy('dTable');
-      let els = animtestCreate(10, {w: 25, h: 25, background: 'random',margin:10});
-			animtestAnimate(els,{w:100,h:100,background:rColor()},{delay:3000});
+      onload = animetest97;
     </script>
   </body>
 </html>
