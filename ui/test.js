@@ -1,31 +1,11 @@
 
-function animtestCreate(n, dParent, styles) {
-	return range(n).map((i) => mDiv(dParent, styles));
-}
-function animtestAnimate(el, styles, opts) {
-	let o = { targets: el };
-	for (const prop in styles) {
-		let k = valf(STYLE_PARAMS[prop], prop);
-		o[k] = styles[prop];
-	}
-	addKeys(opts, o);
-	anime(o);
-}
-function animTo(els,styles,opts){
-	
-}
-
 function animetest95() {
-	dTable = mBy('dTable');
-	let hsl1 = `hsl(0, 100%, 50%)`; 
-	let hsl2 = `hsl(180, 100%, 50%)`;
-	let rgb1 = `rgb(0, 0, 255)`; 
-	let rgb2 = `rgb(0, 255, 0)`; 
-	let els = animtestCreate(1, dTable, { filter: 'hue-rotate(0deg)', w: 250, h: 250, bg: '#ffff00', margin: 10 });
-	//els.map(x=>mAnimateTo(x,))
-	animtestAnimate(els, { filter: 'hue-rotate(0deg)', bg:'#ff0000' }, { duration: 15000, delay: 1000 });
-}
+	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	let el = els[0];
+	animTo(el, { backgroundColor: 'red' }, { duration:3000 });
 
+}
 function animetest96() {
 	dTable = mBy('dTable');
 	let hsl1 = `hsl(0, 100%, 50%)`; //`hsl()`
@@ -35,7 +15,7 @@ function animetest96() {
 	let c1 = `hsl(240, 100%, 20%)`; //`hsl()`
 	let c2 = `hsl(240, 100%, 80%)`; //`hsl()`
 	let els = animtestCreate(1, dTable, { filter: 'hue-rotate(0deg)', w: 250, h: 250, bg: '#ffff00', margin: 10 });
-	animtestAnimate(els, { filter: 'hue-rotate(0deg)', bg:'#ff0000' }, { duration: 15000, delay: 1000 });
+	animtestAnimate(els, { filter: 'hue-rotate(0deg)', bg: '#ff0000' }, { duration: 15000, delay: 1000 });
 }
 function animetest97() {
 	dTable = mBy('dTable');
@@ -49,7 +29,7 @@ function animetest97() {
 	animtestAnimate(els, { bg: c2, w: 100, h: 100 }, { duration: 5000, delay: 1000 });
 }
 function animetest_color() {
-	let d = document.querySelector('#table');
+	let d = document.querySelector('#dTable');
 	let d1 = document.createElement('div'); //mDiv(d, { background: rColor(), w: 40, h: 40, display: 'inline-block' },'box');
 	d.appendChild(d1);
 	d1.style.background = 'red';
