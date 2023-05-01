@@ -1,17 +1,4 @@
-const isTypeof = {
-	arr: a => Array.isArray(a),
-	obj: a => Object.prototype.toString.call(a).indexOf('Object') > -1,
-	pth: a => is.obj(a) && a.hasOwnProperty('totalLength'),
-	svg: a => a instanceof SVGElement,
-	dom: a => a.nodeType || is.svg(a),
-	str: a => typeof a === 'string',
-	fnc: a => typeof a === 'function',
-	und: a => typeof a === 'undefined',
-	hex: a => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(a),
-	rgb: a => /^rgb/.test(a),
-	hsl: a => /^hsl/.test(a),
-	col: a => (is.hex(a) || is.rgb(a) || is.hsl(a))
-}
+
 const ALLOW_CALIBRATION = false;
 const allPeeps = []
 const allPlayerTypes = ['me', 'human', 'AI regular', 'AI random', 'AI pass'];
