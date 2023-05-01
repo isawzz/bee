@@ -195,7 +195,7 @@ function animTo(els, styles = {}, opts = {}) {
 	}
 	let kflist = [o];
 	console.log('kflist', kflist)
-	let easing = normalizeEasing('easeOutElastic');
+	//let easing = normalizeEasing('easeOutElastic');
 	console.log('easing',easing)
 	let elasticity = 500; //(1000 - minMaxValue(500, 1, 999)) / 1000;
 
