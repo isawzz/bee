@@ -217,7 +217,7 @@ for (var i = 0; i < articleEls.length; i++) {
 	}
 	fragment.appendChild(linksSectionEl);
 }
-
+console.log('demos',demos)
 navigationEl.appendChild(fragment);
 
 function updateDemos() {

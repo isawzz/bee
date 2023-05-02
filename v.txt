@@ -9730,8 +9730,7 @@ rem wanimex
 700: *8:31 AM 5/2/2023-8:34 AM 5/2/2023
 701: *8:34 AM 5/2/2023-9:05 AM 5/2/2023
 702: *9:05 AM 5/2/2023-9:13 AM 5/2/2023
-703: *9:14 AM 5/2/2023-
-
+703: *9:14 AM 5/2/2023-11:30 AM 5/2/2023
 minnow:
 1. rabies booster
 2. 5.12.22
@@ -9740,6 +9739,9 @@ minnow:
 5. healthy
 6. Bellevue Animal Hospital all booster / vacc info send 
 7. healthy, regular check
+costco
+833: *11:30 AM 5/2/2023-
+
 
 
 - wie wuerd ich es machen dass es editable wird?
