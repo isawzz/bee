@@ -1,11 +1,42 @@
+function animetest89() {
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	animeTo(els[0], { bg: 'crimson' }, { easing: 'easeInOutSine', delay: 500, callback: () => console.log('DONE!') });
+}
+function animetest90() {
+	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	animeTo(els[0], { backgroundColor: '#ff0000' }, { easing: 'easeInOutSine', delay: 500, callback: () => console.log('DONE!') });
+}
+
+function animetest91() {
+	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	animeTo(els[0], { translateX: 200 }, { delay: 500, callback: () => console.log('DONE!') });
+}
+function animetest92() {
+	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	animeTo(els[0], { translateX: 200 }, { easing: 'easeOutElastic', delay: 500, callback: () => console.log('DONE!') });
+}
+
+function animetest93() {
+	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	animTo(els[0], { transform: 'translateX(200px)' }, { easing: `cubic-bezier(.65,1.88,.89,.64)`, delay: 500, callback: () => console.log('animTo DONE!') });
+}
+
+function animetest94() {
+	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
+	animTo(els[0], { backgroundColor: 'red' }, { duration: 3000, delay: 1000, callback: () => console.log('animTo DONE!') });
+}
 
 function animetest95() {
 	dTable = mBy('dTable'); mClear(dTable); mFlexWrap(dTable);
-	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
-	animTo(els[0], { backgroundColor: 'red' }, { duration: 3000, delay: 1000 });
-	//animeTo(els[1], { bg: colorHex('red') }, { duration: 3000, callback: () => console.log('DONE anime!') });
-
+	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: '#ffff00', margin: 10 });
+	animeTo(els[0], { backgroundColor: '#ff0000' }, { easing: 'linear', duration: 3000, delay: 1000, callback: () => console.log('animTo DONE!') });
 }
+
 function animetest96() {
 	dTable = mBy('dTable');
 	let hsl1 = `hsl(0, 100%, 50%)`; //`hsl()`
