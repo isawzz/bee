@@ -2,14 +2,14 @@
  font-family: "Roobert";
  font-weight: 400;
  font-style: normal;
- src: url("../fonts/Roobert-Regular.woff2") format("woff2");
+ src: url("../docsanime/Roobert-Regular.woff2") format("woff2");
 }
 
 @font-face {
  font-family: "Roobert";
  font-weight: 400;
  font-style: italic;
- src: url("../fonts/Roobert-Regular.woff2") format("woff2");
+ src: url("../docsanime/Roobert-Regular.woff2") format("woff2");
 }
 
 @font-face {

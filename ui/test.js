@@ -1,3 +1,11 @@
+function animetest88() {
+	let el = animtestGetElement();
+	animeTo(el, { bg: 'crimson' }, { easing: 'easeInOutSine', delay: 500, callback: () => console.log('DONE!') });
+}
+function animetest89() {
+	let el = animtestGetElement();
+	animeTo(el, { bg: 'crimson' }, { easing: 'easeInOutSine', delay: 500, callback: () => console.log('DONE!') });
+}
 function animetest89() {
 	let els = animtestCreate(1, dTable, { w: 250, h: 250, bg: 'gold', margin: 10 });
 	animeTo(els[0], { bg: 'crimson' }, { easing: 'easeInOutSine', delay: 500, callback: () => console.log('DONE!') });
