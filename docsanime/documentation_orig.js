@@ -6,6 +6,28 @@ var descriptionEl = document.querySelector('.info-output');
 var descriptionTitleEl = document.querySelector('.demo-info h2');
 var demos = [];
 
+function getScrollTop() {
+	return document.body.scrollTop || document.documentElement.scrollTop;
+}
+
+function scrollTo(selector, offset, cb) {
+	var offset = offset || 0;
+	var el = document.querySelector(selector);
+	var scrollAnim = anime({
+		targets: { scroll: demosEl.scrollTop },
+		scroll: el.offsetTop - offset,
+		duration: 500,
+		easing: 'easeInOutQuart',
+		update: function (a) { demosEl.scrollTop = a.animations[0].currentValue; },
+		complete: function () { if (cb) cb(); }
+	});
+}
+
+function parseJS(demoCode) {
+	var split = demoCode.split('/*DEMO*/\n');
+	return split[1] || '';
+}
+
 function createCodePreview(code) {
 	var previewEl = document.createElement('div');
 	var preEl = document.createElement('pre');
@@ -17,7 +39,64 @@ function createCodePreview(code) {
 	previewEl.appendChild(preEl);
 	return previewEl;
 }
-function _createDemo(el) {
+
+function outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
+	var js = document.createTextNode(parseJS(demoCode));
+	demoInfoEl.classList.remove(demoInfoEl.classList[2]);
+	demoInfoEl.classList.add(demoColorClass);
+	descriptionEl.innerHTML = demoDecription;
+	descriptionEl.appendChild(createCodePreview(js));
+	descriptionTitleEl.innerHTML = demoTitle;
+	codeEls = descriptionEl.querySelectorAll('code');
+	for (var i = 0; i < codeEls.length; i++) {
+		hljs.highlightBlock(codeEls[i]);
+	}
+}
+
+function toggleSectionLink(ulEl) {
+	var ulEls = document.querySelectorAll('.navigation ul');
+	var ulLiEls = ulEl.querySelectorAll('.li');
+	for (var i = 0; i < ulEls.length; i++) ulEls[i].classList.remove('active');
+	ulEl.classList.add('active');
+	anime.remove(ulEls);
+	anime({
+		targets: '.navigation ul:not(.active)',
+		height: 30,
+		duration: 400,
+		easing: 'easeOutQuart'
+	});
+	anime({
+		targets: ulEl,
+		height: function (el) {
+			var height = 0;
+			var childNodes = el.childNodes;
+			for (var i = 0; i < childNodes.length; i++) height += childNodes[i].offsetHeight;
+			return height;
+		},
+		duration: 600,
+		delay: 400,
+		easing: 'easeInOutQuart'
+	});
+}
+
+function resetDemo() {
+	var els = document.querySelectorAll('.el');
+	for (var i = 0; i < els.length; i++) {
+		anime.remove(els[i]);
+		els[i].style = '';
+	}
+}
+
+function resetDemos() {
+	for (var i = 0; i < anime.running.length; i++) {
+		var anim = anime.running[i];
+		anim.pause();
+		anim.seek(0);
+	}
+	document.body.classList.add('ready');
+}
+
+function createDemo(el) {
 	var demo = {};
 	var demoColorClass = el.parentNode.classList[0];
 	var scriptEl = el.querySelector('script');
@@ -49,7 +128,7 @@ function _createDemo(el) {
 				linkEls[i].parentNode.classList.remove('active');
 				//d.anim.pause();
 			}
-			outputCode(demoCode, demoTitle, demoDescription, demoColorClass, id);
+			outputCode(demoCode, demoTitle, demoDescription, demoColorClass);
 			var linkEl = document.querySelector('a[href="#' + id + '"]');
 			var ulEl = linkEl.parentNode.parentNode;
 			linkEl.parentNode.classList.add('active');
@@ -85,18 +164,9 @@ function _createDemo(el) {
 		highlight: highlightDemo
 	}
 }
-function createDemoLink(demo) {
-	var liEl = document.createElement('li');
-	var demoLinkEl = document.createElement('a');
-	demoLinkEl.setAttribute('href', '#' + demo.id);
-	demoLinkEl.innerHTML = demo.title;
-	demoLinkEl.classList.add('demo-link');
-	demoLinkEl.addEventListener('click', function (e) {
-		demo.highlight(e, true);
-	});
-	liEl.appendChild(demoLinkEl);
-	return liEl;
-}
+
+function getDemoById(id) { return demos.filter(x => x.id === id)[0]; } //return demos.filter(function (a) { return a.id === id })[0];}
+
 function createLinksSection(articleEl) {
 	var articleId = articleEl.id;
 	var articleTitle = articleEl.querySelector('h2').innerHTML;
@@ -117,10 +187,50 @@ function createLinksSection(articleEl) {
 	ulEl.classList.add(colorClass);
 	return ulEl;
 }
-function getDemoById(id) { return demos.filter(x => x.id === id)[0]; } 
-function getScrollTop() {
-	return document.body.scrollTop || document.documentElement.scrollTop;
+
+function createDemoLink(demo) {
+	var liEl = document.createElement('li');
+	var demoLinkEl = document.createElement('a');
+	demoLinkEl.setAttribute('href', '#' + demo.id);
+	demoLinkEl.innerHTML = demo.title;
+	demoLinkEl.classList.add('demo-link');
+	demoLinkEl.addEventListener('click', function (e) {
+		demo.highlight(e, true);
+	});
+	liEl.appendChild(demoLinkEl);
+	return liEl;
 }
+
+var fragment = document.createDocumentFragment();
+
+for (var i = 0; i < articleEls.length; i++) {
+	var articleEl = articleEls[i];
+	var linksSectionEl = createLinksSection(articleEl);
+	var demoEls = articleEl.querySelectorAll('.demo');
+	for (var d = 0; d < demoEls.length; d++) {
+		var demo = createDemo(demoEls[d]);
+		var demoLinkEl = createDemoLink(demo);
+		linksSectionEl.appendChild(demoLinkEl);
+		demos.push(demo);
+	}
+	fragment.appendChild(linksSectionEl);
+}
+console.log('demos', demos[0])
+navigationEl.appendChild(fragment);
+
+function updateDemos() {
+	var hash = window.location.hash;
+	
+	if (hash) {
+		var id = hash.replace('#', '');
+		var demo = getDemoById(id);
+		if (demo) demo.highlight();
+	} else {
+		console.log('HAAAAAAAAAAAAAAAAA')
+		demos[0].highlight();
+	}
+}
+
 function keyboardNavigation(e) {
 	var activeDemoEl = document.querySelector('.demo.active');
 	switch (e.keyCode) {
@@ -140,95 +250,22 @@ function keyboardNavigation(e) {
 			break;
 	}
 }
-function _outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
-	var js = document.createTextNode(parseJS(demoCode));
-	demoInfoEl.classList.remove(demoInfoEl.classList[2]);
-	demoInfoEl.classList.add(demoColorClass);
-	descriptionEl.innerHTML = demoDecription;
-	descriptionEl.appendChild(createCodePreview(js));
-	descriptionTitleEl.innerHTML = demoTitle;
-	codeEls = descriptionEl.querySelectorAll('code');
-	for (var i = 0; i < codeEls.length; i++) {
-		hljs.highlightBlock(codeEls[i]);
-	}
-}
-function parseJS(demoCode) {
-	var split = demoCode.split('/*DEMO*/\n');
-	return split[1] || '';
-}
-function resetDemo() {
-	var els = document.querySelectorAll('.el');
-	for (var i = 0; i < els.length; i++) {
-		anime.remove(els[i]);
-		els[i].style = '';
-	}
-}
-function resetDemos() {
-	for (var i = 0; i < anime.running.length; i++) {
-		var anim = anime.running[i];
-		anim.pause();
-		anim.seek(0);
-	}
-	document.body.classList.add('ready');
-}
-function scrollTo(selector, offset, cb) {
-	var offset = offset || 0;
-	var el = document.querySelector(selector);
-	var scrollAnim = anime({
-		targets: { scroll: demosEl.scrollTop },
-		scroll: el.offsetTop - offset,
-		duration: 500,
-		easing: 'easeInOutQuart',
-		update: function (a) { demosEl.scrollTop = a.animations[0].currentValue; },
-		complete: function () { if (cb) cb(); }
-	});
-}
-function toggleSectionLink(ulEl) {
-	var ulEls = document.querySelectorAll('.navigation ul');
-	var ulLiEls = ulEl.querySelectorAll('.li');
-	for (var i = 0; i < ulEls.length; i++) ulEls[i].classList.remove('active');
-	ulEl.classList.add('active');
-	anime.remove(ulEls);
-	anime({
-		targets: '.navigation ul:not(.active)',
-		height: 30,
-		duration: 400,
-		easing: 'easeOutQuart'
-	});
-	anime({
-		targets: ulEl,
-		height: function (el) {
-			var height = 0;
-			var childNodes = el.childNodes;
-			for (var i = 0; i < childNodes.length; i++) height += childNodes[i].offsetHeight;
-			return height;
-		},
-		duration: 600,
-		delay: 400,
-		easing: 'easeInOutQuart'
-	});
-}
-function updateDemos() {
-	var hash = window.location.hash;
 
-	if (hash) {
-		var id = hash.replace('#', '');
-		var demo = getDemoById(id);
-		if (demo) demo.highlight();
-	} else {
-		console.log('HAAAAAAAAAAAAAAAAA')
-		demos[0].highlight();
-	}
+// Update date and version number
+
+var versionNumerEls = document.querySelectorAll('.version-number');
+var dateEl = document.querySelector('.date');
+var date = new Date();
+
+for (var i = 0; i < versionNumerEls.length; i++) {
+	versionNumerEls[i].innerHTML = anime.version;
 }
 
+// Init
 
-
-
-
-
-
-
-
+updateDemos();
+window.onhashchange = updateDemos;
+document.onkeydown = keyboardNavigation;
 
 
 

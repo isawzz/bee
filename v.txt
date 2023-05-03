@@ -9746,25 +9746,89 @@ costco
 836: *4:02 PM 5/2/2023-5:18 PM 5/2/2023
 837: *5:18 PM 5/2/2023-5:24 PM 5/2/2023
 838: *5:24 PM 5/2/2023-8:25 PM 5/2/2023
-__________ mi 3.5.23 ...airport lib 10.5 6-1
+__________ mi 3.5.23 ...airport lib 10.5 6-
 900: *8:25 PM 5/2/2023-8:37 PM 5/2/2023
-901: *8:37 PM 5/2/2023-
-- ich muss es aus dem script nehmen!!!
-- wie finde ich die richtige demo?
- Iain McGilchrist
-- open index.html bei pane demo-info
+901: *8:37 PM 5/2/2023-6:52 AM 5/3/2023
+902: *6:52 AM 5/3/2023-6:56 AM 5/3/2023
+903: *6:56 AM 5/3/2023-6:57 AM 5/3/2023
+904: *6:57 AM 5/3/2023-6:58 AM 5/3/2023
+905: *6:58 AM 5/3/2023-6:58 AM 5/3/2023
+906: *6:58 AM 5/3/2023-6:59 AM 5/3/2023
+907: *7:00 AM 5/3/2023-7:01 AM 5/3/2023
+908: *7:01 AM 5/3/2023-7:01 AM 5/3/2023
+909: *7:01 AM 5/3/2023-7:03 AM 5/3/2023
+910: *7:03 AM 5/3/2023-7:04 AM 5/3/2023
+911: *7:04 AM 5/3/2023-7:10 AM 5/3/2023
+912: *7:11 AM 5/3/2023-7:13 AM 5/3/2023
+913: *7:13 AM 5/3/2023-7:14 AM 5/3/2023
+914: *7:14 AM 5/3/2023-7:16 AM 5/3/2023
+915: *7:16 AM 5/3/2023-7:25 AM 5/3/2023
+916: *7:25 AM 5/3/2023-7:48 AM 5/3/2023
+917: *7:48 AM 5/3/2023-7:56 AM 5/3/2023
+918: *7:56 AM 5/3/2023-7:56 AM 5/3/2023
+919: *7:56 AM 5/3/2023-8:01 AM 5/3/2023
+920: *8:01 AM 5/3/2023-8:04 AM 5/3/2023
+921: *8:04 AM 5/3/2023-8:05 AM 5/3/2023
+922: *8:05 AM 5/3/2023-8:06 AM 5/3/2023
+923: *8:06 AM 5/3/2023-
+- demo soll am anfang 
+- was jetzt?
+- 
+- bau2
+way shorter!!!
+- remove code rest
+- richtig cool!!!!!
+- ich will eigentlich bei onclick update:
+nicht window[id]() sondern eval(ta.value)
+resetDemos() stops all running animations
+resetDemo() resets values of all demo elements
+
+- restart runs the demo
+- was will ich eigentlich?
+- add bau, start
+- hol mit allfuncs und allglobals
+- copy docsanime into new 
+- ich koennte ein dict draus machen!
+demos=list of el:el, id:x, anim:function
+- 
+- var x ist eine function
+- document.getElementById(x) ist eine div
+
+- hier ist wie es geht:
 
 
 
-- wie wuerd ich es machen dass es editable wird?
-
-- araxis anime.js newest version! => replace!
 
 
-- vet80
-- costco+gu 50
-- how about random?
-- try easeInOutSine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - welche namen gibt es bei anime?
 ease[In|Out|InOut]['Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Back', 'Elastic']
 - vielleicht geht es garnicht!!!
