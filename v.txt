@@ -9770,8 +9770,15 @@ __________ mi 3.5.23 ...airport lib 10.5 6-
 920: *8:01 AM 5/3/2023-8:04 AM 5/3/2023
 921: *8:04 AM 5/3/2023-8:05 AM 5/3/2023
 922: *8:05 AM 5/3/2023-8:06 AM 5/3/2023
-923: *8:06 AM 5/3/2023-
-- demo soll am anfang 
+923: *8:06 AM 5/3/2023-8:16 AM 5/3/2023
+924: *8:16 AM 5/3/2023-8:22 AM 5/3/2023
+925: *8:22 AM 5/3/2023-
+- REPAIR!!!
+- 
+- demo soll am anfang den orig code drin haben
+- statt dem code zeug soll click NUR das ta zeigen
+- bei update soll demo.code correct updated werden
+- 
 - was jetzt?
 - 
 - bau2
