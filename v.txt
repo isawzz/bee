@@ -9743,7 +9743,14 @@ costco
 833: *11:30 AM 5/2/2023-11:34 AM 5/2/2023
 834: *11:34 AM 5/2/2023-11:57 AM 5/2/2023
 835: *11:57 AM 5/2/2023-4:02 PM 5/2/2023
-836: *4:02 PM 5/2/2023-
+836: *4:02 PM 5/2/2023-5:18 PM 5/2/2023
+837: *5:18 PM 5/2/2023-5:24 PM 5/2/2023
+838: *5:24 PM 5/2/2023-8:25 PM 5/2/2023
+__________ mi 3.5.23 ...airport lib 10.5 6-1
+900: *8:25 PM 5/2/2023-8:37 PM 5/2/2023
+901: *8:37 PM 5/2/2023-
+- ich muss es aus dem script nehmen!!!
+- wie finde ich die richtige demo?
  Iain McGilchrist
 - open index.html bei pane demo-info
 

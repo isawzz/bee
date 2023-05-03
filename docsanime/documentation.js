@@ -5,6 +5,7 @@ var demoInfoEl = document.querySelector('.demo-info');
 var descriptionEl = document.querySelector('.info-output');
 var descriptionTitleEl = document.querySelector('.demo-info h2');
 var demos = [];
+var selectedDemo = null;
 
 function getScrollTop() {
 	return document.body.scrollTop || document.documentElement.scrollTop;
@@ -40,7 +41,7 @@ function createCodePreview(code) {
 	return previewEl;
 }
 
-function outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
+function outputCode(demoCode, demoTitle, demoDecription, demoColorClass, id) {
 	var js = document.createTextNode(parseJS(demoCode));
 	demoInfoEl.classList.remove(demoInfoEl.classList[2]);
 	demoInfoEl.classList.add(demoColorClass);
@@ -59,9 +60,17 @@ function outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
 	ta.value = code;
 	descriptionEl.appendChild(ta);
 
+	selectedDemo = demos[id];
+
 	let button = document.createElement('button');
-	button.innHTML = 'update code';
-	button.onclick = ()=>console.log('newcode',ta.value);
+	button.innerHTML = 'update code';
+	button.onclick = ()=>{
+		selectedDemo.demoCode = '/*DEMO*/\n'+ta.value+'\n/*DEMO*/';
+		console.log('newcode',ta.value);
+	};
+	button.style = 'padding:4px 10px'
+	descriptionEl.appendChild(button);
+
 }
 
 function toggleSectionLink(ulEl) {
@@ -139,7 +148,7 @@ function createDemo(el) {
 				linkEls[i].parentNode.classList.remove('active');
 				//d.anim.pause();
 			}
-			outputCode(demoCode, demoTitle, demoDescription, demoColorClass);
+			outputCode(demoCode, demoTitle, demoDescription, demoColorClass, id);
 			var linkEl = document.querySelector('a[href="#' + id + '"]');
 			var ulEl = linkEl.parentNode.parentNode;
 			linkEl.parentNode.classList.add('active');
