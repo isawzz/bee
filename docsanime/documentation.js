@@ -51,6 +51,17 @@ function outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
 	for (var i = 0; i < codeEls.length; i++) {
 		hljs.highlightBlock(codeEls[i]);
 	}
+
+	let ta = document.createElement('textarea');
+	ta.style = "width:100%;height:500px;padding:10px;outline:none";//	ta.row=10;ta.cols=60;
+	let code = demoCode.substring(demoCode.indexOf('/*DEMO*/') + 8);
+	code = code.substring(0, code.indexOf('/*DEMO*/'))
+	ta.value = code;
+	descriptionEl.appendChild(ta);
+
+	let button = document.createElement('button');
+	button.innHTML = 'update code';
+	button.onclick = ()=>console.log('newcode',ta.value);
 }
 
 function toggleSectionLink(ulEl) {
@@ -217,7 +228,7 @@ for (var i = 0; i < articleEls.length; i++) {
 	}
 	fragment.appendChild(linksSectionEl);
 }
-console.log('demos',demos)
+console.log('demos', demos)
 navigationEl.appendChild(fragment);
 
 function updateDemos() {

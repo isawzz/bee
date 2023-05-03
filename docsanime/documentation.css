@@ -211,6 +211,15 @@ h2 {
   height: calc(100% - 60px);
   padding: 20px;
 }
+.code-editor {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  padding: 20px;
+}
 
 .demo-info pre {
   font-variant-ligatures: none;
