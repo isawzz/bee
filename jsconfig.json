@@ -4,5 +4,5 @@
     "target": "es6"
   },
   // "include": ["allglobals.js", "allfuncs.js"],
-  "exclude": ["base","node_modules", "temp", "*UCODE*", "y*", "_ignore", "_weg", "_other", "*hallo*", "**/*closure.js","*muell"]
+  "exclude": ["*0", "base","node_modules", "temp", "*UCODE*", "y*", "_ignore", "_weg", "_other", "*hallo*", "**/*closure.js","*muell"]
 }

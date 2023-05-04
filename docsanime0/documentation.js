@@ -5,6 +5,7 @@ var demoInfoEl = document.querySelector('.demo-info');
 var descriptionEl = document.querySelector('.info-output');
 var descriptionTitleEl = document.querySelector('.demo-info h2');
 var demos = [];
+// var selectedDemo = null;
 
 function getScrollTop() {
 	return document.body.scrollTop || document.documentElement.scrollTop;
@@ -40,7 +41,7 @@ function createCodePreview(code) {
 	return previewEl;
 }
 
-function outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
+function outputCode(demoCode, demoTitle, demoDecription, demoColorClass, id) {
 	var js = document.createTextNode(parseJS(demoCode));
 	demoInfoEl.classList.remove(demoInfoEl.classList[2]);
 	demoInfoEl.classList.add(demoColorClass);
@@ -51,6 +52,26 @@ function outputCode(demoCode, demoTitle, demoDecription, demoColorClass) {
 	for (var i = 0; i < codeEls.length; i++) {
 		hljs.highlightBlock(codeEls[i]);
 	}
+
+	//#region removed code:
+	// let ta = document.createElement('textarea');
+	// ta.style = "width:100%;height:500px;padding:10px;outline:none";//	ta.row=10;ta.cols=60;
+	// let code = demoCode.substring(demoCode.indexOf('/*DEMO*/') + 8);
+	// code = code.substring(0, code.indexOf('/*DEMO*/'))
+	// ta.value = code;
+	// descriptionEl.appendChild(ta);
+
+	// selectedDemo = demos[id];
+
+	// let button = document.createElement('button');
+	// button.innerHTML = 'update code';
+	// button.onclick = ()=>{
+	// 	selectedDemo.code = '/*DEMO*/\n'+ta.value+'\n/*DEMO*/';
+	// 	console.log('newcode',ta.value);
+	// };
+	// button.style = 'padding:4px 10px'
+	// descriptionEl.appendChild(button);
+	//#endregion
 }
 
 function toggleSectionLink(ulEl) {
@@ -128,7 +149,7 @@ function createDemo(el) {
 				linkEls[i].parentNode.classList.remove('active');
 				//d.anim.pause();
 			}
-			outputCode(demoCode, demoTitle, demoDescription, demoColorClass);
+			outputCode(demoCode, demoTitle, demoDescription, demoColorClass, id);
 			var linkEl = document.querySelector('a[href="#' + id + '"]');
 			var ulEl = linkEl.parentNode.parentNode;
 			linkEl.parentNode.classList.add('active');
@@ -161,11 +182,14 @@ function createDemo(el) {
 		title: demoTitle,
 		id: id,
 		anim: demoAnim,
+		code: demoCode,
 		highlight: highlightDemo
 	}
 }
 
-function getDemoById(id) { return demos.filter(x => x.id === id)[0]; } //return demos.filter(function (a) { return a.id === id })[0];}
+function getDemoById(id) {
+	return demos.filter(function (a) { return a.id === id })[0];
+}
 
 function createLinksSection(articleEl) {
 	var articleId = articleEl.id;
@@ -215,18 +239,16 @@ for (var i = 0; i < articleEls.length; i++) {
 	}
 	fragment.appendChild(linksSectionEl);
 }
-console.log('demos', demos[0])
+console.log('demos', demos)
 navigationEl.appendChild(fragment);
 
 function updateDemos() {
 	var hash = window.location.hash;
-	
 	if (hash) {
 		var id = hash.replace('#', '');
 		var demo = getDemoById(id);
 		if (demo) demo.highlight();
 	} else {
-		console.log('HAAAAAAAAAAAAAAAAA')
 		demos[0].highlight();
 	}
 }
