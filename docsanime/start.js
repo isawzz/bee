@@ -16,7 +16,7 @@ function start() {
 		}
 		fragment.appendChild(linksSectionEl);
 	}
-	console.log('demos', demos[0])
+	//console.log('demos', demos[0])
 	navigationEl.appendChild(fragment);
 
 	// Init
@@ -28,6 +28,7 @@ function start() {
 }
 
 function ademoRerun(code){
+	DA[animeSelectedId]=code;
 	resetDemos();
 	resetDemo();
 	eval(code);

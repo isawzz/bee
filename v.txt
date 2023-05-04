@@ -9774,7 +9774,92 @@ __________ mi 3.5.23 ...airport lib 10.5 6-15
 924: *8:16 AM 5/3/2023-8:22 AM 5/3/2023
 925: *8:22 AM 5/3/2023-6:26 AM 5/4/2023
 __________ do 4.5.23 ...airport lib 10.5 6-
-970: *6:30 AM 5/4/2023-
+970: *6:30 AM 5/4/2023-6:38 AM 5/4/2023
+980: *6:38 AM 5/4/2023-6:44 AM 5/4/2023
+981: *6:44 AM 5/4/2023-6:53 AM 5/4/2023
+982: *6:53 AM 5/4/2023-6:53 AM 5/4/2023
+983: *6:54 AM 5/4/2023-6:54 AM 5/4/2023
+984: *6:54 AM 5/4/2023-6:54 AM 5/4/2023
+985: *6:54 AM 5/4/2023-7:03 AM 5/4/2023
+986: *7:03 AM 5/4/2023-7:03 AM 5/4/2023
+987: *7:03 AM 5/4/2023-7:06 AM 5/4/2023
+988: *7:06 AM 5/4/2023-7:08 AM 5/4/2023
+989: *7:08 AM 5/4/2023-7:14 AM 5/4/2023
+990: *7:14 AM 5/4/2023-7:15 AM 5/4/2023
+991: *7:15 AM 5/4/2023-7:19 AM 5/4/2023
+992: *7:20 AM 5/4/2023-7:21 AM 5/4/2023
+993: *7:21 AM 5/4/2023-7:25 AM 5/4/2023
+994: *7:25 AM 5/4/2023-7:29 AM 5/4/2023
+995: *7:29 AM 5/4/2023-7:33 AM 5/4/2023
+996: *7:33 AM 5/4/2023-7:36 AM 5/4/2023
+997: *7:36 AM 5/4/2023-7:37 AM 5/4/2023
+998: *7:37 AM 5/4/2023-7:37 AM 5/4/2023
+999: *7:37 AM 5/4/2023-7:44 AM 5/4/2023
+1000: *7:44 AM 5/4/2023-7:44 AM 5/4/2023
+- scroll ist complett falsch jetzt! warum???
+- wo is code wenn auf einen
+- where is code clock on element?
+- wo ist es falsch? bei welchem trigger?
+- bau 8
+- vielleicht brauch ich fuer rerun den anfang vom code???
+- sobald rerun click: veraendere den code! set DA[id
+- rem cons!
+- code
+- wo bekomm ich die id?
+- und was jetzt??? fix demoCode!
+- add button
+- padding
+way shorter!
+- dort wo jetzt code example steht soll er darunter die textarea geben!!!
+- was soll outputcode machen?
+- simple un clever ist wenn ich nur outputcode und restart aendere!
+1: *7:44 AM 5/4/2023-7:58 AM 5/4/2023
+2: *7:58 AM 5/4/2023-7:58 AM 5/4/2023
+- jetzt wird wenn auf beispiel clicke resetted!
+3: *7:58 AM 5/4/2023-7:58 AM 5/4/2023
+4: *7:59 AM 5/4/2023-8:04 AM 5/4/2023
+5: *8:04 AM 5/4/2023-8:26 AM 5/4/2023
+15: *12:17 PM 5/4/2023-
+- mit den callbacks gibt es probleme!
+- test more advanced mit rerun!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+way shorter!!!!!!!
+- super simple clevere art!!!
+- how to get back original??? that works!!!
 - REPAIR!!!
 - 
 - demo soll am anfang den orig code drin haben

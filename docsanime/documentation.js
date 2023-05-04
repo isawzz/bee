@@ -5,6 +5,7 @@ var demoInfoEl = document.querySelector('.demo-info');
 var descriptionEl = document.querySelector('.info-output');
 var descriptionTitleEl = document.querySelector('.demo-info h2');
 var demos = [];
+var animeSelectedId = null;
 
 function getScrollTop() {
 	return document.body.scrollTop || document.documentElement.scrollTop;
@@ -107,11 +108,19 @@ function createDemo(el) {
 	var demoAnim = window[id];
 	var demoCode = scriptEl ? scriptEl.innerHTML : '';
 	var demoDescription = descriptionContentEl ? descriptionContentEl.innerHTML : '';
-	function restart() {
-		resetDemo();
-		demoAnim();
+	function restart(code) {
+
+		resetDemo();demoAnim();return;
+
+		if (isdef(code)) ademoRerun(code); 
+		else {
+			resetDemo();
+			demoAnim();
+		}
 	}
 	function highlightDemo(e, push) {
+		//animeSelectedId = el.id;
+		let code = parseJS(demoCode); // valf(DA[animeSelectedId], parseJS(demoCode));
 		var canRestart = !el.classList.contains('controls');
 		if (e) {
 			e.preventDefault();
@@ -128,18 +137,21 @@ function createDemo(el) {
 				linkEls[i].parentNode.classList.remove('active');
 				//d.anim.pause();
 			}
-			outputCode(demoCode, demoTitle, demoDescription, demoColorClass);
+			outputCode(code, demoTitle, demoDescription, demoColorClass);
 			var linkEl = document.querySelector('a[href="#' + id + '"]');
 			var ulEl = linkEl.parentNode.parentNode;
 			linkEl.parentNode.classList.add('active');
 			el.classList.add('active');
 			scrollTo('#' + id, 60, function () {
 				toggleSectionLink(ulEl);
-				if (canRestart) restart();
+				if (canRestart) restart(code);
 			});
 			if (push) history.pushState(null, null, '#' + id);
 		} else {
-			if (canRestart) restart();
+			//console.log('el',el)
+			let ta = document.getElementsByTagName('textarea')[0];
+			ta.value = code;
+			if (canRestart) restart(code);
 		}
 	}
 	function enterDemo() {
@@ -161,6 +173,7 @@ function createDemo(el) {
 		title: demoTitle,
 		id: id,
 		anim: demoAnim,
+		code: demoCode,
 		highlight: highlightDemo
 	}
 }
@@ -204,13 +217,13 @@ function createDemoLink(demo) {
 
 function updateDemos() {
 	var hash = window.location.hash;
-	
+
 	if (hash) {
 		var id = hash.replace('#', '');
 		var demo = getDemoById(id);
 		if (demo) demo.highlight();
 	} else {
-		console.log('HAAAAAAAAAAAAAAAAA')
+		//console.log('HAAAAAAAAAAAAAAAAA')
 		demos[0].highlight();
 	}
 }
