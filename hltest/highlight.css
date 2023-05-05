@@ -1,0 +1,31 @@
+.hljs {
+  color: #A2A09F;
+}
+
+.hljs-keyword{
+	color: lime;
+}
+
+.hljs-number,
+.hljs-string,
+.hljs-literal {
+  color: orange;
+}
+
+.hljs-symbol{
+	color: aqua;
+}
+
+.hljs-attr,
+.hljs-attribute{
+	color: deepskyblue;
+}
+
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-selector-id,
+.hljs-name,
+.hljs-selector-tag{
+	color: red;
+}

@@ -1,4 +1,24 @@
 
+async function start() {
+	initCodingUI();
+
+	//#region tests
+
+	// let text=await intersectAnimeAndAllfuncs();
+	// let [g, text, old] = await codebaseExtendFromProject('hltest');
+	let [text, css] = await closureFromProject('hltest');
+
+	// let csstext = await cssbaseExtend('coding');
+	// let csstext = await cssSelectFrom('../base/alibs/transition.css',['keyframes']);
+	// let csstext = await cssSelectFrom('../base/alibs/bs4/bootstrap.css',['class']);
+	// let csstext = await cssSelectFrom('../base/alibs/w3.css',['root','class','keyframes']);
+	//downloadAsText(text, 'closure', 'js');
+	//downloadAsText(css, 'final', 'css');
+	//#endregion
+	AU.ta.value = text; //css; //'hallo, na ENDLICH!!!!!!!!!!';
+
+}
+
 async function extractKeywords(path,trimmedlines=false) {
 	let text = await route_path_text(path);
 	let lines = text.split('\n');
@@ -23,26 +43,6 @@ async function intersectAnimeAndAllfuncs(){
 	text=inter.join()
 	return text
 }
-async function start() {
-	initCodingUI();
-
-	//#region tests
-
-	// let text=await intersectAnimeAndAllfuncs();
-	let [g, text, old] = await codebaseExtendFromProject('coding');
-	// let [text, css] = await closureFromProject('nature');
-
-	// let csstext = await cssbaseExtend('coding');
-	// let csstext = await cssSelectFrom('../base/alibs/transition.css',['keyframes']);
-	// let csstext = await cssSelectFrom('../base/alibs/bs4/bootstrap.css',['class']);
-	// let csstext = await cssSelectFrom('../base/alibs/w3.css',['root','class','keyframes']);
-	//downloadAsText(text, 'closure', 'js');
-	//downloadAsText(css, 'final', 'css');
-	//#endregion
-	AU.ta.value = text; //css; //'hallo, na ENDLICH!!!!!!!!!!';
-
-}
-
 
 
 
