@@ -22,7 +22,7 @@ function start() {
 	// Init
 	updateDemos();
 	window.onhashchange = updateDemos;
-	document.onkeydown = keyboardNavigation;
+	//document.onkeydown = keyboardNavigation;
 
 
 }

@@ -9773,7 +9773,7 @@ __________ mi 3.5.23 ...airport lib 10.5 6-15
 923: *8:06 AM 5/3/2023-8:16 AM 5/3/2023
 924: *8:16 AM 5/3/2023-8:22 AM 5/3/2023
 925: *8:22 AM 5/3/2023-6:26 AM 5/4/2023
-__________ do 4.5.23 ...airport lib 10.5 6-
+__________ do 4.5.23 ...airport lib 10.5 6-19
 970: *6:30 AM 5/4/2023-6:38 AM 5/4/2023
 980: *6:38 AM 5/4/2023-6:44 AM 5/4/2023
 981: *6:44 AM 5/4/2023-6:53 AM 5/4/2023
@@ -9819,7 +9819,35 @@ way shorter!
 3: *7:58 AM 5/4/2023-7:58 AM 5/4/2023
 4: *7:59 AM 5/4/2023-8:04 AM 5/4/2023
 5: *8:04 AM 5/4/2023-8:26 AM 5/4/2023
-15: *12:17 PM 5/4/2023-
+15: *12:17 PM 5/4/2023-1:39 PM 5/4/2023
+16: *1:39 PM 5/4/2023-1:52 PM 5/4/2023
+17: *1:52 PM 5/4/2023-1:54 PM 5/4/2023
+18: *1:54 PM 5/4/2023-1:57 PM 5/4/2023
+19: *1:57 PM 5/4/2023-1:58 PM 5/4/2023
+20: *2:08 PM 5/4/2023-2:08 PM 5/4/2023
+21: *2:08 PM 5/4/2023-2:40 PM 5/4/2023
+22: *2:43 PM 5/4/2023-2:43 PM 5/4/2023
+23: *2:45 PM 5/4/2023-2:48 PM 5/4/2023
+24: *2:48 PM 5/4/2023-2:55 PM 5/4/2023
+25: *2:55 PM 5/4/2023-6:52 PM 5/4/2023
+__________ fr 5.5.23 ...airport lib 10.5 6
+70: *6:52 PM 5/4/2023-
+mach eine kleine function fuer einen path!
+let p12=mCreateFrom('<svg><path d="M0 50 L200 50"></svg>');
+mAppend('pcontainer',p12);
+p12.id='mysvg';
+var path = anime.path('#mysvg path');
+
+- das ganze motionpath soll nocmal gemacht werden!
+und zwar so: anstatt dem keyboardhandler nix
+- keyboardhandler muss weg!!!
+- such aus paar path elements!
+- anime.path ist interessant! das muss scheinbat ein path element sein!
+
+- da ist code VOR dem /*DEMO*/ sign!!!
+- schau in das index.html file?
+- warum geht es nicht?
+- what should I do about that?
 - mit den callbacks gibt es probleme!
 - test more advanced mit rerun!
 

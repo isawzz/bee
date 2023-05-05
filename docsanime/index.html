@@ -2821,11 +2821,9 @@ controlsProgressEl.addEventListener('input', function() {
     <div class="circle el"></div>
   </div>
   <script>var update = function() {
-
+/*DEMO*/
 var updateLogEl = document.querySelector('.update-demo .update-log');
 var progressLogEl = document.querySelector('.update-demo .progress-log');
-
-/*DEMO*/
 var updates = 0;
 
 anime({
@@ -2876,6 +2874,7 @@ anime({
   </div>
   <script>var beginComplete = function() {
 
+/*DEMO*/
 var beginLogEl = document.querySelector('.begin-complete-demo .begin-log');
 var completeLogEl = document.querySelector('.begin-complete-demo .complete-log');
 var progressLogEl = document.querySelector('.begin-complete-demo .progress-log');
@@ -2883,7 +2882,6 @@ var progressLogEl = document.querySelector('.begin-complete-demo .progress-log')
 beginLogEl.value = '';
 completeLogEl.value = '';
 
-/*DEMO*/
 anime({
   targets: '.begin-complete-demo .el',
   translateX: 240,
@@ -2934,13 +2932,13 @@ anime({
   </div>
   <script>var loopBeginLoopComplete = function() {
 
+/*DEMO*/
 var beginLogEl = document.querySelector('.loopBegin-log');
 var completeLogEl = document.querySelector('.loopComplete-log');
 
 beginLogEl.value = 'loop began 0 times';
 completeLogEl.value = 'loop complete 0 times';
 
-/*DEMO*/
 var loopBegan = 0;
 var loopCompleted = 0;
 
@@ -2993,11 +2991,11 @@ anime({
   </div>
   <script>var change = function() {
 
+/*DEMO*/
 var progressLogEl = document.querySelector('.change-demo .progress-log');
 var changeLogEl = document.querySelector('.change-demo .change-log');
 changeLogEl.value = 'changes : 0';
 
-/*DEMO*/
 var changes = 0;
 
 anime({
@@ -3051,6 +3049,7 @@ anime({
   </div>
   <script>var changeBeginChangeComplete = function() {
 
+/*DEMO*/
 var progressLogEl = document.querySelector('.changeBegin-chnageComplete-demo .progress-log');
 var beginLogEl = document.querySelector('.changeBegin-log');
 var completeLogEl = document.querySelector('.changeComplete-log');
@@ -3058,7 +3057,6 @@ var completeLogEl = document.querySelector('.changeComplete-log');
 beginLogEl.value = 'change began : 0';
 completeLogEl.value = 'change completed : 0';
 
-/*DEMO*/
 var changeBegan = 0;
 var changeCompleted = 0;
 
@@ -3109,9 +3107,10 @@ anime({
     <div class="circle el"></div>
   </div>
   <script>var finishedPromise = function() {
+/*DEMO*/
 anime.set('.promise-demo .el', {backgroundColor: ''});
 anime.set('.promise-demo .finished-log', {value: ''});
-/*DEMO*/
+
 var progressLogEl = document.querySelector('.promise-demo .progress-log');
 var promiseEl = document.querySelector('.promise-demo .el');
 var finishedLogEl = document.querySelector('.promise-demo .finished-log');
@@ -3193,17 +3192,22 @@ animation.finished.then(logFinished);
     </table>
   </div>
   <div class="demo-content motion-path-demo">
-    <div class="motion-path">
-      <div class="small square shadow follow-path"></div>
+    <div class="motion-path" id="path_demo_1">
+      <!-- <div class="small square shadow follow-path"></div> -->
       <div class="small square el follow-path"></div>
-      <svg width="256" height="112" viewBox="0 0 256 112">
-        <path fill="none" stroke="currentColor" stroke-width="1" d="M8,56 C8,33.90861 25.90861,16 48,16 C70.09139,16 88,33.90861 88,56 C88,78.09139 105.90861,92 128,92 C150.09139,92 160,72 160,56 C160,40 148,24 128,24 C108,24 96,40 96,56 C96,72 105.90861,92 128,92 C154,93 168,78 168,56 C168,33.90861 185.90861,16 208,16 C230.09139,16 248,33.90861 248,56 C248,78.09139 230.09139,96 208,96 L48,96 C25.90861,96 8,78.09139 8,56 Z"/>
+      <svg id='svg1' width="256" height="112" viewBox="0 0 256 112">
+        <path id="path1" fill="none" stroke="currentColor" stroke-width="1" d="M8,56 C8,33.90861 25.90861,16 48,16 C70.09139,16 88,33.90861 88,56 C88,78.09139 105.90861,92 128,92 C150.09139,92 160,72 160,56 C160,40 148,24 128,24 C108,24 96,40 96,56 C96,72 105.90861,92 128,92 C154,93 168,78 168,56 C168,33.90861 185.90861,16 208,16 C230.09139,16 248,33.90861 248,56 C248,78.09139 230.09139,96 208,96 L48,96 C25.90861,96 8,78.09139 8,56 Z"/>
+				<!-- <path id="path2" d="M0 0 L0 110" stroke="red" fill="none" />
+				<path id="path3" d="M0 0 Q 250 50 0 110" stroke="yellow" fill="none" /> -->
       </svg>
     </div>
   </div>
   <script>var motionPath = function() {
 /*DEMO*/
-var path = anime.path('.motion-path-demo path');
+let p=mBy('path1');
+p.d='M50,50a50,50 0 1,0 100,0a50,50 0 1,0 -100,0';
+var path = anime.path('.motion-path-demo #path1');
+
 
 anime({
   targets: '.motion-path-demo .el',
