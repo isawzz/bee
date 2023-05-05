@@ -178,7 +178,7 @@ function createDemo(el) {
 	}
 }
 
-function getDemoById(id) { return demos.filter(x => x.id === id)[0]; } //return demos.filter(function (a) { return a.id === id })[0];}
+function getDemoById(id) { return demos.filter(x => x.id === id)[0]; } 
 
 function createLinksSection(articleEl) {
 	var articleId = articleEl.id;
