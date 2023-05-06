@@ -9860,9 +9860,10 @@ __________ fr 5.5.23 ...airport lib 10.5 7-
 <svg height="210" width="400">
   <path d="M150 0 L75 200 L225 200 Z" />
 </svg>
-93: *8:44 AM 5/5/2023-
+93: *8:44 AM 5/5/2023-10:41 AM 5/5/2023
+193: *10:41 AM 5/5/2023-5:32 PM 5/5/2023
+- font find
 - css sample!
-
 - schau ob pack auch fuer html code geht!!!
 - weil pack VIEL kleiner ist!!!!
 - wozu brauch ich pack????
@@ -9878,10 +9879,40 @@ WAY SHORTER!!!
 - hol das echte highlight.js
 - das beautify sollte in base/alibs gehen!
 - wie gross ist es?
-?brauch ich das heiglight.pack?
-
-
-
+?brauch ich das highlight.pack?
+From		To		Points
+Denver		El Paso		4
+Kansas City	Houston		5
+New York	Atlanta		6
+Calgary		Salt Lake City	7
+Chicago		New Orleans	7
+Duluth		Houston		8
+Helena		Los Angeles	8
+Sault St. Marie	Nashville	8
+Montréal	Atlanta		9
+Chicago		Santa Fe	9
+Sault St. Marie	Oklahoma City	9
+Seattle		Los Angeles	9
+Toronto		Miami		10
+Duluth		El Paso		10
+Winnipeg	Little Rock	11
+Dallas		New York	11
+Denver		Pittsburgh	11
+Portland	Phoenix		11
+Winnipeg	Houston		12
+Boston		Miami		12
+Vancouver	Santa Fe	13
+Montréal	New Orleans	13
+Calgary		Phoenix		13
+Los Angeles	Chicago		16
+Portland	Nashville	17
+San Francisco	Atlanta		17
+Los Angeles	Miami		20
+Vancouver	Montréal	20
+Los Angeles	New York	21
+Seattle		New York	22
+__________ sa 6.5.23 ...airport lib 10.5 6-
+220: *5:32 PM 5/5/2023-
 
 
 

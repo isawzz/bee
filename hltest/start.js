@@ -44,7 +44,10 @@ async function start(){
 	codeEls = document.querySelectorAll('code');
 	for (var i = 0; i < codeEls.length; i++) {
 		//hljs.highlightBlock(codeEls[i]);
-		hljs.highlightElement(codeEls[i]);
+		let x=codeEls[i];
+		hljs.highlightElement(x);
+		mClass(x,'myfont');
+
 	}
 
 
