@@ -20,6 +20,7 @@ function mClass(d) {
     }
   } else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
+function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
 function stringCount(s, sSub, caseInsensitive = true) {
   let temp = "Welcome to W3Docs";
   let m = new RegExp(sSub, 'g' + (caseInsensitive ? 'i' : ''));

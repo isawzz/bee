@@ -1,10 +1,12 @@
 .myfont{
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+	font-family: consolas !important;
+	/* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important; */
+	/* letter-spacing: 4pt; */
 }
 pre code.hljs {
   display: block;
   overflow-x: auto;
-  padding: 1em;
+  /* padding: .5em; */
 	/* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
 code.hljs {

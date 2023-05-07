@@ -9911,8 +9911,130 @@ Los Angeles	Miami		20
 Vancouver	Montréal	20
 Los Angeles	New York	21
 Seattle		New York	22
-__________ sa 6.5.23 ...airport lib 10.5 6-
-220: *5:32 PM 5/5/2023-
+__________ sa 6.5.23 ...airport lib 10.5 7-14
+220: *5:32 PM 5/5/2023-8:55 PM 5/5/2023
+221: *8:55 PM 5/5/2023-9:15 PM 5/5/2023
+222: *9:15 PM 5/5/2023-9:16 PM 5/5/2023
+    style_html(html_source, {
+      'indent_inner_html': false,
+      'indent_size': 2,
+      'indent_char': ' ',
+      'wrap_line_length': 78,
+      'brace_style': 'expand',
+      'preserve_newlines': true,
+      'max_preserve_newlines': 5,
+      'indent_handlebars': false,
+      'extra_liners': ['/html']
+    });
+- options:
+- jetzt moecht ich tab 
+https://github.com/ivanweiler/beautify-html
+223: *7:16 AM 5/6/2023-7:19 AM 5/6/2023
+224: *7:19 AM 5/6/2023-7:34 AM 5/6/2023
+- scheinbar braucht man dazu js_beautify und css_beautify
+- js beautify geht garnicht!!!
+{
+  "indent_size": "2",
+  "indent_char": " ",
+  "max_preserve_newlines": "5",
+  "preserve_newlines": true,
+  "keep_array_indentation": false,
+  "break_chained_methods": false,
+  "indent_scripts": "keep",
+  "brace_style": "none,preserve-inline",
+  "space_before_conditional": true,
+  "unescape_strings": false,
+  "jslint_happy": false,
+  "end_with_newline": false,
+  "wrap_line_length": "160",
+  "indent_inner_html": false,
+  "comma_first": false,
+  "e4x": false,
+  "indent_empty_lines": false
+}
+225: *7:34 AM 5/6/2023-7:34 AM 5/6/2023
+226: *7:34 AM 5/6/2023-7:38 AM 5/6/2023
+227: *7:38 AM 5/6/2023-7:41 AM 5/6/2023
+228: *7:41 AM 5/6/2023-7:45 AM 5/6/2023
+229: *7:45 AM 5/6/2023-7:45 AM 5/6/2023
+230: *7:46 AM 5/6/2023-7:47 AM 5/6/2023
+231: *7:47 AM 5/6/2023-7:48 AM 5/6/2023
+232: *7:48 AM 5/6/2023-7:50 AM 5/6/2023
+233: *7:50 AM 5/6/2023-8:00 AM 5/6/2023
+234: *8:00 AM 5/6/2023-8:00 AM 5/6/2023
+235: *8:00 AM 5/6/2023-8:06 AM 5/6/2023
+236: *8:06 AM 5/6/2023-8:12 AM 5/6/2023
+- wo krieg ich das non minified?
+- brauch eigentlich nur xml formatter! keep on one line
+- brauch die escapes!
+- such ein besseres html beautify
+- html beautify geht ueberhaupt nicht!!!
+- test mit schirchem html
+- gleich auch min!
+- check out html beautify
+- bback to github page
+- hol mir minified version von beautify
+- some code
+- mach einen eigenen beautify test
+way shorter!!!
+237: *8:12 AM 5/6/2023-8:17 AM 5/6/2023
+238: *8:17 AM 5/6/2023-8:52 AM 5/6/2023
+239: *8:52 AM 5/6/2023-5:27 PM 5/6/2023
+__________ so 7.5.23 ...airport lib 10.5 7-
+300: *5:27 PM 5/6/2023-5:32 AM 5/7/2023
+301: *5:32 AM 5/7/2023-5:36 AM 5/7/2023
+- found
+302: *5:36 AM 5/7/2023-5:44 AM 5/7/2023
+303: *5:44 AM 5/7/2023-5:49 AM 5/7/2023
+304: *5:49 AM 5/7/2023-6:02 AM 5/7/2023
+305: *6:02 AM 5/7/2023-6:03 AM 5/7/2023
+306: *6:03 AM 5/7/2023-6:22 AM 5/7/2023
+307: *6:22 AM 5/7/2023-6:22 AM 5/7/2023
+308: *6:22 AM 5/7/2023-6:28 AM 5/7/2023
+309: *6:29 AM 5/7/2023-6:29 AM 5/7/2023
+310: *6:29 AM 5/7/2023-6:40 AM 5/7/2023
+311: *6:40 AM 5/7/2023-6:50 AM 5/7/2023
+312: *6:50 AM 5/7/2023-6:51 AM 5/7/2023
+313: *6:51 AM 5/7/2023-6:53 AM 5/7/2023
+314: *6:53 AM 5/7/2023-6:55 AM 5/7/2023
+315: *6:55 AM 5/7/2023-7:01 AM 5/7/2023
+316: *7:02 AM 5/7/2023-7:02 AM 5/7/2023
+ok - wie mach ich stripcomments
+ok - removing comments! and 
+ok - changing tabs to indent and 
+ok - passing whitespace to acollect and
+ok - making acollect an internal function
+- hab mein eigenes formathtml!!!!!
+shorter!!!
+taake first line and go until back to same level
+nochmal
+way shorter!!!
+-akku lines:
+- code aendern input />
+317: *7:02 AM 5/7/2023-7:03 AM 5/7/2023
+318: *7:03 AM 5/7/2023-7:05 AM 5/7/2023
+- difference js substr and substring
+The two parameters of substr() are start and length , while for substring() , they are start and end . substr() 's start index will wrap to the end of the string if it is negative, while substring() will clamp it to 0 .
+319: *7:05 AM 5/7/2023-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
