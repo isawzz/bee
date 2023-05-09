@@ -1,5 +1,69 @@
 
+
+//makes no sense: parse is not respecting escaped chars as such!
+function consumeSimpleNE(code, idx, ch) {
+	let i = idx;
+	while (code[i] != null && code[i] != ch && (code[i] != '\\' || code[i + 1] != ch)) { i++; }
+
+	if (i > idx) { return { parsed: code.substring(idx, i), newIndex: i } }
+}
+
+function consumeParExp(code, index) {
+	Z = consumeWhitespace(code, 0); console.log('Z', Z)
+	let res = [];
+	Z = consume(code, Z, '('); console.log('Z', Z); res.push(Z);
+
+	Z = consumeWhile(code, Z.newIndex, x => !'()'.includes(x)); console.log('Z', Z); res.push(Z);
+
+	// let i = Z.newIndex;
+	// if (code[i] == '(') {
+	// 	Z = consumeParExp(code, i); console.log('Z', Z); res.push(Z);
+	// }
+
+	Z = consume(code, Z.newIndex, ')'); console.log('Z', Z); res.push(Z);
+	return { parsed: res, newIndex: Z.newIndex };
+}
+
+
 //#region formathtml
+async function start() {
+
+	let code = getsample(4);
+	test1(code);
+
+	//test1();
+	// let d1 = mBy('d1'); let code1 = mBy('code1');	let d2 = mBy('d2'); let code2 = mBy('code2');	mStyle(d2, { bg: '#aaa', padding: 25 })
+	//testhtml(code1,code2);
+
+
+}
+function testthiscode() {
+	var tidy_html5 = function tidy_html5(text, config) {
+		FS.writeFile("input.html", text);
+		var cmdlineOptions = [];
+		if (config) for (var i in config) cmdlineOptions.push("--" + i, config[i]);
+		cmdlineOptions.push("-m", "input.html");
+		Module.callMain(cmdlineOptions);
+		return FS.readFile("input.html", {
+			encoding: "utf8"
+		})
+	};
+	var Module = {
+		noInitialRun: true, noExitRuntime: true
+	};
+	var Module;
+	if (!Module) Module = (typeof Module !== "undefined" ? Module : null) || {
+	};
+	var moduleOverrides = {
+	};
+	for (var key in Module) {
+		if (Module.hasOwnProperty(key)) {
+			moduleOverrides[key] = Module[key]
+		}
+	}
+}
+
+
 function formathtml(html) {
 	var tab = '\t';
 	var result = '';
@@ -67,7 +131,7 @@ function formathtml(code, stripWhiteSpaces, stripEmptyLines) {
 	var nextChar = null;
 
 	let numch = 0;//number of chars in current line (including indent!)
-	MAXPERLINE=10;
+	MAXPERLINE = 10;
 	var result = '';
 	for (var pos = 0; pos <= code.length; pos++) {
 		char = code.substr(pos, 1);
@@ -83,7 +147,7 @@ function formathtml(code, stripWhiteSpaces, stripEmptyLines) {
 		else if (char === '<' && nextChar === '/') {
 			// If there're more closing tags than opening
 			if (--currentIndent < 0) currentIndent = 0;
-			result += numch<MAXPERLINE?'':('\n' + whitespace.repeat(currentIndent));
+			result += numch < MAXPERLINE ? '' : ('\n' + whitespace.repeat(currentIndent));
 		}
 
 		// remove multiple whitespaces
@@ -101,7 +165,7 @@ function formathtml(code, stripWhiteSpaces, stripEmptyLines) {
 	return result;
 }
 
-function _formathtml (xml) {
+function _formathtml(xml) {
 	var reg = /(>)\s*(<)(\/*)/g; // updated Mar 30, 2015
 	var wsexp = / *(.*) +\n/g;
 	var contexp = /(<.+>)(.+\n)/g;
@@ -113,55 +177,80 @@ function _formathtml (xml) {
 	var lastType = 'other';
 	// 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions 
 	var transitions = {
-			'single->single': 0,
-			'single->closing': -1,
-			'single->opening': 0,
-			'single->other': 0,
-			'closing->single': 0,
-			'closing->closing': -1,
-			'closing->opening': 0,
-			'closing->other': 0,
-			'opening->single': 1,
-			'opening->closing': 0,
-			'opening->opening': 1,
-			'opening->other': 1,
-			'other->single': 0,
-			'other->closing': -1,
-			'other->opening': 0,
-			'other->other': 0
+		'single->single': 0,
+		'single->closing': -1,
+		'single->opening': 0,
+		'single->other': 0,
+		'closing->single': 0,
+		'closing->closing': -1,
+		'closing->opening': 0,
+		'closing->other': 0,
+		'opening->single': 1,
+		'opening->closing': 0,
+		'opening->opening': 1,
+		'opening->other': 1,
+		'other->single': 0,
+		'other->closing': -1,
+		'other->opening': 0,
+		'other->other': 0
 	};
 
 	for (var i = 0; i < lines.length; i++) {
-			var ln = lines[i];
+		var ln = lines[i];
 
-			// Luca Viggiani 2017-07-03: handle optional <?xml ... ?> declaration
-			if (ln.match(/\s*<\?xml/)) {
-					formatted += ln + "\n";
-					continue;
-			}
-			// ---
+		// Luca Viggiani 2017-07-03: handle optional <?xml ... ?> declaration
+		if (ln.match(/\s*<\?xml/)) {
+			formatted += ln + "\n";
+			continue;
+		}
+		// ---
 
-			var single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
-			var closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
-			var opening = Boolean(ln.match(/<[^!].*>/)); // is this even a tag (that's not <!something>)
-			var type = single ? 'single' : closing ? 'closing' : opening ? 'opening' : 'other';
-			var fromTo = lastType + '->' + type;
-			lastType = type;
-			var padding = '';
+		var single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
+		var closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
+		var opening = Boolean(ln.match(/<[^!].*>/)); // is this even a tag (that's not <!something>)
+		var type = single ? 'single' : closing ? 'closing' : opening ? 'opening' : 'other';
+		var fromTo = lastType + '->' + type;
+		lastType = type;
+		var padding = '';
 
-			indent += transitions[fromTo];
-			for (var j = 0; j < indent; j++) {
-					padding += '\t';
-			}
-			if (fromTo == 'opening->closing')
-					formatted = formatted.substr(0, formatted.length - 1) + ln + '\n'; // substr removes line break (\n) from prev loop
-			else
-					formatted += padding + ln + '\n';
+		indent += transitions[fromTo];
+		for (var j = 0; j < indent; j++) {
+			padding += '\t';
+		}
+		if (fromTo == 'opening->closing')
+			formatted = formatted.substr(0, formatted.length - 1) + ln + '\n'; // substr removes line break (\n) from prev loop
+		else
+			formatted += padding + ln + '\n';
 	}
 
 	return formatted;
 }
 
+//das war noch mit beautify-html was ein MIST ist!
+// html = html_beautify(html, {
+// 	'indent_inner_html': false,
+// 	'indent_size': 4,
+// 	'indent_char': ' ',
+// 	'wrap_line_length': 78,
+// 	'brace_style': 'expand',
+// 	'preserve_newlines': true,
+// 	'max_preserve_newlines': 5,
+// 	'indent_handlebars': false,
+// 	'extra_liners': ['/html']
+// });
+
+function smallestAkku(qlines, istart) {
+	let o = qlines[istart];
+	let o2 = qlines[istart];
+	let akku = '';
+	let level = o.level;
+	i++;
+	let o1 = qlines[i];
+	let level1 = o1.level;
+	if (level1 < level) return i - 1;
+	else if (level1 == level) return i;
+	else return smallestAkku(qlines, i + 1) + 1;
+}
 
 //#endregion
 
@@ -179,7 +268,7 @@ function _animetest_color() {
 	// 	duration: 1000,
 	// 	fill: 'forwards'
 	// });
-	anime({targets:d1,transform: `translate(${x}px,${y}px)`});
+	anime({ targets: d1, transform: `translate(${x}px,${y}px)` });
 
 	return;
 
@@ -364,11 +453,11 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};
 	let tbd = symlist; //console.log('symlist', symlist)
 	let MAX = 1000000, i = 0;
-	let visited = { Card:true, change: true, grid: true, jQuery: true, config: true, Number: true, sat: true, hallo: true, autocomplete: true, PI: true };
+	let visited = { Card: true, change: true, grid: true, jQuery: true, config: true, Number: true, sat: true, hallo: true, autocomplete: true, PI: true };
 
 	while (!isEmpty(tbd)) {
 		if (++i > MAX) break; //else console.log('i',i)
-		let sym = tbd[0]; console.log('sym', sym,i);
+		let sym = tbd[0]; console.log('sym', sym, i);
 		if (isdef(visited[sym])) { tbd.shift(); continue; }
 		visited[sym] = true;
 		let o = di[sym];
@@ -417,8 +506,8 @@ async function bundleGenerateFrom(htmlScriptsFile, htmlBodyFile = null, download
 
 //#endregion
 
-async function cssbaseNew(dir,files) {
-	let tcss=`
+async function cssbaseNew(dir, files) {
+	let tcss = `
 	* {
 		margin: 0;
 		padding: 0;
@@ -426,8 +515,8 @@ async function cssbaseNew(dir,files) {
 		box-sizing: border-box;
 	}
 	`;
-	for(const file of files){
-		let path = dir+'/'+file+'.css';
+	for (const file of files) {
+		let path = dir + '/' + file + '.css';
 		tcss += await route_path_text(path) + '\n';
 	}
 	let t = replaceAllSpecialChars(tcss, '\t', '  ');
@@ -443,8 +532,8 @@ async function cssbaseNew(dir,files) {
 			newlines.push(newline)
 			let ch = line[0];
 			let type = isLetter(ch) ? 't' : ch == '.' ? 'c' : ch == '@' ? 'k' : ch == ':' ? 'r' : 'i';
-			if (isdef(di[key]) && type != di[key].type){
-				console.log('duplicate key',key,type,di[key].type);
+			if (isdef(di[key]) && type != di[key].type) {
+				console.log('duplicate key', key, type, di[key].type);
 			}
 			di[key] = { type: type, key: key }
 		} else {
@@ -586,15 +675,15 @@ async function rest() {
 }
 
 
-async function codebaseExtend(project){
+async function codebaseExtend(project) {
 	let globlist = await codeParseFile('../allglobals.js');
 	let funclist = await codeParseFile('../allfuncs.js');
 	let list = globlist.concat(funclist); //keylist in order of loading!
-	let bykey=list2dict(list,'key');
-	let bytype={};
-	for(const k in bykey){
-		let o=bykey[k];
-		lookupAddIfToList(bytype,[o.type,k],o);
+	let bykey = list2dict(list, 'key');
+	let bytype = {};
+	for (const k in bykey) {
+		let o = bykey[k];
+		lookupAddIfToList(bytype, [o.type, k], o);
 	}
 	//get .js files from project
 	let htmlFile = `../${project}/index.html`;
@@ -655,7 +744,7 @@ async function codebaseExtend(project){
 	//downloadAsText(functext,'allfuncs','js');
 	//downloadAsText(oldtext, 'allfuncs_old', 'js');
 
-	let knownNogos = { codingfull: ['uiGetContact'],coding: ['uiGetContact','grid'] };
+	let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
 	let seed = ['start'].concat(extractOnclickFromHtml(html)); //console.log('seed',seed)
 	let byKeyMinimized = _minimizeCode(difuncs, seed, valf(knownNogos[project], []));
 	let keysMinimized = keys.filter(x => isdef(byKeyMinimized[x]));
@@ -726,7 +815,7 @@ function collectCodeKeys(text) {
 		}
 	}
 }
-function collectCode(text,path) {
+function collectCode(text, path) {
 	let lines = text.split('\r\n');
 	for (const l of lines) {
 		if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
@@ -1138,7 +1227,7 @@ async function updateCodebase(project) {
 	//die functions auch?
 
 	//add everything from project bundle!
-	let codechanges={};
+	let codechanges = {};
 	let [dibundle, keysbundle] = await getBundleDict(project); console.log('dibundle', dibundle)
 
 	for (const k in dibundle) {
@@ -1150,8 +1239,8 @@ async function updateCodebase(project) {
 			//assertion(o.type == prev.type, 'type mismatch! ' + k);
 			prev.code = codeNormalize(prev.code);
 			if (prev.code != code) {
-				console.log('code changed for',k)
-				codechanges[k]={prev:prev.code,new:code,prevpath:prev.path,newpath:o.path,prevtype:prev.type,newtype:o.type};
+				console.log('code changed for', k)
+				codechanges[k] = { prev: prev.code, new: code, prevpath: prev.path, newpath: o.path, prevtype: prev.type, newtype: o.type };
 				//prev.path = o.path;
 				//prev.fname = o.fname;
 				//prev.code = o.code;
@@ -1170,23 +1259,23 @@ async function updateCodebase(project) {
 
 	}
 
-	console.log('superdi',superdi);
-	console.log('codechanges',codechanges); CODE.changes=codechanges;
-	
+	console.log('superdi', superdi);
+	console.log('codechanges', codechanges); CODE.changes = codechanges;
+
 	//wie werden files updated?
 	//ich hab jetzt ein neues superdi und will daraus z_all.yaml, z_allcode.yaml und z_allhistory.yaml machen
 	//aufteilen
 	let [di2, justcode, history] = assemble_dicts(superdi);
-	console.log('di2',di2)
+	console.log('di2', di2)
 
-	let text='';
-	for(const k of sortCaseInsensitive(get_keys(superdi.func))){
-		text+= codeNormalize(superdi.func[k].code) + '\n';
+	let text = '';
+	for (const k of sortCaseInsensitive(get_keys(superdi.func))) {
+		text += codeNormalize(superdi.func[k].code) + '\n';
 	}
 
-	text=removeEmptyLines(text);
+	text = removeEmptyLines(text);
 
-	downloadAsText(text,'allfunc','js')
+	downloadAsText(text, 'allfunc', 'js')
 	downloadAsYaml(di2, `z_all.yaml`);
 	downloadAsYaml(justcode, `z_allcode.yaml`);
 	downloadAsYaml(history, `z_allhistory.yaml`);
@@ -1246,8 +1335,8 @@ async function start() {
 	AU.ta.value = 'hallo, na ENDLICH!!!!!!!!!!'
 
 	//let[superdi,keys]=await populateCODE('../base/codebase');
-	let keysglobals=codeParseKeys(await route_path_text('../allglobals.js'));
-	console.log('keys',keys);
+	let keysglobals = codeParseKeys(await route_path_text('../allglobals.js'));
+	console.log('keys', keys);
 
 
 	// await updateCodebase('coding');
@@ -1255,41 +1344,41 @@ async function start() {
 
 }
 
-async function codeParseFile(path){
-	let text=await route_path_text(path);
-	let olist = codeParseText(text,path);
+async function codeParseFile(path) {
+	let text = await route_path_text(path);
+	let olist = codeParseText(text, path);
 }
-function codeParseText(text,path){
-	let olist=[],region=path;	
-	while(!isEmpty(text)){
-		let o={};
-		let rest=codeParseObject(text,o);
-		console.log('o',o);
-		o.path=path;
-		if (nundef(o.region)) o.region=region; else region = o.region;
+function codeParseText(text, path) {
+	let olist = [], region = path;
+	while (!isEmpty(text)) {
+		let o = {};
+		let rest = codeParseObject(text, o);
+		console.log('o', o);
+		o.path = path;
+		if (nundef(o.region)) o.region = region; else region = o.region;
 		olist.push(o);
-		text=rest.trim();
+		text = rest.trim();
 		break;
 	}
-	console.log('list',olist)
-	console.log('rest text',text);
+	console.log('list', olist)
+	console.log('rest text', text);
 }
-function codeParseObject(text,o){
-	while(!['var', 'const', 'class', 'function', 'async','//#region'].some(x=>text.startsWith(x))){
-		text=stringAfter(text,'\n');
+function codeParseObject(text, o) {
+	while (!['var', 'const', 'class', 'function', 'async', '//#region'].some(x => text.startsWith(x))) {
+		text = stringAfter(text, '\n');
 	}
-	if (text.startsWith('//#region')){
-		o.region=stringAfter(text,' ');
-		text=stringAfter(text,'\n');
+	if (text.startsWith('//#region')) {
+		o.region = stringAfter(text, ' ');
+		text = stringAfter(text, '\n');
 	}
 	if (['var', 'const', 'cla', 'func', 'async'].some(x => text.startsWith(x))) {
 		o.key = ithWord(text, text[0] == 'a' ? 2 : 1, true);
-		o.type = ithWord(text,text[0] == 'a' ? 1 : 0);
-		text=codeParseBlock(text,o)
+		o.type = ithWord(text, text[0] == 'a' ? 1 : 0);
+		text = codeParseBlock(text, o)
 	}
 
 }
-function codeParseBlock(text,o){
+function codeParseBlock(text, o) {
 	//while(text[0]!=)
 }
 
@@ -1303,7 +1392,7 @@ function addCodeBlock1(path, byKey, ckeys, kw, chunk, fname, region, blocktype, 
 	let o = { key: kw, code: chunk, path: path, fname: fname, region: region ?? fname, type: blocktype, idx: idx++ };
 	let codechange = !prev || prev.code != o.code;
 	if (prev) {
-		console.log('DUPLICATE', kw, path, prev.path, 'codechange',prev.code == o.code);
+		console.log('DUPLICATE', kw, path, prev.path, 'codechange', prev.code == o.code);
 		if (prev.type != o.type) {
 			console.log('... change from', prev.type, 'to', o.type);
 		}

@@ -9980,7 +9980,7 @@ way shorter!!!
 237: *8:12 AM 5/6/2023-8:17 AM 5/6/2023
 238: *8:17 AM 5/6/2023-8:52 AM 5/6/2023
 239: *8:52 AM 5/6/2023-5:27 PM 5/6/2023
-__________ so 7.5.23 ...airport lib 10.5 7-
+__________ so 7.5.23 ...airport lib 10.5 7-16
 300: *5:27 PM 5/6/2023-5:32 AM 5/7/2023
 301: *5:32 AM 5/7/2023-5:36 AM 5/7/2023
 - found
@@ -10015,9 +10015,193 @@ way shorter!!!
 318: *7:03 AM 5/7/2023-7:05 AM 5/7/2023
 - difference js substr and substring
 The two parameters of substr() are start and length , while for substring() , they are start and end . substr() 's start index will wrap to the end of the string if it is negative, while substring() will clamp it to 0 .
-319: *7:05 AM 5/7/2023-
+319: *7:05 AM 5/7/2023-7:08 AM 5/7/2023
+320: *7:08 AM 5/7/2023-7:28 AM 5/7/2023
+321: *7:28 AM 5/7/2023-7:28 AM 5/7/2023
+322: *7:28 AM 5/7/2023-7:38 AM 5/7/2023
+323: *7:38 AM 5/7/2023-8:27 AM 5/7/2023
+324: *8:27 AM 5/7/2023-9:31 AM 5/7/2023
+325: *9:32 AM 5/7/2023-11:22 AM 5/7/2023
+326: *11:22 AM 5/7/2023-8:50 PM 5/7/2023
+- js parenthesis and quote matching in text!
+1. schritt: { und } indenting
+- mach ein eigenes beautifyjs
+- hol min excerpt von beutify
+- genauso kann ich es mit js machen!!!
+- versuchs mit einem schirchen html file!
+__________ mo 8.5.23 ...airport lib 10.5 7-
+350: *8:51 PM 5/7/2023-7:16 AM 5/8/2023
+351: *7:16 AM 5/8/2023-7:22 AM 5/8/2023
+352: *7:23 AM 5/8/2023-7:25 AM 5/8/2023
+353: *7:25 AM 5/8/2023-7:27 AM 5/8/2023
+354: *7:27 AM 5/8/2023-7:29 AM 5/8/2023
+355: *7:29 AM 5/8/2023-7:30 AM 5/8/2023
+356: *7:30 AM 5/8/2023-7:30 AM 5/8/2023
+357: *7:30 AM 5/8/2023-7:32 AM 5/8/2023
+- mach das given so wie ich es versteh!
+- trash start
+- durchnumerieren
+- hol mir code in 1 line aus allfuncs
+- alles fertige => done
+- given macht was genau?
+P = KW
+358: *7:32 AM 5/8/2023-7:50 AM 5/8/2023
+359: *7:50 AM 5/8/2023-7:51 AM 5/8/2023
+360: *7:51 AM 5/8/2023-8:02 AM 5/8/2023
+361: *8:02 AM 5/8/2023-8:02 AM 5/8/2023
+362: *8:02 AM 5/8/2023-8:04 AM 5/8/2023
+363: *8:04 AM 5/8/2023-8:04 AM 5/8/2023
+muesste WAY SIMPLER gehen!!!!
+364: *8:04 AM 5/8/2023-8:09 AM 5/8/2023
+365: *8:09 AM 5/8/2023-8:20 AM 5/8/2023
+366: *8:20 AM 5/8/2023-8:24 AM 5/8/2023
+367: *8:24 AM 5/8/2023-8:27 AM 5/8/2023
+368: *8:27 AM 5/8/2023-8:28 AM 5/8/2023
+369: *8:28 AM 5/8/2023-8:39 AM 5/8/2023
+370: *8:39 AM 5/8/2023-8:40 AM 5/8/2023
+371: *8:40 AM 5/8/2023-8:57 AM 5/8/2023
+372: *8:57 AM 5/8/2023-9:07 AM 5/8/2023
+373: *9:07 AM 5/8/2023-9:12 AM 5/8/2023
+374: *9:12 AM 5/8/2023-9:26 AM 5/8/2023
+375: *9:26 AM 5/8/2023-7:08 AM 5/9/2023
+__________ di 9.5.23 ...airport lib 10.5 7-
+420: *7:08 AM 5/9/2023-7:09 AM 5/9/2023
+421: *7:09 AM 5/9/2023-7:20 AM 5/9/2023
+422: *7:20 AM 5/9/2023-7:22 AM 5/9/2023
+423: *7:22 AM 5/9/2023-7:26 AM 5/9/2023
+424: *7:27 AM 5/9/2023-7:27 AM 5/9/2023
+425: *7:27 AM 5/9/2023-7:32 AM 5/9/2023
+426: *7:32 AM 5/9/2023-7:39 AM 5/9/2023
+427: *7:39 AM 5/9/2023-7:39 AM 5/9/2023
+428: *7:39 AM 5/9/2023-7:41 AM 5/9/2023
+429: *7:41 AM 5/9/2023-7:43 AM 5/9/2023
+430: *7:43 AM 5/9/2023-7:53 AM 5/9/2023
+431: *7:53 AM 5/9/2023-7:53 AM 5/9/2023
+432: *7:53 AM 5/9/2023-8:12 AM 5/9/2023
+433: *8:12 AM 5/9/2023-8:20 AM 5/9/2023
+434: *8:20 AM 5/9/2023-8:40 AM 5/9/2023
+435: *8:40 AM 5/9/2023-8:56 AM 5/9/2023
+436: *8:56 AM 5/9/2023-9:00 AM 5/9/2023
+437: *9:00 AM 5/9/2023-9:18 AM 5/9/2023
+438: *9:18 AM 5/9/2023-9:19 AM 5/9/2023
+439: *9:19 AM 5/9/2023-
+- sollte arrFlatten in aristo testen! aber egal!
+- arr=[['se'],['aber','nicht','doch'],['nanana']]
+- arrFlatten ist FALSCH!!!!!
+- flatten array?
+- try ['"',"'",'`'].join();
+- js parse an escaped char within a string
+- length ausgeben!
+way shorter!
+- test mit escape char
+while code[i]!=ch and (code[i]!='\\' || code[i+1]!=ch)
+- simplest way to do that?
+- what about escaped quote???
+way shorter
+- quotes example
+- quotes
+nur '
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- justString
+- first pass: remove all comments from code!
+- delimiter!
+- auslagern zu done und bau1
+- can use consumeWhile!??
+- just (
+possible linebreak ist bei:
+{ wenn content bis match
+test consumeOtherThan(code, idx, arr) 
+- consumeOtherThan('\
+ich muss nur die { } matchen! erstmal!!!
+
+if ( CONDS ) { CODE }
+while ( CONDS ) { CODE }
+for (  ) { 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- schreib die grammar
+CODE := FUNC PARAMS BRACKEXP
+ | class ID BRACKEXP
+ | VARCONST ID OPTASSG
+ | if CONDLIST BRACKEXP OPTELSE
+OPTELSE := '' | else BRACKEXP
+FUNC := function ID | async function ID
+PARAMS := ( IDLIST )
+BRACKEXP := { CODE }
+VARCONST := var | const | let
+OPTASSG := '' | = CODE
+IDLIST := ID | ID , IDLIST
+CONDLIST := ( COND ) | ( COND BOOLOP CONDLIST )
+COND := EXP COMPOP EXP
+
+
+ | 
+WAY SHORTER!
+- consume
 
 
 
