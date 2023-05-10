@@ -1,4 +1,44 @@
 
+function consumeBraces(code, index, fwohl) { return consumeDoubleDiff(code, index, '{', '}', fwohl); }
+function consumeDoubleDiff(code, index, ch1, ch2, fwohl) {
+	// console.log('*cdd',ch1,ch2)
+	Z = consume(code, index, ch1); //console.log('..Z', Z);
+	// console.log('...cdd',ch1,ch2,Z)
+	if (Z === undefined) return undefined;
+	Z = fwohl(code, Z.newIndex, '{}'); //console.log('..Z', Z);
+	// console.log('...cdd',ch1,ch2,Z)
+	if (Z === undefined) return undefined;
+	let content = Z.parsed;
+	console.log('trying to parse }', code[Z.newIndex])
+	Z = consume(code, Z.newIndex, ch2); //console.log('..Z', Z);
+	// console.log('=cdd',ch1,ch2,Z)
+	if (Z === undefined) return undefined;
+	return Z.parsed == ch2 ? { type: ch1, parsed: [ch1, content, ch2], len: content.length + ch1.length + ch2.length, newIndex: Z.newIndex } : undefined;
+}
+
+
+function wohl1_BROKEN(code, index, list) {
+	let iprev = -1, res = [], iStart = index;
+	while (index != iprev) {
+		iprev = index;
+		Z = consumeWhileNot(code, index, list); res.push(Z.parsed); console.log('Z', Z);
+		iprev = index; index = Z.newIndex;
+		Z = consumeBraces(code, index, wohl1); if (index != iprev) res.push(Z.parsed); console.log('Z', Z);
+		break;
+		// if (index != iprev) {res.push(Z.parsed);result.push(Z); }
+		// //console.log('simple ends in', code[index]);
+		// Z = consumeDoubleSamePeek(code, Z.newIndex, "'\"`"); //console.log('Z', Z)
+		// if (nundef(Z)) Z = consumeDoubleDiffPeek(code, index, '{');//,'(',')')
+		// if (nundef(Z)) break;
+		// res.push(Z.parsed);result.push(Z);
+		// index = Z.newIndex;
+	}
+	//res = arrFlatten(res)
+	return isEmpty(res) ? undefined : { parsed: res, len: index - iStart, newIndex: index };
+
+}
+
+
 
 //makes no sense: parse is not respecting escaped chars as such!
 function consumeSimpleNE(code, idx, ch) {
@@ -26,6 +66,31 @@ function consumeParExp(code, index) {
 
 
 //#region formathtml
+function consumeSimpleVor(code, index) {
+	return consumeWhile(code, index, x => !'{[`"\'('.includes(x)) ?? { parsed: '', newIndex: index };
+}
+function consumeDoubleStart(code, index) {
+	let ch = code[0];
+	let expect = ch == '{' ? '}' : ch == '[' ? ']' : ch == '(' ? ')' : ch;
+
+	Z = consume(code, index, '('); console.log('..Z', Z);
+	if (Z === undefined) return undefined; // {parsed:'',newIndex:index};
+	// Z = consumeSimpleText(code,Z.newIndex); console.log('..Z', Z);
+	Z = wohlgeformt(code, Z.newIndex); console.log('..Z', Z);
+	if (Z === undefined) return undefined; // {parsed:'',newIndex:index};
+	let content = Z.parsed;
+	Z = consume(code, Z.newIndex, ')'); console.log('..Z', Z);
+	return Z.parsed == ')' ? { parsed: ['(', content, ')'], newIndex: Z.newIndex } : undefined;
+}
+function consumeSimpleNE_UNUSABLE(code, idx, ch) {
+	let i = idx;
+	// while (code[i] != null && code[i] != ch && (code[i] != `\\${ch}` || code[i + 1] != ch)) { i++; }
+	// while (code[i] != null && code[i] != ch && code[i] != `\\${ch}`) { i++; }
+	while (code[i] != null && code[i] != ch && code[i] != '\\') { i++; }
+
+	if (i > idx) { return { parsed: code.substring(idx, i), newIndex: i } }
+}
+
 async function start() {
 
 	let code = getsample(4);

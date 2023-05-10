@@ -10084,7 +10084,48 @@ __________ di 9.5.23 ...airport lib 10.5 7-
 436: *8:56 AM 5/9/2023-9:00 AM 5/9/2023
 437: *9:00 AM 5/9/2023-9:18 AM 5/9/2023
 438: *9:18 AM 5/9/2023-9:19 AM 5/9/2023
-439: *9:19 AM 5/9/2023-
+439: *9:19 AM 5/9/2023-5:48 AM 5/10/2023
+__________ mi 10.5.23 ...airport lib 10.5 7-
+480: *5:48 AM 5/10/2023-5:50 AM 5/10/2023
+481: *5:50 AM 5/10/2023-5:51 AM 5/10/2023
+482: *5:51 AM 5/10/2023-5:52 AM 5/10/2023
+483: *5:52 AM 5/10/2023-6:00 AM 5/10/2023
+494: *6:00 AM 5/10/2023-6:03 AM 5/10/2023
+495: *6:03 AM 5/10/2023-6:06 AM 5/10/2023
+496: *6:06 AM 5/10/2023-6:13 AM 5/10/2023
+497: *6:13 AM 5/10/2023-6:22 AM 5/10/2023
+498: *6:22 AM 5/10/2023-6:31 AM 5/10/2023
+499: *6:31 AM 5/10/2023-6:31 AM 5/10/2023
+500: *6:31 AM 5/10/2023-6:40 AM 5/10/2023
+501: *6:40 AM 5/10/2023-6:45 AM 5/10/2023
+502: *6:45 AM 5/10/2023-6:46 AM 5/10/2023
+503: *6:46 AM 5/10/2023-7:07 AM 5/10/2023
+504: *7:07 AM 5/10/2023-7:16 AM 5/10/2023
+505: *7:16 AM 5/10/2023-7:16 AM 5/10/2023
+506: *7:16 AM 5/10/2023-7:24 AM 5/10/2023
+507: *7:24 AM 5/10/2023-7:24 AM 5/10/2023
+508: *7:24 AM 5/10/2023-7:34 AM 5/10/2023
+509: *7:34 AM 5/10/2023-7:50 AM 5/10/2023
+510: *7:50 AM 5/10/2023-8:37 AM 5/10/2023
+511: *8:37 AM 5/10/2023-9:03 AM 5/10/2023
+512: *9:03 AM 5/10/2023-
+- 
+- remove all \n\t from code
+- geh nochmal zum parenthesis example!
+- ich kann einfach nicht recorsiv denken
+- WAY SHORTER!!!
+- ok wie soll es simpler sein?
+- restart MUCH simpler!!!
+- hat der code '`"???
+- simplelist muss anders sein!???
+which sample?
+WAY SHORTER!!!
+[
+- wie soll es aussehen?
+- ne ist falsch!!!!
+shorter!
+- auchnoch len dazu
+- rem cons
 - sollte arrFlatten in aristo testen! aber egal!
 - arr=[['se'],['aber','nicht','doch'],['nanana']]
 - arrFlatten ist FALSCH!!!!!

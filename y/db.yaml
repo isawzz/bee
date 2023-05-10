@@ -525,6 +525,9 @@ appdata:
     - d: 8.5.23
       steps: 28
       e: 7-15
+    - d: 9.5.23
+      steps: 21
+      e: 7-15
   howto:
     - kw: k92
       c: hallo92

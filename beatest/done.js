@@ -1,17 +1,19 @@
 
-function myAst(code, index) {
-	return justPar(code, index)
-		// justArray(code, index)
-		// ?? justBraces(code, index)
-		// ?? justOther(code, index)
-		// ?? justParenth(code, index);
+
+
+function arrFlatten(arr) {
+	if (!Array.isArray(arr)) return arr;
+	let res = [];
+	for (let i = 0; i < arr.length; i++) {
+		let el = arr[i];
+		if (Array.isArray(el)) {
+			let f = arrFlatten(el);
+			f.map(x => res.push(x));
+		} else res.push(el);
+	}
+	return res;
 }
 
-
-
-
-
-function given(val, f) { return isdef(val) ? f(val) : undefined; }
 function consume(code, idx, s) {
 	for (let i = 0; i < s.length; i++) { if (code[idx + i] !== s[i]) { return undefined; } }
 	return { parsed: s, newIndex: idx + s.length };
@@ -46,138 +48,11 @@ function series(code, index, itemParseFn, delimiter) {
 
 	return { parsed: items, newIndex: index }
 }
-function myParser(code) {
-	const foundASTs = []
-	let index = 0;
-
-	let previousIndex;
-	while (index < code.length && previousIndex !== index) {
-		previousIndex = index;
-
-		index = consumeWhitespace(code, index);
-
-		const parseResult = myAst(code, index);
-		if (parseResult !== undefined) {
-			index = parseResult.newIndex;
-			foundASTs.push(parseResult.parsed);
-		}
-	}
-
-	return foundASTs;
-}
-
-function justOther(code, index) {
-	let arr = '{}[]()"`\'';
-	return consumeWhile(code, index, x => !'{}[]()"`\''.includes(x));
-}
-function justString(code, index) {
-	given(consume(code, index, '"'), ({ newIndex: index }) => {
-		const startIndex = index;
-		let escaped = false;
-
-		while (escaped || code[index] !== '"') {
-			if (code[index] === '\\') {
-				escaped = true;
-			} else {
-				escaped = false;
-			}
-
-			index++
-		}
-
-		return {
-			parsed: {
-				kind: 'string',
-				value: code.substring(startIndex, index)
-			},
-			newIndex: index + 1
-		}
-	});
-}
-function justArray(code, index) {
-	return given(consume(code, index, '['), ({ newIndex: index }) =>
-		given(consumeWhitespace(code, index), index =>
-			given(series(code, index, myAst, ','), ({ parsed: members, newIndex: index }) =>
-				given(consumeWhitespace(code, index), index =>
-					given(consume(code, index, ']'), ({ newIndex: index }) => ({
-						parsed: {
-							kind: 'array',
-							members,
-						},
-						newIndex: index
-					}))))));
-}
-function justBraces(code, index) {
-	return given(consume(code, index, '{'), ({ newIndex: index }) =>
-		given(consumeWhitespace(code, index), index =>
-			given(series(code, index, myAst, ','), ({ parsed: members, newIndex: index }) =>
-				given(consumeWhitespace(code, index), index =>
-					given(consume(code, index, '}'), ({ newIndex: index }) => ({
-						parsed: {
-							kind: 'block',
-							members,
-						},
-						newIndex: index
-					}))))));
-}
-function justPar(code, index) {
-	return given(consume(code, index, '('), ({ newIndex: index }) =>
-		given(consumeWhitespace(code, index), index =>
-			given(series(code, index, myAst, ','), ({ parsed: members, newIndex: index }) =>
-				given(consumeWhitespace(code, index), index =>
-					given(consume(code, index, ')'), ({ newIndex: index }) => ({
-						parsed: {
-							kind: 'parenth',
-							members,
-						},
-						newIndex: index
-					}))))));
-}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function formatjs(code, stripWhiteSpaces = true, stripEmptyLines = true, whitespace = '  ', maxlen = 60) {
-
-	var currentIndent = 0;
-	code = removeCommentLines(code, '//');
-	code = code.trim().split('\n').join(' ');
-
-	var result = '', ch, chNext, chPrev;
-	for (var i = 0; i <= code.length; i++) {
-		ch = code.substr(i, 1);
-		chNext = code.substr(i + 1, 1);
-
-		if (ch === '{') {
-			currentIndent++;
-			result += '{\n' + whitespace.repeat(currentIndent);
-		} else if (ch === '}' && chNext == ';') {
-			if (--currentIndent < 0) currentIndent = 0;
-			result += '}';
-		} else if (ch === '}') {
-			if (--currentIndent < 0) currentIndent = 0;
-			result += '\n' + whitespace.repeat(currentIndent) + '}';
-		} else if (ch === ';' && chNext != '}') {
-			result += ';\n' + whitespace.repeat(currentIndent);
-		} else
-			result += ch;
-	}
-
-	return result;
-}
+//#region format html code: WORKS!!!
 function formathtml(code, stripWhiteSpaces = true, stripEmptyLines = true, whitespace = '  ', maxlen = 60) {
 	if (whitespace === undefined) whitespace = ' '.repeat(2); // Default indenting 2 whitespaces
 	if (maxlen === undefined) maxlen = 80; // Default max line length
@@ -267,10 +142,12 @@ function formathtml(code, stripWhiteSpaces = true, stripEmptyLines = true, white
 	}
 	return akku;
 }
-
 function stripHtmlComments(code) {
 	while (code.includes('<!--')) {
 		code = stringBefore(code, '<!--') + stringAfter(code, '-->');
 	}
 	return code;
 }
+//#endregion
+
+
