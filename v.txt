@@ -10108,8 +10108,9 @@ __________ mi 10.5.23 ...airport lib 10.5 7-
 509: *7:34 AM 5/10/2023-7:50 AM 5/10/2023
 510: *7:50 AM 5/10/2023-8:37 AM 5/10/2023
 511: *8:37 AM 5/10/2023-9:03 AM 5/10/2023
-512: *9:03 AM 5/10/2023-
-- 
+512: *9:03 AM 5/10/2023-8:44 PM 5/10/2023
+__________ do 11.5.23 ...airport lib 10.5 7-
+550: *8:45 PM 5/10/2023-
 - remove all \n\t from code
 - geh nochmal zum parenthesis example!
 - ich kann einfach nicht recorsiv denken
