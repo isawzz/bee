@@ -1,4 +1,28 @@
 
+//#region FAILED
+function recAugmentParsed(el, reslist = []) {
+
+	if (isEmpty(el)) return;
+	else if (isString(el)) {
+		reslist.push({ s: el, len: el.length });
+	} else if (Array.isArray(el) && el[0] == '{' && isString(el[1])) {
+		reslist.push({ s: `{ ${el[1]} }`, len: el[1].length });
+	} else if (Array.isArray(el) && el[0] != '{') {
+		recAugmentParsed(el[0], reslist);
+		recAugmentParsed(el.slice(1), reslist);
+	} else if (Array.isArray(el)) {
+		// { [] }
+		let list1 = [];
+		//recAugmentParsed(el[1], list1);
+		recAugmentParsed(el.slice(1, el.length - 1), list1);
+		//list1 sollte jetzt alle teilergebnisse haben!
+		reslist.push({ s: `{ ${list1.map(x => x.s).join('')} }`, len: list1.map(x => x.s).join('').length });
+
+
+	}
+}
+//#endregion
+
 //#region format js trial 4: zu complex!
 function wohl(code, index, simple) {
 	let iprev = -1;

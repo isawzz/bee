@@ -1,40 +1,36 @@
 async function start() {
-	let s = `hallo {wie geht's {dir}}`; //getsample(5); console.log('length', s.length, '\ncode:', s);
 
-	Z = wohl1(s, 0);
-	console.log('Z', Z.parsed)
-
-
-	//recursively augment parsed
-	let lst = [];
-	let x = recAugmentParsed(Z.parsed, lst);
-	console.log('lst', lst)
+	DA.samples = getCodeSamples();
+	DA.index = 0;
+	testNext();
+	mButton('Next', testNext, mBy('dTest'));
+	addEventListener('click', function(event) { console.log('click');PR.prettyPrint(); }, false);
 }
+function testNext() {
+	let i = DA.index = (DA.index + 1) % DA.samples.length;
+	let s = DA.samples[i];
 
-function recAugmentParsed(el, reslist = []) {
+	let x = js_beautify(s, {
+		indent_size: 1,
+		indent_char: ' ',
+		preserve_newlines: false,
+		brace_style: 'preserve-inline',
+		wrap_line_length: 120,
+	})
+	console.log(x)
+	mBy('code1').innerHTML = x;
 
-	if (isEmpty(el)) return;
-	else if (isString(el)) {
-		reslist.push({ s: el, len: el.length });
-	} else if (Array.isArray(el) && el[0] == '{' && isString(el[1])) {
-		reslist.push({ s: `{ ${el[1]} }`, len: el[1].length });
-	} else if (Array.isArray(el) && el[0] != '{') {
-		recAugmentParsed(el[0], reslist);
-		recAugmentParsed(el.slice(1),reslist);
-	} else if (Array.isArray(el)){
-		// { [] }
-		let list1=[];
-		//recAugmentParsed(el[1], list1);
-		recAugmentParsed(el.slice(1,el.length-1),list1);
-		//list1 sollte jetzt alle teilergebnisse haben!
-		reslist.push({ s: `{ ${list1.map(x=>x.s).join('')} }`, len: list1.map(x=>x.s).join('').length });
+	mBy('gpretty').innerHTML = s;
 
-
-	}
 }
 
 
 //#region tests trials 1-3
+function test_wohl1() {
+	let s = getsample(1); //`hallo {wie geht's {dir}}`; //
+	console.log('length', s.length, '\ncode:', s);
+	Z = wohl1(s, 0); console.log('Z', Z.parsed)
+}
 function test_mit_complex_code() {
 	for (const i of range(1, 1)) {
 		let s = getsample(i);

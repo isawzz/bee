@@ -10107,10 +10107,6 @@ __________ mi 10.5.23 ...airport lib 10.5 7-
 508: *7:24 AM 5/10/2023-7:34 AM 5/10/2023
 509: *7:34 AM 5/10/2023-7:50 AM 5/10/2023
 510: *7:50 AM 5/10/2023-8:37 AM 5/10/2023
-511: *8:37 AM 5/10/2023-9:03 AM 5/10/2023
-512: *9:03 AM 5/10/2023-8:44 PM 5/10/2023
-__________ do 11.5.23 ...airport lib 10.5 7-
-550: *8:45 PM 5/10/2023-
 - remove all \n\t from code
 - geh nochmal zum parenthesis example!
 - ich kann einfach nicht recorsiv denken
@@ -10120,8 +10116,6 @@ __________ do 11.5.23 ...airport lib 10.5 7-
 - hat der code '`"???
 - simplelist muss anders sein!???
 which sample?
-WAY SHORTER!!!
-[
 - wie soll es aussehen?
 - ne ist falsch!!!!
 shorter!
@@ -10142,7 +10136,34 @@ while code[i]!=ch and (code[i]!='\\' || code[i+1]!=ch)
 way shorter
 - quotes example
 - quotes
-nur '
+511: *8:37 AM 5/10/2023-9:03 AM 5/10/2023
+512: *9:03 AM 5/10/2023-8:44 PM 5/10/2023
+__________ do 11.5.23 ...airport lib 10.5 7-
+550: *8:45 PM 5/10/2023-6:43 AM 5/11/2023
+551: *6:44 AM 5/11/2023-6:48 AM 5/11/2023
+552: *6:48 AM 5/11/2023-6:50 AM 5/11/2023
+553: *6:50 AM 5/11/2023-6:52 AM 5/11/2023
+554: *6:52 AM 5/11/2023-6:52 AM 5/11/2023
+555: *6:52 AM 5/11/2023-6:59 AM 5/11/2023
+556: *6:59 AM 5/11/2023-7:12 AM 5/11/2023
+557: *7:12 AM 5/11/2023-7:12 AM 5/11/2023
+558: *7:12 AM 5/11/2023-7:28 AM 5/11/2023
+559: *7:28 AM 5/11/2023-7:28 AM 5/11/2023
+560: *7:28 AM 5/11/2023-7:32 AM 5/11/2023
+561: *7:32 AM 5/11/2023-7:37 AM 5/11/2023
+562: *7:38 AM 5/11/2023-7:45 AM 5/11/2023
+563: *7:45 AM 5/11/2023-7:46 AM 5/11/2023
+- warum nicht 1
+- buttons oben!
+- getsample => getCodeSamples
+- WAY SHORTER!!!
+- WAY SHORTER!!!
+564: *7:46 AM 5/11/2023-7:50 AM 5/11/2023
+565: *7:50 AM 5/11/2023-7:56 AM 5/11/2023
+566: *7:56 AM 5/11/2023-
+- wie gross ist das ding?
+- code-prettifier google
+- js_beautify
 
 
 

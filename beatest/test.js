@@ -72,7 +72,7 @@ function testjs1(d1, d2) {
 	d2.innerHTML = js;
 }
 
-function getsample(n) {
+function getCodeSamples() {
 	let samples = [
 		// 0
 		`
@@ -96,9 +96,7 @@ function getsample(n) {
 				encoding:"utf8"
 			})
 		};
-		var Module={
-			noInitialRun:true,noExitRuntime:true
-		};
+		var Module={			noInitialRun:true,noExitRuntime:true		};
 		var Module;
 		if(!Module)Module=(typeof Module!=="undefined"?Module:null)||{
 			
@@ -146,7 +144,7 @@ function collectCode(text, path) {
 
 		`,
 	];
-	return samples[Math.min(n, samples.length - 1)];
+	return samples;
 
 }
 
