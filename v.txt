@@ -10217,13 +10217,52 @@ class Visitor {
 619: *8:47 AM 5/12/2023-9:02 AM 5/12/2023
 620: *9:02 AM 5/12/2023-
 __________ sa 13.5.23 ...airport lib 10.5 7-17
-670: *8:42 PM 5/12/2023-
+670: *8:42 PM 5/12/2023-6:36 AM 5/13/2023
+671: *6:36 AM 5/13/2023-6:42 AM 5/13/2023
+672: *6:42 AM 5/13/2023-6:51 AM 5/13/2023
+673: *6:51 AM 5/13/2023-6:53 AM 5/13/2023
+674: *6:53 AM 5/13/2023-7:00 AM 5/13/2023
+675: *7:00 AM 5/13/2023-7:00 AM 5/13/2023
+SUPER COOLES TUTORIAL!!!!!!!!
+https://www.youtube.com/watch?v=jMun70Q4J_Y
+- so much fun!!!
+- nodemon tip!
+- pico => clean copy
+- suche lexer parser generator in js
 - vor erstem '{', nach letztem '}', pt0(von mitte+
-eigene grammar!
-expression => simple | grouping
-simple => 
-
-
+676: *7:00 AM 5/13/2023-7:14 AM 5/13/2023
+677: *7:14 AM 5/13/2023-7:14 AM 5/13/2023
+678: *7:14 AM 5/13/2023-7:22 AM 5/13/2023
+679: *7:22 AM 5/13/2023-7:30 AM 5/13/2023
+680: *7:30 AM 5/13/2023-7:35 AM 5/13/2023
+681: *7:35 AM 5/13/2023-7:38 AM 5/13/2023
+682: *7:38 AM 5/13/2023-7:46 AM 5/13/2023
+683: *7:46 AM 5/13/2023-7:48 AM 5/13/2023
+684: *7:48 AM 5/13/2023-7:49 AM 5/13/2023
+685: *7:49 AM 5/13/2023-7:57 AM 5/13/2023
+686: *7:57 AM 5/13/2023-8:15 AM 5/13/2023
+687: *8:15 AM 5/13/2023-8:15 AM 5/13/2023
+geloest!
+- um zu wissen ob ich linebreak nach TK_START_BLOCK mache brauch ich measureline fuer alles bis END_BLOCK
+- add test 1 liner!
+- mach es mit 80 chars
+- finde heraus wieso er vor dem if ein linebreak macht aber nicht vor dem statement
+- output raw!
+- add test 7
+- nich so einfach leider!!! brauche nochmal version of beautify
+- schau ob ich js_beautify hacken kann!!!
+- brauch doch eigenes - jsbeautify geht nicht!!!
+WAY SHORTER!!!
+688: *8:15 AM 5/13/2023-8:16 AM 5/13/2023
+689: *8:16 AM 5/13/2023-8:26 AM 5/13/2023
+690: *8:26 AM 5/13/2023-8:26 AM 5/13/2023
+691: *8:26 AM 5/13/2023-8:32 AM 5/13/2023
+692: *8:32 AM 5/13/2023-8:36 AM 5/13/2023
+- lean version ohne trace
+- trace is cool!!!
+- weiter im coolen tut!!!!
+693: *8:36 AM 5/13/2023-8:38 AM 5/13/2023
+694: *8:38 AM 5/13/2023-
 
 
 

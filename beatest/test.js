@@ -140,8 +140,19 @@ function getCodeSamples() {
 			return FS.readFile("input.html", { encoding: "utf8" })
 		};
 				`,
+		// 6
 		`
-
+		var Module = {
+			noInitialRun: true,
+			noExitRuntime: true
+		 };
+		`,
+		// 7
+		`for (var key in Module) {if (Module.hasOwnProperty(key)) {moduleOverrides[key] = Module[key]	}
+		 }
+		`,
+		// 8
+		`for (var key in Module) {if (Module.hasOwnProperty(key)) {moduleOverrides[key] = Module[key]	} }	
 		`,
 	];
 	return samples;

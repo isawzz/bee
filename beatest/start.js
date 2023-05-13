@@ -1,26 +1,61 @@
 async function start() {
+	test_pico0();
+	test_jsbeautify(8);
+}
 
+function test_pico0() {
+	const input = "7";
+
+	function* lexer(s) {
+		let ch = s[0];
+		if (ch === undefined) {
+			yield { type: 'EOF' }
+		}
+
+	}
+
+	console.log('start');
+	for (const token of lexer(input)) {
+		console.log(token);
+	}
+	console.log('finish');
+}
+
+
+
+function test_jsbeautify(n=0) {
 	DA.samples = getCodeSamples();
-	DA.index = 0;
+	DA.index = n-1;
 	testNext();
 	mButton('Next', testNext, mBy('dTest'));
-	addEventListener('click', function(event) { console.log('click');PR.prettyPrint(); }, false);
+	//addEventListener('click', function(event) { console.log('click');	PR.prettyPrint(); }, false);
 }
 function testNext() {
 	let i = DA.index = (DA.index + 1) % DA.samples.length;
 	let s = DA.samples[i];
 
+	mBy('code1').innerHTML = s;
+
 	let x = js_beautify(s, {
 		indent_size: 1,
 		indent_char: ' ',
 		preserve_newlines: false,
-		brace_style: 'preserve-inline',
-		wrap_line_length: 120,
+		brace_style: 'preserve-inline', // collapse expand none end-expand preserve-inline,
+		wrap_line_length: 80,
 	})
-	console.log(x)
-	mBy('code1').innerHTML = x;
+	//console.log(x)
+	mBy('code2').innerHTML = x;
 
-	mBy('gpretty').innerHTML = s;
+	// let y = js_beautify(s, {
+	// 	indent_size: 1,
+	// 	indent_char: ' ',
+	// 	preserve_newlines: false,
+	// 	brace_style: 'none', // collapse expand none end-expand preserve-inline,
+	// 	wrap_line_length: 60,
+	// })
+	// mBy('code3').innerHTML = y;
+
+	//mBy('gpretty').innerHTML = s;
 
 }
 
