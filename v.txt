@@ -10160,10 +10160,106 @@ __________ do 11.5.23 ...airport lib 10.5 7-
 - WAY SHORTER!!!
 564: *7:46 AM 5/11/2023-7:50 AM 5/11/2023
 565: *7:50 AM 5/11/2023-7:56 AM 5/11/2023
-566: *7:56 AM 5/11/2023-
-- wie gross ist das ding?
+566: *7:56 AM 5/11/2023-7:57 AM 5/11/2023
+- wie gross ist das ding? 187KB
 - code-prettifier google
 - js_beautify
+567: *7:57 AM 5/11/2023-8:00 AM 5/11/2023
+568: *8:00 AM 5/11/2023-8:02 AM 5/11/2023
+569: *8:02 AM 5/11/2023-
+- start
+- mach body zeug
+=>alibs
+__________ fr 12.5.23 ...airport lib 10.5 7-17
+600: *8:17 PM 5/11/2023-7:21 AM 5/12/2023
+601: *7:21 AM 5/12/2023-7:40 AM 5/12/2023
+602: *7:41 AM 5/12/2023-7:44 AM 5/12/2023
+603: *7:44 AM 5/12/2023-7:54 AM 5/12/2023
+604: *7:54 AM 5/12/2023-8:03 AM 5/12/2023
+605: *8:03 AM 5/12/2023-8:06 AM 5/12/2023
+606: *8:06 AM 5/12/2023-8:11 AM 5/12/2023
+607: *8:11 AM 5/12/2023-8:26 AM 5/12/2023
+608: *8:26 AM 5/12/2023-8:26 AM 5/12/2023
+609: *8:26 AM 5/12/2023-8:29 AM 5/12/2023
+https://github.com/nitin42/Creating-a-pretty-printer/blob/master/grammar.md
+- way shorter!
+- download prettier
+WTF?!?!?!?
+- was soll das?
+- prettier https://prettier.io/docs/en/
+- experiment!
+610: *8:29 AM 5/12/2023-8:29 AM 5/12/2023
+expression => binary | unary | grouping | literal
+literal => "true" | "false" | number | string | "null"
+grouping => "(" expression ")"
+binary => expression operator expression
+unary => ( "-" | "!" ) expression
+operator => "===" | "!==" | "<" | "<=" | ">" | ">=" | "+"  | "-"  | "*" | "/"
+611: *8:29 AM 5/12/2023-8:30 AM 5/12/2023
+class Visitor {
+  visitBinaryExpression(binary) {}
+  visitUnaryExpression(unary) {}
+  visitLiteralExpression(literal) {}
+  visitGroupingExpression(grouping) {}
+}
+612: *8:30 AM 5/12/2023-8:36 AM 5/12/2023
+613: *8:36 AM 5/12/2023-8:41 AM 5/12/2023
+614: *8:41 AM 5/12/2023-8:41 AM 5/12/2023
+615: *8:41 AM 5/12/2023-8:42 AM 5/12/2023
+616: *8:42 AM 5/12/2023-8:44 AM 5/12/2023
+617: *8:44 AM 5/12/2023-8:46 AM 5/12/2023
+- code raus aus pp
+- get samples!
+- hol es
+- get parser
+- totaler kaese
+618: *8:46 AM 5/12/2023-8:47 AM 5/12/2023
+619: *8:47 AM 5/12/2023-9:02 AM 5/12/2023
+620: *9:02 AM 5/12/2023-
+__________ sa 13.5.23 ...airport lib 10.5 7-17
+670: *8:42 PM 5/12/2023-
+- vor erstem '{', nach letztem '}', pt0(von mitte+
+eigene grammar!
+expression => simple | grouping
+simple => 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -26,10 +26,10 @@ function test1(code) {
 	code2.innerHTML = js;
 
 	let lines = code.split('\n');
-	let newtext='';
-	for(const l of lines){
+	let newtext = '';
+	for (const l of lines) {
 		let lt = l.trim();
-		if (!lt.endsWith(';')) lt+=';';
+		if (!lt.endsWith(';')) lt += ';';
 		newtext += lt;
 	}
 	js = js_beautify(newtext);
@@ -113,15 +113,15 @@ function getCodeSamples() {
 		`,
 		// 3
 		`
-function collectCode(text, path) {
-	let lines = text.split('\r\n');
-	for (const l of lines) {
-		if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
-			let key = ithWord(l, l[0] == 'a' ? 2 : 1, true);
-			keysSorted.push(key);
+		function collectCode(text, path) {
+			let lines = text.split('\r\n');
+			for (const l of lines) {
+				if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
+					let key = ithWord(l, l[0] == 'a' ? 2 : 1, true);
+					keysSorted.push(key);
+				}
+			}
 		}
-	}
-}
 		`,
 		// 4
 		`function removeColNew(board, cClick){return    reduceBoard  (board , board.rows,board.cols - 1, cClick) ;    }

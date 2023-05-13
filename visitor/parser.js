@@ -1,4 +1,21 @@
 
+
+function wohl1(code, index) {
+	let iprev = -1;
+	let res = [];
+	while (index != iprev) {
+		iprev = index;
+		Z = consumeWhileNot(code, index, '{}'); //console.log('Z', Z);
+		index = Z.newIndex;
+		if (index != iprev) res.push(Z.parsed.trim());
+
+		Z = consumeBraces(code, Z.newIndex); //console.log('Z', Z)
+		if (nundef(Z)) break;
+		res.push(Z.parsed);
+		index = Z.newIndex;
+	}
+	return isEmpty(res) ? undefined : { parsed: res, newIndex: index };
+}
 function consumeWhileNot(code, index, exc) {
 	return consumeWhile(code, index, x => !exc.includes(x)) ?? { parsed: '', len: 0, newIndex: index };
 }
@@ -11,7 +28,82 @@ function consumeBraces(code, index) {
 	Z = consume(code, Z.newIndex, '}'); //console.log('..Z', Z);
 	return Z.parsed == '}' ? { parsed: ['{', content, '}'], newIndex: Z.newIndex } : undefined;
 }
+function getCodeSamples() {
+	let samples = [
+		// 0
+		`
+		// This is just a sample script. Paste your real code (javascript or HTML) here.
+	
+		if ('this_is'==/an_example/){of_beautifier();console.log('hello');}else{var a=b?(c%d):e[f];}
+		`,
+		// 1
+		`
+		var tidy_html5=function tidy_html5(text,config){FS.writeFile("input.html",text);var cmdlineOptions=[];if(config)for(var i in config)cmdlineOptions.push("--"+i,config[i]);cmdlineOptions.push("-m","input.html");Module.callMain(cmdlineOptions);return FS.readFile("input.html",{encoding:"utf8"})};var Module={noInitialRun:true,noExitRuntime:true};var Module;if(!Module)Module=(typeof Module!=="undefined"?Module:null)||{};var moduleOverrides={};for(var key in Module){if(Module.hasOwnProperty(key)){moduleOverrides[key]=Module[key]}}			
+		`,
+		// 2
+		`
+		var tidy_html5=function tidy_html5(text,config){
+			FS.writeFile("input.html",text);
+			var cmdlineOptions=[];
+			if(config)for(var i in config)cmdlineOptions.push("--"+i,config[i]);
+			cmdlineOptions.push("-m","input.html");
+			Module.callMain(cmdlineOptions);
+			return FS.readFile("input.html",{
+				encoding:"utf8"
+			})
+		};
+		var Module={			noInitialRun:true,noExitRuntime:true		};
+		var Module;
+		if(!Module)Module=(typeof Module!=="undefined"?Module:null)||{
+			
+		};
+		var moduleOverrides={
+			
+		};
+		for(var key in Module){
+			if(Module.hasOwnProperty(key)){
+				moduleOverrides[key]=Module[key]
+			}
+		}	
+	
+		`,
+		// 3
+		`
+		function collectCode(text, path) {
+			let lines = text.split('\r\n');
+			for (const l of lines) {
+				if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
+					let key = ithWord(l, l[0] == 'a' ? 2 : 1, true);
+					keysSorted.push(key);
+				}
+			}
+		}
+		`,
+		// 4
+		`function removeColNew(board, cClick){return    reduceBoard  (board , board.rows,board.cols - 1, cClick) ;    }
 
+		`,
+		// 5
+		`
+		var tidy_html5 = function tidy_html5(text, config) {
+			FS.writeFile("input.html", text);
+			var cmdlineOptions = [];
+			if (config)
+				for (var i in config)
+					cmdlineOptions.push("--" + i, config[i]);
+			cmdlineOptions.push("-m", "input.html");
+			Module.callMain(cmdlineOptions);
+			return FS.readFile("input.html", { encoding: "utf8" })
+		};
+		`,
+		// 6
+		`
+		if ('this_is'==/an_example/){of_beautifier();console.log('hello');}else{var a=b?(c%d):e[f];}
+		`,
+	];
+	return samples;
+
+}
 
 function arrFlatten(arr) {
 	if (!Array.isArray(arr)) return arr;
@@ -161,6 +253,18 @@ function stripHtmlComments(code) {
 	return code;
 }
 //#endregion
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

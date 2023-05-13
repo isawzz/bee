@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+		<pre id="code"></pre>
+		<script type="module">
+			import prettier from "https://unpkg.com/prettier@2.8.8/esm/standalone.mjs";
+			import parserBabel from "https://unpkg.com/prettier@2.8.8/esm/parser-babel.mjs";
+			import parserHtml from "https://unpkg.com/prettier@2.8.8/esm/parser-html.mjs";
+		
+			console.log(
+				prettier.format("const html=/* HTML */ `<DIV> </DIV>`", {
+					parser: "babel",
+					plugins: [parserBabel, parserHtml],
+				})
+			);
+			onload=()=>{
+				let code = 	`
+				// This is just a sample script. Paste your real code (javascript or HTML) here.
+			
+				if ('this_is'==/an_example/){of_beautifier();console.log('hello');}else{var a=b?(c%d):e[f];}
+				`;
+				let x = prettier.format(code, //"const html=/* HTML */ `<DIV> </DIV>`", 
+				{
+					parser: "babel",
+					plugins: [parserBabel, parserHtml],
+				});
+				document.getElementById('code').innerHTML = x
+				};
+		// Output: const html = /* HTML */ `<div></div>`;
+		</script>
+	</body>
+	</html>
+
