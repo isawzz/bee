@@ -4,7 +4,17 @@ function* lexer(s) {
 
 	for (let i = 0; i <= s.length; i++) {
 		let ch = s[i];
-		if (ch === '7') { yield { type: 'number', value: 7 } }
+
+		function number(value) {
+			for (; i <= s.length; i++) {
+				//ch = s[i];
+				if (ch == '7') { value += ch; }
+				else { break; }
+			}
+			return { type: 'number', value: 7 }
+		}
+
+		if (ch === '7') { yield number(ch); } // { type: 'number', value: 7 } }
 		else if (ch === undefined) { yield { type: 'EOF' } }
 		else { yield { type: `ERROR at char ${i}`, value: ch } }
 
