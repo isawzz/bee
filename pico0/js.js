@@ -1,12 +1,4 @@
 
-function number(value) {
-	for (; i <= s.length; i++) {
-		//ch = s[i];
-		if (ch == '7') { value += ch; }
-		else { break; }
-	}
-	return { type: 'number', value: 7 }
-}
 
 
 
@@ -14,8 +6,18 @@ function* lexer(s) {
 
 	for (let i = 0; i <= s.length; i++) {
 		let ch = s[i];
+		//console.log('ch', ch)
+		function number() {
+			let value = '';
+			for (; i <= s.length; i++) {
+				ch = s[i];
+				if (ch == '7') { value += ch; }
+				else { break; }
+			}
+			return { type: 'number', value }
+		}
 
-		if (ch === '7') { yield number(ch); } // { type: 'number', value: 7 } }
+		if (ch === '7') { yield number(); } // { type: 'number', value: 7 } }
 		else if (ch === undefined) { yield { type: 'EOF' } }
 		else { yield { type: `ERROR at char ${i}`, value: ch } }
 
@@ -23,7 +25,16 @@ function* lexer(s) {
 
 }
 
+function start() {
+	const input = "787";
+	console.log('code', input)
+	console.log('start');
+	for (const token of lexer(input)) {
+		console.log(token);
+	}
+	console.log('finish');
 
+}
 
 
 
@@ -45,3 +56,4 @@ function* lexer_trace_throw(s) {
 	}
 
 }
+start();
