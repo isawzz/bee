@@ -1,4 +1,4 @@
-const input = "12.4 4";
+const input = "'hallo'"; //1{2.4 \'[['[]4)()";
 function start() {
 	console.clear(); console.log('___code\n', input); console.log('start');
 	for (const token of lexer(input)) { console.log(token); }
@@ -21,7 +21,7 @@ function* lexer(s) {
 	}
 	function nobr() {
 		let value = '';
-		while (/^[^({!}|[|]|\(|\))]$/.test(char)) { value += char; next(); }
+		while (/^[^{}()['"`\]]$/.test(char)) { value += char; next(); }
 		return value.length >= 1 ? { type: 'nobr', value } : null;
 	}
 
@@ -36,12 +36,12 @@ function* lexer(s) {
 
 	for (; ;) {
 		white();
-		let token = nobr() ?? lexchar('{}[]()') ?? eof();
+		let token = nobr() ?? lexchar('{}[]()\'"`') ?? eof();
 		if (token) {
 			yield token;
 			if (token.type == 'EOF') break;
 		}
-		else { yield { type: 'unknown', value: `unexpected character "${char}" at ${cursor}` }; next();  }
+		else { yield { type: 'unknown', value: `unexpected character "${char}" at ${cursor}` }; next(); }
 	}
 }
 
