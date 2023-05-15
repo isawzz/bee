@@ -10266,8 +10266,78 @@ WAY SHORTER!!!
 695: *12:19 PM 5/13/2023-8:20 PM 5/13/2023
 __________ so 14.5.23 ...airport lib 10.5 7-17
 800: *8:21 PM 5/13/2023-8:21 PM 5/13/2023
-801: *7:27 AM 5/14/2023-
-; 
+801: *7:27 AM 5/14/2023-7:52 AM 5/14/2023
+802: *7:52 AM 5/14/2023-7:52 AM 5/14/2023
+803: *7:52 AM 5/14/2023-8:10 AM 5/14/2023
+804: *8:10 AM 5/14/2023-8:10 AM 5/14/2023
+805: *8:10 AM 5/14/2023-8:21 AM 5/14/2023
+806: *8:22 AM 5/14/2023-8:29 AM 5/14/2023
+807: *8:29 AM 5/14/2023-8:45 AM 5/14/2023
+808: *8:45 AM 5/14/2023-8:45 AM 5/14/2023
+809: *8:45 AM 5/14/2023-8:52 AM 5/14/2023
+810: *8:53 AM 5/14/2023-8:53 AM 5/14/2023
+811: *8:53 AM 5/14/2023-9:03 AM 5/14/2023
+812: *9:03 AM 5/14/2023-9:07 AM 5/14/2023
+813: *9:07 AM 5/14/2023-9:14 AM 5/14/2023
+814: *9:14 AM 5/14/2023-9:15 AM 5/14/2023
+815: *9:15 AM 5/14/2023-9:26 AM 5/14/2023
+816: *9:26 AM 5/14/2023-9:26 AM 5/14/2023
+817: *9:27 AM 5/14/2023-9:28 AM 5/14/2023
+818: *9:28 AM 5/14/2023-3:53 PM 5/14/2023
+900: *3:53 PM 5/14/2023-6:01 PM 5/14/2023
+901: *6:01 PM 5/14/2023-8:30 PM 5/14/2023
+mit punkten geht es!
+- it is just WAY TO HOT!!!
+lgomaap,lgoe,ycldadatnntda
+js regex negative integer /^0$|^-?[1-9]\d*(\.\d+)?$/
+way shorter!!!
+- js regex for floating number /^[-+]?[0-9]+\.[0-9]+$/
+- js regex for whitespace char
+reg.test(s) eg /d/.test(ch)	
+WAY SHORTER!!!
+WAY SHORTER
+nodemon.json clear console at start
+__________ mo 15.5.23 ...airport lib 10.5 7-17
+930: *8:30 PM 5/14/2023-5:26 AM 5/15/2023
+931: *5:26 AM 5/15/2023-5:38 AM 5/15/2023
+932: *5:38 AM 5/15/2023-5:41 AM 5/15/2023
+933: *5:42 AM 5/15/2023-5:50 AM 5/15/2023
+934: *5:50 AM 5/15/2023-5:57 AM 5/15/2023
+935: *5:57 AM 5/15/2023-5:58 AM 5/15/2023
+936: *5:58 AM 5/15/2023-6:01 AM 5/15/2023
+937: *6:01 AM 5/15/2023-6:13 AM 5/15/2023
+938: *6:13 AM 5/15/2023-6:19 AM 5/15/2023
+939: *6:19 AM 5/15/2023-6:21 AM 5/15/2023
+940: *6:21 AM 5/15/2023-6:24 AM 5/15/2023
+- js regex string not containing spaces or quotes
+(?<=")\w[\w\s]*(?=")|\w+|"[\w\s]*"
+941: *6:25 AM 5/15/2023-6:27 AM 5/15/2023
+942: *6:27 AM 5/15/2023-6:29 AM 5/15/2023
+943: *6:29 AM 5/15/2023-6:29 AM 5/15/2023
+944: *6:29 AM 5/15/2023-6:30 AM 5/15/2023
+945: *6:30 AM 5/15/2023-6:31 AM 5/15/2023
+946: *6:31 AM 5/15/2023-6:31 AM 5/15/2023
+947: *6:32 AM 5/15/2023-6:34 AM 5/15/2023
+948: *6:34 AM 5/15/2023-6:47 AM 5/15/2023
+R- any char except {}[](): [^{}[]()]
+R- anything not containing {}[](): ^[^+]*$
+R- match eny string not containing '+': ^[^+]*$
+R- match any string: [\s\S]*
+R- match anything except newlines: .*
+949: *6:47 AM 5/15/2023-
+- find regex js tester!!!
+
+
+- js regex match any character
+- js regex any character except
+
+- richtig cooles zeug!!!
+- cooles zeug!
+shorter
+- you cannot change the past or can you?
+- regex geht nicht weil es '' parsed
+WAY SHORTER!!!
+- open tut
 
 
 
@@ -10279,7 +10349,7 @@ __________ so 14.5.23 ...airport lib 10.5 7-17
 
 
 
-
+mp100
 
 
 
@@ -12426,6 +12496,69 @@ was kann man aus dieser geschichte lernen?
 1. fuettere das boese nicht mehr - NIE mehr mit ihr reden, weil dann  kannst du langsam heilen auch wenn es sehr sehr lange dauern kann - du brauchst NICHTS von ihr 
 2. fuettere das boese in dir selbst nicht mehr - nicht mehr mit den kindern reden weil dann kein verstecktes hinterhaeltiges boeses auf diesem wege sie erreichen kann
 3. sei wie tot und lass alles sein solange du so krank bist. wenn du aber etwas tust oder sagst, dann tue nur etwas dass nichts mit irgendeiner emotion zu tun hat - sowie eine neutrale handlung ein opfer fuer den gott der allein mich heilen kann und uns allen armen menschenkindern  helfen kann.
+
+_____________________________________5:06 PM 5/14/2023
+I am now completely alone and there is no one and nothing that can help or solve the problem of being in turmoil over my own failures my failure in real world decisions and my failure in handling people or helping people in distress
+
+I do not have the ability to handle real world issues instead they cause panic and in panic my decisions are bad
+the people who have asked me to handle real world stuff and money stuff have not been deceived as I have warned them many times that I dont have this ability
+now again I should come out in the open and declare once and for all that if money issues are given into my hand, it will be a loss and a failure
+
+the problem is not that we do not have enough money
+nor is the problem that even without money we could not somehow live or die
+nor is the problem that I am interested in keeping up life at this level or even life itself
+
+the problem is that my message that I cannot handle things has been misunderstood and I have been put in charge of a job I cannot do
+
+what happens in the real world when someone is bad at their job? they are fired.
+
+so please fire me and find someone else
+
+my decision is that I do not want to care about money or about real world because it makes me nauseous
+
+my decision is that I am better off in an abstract imaginery world  that might not be of use for anyone or anything but in which I am not responsible for things I cannot handle
+
+I cannot handle real world stuff such as money, assets, people
+
+I can only handle kitchen, walking, piano and playing games
+
+second, I cannot help even the closest people who I am supposedly responsible for. I cannot relieve their distress, I am unable to provide helpful advice and I seem to be completely unable to help in any way.
+
+that is probably even weighting more on me that the other stuff
+
+I have to accept that I am utterly useless for any meaningful purpose at all
+
+I dont know why I am here, I have no idea why a useless person exists but I have to declare now openly that I am useless and no one can in any way be helped by me or assisted.
+
+so why are they supporting me? also, this will remain a mystery
+
+but, my final conclusion should be to not ask why and how and how everything is related but just declare myself as completely useless for any purpose AT ALL and go on living in whatever way I can
+
+A few abilities are there such as cooking, cleaning in a very reduced way
+
+those who might need that can ask me for it or for simple fetching stuff or carrying stuff in a very reduced way
+
+unfortunately I do not have any more than those abilities.
+
+the last thing is: it seems like I cannot talk other than utter rubbish which could be doing more damage than good
+
+I have been trying to be of positive influence to A for a year, but nothing has helped and so maybe taking myself out of the equation GOD might have a chance to help
+
+so come to accept that you cannot be of use
+can you be of use?
+
+was das ganze leben so schwer macht ist dass man an sich selbst ansprueche stellt die man nicht stellen kann
+
+kann man ein programm schreiben dass einem ein gutes durchschnittliches leben ermoeglicht?
+
+mit sehr viel randomness drin
+
+
+
+
+
+
+
 
 
 
