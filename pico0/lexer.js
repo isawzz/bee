@@ -4,12 +4,21 @@ function isNumeric(ch) {
 	return ch >= '0' && ch <= '9';
 }
 
-function* lexer(file,s) {
+function* lexer(file, s) {
+	//assumes: no \t and no \r in s
 	let cursor = 0, char = s[0];
 
 	let line = 1, column = 0;
 	function next() { cursor++; if (char == '\n') { column = 1; line++; } else column++; char = s[cursor]; }
 	function peek(n) { return s[cursor + n]; }
+
+	let special = '{}[]()\'"`+=/*';
+	function listchar() { let res = special.includes(char) ? { type: char } : null; if (res) next(); return res; }
+	function nolist() {
+		let value = '';
+		while (char !== undefined && !special.includes(char)) { value += char; next(); }
+		return value.length >= 1 ? { type: 'nolist', value: value.trim() } : null;
+	}
 
 	function number() {
 		let value = '';
@@ -17,11 +26,7 @@ function* lexer(file,s) {
 		while (isNumeric(char)) { value += char; next(); }
 		return value.length >= 1 ? { type: 'number', value } : null;
 	}
-	function nobr() {
-		let value = '';
-		while (/^[^{}()['"`\]]$/.test(char)) { value += char; next(); }
-		return value.length >= 1 ? { type: 'nobr', value } : null;
-	}
+	function binop() { return lexchar('+-/*'); }
 
 	function white() { while (/\s/.test(char)) next(); }
 
@@ -34,21 +39,26 @@ function* lexer(file,s) {
 
 	for (; ;) {
 		white();
-		let token = number() ?? lexchar('{}[]()\'"`') ?? eof();
+		let token = number() ?? listchar() ?? nolist() ?? eof();
 		if (token) { yield token; if (token.type == 'EOF') break; }
 		else { yield `unexpected: "${char}" at ${file}:${line}:${column}`; next(); }
 	}
 }
 
-console.log('module',typeof module)
+// *** testing ***
+//console.log('module',typeof module)
 //if (module !== undefined) module.exports = lexer;
-if (typeof module !== 'undefined' && module.exports) { // expose as a commonjs module
-	console.log('hallo')
-	module.exports = lexer;
-}
 
+// *** to import default function:  ***
+if (typeof module !== 'undefined' && module.exports) { module.exports = lexer; }
 
-// if (this && typeof module == "object" && module.exports && this === module.exports) {
-// 	lexer
-// };
+// *** to import multiple functions:  ***
+// if (typeof module !== 'undefined' && module.exports) { // expose as a commonjs module
+// 	module.exports = {
+// 		lexer,
+// 		isNumeric
+// 	};
+// 	console.log('...importing from CommonJS:', Object.keys(module.exports))
+// }
+
 

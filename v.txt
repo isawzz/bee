@@ -10372,11 +10372,34 @@ __________ mi 17.5.23 ...airport lib 31.5 7-R
 52: *6:55 AM 5/17/2023-6:55 AM 5/17/2023
 53: *6:55 AM 5/17/2023-6:56 AM 5/17/2023
 54: *6:56 AM 5/17/2023-6:57 AM 5/17/2023
-55: *6:57 AM 5/17/2023-
+55: *6:57 AM 5/17/2023-7:03 AM 5/17/2023
+56: *7:03 AM 5/17/2023-7:03 AM 5/17/2023
+57: *7:03 AM 5/17/2023-7:12 AM 5/17/2023
+58: *7:12 AM 5/17/2023-7:12 AM 5/17/2023
+59: *7:12 AM 5/17/2023-7:13 AM 5/17/2023
+60: *7:13 AM 5/17/2023-7:21 AM 5/17/2023
+61: *7:21 AM 5/17/2023-7:22 AM 5/17/2023
+62: *7:23 AM 5/17/2023-7:27 AM 5/17/2023
+63: *7:27 AM 5/17/2023-7:27 AM 5/17/2023
+64: *7:27 AM 5/17/2023-7:36 AM 5/17/2023
+65: *7:36 AM 5/17/2023-7:39 AM 5/17/2023
+66: *7:39 AM 5/17/2023-7:41 AM 5/17/2023
+67: *7:41 AM 5/17/2023-7:43 AM 5/17/2023
+- es geht sogar mit modeul.exports = { isdef, nundef, ...}
+- ok das MUSS docd werden!!!
+- WICHTIG!!!!! iCh kann CommonJS files in node verwenden weeil node js module defined
+- warum geht das mit dem lexer??? aber das nicht???
+- test: verwende isNumeric in js.js
+- weiteres problem: in CommonJS kann NUR das default export verwenden!
+- versuche allfuncs.js zu requiren!
+- sentence per sentence!
+- problem description!
+- ok also ein empty package.json geht GARNICHT!!!
+- way shorter!
+- mach ein _muell
 - open .gitignore
 - ich brauch ein other included in git!
 - remove package.json und lexer.cjs
-
 - doc: working with EJS vs CommonJS!!!!!!!!
 - how to import from a cjs file node js
 - js keyword export in non-module
@@ -10384,18 +10407,27 @@ __________ mi 17.5.23 ...airport lib 31.5 7-R
 - how to handle file!!!
 - export
 - schon sehr cool!
-
-
-
-
-und jetzt was???
-
-
-muell raus
-
-
-
-
+68: *7:43 AM 5/17/2023-7:47 AM 5/17/2023
+69: *7:47 AM 5/17/2023-8:05 AM 5/17/2023
+70: *8:05 AM 5/17/2023-8:11 AM 5/17/2023
+- mach ein nolist und ein listchar
+- multiple ways to export from CJS
+71: *8:11 AM 5/17/2023-8:11 AM 5/17/2023
+72: *8:11 AM 5/17/2023-8:12 AM 5/17/2023
+fehler in nolist
+WAY SHORTER!!!!!!!!!!!!!!
+73: *8:12 AM 5/17/2023-8:22 AM 5/17/2023
+74: *8:22 AM 5/17/2023-8:23 AM 5/17/2023
+75: *8:23 AM 5/17/2023-8:24 AM 5/17/2023
+WAY SHORTER!!!
+q for quiet! in nodemon -q ja.ja
+76: *8:24 AM 5/17/2023-8:29 AM 5/17/2023
+77: *8:29 AM 5/17/2023-8:31 AM 5/17/2023
+78: *8:31 AM 5/17/2023-8:32 AM 5/17/2023
+- find AST explorer: https://astexplorer.net/
+79: *8:32 AM 5/17/2023-8:43 AM 5/17/2023
+80: *8:43 AM 5/17/2023-
+u n i c o r n
 
 
 

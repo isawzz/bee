@@ -72794,3 +72794,10 @@ function zText(text, dParent, textStyles, hText, vCenter = false) {
 	}
 	return { text: text, div: dText, extra: extra, lines: lines, h: tSize.h, w: tSize.w, fz: textStyles.fz };
 }
+
+
+
+
+
+
+

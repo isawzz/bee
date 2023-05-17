@@ -1,22 +1,25 @@
 //usage: nodemon -q js.js
-//import { readFileSync } from 'fs'
-
-// import pkg from "./lexer.cjs"
-// const { lexer } = pkg;
+//import { readFileSync } from 'fs' // import pkg from "./lexer.cjs" // const { lexer } = pkg;
+// *** weil lexer.js ein CommonJS ist: ***
 var fs = require('fs');
 var lexer = require('./lexer.js');
-
 
 var input = "123 4134\n -13"; //'hallo'"; //1{2.4 \'[['[]4)()";
 var file = './source.js';
 input = fs.readFileSync(file); //das returned einen weireden Buffer mit bytes
 input = String(input);
+function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
+input = replaceAllSpecialChars(input,'\t','  ');
+input = replaceAllSpecialChars(input,'\r','');
+
 function start() {
 	console.clear(); //console.log('___code\n', input); console.log('start');
 	for (const token of lexer(file,input)) { console.log(token); }
 	// console.log(JSON.stringify([...lexer(input)]));
 	console.log('finish');
 }
+//console.log('input\n',input)
+start();
 
 
 
@@ -38,8 +41,6 @@ function* lexer_trace_throw(s) {
 	}
 
 }
-//console.log('input\n',input)
-start();
 
 //#region old versions
 function* lexer0(s) {
@@ -270,6 +271,46 @@ function* lexer7(s) {
 		// }
 		// else { yield { type: 'unknown', value: `unexpected character "${char}" at ${file}:${line}:${column}` }; next(); }
 		// else { throw new SyntaxError(`unexpected character "${char}" at ${file}:${line}:${column}`); }
+	}
+}
+function* lexer8(file, s) {
+	//assumes: no \t and no \r in s
+	let cursor = 0, char = s[0];
+
+	let line = 1, column = 0;
+	function next() { cursor++; if (char == '\n') { column = 1; line++; } else column++; char = s[cursor]; }
+	function peek(n) { return s[cursor + n]; }
+
+	let special = '{}[]()\'"`';
+	function listchar() { let res = special.includes(char) ? { type: char } : null; if (res) next(); return res; }
+	function nolist() {
+		let value = '';
+		while (char !== undefined && !special.includes(char)) { value += char; next(); }
+		return value.length >= 1 ? { type: 'nolist', value: value.trim() } : null;
+	}
+
+	function number() {
+		let value = '';
+		if (char == '-' && isNumeric(peek(1))) { value = '-'; next(); }
+		while (isNumeric(char)) { value += char; next(); }
+		return value.length >= 1 ? { type: 'number', value } : null;
+	}
+	// function nobr() { let value = ''; while (/^[^{}()['"`\]]$/.test(char)) { value += char; next(); } return value.length >= 1 ? { type: 'nobr', value } : null; }
+
+	function white() { while (/\s/.test(char)) next(); }
+
+	function eof() {
+		if (char === undefined) { return { type: 'EOF' } } else return null;
+	}
+
+	function lexchar(ch) { if (char === ch) { next(); return { type: ch } } else return null; }
+	function lexchar(list) { let res = list.includes(char) ? { type: char } : null; if (res) next(); return res; }
+
+	for (; ;) {
+		white();
+		let token = number() ?? listchar() ?? nolist() ?? eof();
+		if (token) { yield token; if (token.type == 'EOF') break; }
+		else { yield `unexpected: "${char}" at ${file}:${line}:${column}`; next(); }
 	}
 }
 

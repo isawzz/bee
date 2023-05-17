@@ -1,6 +1,8 @@
-7574 334 2
+7574 +334+ 2
 12
-faChar
+'das ist ein string'
+'das ist ein
+multipline string'
 
 
 
