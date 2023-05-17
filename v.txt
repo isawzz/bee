@@ -10324,36 +10324,74 @@ R- anything not containing {}[](): ^[^+]*$
 R- match eny string not containing '+': ^[^+]*$
 R- match any string: [\s\S]*
 R- match anything except newlines: .*
-949: *6:47 AM 5/15/2023-
+949: *6:47 AM 5/15/2023-7:14 PM 5/15/2023
 - find regex js tester!!!
-
-
+1000: *7:14 PM 5/15/2023-7:14 PM 5/15/2023
 - js regex match any character
 - js regex any character except
-
 - richtig cooles zeug!!!
 - cooles zeug!
 shorter
 - you cannot change the past or can you?
 - regex geht nicht weil es '' parsed
-WAY SHORTER!!!
-- open tut
+__________ di 16.5.23 ...airport lib 31.5 7-R
+random entscheidungen! # seir===ageg
+1: *6:53 AM 5/16/2023-6:58 AM 5/16/2023
+2: *6:58 AM 5/16/2023-7:05 AM 5/16/2023
+3: *7:05 AM 5/16/2023-7:10 AM 5/16/2023
+- replace \r\n by \n
+weiter parser!
+4: *7:10 AM 5/16/2023-7:10 AM 5/16/2023
+5: *7:10 AM 5/16/2023-7:17 AM 5/16/2023
+6: *7:17 AM 5/16/2023-7:39 AM 5/16/2023
+7: *7:39 AM 5/16/2023-7:39 AM 5/16/2023
+8: *7:40 AM 5/16/2023-7:40 AM 5/16/2023
+- still newline?!?!
+- no idea what he is doing
+9: *7:47 AM 5/16/2023-7:47 AM 5/16/2023
+10: *7:47 AM 5/16/2023-7:51 AM 5/16/2023
+11: *7:51 AM 5/16/2023-7:53 AM 5/16/2023
+- route_path_text
+- read from a file in html
+12: *7:53 AM 5/16/2023-8:09 AM 5/16/2023
+- read in nodejs
+call with: nodemon -q js.js
+13: *8:10 AM 5/16/2023-8:25 AM 5/16/2023
+14: *8:25 AM 5/16/2023-8:25 AM 5/16/2023
+15: *8:25 AM 5/16/2023-8:25 AM 5/16/2023
+16: *8:28 AM 5/16/2023-8:34 AM 5/16/2023
+17: *8:34 AM 5/16/2023-8:36 AM 5/16/2023
+18: *8:36 AM 5/16/2023-8:50 AM 5/16/2023
+19: *8:50 AM 5/16/2023-9:00 AM 5/16/2023
+20: *9:00 AM 5/16/2023-9:01 AM 5/16/2023
+21: *9:01 AM 5/16/2023-8:11 PM 5/16/2023
+__________ mi 17.5.23 ...airport lib 31.5 7-R
+50: *8:11 PM 5/16/2023-6:53 AM 5/17/2023
+51: *6:53 AM 5/17/2023-6:55 AM 5/17/2023
+- probier ob es auch geht wenn ich es zu js rename JA
+52: *6:55 AM 5/17/2023-6:55 AM 5/17/2023
+53: *6:55 AM 5/17/2023-6:56 AM 5/17/2023
+54: *6:56 AM 5/17/2023-6:57 AM 5/17/2023
+55: *6:57 AM 5/17/2023-
+- open .gitignore
+- ich brauch ein other included in git!
+- remove package.json und lexer.cjs
+
+- doc: working with EJS vs CommonJS!!!!!!!!
+- how to import from a cjs file node js
+- js keyword export in non-module
+- how can I 
+- how to handle file!!!
+- export
+- schon sehr cool!
 
 
 
 
+und jetzt was???
 
 
-
-
-
-
-
-mp100
-
-
-
-
+muell raus
 
 
 

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6"
+  },
+  "include": ["**/*","../**/allfuncs.js","../allfuncs.js","allfuncs.js"],
+  "exclude": ["../*_*","../base/*","../MUELL.js","../test.js"],
+}
