@@ -10426,7 +10426,9 @@ q for quiet! in nodemon -q ja.ja
 78: *8:31 AM 5/17/2023-8:32 AM 5/17/2023
 - find AST explorer: https://astexplorer.net/
 79: *8:32 AM 5/17/2023-8:43 AM 5/17/2023
-80: *8:43 AM 5/17/2023-
+80: *8:43 AM 5/17/2023-7:25 PM 5/17/2023
+__________ do 18.5.23 ...airport lib 31.5 7-R
+100: *7:25 PM 5/17/2023-
 u n i c o r n
 
 
