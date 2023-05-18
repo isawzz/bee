@@ -4,12 +4,12 @@ function isNumeric(ch) {
 	return ch >= '0' && ch <= '9';
 }
 
-function* lexer(file, s) {
+function* lexer(file, s, verbose = false) {
 	//assumes: no \t and no \r in s
-	let cursor = 0, char = s[0];
+	let cursor = 0, char = s[0]; if (verbose) console.log('lexer:', char);
 
 	let line = 1, column = 0;
-	function next() { cursor++; if (char == '\n') { column = 1; line++; } else column++; char = s[cursor]; }
+	function next() { cursor++; if (char == '\n') { column = 1; line++; } else column++; char = s[cursor]; if (verbose) console.log('lexer:', char); }
 	function peek(n) { return s[cursor + n]; }
 
 	let special = '{}[]()\'"`+=/*';
@@ -26,12 +26,13 @@ function* lexer(file, s) {
 		while (isNumeric(char)) { value += char; next(); }
 		return value.length >= 1 ? { type: 'number', value } : null;
 	}
-	function binop() { return lexchar('+-/*'); }
+	function addop() { return lexchar('+-'); }
+	function mulop() { return lexchar('*/%'); }
 
 	function white() { while (/\s/.test(char)) next(); }
 
 	function eof() {
-		if (char === undefined) { return { type: 'EOF' } } else return null;
+		if (char === undefined) { return { type: 'EOF' }; } else return null;
 	}
 
 	function lexchar(ch) { if (char === ch) { next(); return { type: ch } } else return null; }
@@ -39,9 +40,10 @@ function* lexer(file, s) {
 
 	for (; ;) {
 		white();
-		let token = number() ?? listchar() ?? nolist() ?? eof();
-		if (token) { yield token; if (token.type == 'EOF') break; }
-		else { yield `unexpected: "${char}" at ${file}:${line}:${column}`; next(); }
+		let token = number() ?? listchar() ?? nolist();
+		if (token) { yield token; continue; }
+		if (token = eof()) { if (verbose) console.log('EOF!!!', char); yield token; break; }
+		yield `unexpected: "${char}" at ${file}:${line}:${column}`; next();
 	}
 }
 

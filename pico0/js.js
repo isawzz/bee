@@ -3,18 +3,22 @@
 // *** weil lexer.js ein CommonJS ist: ***
 var fs = require('fs');
 var lexer = require('./lexer.js');
+var parser = require('./parser.js');
 
 var input = "123 4134\n -13"; //'hallo'"; //1{2.4 \'[['[]4)()";
 var file = './source.js';
 input = fs.readFileSync(file); //das returned einen weireden Buffer mit bytes
 input = String(input);
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
-input = replaceAllSpecialChars(input,'\t','  ');
-input = replaceAllSpecialChars(input,'\r','');
+input = replaceAllSpecialChars(input, '\t', '  ');
+input = replaceAllSpecialChars(input, '\r', '');
 
 function start() {
-	console.clear(); //console.log('___code\n', input); console.log('start');
-	for (const token of lexer(file,input)) { console.log(token); }
+	console.clear(); console.log('start');//console.log('___code\n', input); 
+
+	const ast = parser(lexer(file, input));
+	let res = outputast(ast); console.log(res)
+	// for (const token of lexer(file,input)) { console.log(token); }
 	// console.log(JSON.stringify([...lexer(input)]));
 	console.log('finish');
 }
@@ -22,9 +26,52 @@ function start() {
 start();
 
 
+function outputast(ast) {
+	let x = JSON.stringify(ast);
+	console.log(x)
+}
+function outputast(ast) {
+	// console.log('typeof ast',typeof ast)
+	if (t == 'object' && ast.type !== undefined) {
+		let s = `${ast.type} (`
+		for (const k of Object.keys(ast)) {
+			let val = ast[k];
+			s += k + ' ';
+			if (typeof val == 'object') outputast(val);
+		}
+		s += ')';
+		console.log(s)
+	}
+}
+function outputast(ast) {
+	let t = typeof ast;
+	if (t == 'string') return ast;
+	if (t == 'object') {
+		let s = `(type:${ast.type}\n`;
+		for (const k of Object.keys(ast)) {
+			if (k == 'type') continue;
+			s += k+':'+outputast(ast[k]) + ' ';
+		}
+		s = s.substring(0, s.length - 1); s += ')'; 
+		return s;
+	}
+	return '';
+}
 
-
-
+function outputast(ast,ind=0) {
+	let t = typeof ast;
+	if (t == 'string') return ast;
+	if (t == 'object') {
+		let s = '\n'+' '.repeat(ind)+`(type:${ast.type} `;
+		for (const k of Object.keys(ast)) {
+			if (k == 'type') continue;
+			s += outputast(ast[k],ind+1) + ' ';
+		}
+		s = s.substring(0, s.length - 1); s += ')'; 
+		return s;
+	}
+	return '';
+}
 
 
 
@@ -314,6 +361,112 @@ function* lexer8(file, s) {
 	}
 }
 
+function parser0(tokens) {
+	//source: '11+22+33+44'
+	let last = null, opn1 = null, opn2 = null, op = null;
+	let result = [];
+	for (const token of tokens) {
+		if (op) {
+			const opn2 = token;
+			result.push({
+				type: 'binop',
+				opn1: opn1,
+				opn2: opn2,
+				op: op
+			});
+		}
+		if ('+-*/'.includes(token.type)) {
+			op = token;
+			opn1 = last;
+		}
+		last = token;
+		//console.log(token)
+	}
+	return result;
+}
+function parser1(tokens) {
+	//source: '11+22'
+	let token = null;
+
+	function next() { token = tokens.next().value; console.log('parser:', token && token.type) }
+
+	function number() {
+		if (token.type == 'number') {
+			const _token = token;
+			next();
+			return _token;
+		} else return null;
+	}
+	function binop() {
+		if ('+-*/'.includes(token.type)) {
+			const _token = token;
+			next();
+			return _token;
+		} else return null;
+	}
+	function binexp() {
+		const left = number();
+		if (!left) return null;
+		const op = binop();
+		if (!op) return null;
+		const right = number();
+		if (!right) return null;
+
+		return { type: 'binexp', left, op, right };
+	}
+
+	next();	//console.log('token', token);
+	const program = binexp()
+	if (!program) {
+		throw new SyntaxError(`unknown token ${token.type}`);
+	}
+
+	return program;
+}
+function parser2(tokens, verbose = false) {
+	let token = null;
+
+	function next() { token = tokens.next().value; if (verbose) console.log('parser:', token && token.type) }
+
+	function numlit() {
+		if (token.type == 'number') {
+			const _token = token;
+			next();
+			return { type: 'numlit', value: _token.value };
+		} else return null;
+	}
+	function oplit() {
+		if (token && '+-*/'.includes(token.type)) {
+			const _token = token;
+			next();
+			return { type: 'oplit', value: _token.type };
+		} else return null;
+	}
+	function binexp() {
+		const head = numlit();
+		if (!head) return null;
+		return bintail(head);
+	}
+	function bintail(head) {
+		const op = oplit();
+		if (!op) return head;
+		const right = binexp();
+		if (!right) {
+			throw new SyntaxError(`right operand missing!!!, got ${token.type}`,);
+		};
+
+		return { type: 'binexp', left: head, op, right };
+	}
+
+	next();	//console.log('token', token);
+	const program = binexp()
+	if (token.type != 'EOF') { throw new SyntaxError(`expected EOF, got ${token.type}`); }
+	//if (!program) { throw new SyntaxError(`unknown token ${token.type}`); }
+	//console.log('token',token)
+	//if (token) { throw new SyntaxError(`unknown token ${token.type}`); }
+
+	return program;
+}
 
 
 
