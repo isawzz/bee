@@ -10446,13 +10446,235 @@ __________ do 18.5.23 ...airport lib 31.5 7-R
 115: *8:25 AM 5/18/2023-8:29 AM 5/18/2023
 116: *8:29 AM 5/18/2023-8:29 AM 5/18/2023
 117: *8:29 AM 5/18/2023-11:19 AM 5/18/2023
-118: *11:19 AM 5/18/2023-
-- der output ist schlecht!!!
+118: *11:19 AM 5/18/2023-11:23 AM 5/18/2023
+119: *11:23 AM 5/18/2023-11:23 AM 5/18/2023
+120: *11:23 AM 5/18/2023-12:38 PM 5/18/2023
+121: *12:38 PM 5/18/2023-12:50 PM 5/18/2023
+122: *12:50 PM 5/18/2023-12:51 PM 5/18/2023
+123: *12:51 PM 5/18/2023-12:52 PM 5/18/2023
+124: *12:52 PM 5/18/2023-12:57 PM 5/18/2023
+125: *12:57 PM 5/18/2023-1:20 PM 5/18/2023
+126: *1:21 PM 5/18/2023-1:30 PM 5/18/2023
+- 2 ways to evaluate a + b + c
+127: *1:30 PM 5/18/2023-8:17 PM 5/18/2023
+__________ fr 19.5.23 ...airport lib 31.5 7-R
+140: *8:18 PM 5/18/2023-5:43 AM 5/19/2023
+141: *5:43 AM 5/19/2023-5:43 AM 5/19/2023
+142: *5:43 AM 5/19/2023-5:45 AM 5/19/2023
+143: *5:45 AM 5/19/2023-5:50 AM 5/19/2023
+144: *5:50 AM 5/19/2023-5:54 AM 5/19/2023
+145: *5:54 AM 5/19/2023-5:59 AM 5/19/2023
+146: *5:59 AM 5/19/2023-6:01 AM 5/19/2023
+147: *6:01 AM 5/19/2023-6:06 AM 5/19/2023
+148: *6:06 AM 5/19/2023-6:06 AM 5/19/2023
 way shorter!!!
-- figure out #
-- ok finally!!!
-- need help!
-- rec!!!
+149: *6:06 AM 5/19/2023-6:08 AM 5/19/2023
+150: *6:08 AM 5/19/2023-6:12 AM 5/19/2023
+- nach bug weitermachen?
+- dont output line col!
+- eof braucht line..
+- EIGENES FUER NULL
+- where bug?
+- eigene error func!!!
+- parser file
+- term vs factor
+- weiter!!!
+151: *6:12 AM 5/19/2023-6:16 AM 5/19/2023
+152: *6:16 AM 5/19/2023-6:18 AM 5/19/2023
+153: *6:18 AM 5/19/2023-6:18 AM 5/19/2023
+154: *6:19 AM 5/19/2023-6:24 AM 5/19/2023
+155: *6:24 AM 5/19/2023-6:32 AM 5/19/2023
+156: *6:32 AM 5/19/2023-6:35 AM 5/19/2023
+157: *6:35 AM 5/19/2023-6:37 AM 5/19/2023
+158: *6:37 AM 5/19/2023-6:38 AM 5/19/2023
+159: *6:38 AM 5/19/2023-6:49 AM 5/19/2023
+160: *6:49 AM 5/19/2023-6:49 AM 5/19/2023
+161: *6:49 AM 5/19/2023-6:55 AM 5/19/2023
+162: *6:55 AM 5/19/2023-6:55 AM 5/19/2023
+163: *6:55 AM 5/19/2023-7:01 AM 5/19/2023
+- wieso updated nicht errCount???
+- ich kann es auch anders machen!!!
+- wo wird line col geadded
+- wieso hat oplit kein line, col???
+- wie wuerde ich eine liste von ints parsen?
+- ok how to deal with this???
+- return errCount as well!
+- log parser!
+- parse forest instead just tree
+- counting bugs
+- output excellent! wenn keine bugs
+- do NOT output start
+164: *7:01 AM 5/19/2023-7:06 AM 5/19/2023
+165: *7:06 AM 5/19/2023-7:09 AM 5/19/2023
+166: *7:10 AM 5/19/2023-7:10 AM 5/19/2023
+167: *7:10 AM 5/19/2023-7:11 AM 5/19/2023
+168: *7:11 AM 5/19/2023-7:14 AM 5/19/2023
+169: *7:14 AM 5/19/2023-7:17 AM 5/19/2023
++++TRICK!!! try console.dir(msg,{depth:null});
+- wie geht emit???
+- sollt jetzt einen { } parsen!
+170: *7:19 AM 5/19/2023-7:19 AM 5/19/2023
+171: *7:19 AM 5/19/2023-7:19 AM 5/19/2023
+=>start next yt: https://www.youtube.com/watch?v=qJaugNyfjEM
+172: *7:19 AM 5/19/2023-7:25 AM 5/19/2023
+173: *7:25 AM 5/19/2023-7:34 AM 5/19/2023
+174: *7:34 AM 5/19/2023-7:34 AM 5/19/2023
+=>use mNode!!!
+- brauch ein node darstellen!object printer
+- console.dir trick ausprobieren!!!
+175: *7:34 AM 5/19/2023-7:35 AM 5/19/2023
+176: *7:35 AM 5/19/2023-8:35 AM 5/19/2023
+177: *8:35 AM 5/19/2023-10:23 AM 5/19/2023
+190: *10:23 AM 5/19/2023-
+- how to grammar?
+__________ sa 20.5.23 ...airport lib 31.5 6-R
+300: *5:59 AM 5/20/2023-6:07 AM 5/20/2023
+301: *6:07 AM 5/20/2023-6:13 AM 5/20/2023
+302: *6:13 AM 5/20/2023-6:14 AM 5/20/2023
+- https://www.youtube.com/watch?v=4m7ubrdbWQU
+moecht eigentlich immer noch prettyprinter machen!
+303: *6:14 AM 5/20/2023-6:20 AM 5/20/2023
+lexer may use regex
+parser uses BNF grammar, usually recursive descent parser
+304: *6:20 AM 5/20/2023-6:23 AM 5/20/2023
+305: *6:23 AM 5/20/2023-6:28 AM 5/20/2023
+exercise: bracket exp
+P ::= '' | ( P ) 
+exercise: BNF grammar for list
+P ::= '' | P P 
+306: *6:28 AM 5/20/2023-6:30 AM 5/20/2023
+307: *6:30 AM 5/20/2023-6:39 AM 5/20/2023
+308: *6:39 AM 5/20/2023-6:41 AM 5/20/2023
+309: *6:41 AM 5/20/2023-6:50 AM 5/20/2023
+310: *6:50 AM 5/20/2023-6:52 AM 5/20/2023
+311: *6:52 AM 5/20/2023-6:56 AM 5/20/2023
+312: *6:56 AM 5/20/2023-7:03 AM 5/20/2023
+313: *7:03 AM 5/20/2023-7:03 AM 5/20/2023
+314: *7:03 AM 5/20/2023-7:11 AM 5/20/2023
+- WAY WHORTER!!!!!
+- schreibe parser ohne tokenizer!
+- weiter!
+dev install!
+=>tester
+=> syntax
+=>OneNote
+production rules:
+P: '' | S 
+315: *7:11 AM 5/20/2023-7:11 AM 5/20/2023
+tut 2: https://www.youtube.com/watch?v=0ZDPvdp2uFk
+316: *7:11 AM 5/20/2023-7:25 AM 5/20/2023
+317: *7:25 AM 5/20/2023-7:35 AM 5/20/2023
+318: *7:35 AM 5/20/2023-7:40 AM 5/20/2023
+319: *7:40 AM 5/20/2023-8:03 AM 5/20/2023
+320: *8:03 AM 5/20/2023-8:03 AM 5/20/2023
+321: *8:03 AM 5/20/2023-8:08 AM 5/20/2023
+322: *8:08 AM 5/20/2023-8:09 AM 5/20/2023
+js generators w3schools
+323: *8:09 AM 5/20/2023-8:12 AM 5/20/2023
+324: *8:12 AM 5/20/2023-8:13 AM 5/20/2023
+325: *8:13 AM 5/20/2023-8:13 AM 5/20/2023
+- braucht ein generator ein while???? JA aber keine list!!!
+326: *8:13 AM 5/20/2023-8:14 AM 5/20/2023
+327: *8:14 AM 5/20/2023-10:42 AM 5/20/2023
+328: *10:43 AM 5/20/2023-10:43 AM 5/20/2023
+329: *10:43 AM 5/20/2023-1:49 PM 5/20/2023
+330: *1:49 PM 5/20/2023-8:08 PM 5/20/2023
+__________ so 21.5.23 ...airport lib 31.5 6-R
+350: *8:08 PM 5/20/2023-7:10 AM 5/21/2023
+351: *7:10 AM 5/21/2023-7:15 AM 5/21/2023
+1. first learn rec descent parsing, 
+2. then learn generators:
+	https://www.w3docs.com/learn-javascript/generators.html 
+3. then combine!
+I just dont understand generators!!!!
+WAY SHORTER!!!
+- was macht der parser?
+- how to get a stream of tokens?
+352: *7:15 AM 5/21/2023-7:19 AM 5/21/2023
+353: *7:19 AM 5/21/2023-7:24 AM 5/21/2023
+354: *7:24 AM 5/21/2023-7:30 AM 5/21/2023
+355: *7:30 AM 5/21/2023-7:39 AM 5/21/2023
+356: *7:39 AM 5/21/2023-7:40 AM 5/21/2023
+357: *7:40 AM 5/21/2023-7:40 AM 5/21/2023
+358: *7:41 AM 5/21/2023-7:41 AM 5/21/2023
+359: *7:42 AM 5/21/2023-7:45 AM 5/21/2023
+360: *7:45 AM 5/21/2023-7:45 AM 5/21/2023
+361: *7:45 AM 5/21/2023-7:49 AM 5/21/2023
+362: *7:49 AM 5/21/2023-7:50 AM 5/21/2023
+363: *7:50 AM 5/21/2023-7:54 AM 5/21/2023
+364: *7:54 AM 5/21/2023-7:57 AM 5/21/2023
+365: *7:57 AM 5/21/2023-8:00 AM 5/21/2023
+366: *8:00 AM 5/21/2023-8:08 AM 5/21/2023
+367: *8:08 AM 5/21/2023-8:14 AM 5/21/2023
+368: *8:14 AM 5/21/2023-8:14 AM 5/21/2023
+- nicht schlecht!!!
+- ast can be list!
+types: eof NB Braced
+- simple rec descent!
+- schau wieder die outputast variants an!
+- nimm den fertigen ast und present it!
+wie mach ich jetzt das code inject?
+superclean!
+source!!!
+- irgendwas!
+DONE
+- test
+- kann ich es mit nur brace und nobrace machen?
+NOBRACE
+369: *8:15 AM 5/21/2023-8:17 AM 5/21/2023
+370: *8:17 AM 5/21/2023-8:17 AM 5/21/2023
+371: *8:17 AM 5/21/2023-8:22 AM 5/21/2023
+372: *8:22 AM 5/21/2023-8:24 AM 5/21/2023
+373: *8:24 AM 5/21/2023-8:39 AM 5/21/2023
+374: *8:39 AM 5/21/2023-8:41 AM 5/21/2023
+375: *8:41 AM 5/21/2023-8:52 AM 5/21/2023
+376: *8:52 AM 5/21/2023-8:53 AM 5/21/2023
+377: *8:53 AM 5/21/2023-8:54 AM 5/21/2023
+378: *8:54 AM 5/21/2023-8:55 AM 5/21/2023
+379: *8:55 AM 5/21/2023-8:55 AM 5/21/2023
+380: *8:55 AM 5/21/2023-8:58 AM 5/21/2023
+381: *8:59 AM 5/21/2023-
+absofort:ufrueh|ugu|v0=100 + restl tag frei
+
+
+- erstmal ohne strings!!! dazu
+- jetzt brauch ich strings!
+1a. comma after brace: keep it with the brace!
+1b. comma inside of NB
+- implement 
+1. comma, 
+2. colon
+3. newlines inside of NB
+- implement max linelength! dazu brauch ich eigentlich newline inside of NB
+- uses allfuncs
+- output tokens
+- wieso bricht er ab???
+- such mir ein minimized code!
+- no newline vor {
+
+
+
+- immer u n i c o r n
+
+
+
+
+
+
+costco tanken WENIG kaufen!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 grammar file!!!
@@ -12663,6 +12885,17 @@ mit sehr viel randomness drin
 
 
 
+Thursday 20 July 2023
+10:30
+VIENNA
+12:00
+FRANKFURT INT.
+Austrian Airlines OS207
+14:05
+FRANKFURT INT.
+15:50
+SEATTLE
+Condor DE2032
 
 
 

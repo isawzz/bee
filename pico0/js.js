@@ -1,26 +1,51 @@
+//#region top stuff
 //usage: nodemon -q js.js
 //import { readFileSync } from 'fs' // import pkg from "./lexer.cjs" // const { lexer } = pkg;
 // *** weil lexer.js ein CommonJS ist: ***
 var fs = require('fs');
 var lexer = require('./lexer.js');
 var parser = require('./parser.js');
+var littleParser = require('./littleParser.js');
 
 var input = "123 4134\n -13"; //'hallo'"; //1{2.4 \'[['[]4)()";
-var file = './source.js';
+var file = './source.js', line = 1, col = 1;
 input = fs.readFileSync(file); //das returned einen weireden Buffer mit bytes
 input = String(input);
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
 input = replaceAllSpecialChars(input, '\t', '  ');
 input = replaceAllSpecialChars(input, '\r', '');
 
+//#endregion
 function start() {
-	console.clear(); console.log('start');//console.log('___code\n', input); 
+	test_littleParser(); //test_parser();
+}
 
-	const ast = parser(lexer(file, input));
-	let res = outputast(ast); console.log(res)
+function test_littleParser() {
+	console.clear();
+	let ast = littleParser(input); //"function dsf sdf() fs{ hasdasjkjgnd 12 }{23}{{}}}"); //12 3 'hallo 43234 \ndas' 14 2455");
+	console.dir(ast, { depth: null });
+}
+
+
+
+
+
+//#region done
+function test_parser() {
+	console.clear(); //console.log('start');//console.log('___code\n', input); 
+
+	const forest = parser(file, lexer(file, input));
+
+	forest.map(x => console.dir(x, { depth: null })); return;
+
+	console.dir(forest, { depth: null }); return;
+
+	for (const ast of forest) {
+		let res = outputast(ast); console.log(res)
+	}
 	// for (const token of lexer(file,input)) { console.log(token); }
 	// console.log(JSON.stringify([...lexer(input)]));
-	console.log('finish');
+	//console.log('finish');
 }
 //console.log('input\n',input)
 start();
@@ -50,29 +75,49 @@ function outputast(ast) {
 		let s = `(type:${ast.type}\n`;
 		for (const k of Object.keys(ast)) {
 			if (k == 'type') continue;
-			s += k+':'+outputast(ast[k]) + ' ';
+			s += k + ':' + outputast(ast[k]) + ' ';
 		}
-		s = s.substring(0, s.length - 1); s += ')'; 
+		s = s.substring(0, s.length - 1); s += ')';
 		return s;
 	}
 	return '';
 }
 
-function outputast(ast,ind=0) {
+function outputast(ast, ind = 0) {
 	let t = typeof ast;
-	if (t == 'string') return ast;
+	if (t == 'string' || t == 'number') return ast;
+	if (ast === null) return '\n*** BUG!!! ***';
 	if (t == 'object') {
-		let s = '\n'+' '.repeat(ind)+`(type:${ast.type} `;
+		//console.log('ast',ast,typeof ast)
+		let s = '\n' + ' '.repeat(ind) + `(type:${ast.type} `;
 		for (const k of Object.keys(ast)) {
-			if (k == 'type') continue;
-			s += outputast(ast[k],ind+1) + ' ';
+			if (['type', 'line', 'column'].includes(k)) continue;
+			s += outputast(ast[k], ind + 1) + ' ';
 		}
-		s = s.substring(0, s.length - 1); s += ')'; 
+		s = s.substring(0, s.length - 1); s += ')';
 		return s;
 	}
 	return '';
 }
 
+function outputast(ast, ind = 0) {
+	let t = typeof ast;
+	if (t == 'string' || t == 'number') return ast;
+	if (ast === null) return `\n*** BUG!!! ${line}:${col} ***`;
+	if (t == 'object') {
+		//if (ast.type == 'oplit') console.log('ast', ast, typeof ast)
+		let s = '\n' + ' '.repeat(ind) + `(type:${ast.type} `;
+		for (const k of Object.keys(ast)) {
+			if (k == 'line') { line = ast.line; continue; }
+			if (k == 'column') { col = ast.column; continue; }
+			if (k == 'type') { continue; }
+			s += outputast(ast[k], ind + 1) + ' ';
+		}
+		s = s.substring(0, s.length - 1); s += ')';
+		return s;
+	}
+	return '';
+}
 
 
 
@@ -89,7 +134,7 @@ function* lexer_trace_throw(s) {
 
 }
 
-//#region old versions
+//versions
 function* lexer0(s) {
 	for (let i = 0; i <= s.length; i++) {
 		let ch = s[i];
@@ -467,7 +512,136 @@ function parser2(tokens, verbose = false) {
 
 	return program;
 }
+function parser3(file, tokens, verbose = false) {
+	let token = null;
 
+	function next() { token = tokens.next().value; if (verbose) console.log('parser:', token && token.type) }
+
+	function numlit() {
+		if (token.type == 'number') {
+			const _token = token;
+			next();
+			//console.log('token',token)
+			return { type: 'numlit', value: _token.value, line: _token.line, column: _token.column };
+		} else return null;
+	}
+	function oplit() {
+		if (token && '+-*/'.includes(token.type)) {
+			const _token = token;
+			next();
+			return { type: 'oplit', value: _token.type };
+		} else return null;
+	}
+	function binexp() {
+		const head = numlit();
+		if (!head) return null;
+		const op = oplit();
+		if (!op) return head;
+		const right = binexp();
+		if (!right) { error('right operand missing!!!'); }
+
+		return { type: 'binexp', left: head, op, right };
+	}
+	function binexpL() {
+		const head = numlit();
+		if (!head) return null;
+
+		return bintail(head);
+	}
+	function bintail(head) {
+		const op = oplit();
+		if (!op) return head;
+		const right = numlit();
+		if (!right) { error('right operand missing!!!'); }
+
+		const node = { type: 'binexpL', left: head, op, right };
+		return bintail(node);
+	}
+	function error(msg) {
+		// throw new SyntaxError(`right operand missing!!!, got ${token.type}`,);
+		console.log('SyntaxError!!!', msg)
+		if (token.type == 'EOF') {
+			console.log('unexpected EOF reached')
+		} else console.log(`got ${token.type} at ${file}:${token.line}:${token.column}`);
+	}
+
+	next();
+	const program = binexp()
+	if (token.type != 'EOF') { error('expected EOF'); }
+
+	return program;
+}
+function parser4(file, tokens, verbose = false) {
+	let token = null;
+
+	function next() { token = tokens.next().value; if (verbose) console.log('parser:', token && token.type) }
+
+	function numlit() {
+		if (token.type == 'number') {
+			const _token = token;
+			next();
+			//console.log('token',token)
+			return { type: 'numlit', value: _token.value, line: _token.line, column: _token.column };
+		} else return null;
+	}
+	function oplit() {
+		if (token && '+-*/'.includes(token.type)) {
+			const _token = token;
+			next();
+			return { type: 'oplit', value: _token.type };
+		} else return null;
+	}
+	function binexp() {
+		const head = numlit();
+		if (!head) return null;
+		const op = oplit();
+		if (!op) return head;
+		const right = binexp();
+		if (!right) { error('right operand missing!!!'); }
+
+		return { type: 'binexp', left: head, op, right };
+	}
+	function binexpL() {
+		const head = numlit();
+		if (!head) return null;
+
+		return bintail(head);
+	}
+	function bintail(head) {
+		const op = oplit();
+		if (!op) return head;
+		const right = numlit();
+		if (!right) { error('right operand missing!!!'); }
+
+		const node = { type: 'binexpL', left: head, op, right };
+		return bintail(node);
+	}
+
+	var errCount = 0;
+	function error(msg) {
+		// throw new SyntaxError(`right operand missing!!!, got ${token.type}`,);
+		console.log(`parse error ${++errCount}!!!`, msg)
+		if (token.type == 'EOF') { console.log('unexpected EOF reached') }
+		else console.log(`  got ${token.type} at ${file}:${token.line}:${token.column}`);
+	}
+
+	next();
+	const forest = [];
+	while (token) {
+		let tree = binexp();
+		forest.push(tree);
+		if (token && token.type != 'EOF') error('>unexpected:')
+		next();
+		if (token && token.type == 'EOF') break;
+	}
+
+	//if (token.type != 'EOF') { error('expected EOF'); }
+	if (errCount > 0) { console.log(`parsing ${errCount} ERRORS!!!`) }
+	else { console.log('parsing ...ok') }
+
+	return forest;
+}
+//#endregion
 
 
 

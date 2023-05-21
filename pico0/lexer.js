@@ -41,7 +41,7 @@ function* lexer(file, s, verbose = false) {
 	for (; ;) {
 		white();
 		let token = number() ?? listchar() ?? nolist();
-		if (token) { yield token; continue; }
+		if (token) { token.line = line; token.column = column; yield token; continue; }
 		if (token = eof()) { if (verbose) console.log('EOF!!!', char); yield token; break; }
 		yield `unexpected: "${char}" at ${file}:${line}:${column}`; next();
 	}
