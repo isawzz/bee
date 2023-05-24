@@ -1716,7 +1716,7 @@ function stringBeforeLast(sFull, sSub) {
 	let parts = sFull.split(sSub);
 	return sFull.substring(0, sFull.length - arrLast(parts).length - 1);
 }
-function test() {
+function test_createcircle() {
 	for (i = 0; i < 10; i++) {
 		circles += 1;
 		createcircle((i * w / 10), "50%", "100", "0", "hsla(" + (i * 36) + ",100%,50%,0.5)", "url(#f" + circles + ")"); createfilter("-50%", "-50%", "200%", "200%", ["feGaussianBlur"], ["stdDeviation", "5"]);

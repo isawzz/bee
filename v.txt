@@ -10633,8 +10633,131 @@ NOBRACE
 378: *8:54 AM 5/21/2023-8:55 AM 5/21/2023
 379: *8:55 AM 5/21/2023-8:55 AM 5/21/2023
 380: *8:55 AM 5/21/2023-8:58 AM 5/21/2023
-381: *8:59 AM 5/21/2023-
+381: *8:59 AM 5/21/2023-9:03 AM 5/21/2023
+382: *9:04 AM 5/21/2023-9:05 AM 5/21/2023
+- lines innerhalb von NB? JA
 absofort:ufrueh|ugu|v0=100 + restl tag frei
+483: *9:05 AM 5/21/2023-9:06 AM 5/21/2023
+484: *9:06 AM 5/21/2023-9:11 AM 5/21/2023
+485: *9:11 AM 5/21/2023-3:43 PM 5/21/2023
+costco, spa, gu swim classes
+494: *3:44 PM 5/21/2023-8:49 PM 5/21/2023
+__________ mo 22.5.23 ...airport lib 31.5 6-14
+500: *8:49 PM 5/21/2023-6:22 AM 5/22/2023
+501: *6:22 AM 5/22/2023-6:35 AM 5/22/2023
+502: *6:35 AM 5/22/2023-6:35 AM 5/22/2023
+else if (lt == ',') res+=',';
+else if (lt == ';') res+=';';
+else if (arrLast(lt)==','||arrLast(lt)==';') res+=lt;
+else res+=lt+';';
+503: *6:35 AM 5/22/2023-6:45 AM 5/22/2023
+504: *6:45 AM 5/22/2023-6:46 AM 5/22/2023
+505: *6:46 AM 5/22/2023-6:46 AM 5/22/2023
+- muss ich zwischen block und object unterscheiden? JA
+- es ist einfach zu simpel!!!!
+506: *6:47 AM 5/22/2023-6:49 AM 5/22/2023
+nach =>, ), class ID ist { block
+nach = , ,, ( ist { object
+507: *6:49 AM 5/22/2023-7:24 AM 5/22/2023
+508: *7:25 AM 5/22/2023-7:25 AM 5/22/2023
+509: *7:25 AM 5/22/2023-6:11 AM 5/23/2023
+__________ mo 23.5.23 ...airport lib 31.5 6-14
+540: *6:11 AM 5/23/2023-6:14 AM 5/23/2023
+541: *6:14 AM 5/23/2023-6:23 AM 5/23/2023
+542: *6:23 AM 5/23/2023-6:33 AM 5/23/2023
+543: *6:33 AM 5/23/2023-6:37 AM 5/23/2023
+544: *6:37 AM 5/23/2023-6:37 AM 5/23/2023
+545: *6:37 AM 5/23/2023-6:40 AM 5/23/2023
+546: *6:40 AM 5/23/2023-6:49 AM 5/23/2023
+547: *6:49 AM 5/23/2023-6:52 AM 5/23/2023
+548: *6:52 AM 5/23/2023-6:52 AM 5/23/2023
+549: *6:52 AM 5/23/2023-7:06 AM 5/23/2023
+550: *7:06 AM 5/23/2023-7:07 AM 5/23/2023
+WAY SHORTER!!!
+551: *7:07 AM 5/23/2023-7:08 AM 5/23/2023
+- beethoven should be clear!!!!
+- check mal ob escaped strings in meinem code sind!
+- ich KANN KEINE ESCAPED STRINGS PARSEN!!! oder doch??????
+- test?????
+s
+way shorter!!!
+- return utilities! 
+{next, peek, peekstr,white,error,lexchar,exceptch,exceptstr,number,string}
+- 31
+- ich war bei den strings!
+=>alle strings raus filtriteren! und replacen!
+was will ich eigentlich?
+else {
+=>check in ganz allfuncs und allglobals welcher char VOR { kommen kann!!!
+552: *7:08 AM 5/23/2023-7:09 AM 5/23/2023
+553: *7:09 AM 5/23/2023-7:11 AM 5/23/2023
+554: *7:11 AM 5/23/2023-7:12 AM 5/23/2023
+555: *7:12 AM 5/23/2023-7:14 AM 5/23/2023
+556: *7:14 AM 5/23/2023-7:16 AM 5/23/2023
+557: *7:16 AM 5/23/2023-7:16 AM 5/23/2023
+- versuch es!
+- es geht!
+- ich muss mit source arbeiten!
+=>boeser bug in string!!!
+=>einfuegen als: @@@KEY@@@
+- separate code from strings, mach string database, save in extra file als yaml, fuege zusammen und schau ob noch functioniert!!!
+558: *7:17 AM 5/23/2023-7:19 AM 5/23/2023
+559: *7:19 AM 5/23/2023-7:22 AM 5/23/2023
+560: *7:22 AM 5/23/2023-7:30 AM 5/23/2023
+- versuch eine closure fuer pico0 zu machen!!!
+allfuncs
+561: *7:30 AM 5/23/2023-7:30 AM 5/23/2023
+1. separate code from strings, 
+562: *7:31 AM 5/23/2023-7:38 AM 5/23/2023
+563: *7:38 AM 5/23/2023-7:46 AM 5/23/2023
+???- was passiert wenn ich \' in einem normalen ` string habe???
+2. mach string database
+save in extra file als yaml,  und schau ob noch functioniert!!!
+564: *7:46 AM 5/23/2023-7:51 AM 5/23/2023
+3. fuege zusammen
+565: *7:51 AM 5/23/2023-7:55 AM 5/23/2023
+566: *7:55 AM 5/23/2023-9:07 AM 5/23/2023
+567: *9:08 AM 5/23/2023-9:08 AM 5/23/2023
+568: *9:08 AM 5/23/2023-
+- kann scheinbar keine leeren strings parsen!!!!
+restart beethoven!!!
+- riesen test mit allfuncs!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NB kann nur am anfang oder nach { oder nach } kommen
+	
 
 
 - erstmal ohne strings!!! dazu

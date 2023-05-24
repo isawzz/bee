@@ -267,10 +267,10 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 			if (nogo.some(x => w.startsWith(x))) continue;
 
 			//remove words within quotes that are functions
-			let idx=text.indexOf(w);
-			let ch = text[idx-1];
-			if (w.startsWith('lsys')) console.log('.....ch',w,ch,sym)
-			if (ch=="'" || '"`'.includes(ch)) continue;
+			let idx = text.indexOf(w);
+			let ch = text[idx - 1];
+			if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
+			if (ch == "'" || '"`'.includes(ch)) continue;
 
 			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
 		}
@@ -318,8 +318,8 @@ async function codebaseFromFiles(files, bykey, bytype, list) {
 		if (nundef(bytype[type])) continue;
 		for (const o of bytype[type]) { if (!isEmptyOrWhiteSpace(o.code)) globtext += o.code + '\n'; }
 	}
-	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key)).filter(x=>!['step','Number'].includes(x));
-	sortedFuncKeys.map(x => functext += isEmptyOrWhiteSpace(bykey[x].code)?'':(bykey[x].code + '\n'));
+	let sortedFuncKeys = sortCaseInsensitive(bytype.function.map(x => x.key)).filter(x => !['step', 'Number'].includes(x));
+	sortedFuncKeys.map(x => functext += isEmptyOrWhiteSpace(bykey[x].code) ? '' : (bykey[x].code + '\n'));
 	sortedFuncKeys.map(x => functextold += (isdef(bykey[x].oldcode) ? bykey[x].oldcode : bykey[x].code) + '\n');
 
 	return [globtext, functext, functextold]
@@ -494,11 +494,9 @@ function cssKeywordType(line) {
 }
 function removeTrailingComments(line) {
 	let icomm = line.indexOf('//');
-	// if (icomm>0)console.log('icomm',icomm);
-	if (icomm <= 0 || ':"`\''.includes(line[icomm - 1])) return line;
+	let ch = line[icomm - 1];
+	if (icomm <= 0 || ch == "'" || ':"`'.includes(ch)) return line;
 	if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
-
-	// console.log('trail',line.substring(0, icomm))
 	return line.substring(0, icomm);
 }
 function ithWord(s, n, allow_) {

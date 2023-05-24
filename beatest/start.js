@@ -120,7 +120,6 @@ function test0_trial1() {
 	let code = getsample(0);
 	code = removeCommentLines(code, '//'); console.log('code', code)
 
-	//Z = consumeOtherThan(code, 0, '{}[]()"`\''); console.log('Z', Z)
 	Z = consumeWhitespace(code, 0); console.log('Z', Z)
 	Z = justOther(code, Z); console.log('Z', Z)
 	let before = code[Z.newIndex]; console.log('before', before);

@@ -2995,7 +2995,7 @@
 				Tokenizer.prototype._read_string_recursive = function (delimiter, allow_unescaped_newlines, start_sub) {
 					var current_char;
 					var pattern;
-					if (delimiter === '\'') {
+					if (delimiter === "\'") {
 						pattern = this.__patterns.single_quote;
 					} else if (delimiter === '"') {
 						pattern = this.__patterns.double_quote;

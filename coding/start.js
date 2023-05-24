@@ -6,7 +6,7 @@ async function start() {
 
 	// let text=await intersectAnimeAndAllfuncs();
 	// let [g, text, old] = await codebaseExtendFromProject('hltest');
-	let [text, css] = await closureFromProject('hltest');
+	let [text, css] = await closureFromProject('pico0');
 
 	// let csstext = await cssbaseExtend('coding');
 	// let csstext = await cssSelectFrom('../base/alibs/transition.css',['keyframes']);

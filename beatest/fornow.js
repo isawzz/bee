@@ -155,8 +155,8 @@ function myParser(code) {
 }
 
 function justOther(code, index) {
-	let arr = '{}[]()"`\'';
-	return consumeWhile(code, index, x => !'{}[]()"`\''.includes(x));
+	let arr = '{}[]()"`';
+	return consumeWhile(code, index, x => !'{}[]()"`'.includes(x) && x!="'");
 }
 function justString(code, index) {
 	given(consume(code, index, '"'), ({ newIndex: index }) => {

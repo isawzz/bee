@@ -17,8 +17,16 @@ input = replaceAllSpecialChars(input, '\r', '');
 
 //#endregion
 function start() {
-	test_littleParser(); //test_parser();
+	testLettersBefore(); //test_littleParser(); //test_parser();
 }
+
+function testLettersBefore(){
+	console.clear();
+	
+}
+
+
+
 
 function test_littleParser() {
 	console.clear();
