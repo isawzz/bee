@@ -833,8 +833,8 @@ async function rest() {
 
 
 async function codebaseExtend(project) {
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
+	let globlist = await codeParseFile('../allg.js');
+	let funclist = await codeParseFile('../allf.js');
 	let list = globlist.concat(funclist); //keylist in order of loading!
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -982,7 +982,7 @@ function collectCode(text, path) {
 	}
 }
 async function populateCODE(dir) {
-	let text = CODE.text = await route_path_text('../allglobals.js') + '\r\n' + await route_path_text('../allfuncs.js');
+	let text = CODE.text = await route_path_text('../allg.js') + '\r\n' + await route_path_text('../allf.js');
 	let keysSorted = CODE.keysSorted = collectCodeKeys(text);
 	let superdi = CODE.superdi = await route_path_yaml_dict(dir + '/z_all.yaml');
 	let justcode = await route_path_yaml_dict(dir + '/z_allcode.yaml');
@@ -1492,7 +1492,7 @@ async function start() {
 	AU.ta.value = 'hallo, na ENDLICH!!!!!!!!!!'
 
 	//let[superdi,keys]=await populateCODE('../base/codebase');
-	let keysglobals = codeParseKeys(await route_path_text('../allglobals.js'));
+	let keysglobals = codeParseKeys(await route_path_text('../allg.js'));
 	console.log('keys', keys);
 
 

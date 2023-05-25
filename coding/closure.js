@@ -135,8 +135,8 @@ function capitalize(s) {
 	return s.charAt(0).toUpperCase() + s.slice(1);
 }
 async function closureFromProject(project) {
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
+	let globlist = await codeParseFile('../allg.js');
+	let funclist = await codeParseFile('../allf.js');
 	let list = globlist.concat(funclist);
 	let bykey = list2dict(list, 'key');
 	let bytype = {};

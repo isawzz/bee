@@ -1,8 +1,8 @@
 async function closureFromProject(project) {
 
 	//get the dicts
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
+	let globlist = await codeParseFile('../allg.js');
+	let funclist = await codeParseFile('../allf.js');
 	let list = globlist.concat(funclist); //keylist in order of loading!
 	let bykey = list2dict(list, 'key');
 	let bytype = {};

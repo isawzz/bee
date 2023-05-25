@@ -1,7 +1,9 @@
 
 async function start() {
-
-	input = await route_path_text('../pico0/allfuncs.js');
+	//codeFormatter('../pico0/allglobals.js');
+}
+async function codeFormatter(path){
+	input = await route_path_text(path);
 	input = replaceAllSpecialChars(input, '\t', '  ');
 	input = replaceAllSpecialChars(input, '\r', '');
 	console.clear();
@@ -127,7 +129,7 @@ function tokenizer(s) {
 	// return {next, peek, peekstr,white,error,lexchar,exceptch,exceptstr,number,string};
 }
 async function testLettersBefore() {
-	//input = await route_path_text('../allglobals.js');
+	//input = await route_path_text('../allg.js');
 	input = await route_path_text('../pico0/allfuncs.js');
 	input = replaceAllSpecialChars(input, '\t', '  ');
 	input = replaceAllSpecialChars(input, '\r', '');

@@ -13938,8 +13938,8 @@ function closestParent(elem, selector) {
 	return null;
 }
 async function closureFromProject(project) {
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
+	let globlist = await codeParseFile('../allg.js');
+	let funclist = await codeParseFile('../allf.js');
 	let list = globlist.concat(funclist);
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -14101,8 +14101,8 @@ function coButtonSidebarDiv_00(dParent, bCaption = '☰', bStyles = { fz: 30 }, 
 	return { button: b, sidebar: sb, div: dContent };
 }
 async function codebaseExtend(project) {
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
+	let globlist = await codeParseFile('../allg.js');
+	let funclist = await codeParseFile('../allf.js');
 	let list = globlist.concat(funclist);
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -14150,8 +14150,8 @@ async function codebaseExtend(project) {
 	return [globtext, functext, functextold]
 }
 async function codebaseExtendFromProject(project) {
-	let globlist = await codeParseFile('../allglobals.js');
-	let funclist = await codeParseFile('../allfuncs.js');
+	let globlist = await codeParseFile('../allg.js');
+	let funclist = await codeParseFile('../allf.js');
 	let list = globlist.concat(funclist);
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -34236,7 +34236,7 @@ function interrupt() {
 async function intersectAnimeAndAllfuncs() {
 	let kws = await extractKeywords('../animex/anime.js', true);
 	console.log('kws', kws); //return;
-	let kws1 = await extractKeywords('../allfuncs.js');
+	let kws1 = await extractKeywords('../allf.js');
 	let inter = intersection(kws, kws1);
 	console.log('keywords', inter);
 	text = inter.join()

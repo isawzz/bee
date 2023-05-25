@@ -37,7 +37,7 @@ async function extractKeywords(path,trimmedlines=false) {
 async function intersectAnimeAndAllfuncs(){
 	let kws = await extractKeywords('../animex/anime.js',true);
 	console.log('kws',kws); //return;
-	let kws1 = await extractKeywords('../allfuncs.js');
+	let kws1 = await extractKeywords('../allf.js');
 	let inter = intersection(kws, kws1);
 	console.log('keywords', inter);
 	text=inter.join()
