@@ -6,38 +6,47 @@ async function start() {
 	input = replaceAllSpecialChars(input, '\r', '');
 	console.clear();
 	//let s = ` hallo das "hallo ist ein "w"ort" aber 123 nicht!`
+	//input = `let match = html && /\bsrc="?([^"\s]+)"?\s*/.exec(html);`
 	let tok = tokutils(input);
-	var tokenlist = [];
+	let prev = null;
+	var tokenlist = []; let rcount = 0;
 	while (tok.get() !== undefined) {
-		let token = tok.code() ?? tok.string();
-		if (token) tokenlist.push(token);
-		else { error('unexpected char ' + tok.get()); tok.next(); }
+		let token = tok.string() ?? tok.code() ?? tok.regexp() ?? tok.comment();
+		if (token === true) { prev = null; continue; } //break;
+		if (token) {
+			if (prev && prev.type == token.type) { console.log('BAD!!!', token, prev, tok.getpos()); break; }
+			prev = token;
+			token.line = tok.getpos().line;
+			tokenlist.push(token);
+			if (token.type == 'R') { rcount++; if (rcount > 1300) break; }
+		} else { error('unexpected char ' + tok.get() + ', pos:' + tok.getpos().line); tok.next(); break; }
 	}
+	//tokenlist.map(x => {if (x.type == 'R') console.log(x)});
+	// tokenlist.map(x => console.log(x));
+	console.log('stopped at', tok.getpos(), tok.peekstr(20))
 	tokenlist.push({ type: 'eof', val: null });
-	tokenlist.map(x => console.log(x));
-	console.log('tokens:',tokenlist.length);
-	//return;
+	// console.log('tokens:', tokenlist.length);
 
-	let code = '', i = 0, slist = [], prev=null; 
+	let code = '', i = 0, slist = [];
 	for (const t of tokenlist) {
-		if (prev == t.type){
-			console.log('FEHLER BEI',t);
-			return;
-		}
-		prev=t.type;
+		// if (prev == t.type) { console.log('FEHLER BEI', t); return; } prev = t.type;
 		if (t.type == 'C') {
 			code += t.val;
-		} else if (t.type == 'S') {
-			code += `'@@@${i++}@@@'`;
-			slist.push(`${t.sep}${t.val}${t.sep}`);
+		// } else if (t.type == 'S') {
+		// 	code += `'@@@${i++}@@@'`;
+		// 	slist.push(`${t.sep}${t.val}${t.sep}`);
+		} else if (t.type == 'R' || t.type == 'S') {
+			i++;
+			code += `${t.sep}${t.val}${t.sep}`;
+			//slist.push(`${t.sep}${t.val}${t.sep}`);
 		} else break;
 	}
-	//downloadAsYaml(slist,'mystrings');
-	//downloadAsText(code,'mycode','js');
 
 	//console.log('code', code)
 	//slist.map(x => console.log(x))
 	console.log('liste hat', slist.length, 'entries')
+	//downloadAsYaml(slist,'mystrings');
+	downloadAsText(code,'mycode','js');
 	return;
 	//zusammenstueckeln!!!!
 	let res = '', rest = code; i = -1;
@@ -56,48 +65,19 @@ async function start() {
 
 	//test_hallo(); //testLettersBefore();//test_littleParser(); //test_newline()	//test_lexer();
 }
-function tokutils(s) {
-	var _cursor = 0, _ch = s[0];
-	function get() { return _ch; }
-	function next() { _ch = s[++_cursor]; }
-	function peek(n) { return s[_cursor + n]; }
-	function peekstr(n) { return s.substring(_cursor, _cursor + n); }
-	function white() { while (/\s/.test(_ch)) next(); return null; }
-	function error(msg) { console.log(msg); }
-	function lexchar(list) { let res = list.includes(_ch) ? { type: _ch, val: _ch } : null; if (res) next(); return res; }
-	function exceptch(list, type) { let val = ''; while (_ch != undefined && !list.includes(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null; }
-	function exceptstr(list, type) {
-		let val = '';
-		while (_ch != undefined && !list.some(x => peekstr(x.length) == x)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null;
-	}
 
-	function number() { let val = ''; while (Number(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: 'N', val: Number(val) } : null; }
-	function string() {
-		if ("'`\"".includes(_ch)) {
-			let sep = _ch;
-			next();
 
-			let val = '';
-			//console.log('sep', sep)
-			while (![undefined, sep].includes(_ch)) {
-				val += _ch;
-				if (_ch == '\\') { console.log('YES'); next(); val += _ch; }
-				next();
-			}
 
-			next();
-			return { type: 'S', val, sep };
-		} else return null;
-	}
-	function code() { return exceptch("'`\"", 'C'); }
-	return { get, next, peek, peekstr, white, error, lexchar, exceptch, exceptstr, code, number, string };
+
+
+function test_replaceAllSafe() {
+	let msg = '"hallo das ist gu"t"""';
+	let msg1 = msg.replace(/"/g, '');
+	let msg2 = replaceAllSafe(msg, '"', '');
+	console.log('msg', msg, msg1 == msg2); return;
+
+
 }
-
-
-
-
-
-
 
 function test_hallo() {
 	let s = '"hallo"';

@@ -1,4 +1,99 @@
 
+function tokutils(s) {
+	var _cursor = 0, _ch = s[0], line = 0, col = 0;
+	function get() { return _ch; }
+	function getpos() { return { line, col }; }
+	function next() { _ch = s[++_cursor]; if (_ch == '\n') { line++; col = 0; } else col++; }
+	function peek(n) { return s[_cursor + n]; }
+	function peekline() { return s.subtring(_cursor, _cursor + s.indexOf('\n')); }
+	function peekstr(n) { return s.substring(_cursor, _cursor + n); }
+	function white() { while (/\s/.test(_ch)) next(); return null; }
+	function error(msg) { console.log(msg); }
+
+	function lexchar(list) { let res = list.includes(_ch) ? { type: _ch, val: _ch } : null; if (res) next(); return res; }
+	function exceptch(list, type) { let val = ''; while (_ch != undefined && !list.includes(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null; }
+	function exceptstr(list, type) {
+		let val = '';
+		while (_ch != undefined && !list.some(x => peekstr(x.length) == x)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null;
+	}
+
+	function isRegexp() {
+		if (_ch != '/') return false;
+		else if (peek(1) == ' ') return false;
+		else if (peek(1) == '=') return false;
+		else if (peek(1) == '/') return false;
+		else {
+			let sub = s.substring(_cursor + 1);
+			let ispace = sub.indexOf(' ');
+			let iend = sub.indexOf('/'); //console.log('sub', sub.substring(0, 20), ispace, iend)
+			if (ispace < iend) { return false; }
+
+		}
+		return true;
+
+	}
+	function isComment(){return _ch=='/' && peek(1)=='/';}
+
+	function code() {
+		let list = ['"', "'", '`'];
+		let val = '';
+		while (_ch != undefined && !list.some(x => peekstr(x.length) == x) && !isRegexp() && !isComment()) {
+			val += _ch; next();
+		}
+		return val.length >= 1 ? { type: 'C', val } : null;
+		//return exceptstr(['"', "'", '`', '/'], 'C'); 
+		//exceptch("'`\"", 'C'); 
+	}
+	function comment() {
+		if (_ch == '/' && peek(1) == '/') {
+			//skip to end of line!
+			while (_ch != '\n') { next(); } //console.log('ch',_ch); 
+			//next();
+			return true;
+		}
+		return null;
+
+	}
+	function number() { let val = ''; while (Number(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: 'N', val: Number(val) } : null; }
+	function regexp() {
+		if (isRegexp()) {
+
+
+			let sep = _ch;
+			next();
+
+			let val = '';
+			//console.log('sep', sep)
+			while (![undefined, sep].includes(_ch)) {
+				val += _ch;
+				if (_ch == '\\') { next(); val += _ch; } //console.log('YES'); }
+				next();
+			}
+
+			next();
+			return { type: 'R', val, sep };
+		} else return null;
+	}
+	function string() {
+		if ("'`\"".includes(_ch)) {
+			let sep = _ch;
+			next();
+
+			let val = '';
+			//console.log('sep', sep)
+			while (![undefined, sep].includes(_ch)) {
+				val += _ch;
+				if (_ch == '\\') { next(); val += _ch; } //console.log('YES'); }
+				next();
+			}
+
+			next();
+			return { type: 'S', val, sep };
+		} else return null;
+	}
+	return { get, getpos, regexp, next, peek, peekstr, peekline, white, error, lexchar, exceptch, exceptstr, comment, code, number, string };
+}
+
 function littleParser(s) {
 	// parses string literals and non-string code
 	//grammar: 
@@ -12,10 +107,10 @@ function littleParser(s) {
 		function error(msg) { console.log(msg); }
 		function lexchar(list) { let res = list.includes(_ch) ? { type: _ch, val: _ch } : null; if (res) next(); return res; }
 		function exceptch(list, type) { let val = ''; while (_ch != undefined && !list.includes(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null; }
-		function exceptstr(list, type) { 
-			let val = ''; 
+		function exceptstr(list, type) {
+			let val = '';
 			let peek = s.substring(_cursor);
-			while (_ch != undefined && !list.includes(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null; 
+			while (_ch != undefined && !list.includes(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: type, val } : null;
 		}
 
 		function number() { let val = ''; while (Number(_ch)) { val += _ch; next(); } return val.length >= 1 ? { type: 'N', val: Number(val) } : null; }
@@ -26,12 +121,12 @@ function littleParser(s) {
 
 				let val = '';
 				//console.log('sep', sep)
-				while (![undefined, sep].includes(_ch)) { 
-					val += _ch; 
-					if (ch == '\\'){next();val += _ch; } 
-					next(); 
+				while (![undefined, sep].includes(_ch)) {
+					val += _ch;
+					if (ch == '\\') { next(); val += _ch; }
+					next();
 				}
-				
+
 				next();
 				return { type: 'S', val };
 			} else return null;
@@ -66,7 +161,7 @@ function littleParser(s) {
 	return parse(); //!YEAH!!!!
 }
 
-if (typeof module !== 'undefined' && module.exports) { module.exports = littleParser; }
+if (typeof module !== 'undefined' && module.exports) { module.exports = tokutils; }
 
 
 function littleParser0(s) {

@@ -368,10 +368,10 @@ function _createDivs(items, ifs, options) {
 			let sShade = '0 0 0 ' + item.textShadowColor;
 			if (options.showPics) {
 				picStyles['text-shadow'] = sShade;
-				picStyles.fg = colorFrom('black', item.contrast); //'#00000080' '#00000030' 
+				picStyles.fg = colorFrom('black', item.contrast);
 			} else {
 				textStyles['text-shadow'] = sShade;
-				textStyles.fg = colorFrom('black', item.contrast); //'#00000080' '#00000030' 
+				textStyles.fg = colorFrom('black', item.contrast);
 			}
 		}
 		if (options.showPics) {
@@ -7740,7 +7740,7 @@ function ari_pre_action() {
 				if (check_if_church()) ari_start_church_stage(); else ari_start_action_stage();
 			} else select_add_items(ui_get_hand_items(uplayer), post_stall_selected, 'must select your stall'); break;
 		case 'stall selection': select_add_items(ui_get_hand_items(uplayer), post_stall_selected, 'must select cards for stall'); break;
-		case 'church': select_add_items(ui_get_hand_and_stall_items(uplayer), post_tithe, `must select cards to tithe ${isdef(fen.tithemin) ? `(current minimum is ${fen.tithemin})` : ''}`, 1, 100); break;
+		case 'church': select_add_items(ui_get_hand_and_stall_items(uplayer), post_tithe, `must select cards to tithe ${isdef(fen.tithemin) ? ("(current minimum is "+fen.tithemin+")") : ''}`, 1, 100); break;
 		case 'church_minplayer_tithe_add': select_add_items(ui_get_hand_and_stall_items(uplayer), post_tithe_minimum, `must select cards to reach at least ${fen.tithe_minimum}`, 1, 100); break;
 		case 'church_minplayer_tithe_downgrade': select_add_items(ui_get_building_items(uplayer, A.payment), process_downgrade, 'must select a building to downgrade', 1, 1); break;
 		case 'church_minplayer_tithe': console.log('NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO');
@@ -12952,7 +12952,7 @@ async function challenge1() {
 		zoom: 10
 	}
 	var map = new L.map('map', mapOptions);
-	var layer = new L.TileLayer(''); //http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+	var layer = new L.TileLayer('');
 	map.addLayer(layer);
 	geojson = L.geoJson(data, {}).addTo(map);
 	for (const f of data.features) {
@@ -67024,40 +67024,6 @@ function testDec() {
 	console.log('x', hexStringToDecimal('1F499'));
 	console.log('x', hexStringToDecimal('1F981'));
 }
-async function testDirList() {
-	let x = await (await fetch('/RSG/js')).text();
-	while (!isEmpty(x)) {
-		word = stringBefore(x, '"');
-		console.log('______________word:', word);
-		x = stringAfter(x, '<a href="/');
-	}
-	return;
-	var regexp = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
-	var match, files = [];
-	let max = 5;
-	while ((match = regexp.exec(x)) != null) {
-		files.push(match.index);
-		max -= 1; if (max <= 0) break;
-	}
-	console.log('________________', files);
-	return;
-	var request = new XMLHttpRequest();
-	request.open('GET', '/RSG/', true);
-	let resp;
-	request.onload = function () {
-		if (request.status >= 200 && request.status < 400) {
-			resp = request.responseText;
-		}
-	};
-	request.send();
-	let directory_listing = resp;
-	var regexp = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
-	var match, files = [];
-	while ((match = regexp.exec(resp)) != null) {
-		files.push(match.index);
-	}
-	console.log(files);
-}
 async function testDocumentFile() {
 	let akku = await documentFile('/RSG/js/done/docs/docfile.js');
 	let keys = Object.keys(akku);
@@ -68664,7 +68630,7 @@ function toHTMLString(msg) {
 	msg = msg.replace(/(?:\r\n|\r|\n)/g, '<br>');
 	msg = msg.replace('\\n', '<br>');
 	msg = msg.replace(/\\n/g, '<br>');
-	msg = msg.replace(/"/g, '');
+	msg = replaceAllSafe(msg, '"', '');
 	return msg.trim();
 }
 function toLetterArray(s) { return toLetterList(s); }

@@ -1,13 +1,9 @@
-function mMenuLine(dParent, styles) {
-	let menuStyles = isdef(styles) ? styles : { bg: wblack, alpha: .65 };
-	let dMenu = mDiv(dParent, menuStyles);
-	let s = "hallo 'das' ist \"ein\" `langer` string!!!"
-	return dMenu;
-}
-function mMenu(dParent, styles) {
-	let menuStyles = isdef(styles) ? styles : { bg: wblack, alpha: .65 };
-	let dMenu = mDiv(dParent, menuStyles);
-	let s = "noch einer!!!```";
-	let x = `hallo \'weired\'`;
-	return dMenu;
-}
+let x = '12';
+let y = 13;
+let s1 = '\n\n \n \n hallo\n\n\n\n';
+return 'hhh'
+
+let x = 12;
+let y = 13;
+
+function isLetter(s) { return /^[a-zA-Z]$/i.test(s); }

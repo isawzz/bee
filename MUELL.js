@@ -1,4 +1,24 @@
 
+function string() {
+	function nextInString(sep) { next(); } //_ch = s[++_cursor]; if (sep == '`' && _ch == '\n') { line++; col = 0; } else col++; }
+
+	if ("'`\"".includes(_ch)) {
+		let sep = _ch;
+		next();
+
+		let val = '';
+		//console.log('sep', sep)
+		while (![undefined, sep].includes(_ch)) {
+			val += _ch;
+			if (_ch == '\\') { nextInString(sep); val += _ch; } //console.log('YES'); }
+			nextInString(sep);
+		}
+
+		next();
+		return { type: 'S', val, sep };
+	} else return null;
+}
+
 
 
 function consumeBraces(code, index, fwohl) { return consumeDoubleDiff(code, index, '{', '}', fwohl); }
