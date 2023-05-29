@@ -10791,10 +10791,245 @@ __________ do 25.5.23 ...airport lib 31.5 6-14
 697: *8:20 AM 5/25/2023-8:26 AM 5/25/2023
 698: *8:26 AM 5/25/2023-8:28 AM 5/25/2023
 699: *8:28 AM 5/25/2023-8:29 AM 5/25/2023
-700: *8:29 AM 5/25/2023-
-
-2329
+700: *8:29 AM 5/25/2023-8:31 AM 5/25/2023
+701: *8:31 AM 5/25/2023-8:36 AM 5/25/2023
+702: *8:36 AM 5/25/2023-8:39 AM 5/25/2023
+703: *8:39 AM 5/25/2023-8:48 AM 5/25/2023
+704: *8:48 AM 5/25/2023-11:06 AM 5/25/2023
+705: *11:06 AM 5/25/2023-8:46 PM 5/25/2023
+- allfuncs => allf
+- removes newline after comment!!!!!
+- mach ein araxis merge compare!
 - ersetze strings aber lasse regexp!
+706: *8:46 PM 5/25/2023-8:47 PM 5/25/2023
+__________ fr 26.5.23 ...airport lib 31.5 6-14
+750: *8:47 PM 5/25/2023-6:43 AM 5/26/2023
+751: *6:49 AM 5/26/2023-6:50 AM 5/26/2023
+752: *6:50 AM 5/26/2023-6:58 AM 5/26/2023
+753: *6:58 AM 5/26/2023-7:03 AM 5/26/2023
+754: *7:03 AM 5/26/2023-7:06 AM 5/26/2023
+755: *7:06 AM 5/26/2023-7:09 AM 5/26/2023
+756: *7:10 AM 5/26/2023-7:12 AM 5/26/2023
+757: *7:12 AM 5/26/2023-7:16 AM 5/26/2023
+758: *7:16 AM 5/26/2023-7:18 AM 5/26/2023
+759: *7:19 AM 5/26/2023-7:25 AM 5/26/2023
+ufrueh!!!
+859: *7:25 AM 5/26/2023-7:26 AM 5/26/2023
+mBy('code0').innerHTML = `<xmp>`+code+`</xmp>`;
+innerHTML
+<pre>
+    &lt; div&gt;
+        This is <div> Tag is use to grouping the html elements.
+    &lt; /div&gt;
+    &lt; span&gt;
+        This is <div> Tag is use to formatting the text .
+    &lt; /span&gt;
+</pre>
+- how to present html text in a pre without interpreting it? xmp!!!!
+860: *7:26 AM 5/26/2023-7:28 AM 5/26/2023
+861: *7:28 AM 5/26/2023-7:31 AM 5/26/2023
+862: *7:31 AM 5/26/2023-7:38 AM 5/26/2023
+863: *7:38 AM 5/26/2023-7:47 AM 5/26/2023
+__________ sa 27.5.23 ...airport lib 31.5 6-14
+864: *7:47 AM 5/26/2023-8:48 PM 5/26/2023
+920: *8:48 PM 5/26/2023-6:31 AM 5/27/2023
+921: *6:31 AM 5/27/2023-6:38 AM 5/27/2023
+922: *6:38 AM 5/27/2023-7:29 AM 5/27/2023
+930: *7:29 AM 5/27/2023-7:32 AM 5/27/2023
+931: *7:32 AM 5/27/2023-7:35 AM 5/27/2023
+932: *7:35 AM 5/27/2023-7:46 AM 5/27/2023
+933: *7:46 AM 5/27/2023-7:48 AM 5/27/2023
+934: *7:48 AM 5/27/2023-7:51 AM 5/27/2023
+935: *7:51 AM 5/27/2023-8:04 AM 5/27/2023
+936: *8:04 AM 5/27/2023-6:39 AM 5/28/2023
+__________ so 28.5.23 ...airport lib 31.5 6-14
+980: *6:39 AM 5/28/2023-6:43 AM 5/28/2023
+- portal
+100/4
+100/7
+981: *6:43 AM 5/28/2023-6:44 AM 5/28/2023
+982: *6:44 AM 5/28/2023-6:45 AM 5/28/2023
+983: *6:45 AM 5/28/2023-6:47 AM 5/28/2023
+984: *6:47 AM 5/28/2023-6:55 AM 5/28/2023
+985: *6:55 AM 5/28/2023-6:58 AM 5/28/2023
+986: *6:58 AM 5/28/2023-7:00 AM 5/28/2023
+987: *7:00 AM 5/28/2023-7:03 AM 5/28/2023
+988: *7:03 AM 5/28/2023-7:09 AM 5/28/2023
+989: *7:09 AM 5/28/2023-7:15 AM 5/28/2023
+990: *7:15 AM 5/28/2023-7:21 AM 5/28/2023
+991: *7:21 AM 5/28/2023-7:25 AM 5/28/2023
+- aber erst checke ich noch die cols
+6 3
+9 4
+12 5
+15 6
+18 7
+ab 8 muss ich rechnen!
+2 in der mitte (-135-35)/2
+heisst: brauche: 3: d=100/2
+9 links: t 
+d=100/3 brauche 4 aussen
+12: brauche 5
+d=100/4
+xs: -87.501 -35 17.501
+upper ys: -135 .. -35 
+lower ys: -135 .. 
+n  cols		yl ym 
+2 = 020 	t/t
+3 = 030		   tb/t
+4 = 202		t/t
+5 = 212		t/t b
+992: *7:26 AM 5/28/2023-7:35 AM 5/28/2023
+6-8 = 303 .. 323tb/t 
+9-11 414 .. 434 
+12-14 = 525 545 
+15-17 = 636 656
+18-20 = 747 767
+21+ nur noch die zahl in der mitte! 
+ich wess dass n n-1 n max ist fuer 
+993: *7:35 AM 5/28/2023-7:40 AM 5/28/2023
+994: *7:40 AM 5/28/2023-7:43 AM 5/28/2023
+995: *7:43 AM 5/28/2023-7:46 AM 5/28/2023
+996: *7:46 AM 5/28/2023-7:52 AM 5/28/2023
+997: *7:52 AM 5/28/2023-8:05 AM 5/28/2023
+998: *8:05 AM 5/28/2023-8:20 AM 5/28/2023
+999: *8:20 AM 5/28/2023-8:20 AM 5/28/2023
+WAY SHORTER!!!
+- way shorter!!!!
+1000: *8:20 AM 5/28/2023-8:31 AM 5/28/2023
+1: *8:50 AM 5/28/2023-8:57 AM 5/28/2023
+2: *8:58 AM 5/28/2023-9:09 AM 5/28/2023
+3: *9:09 AM 5/28/2023-9:22 AM 5/28/2023
+4: *9:22 AM 5/28/2023-9:22 AM 5/28/2023
+5: *9:22 AM 5/28/2023-10:39 AM 5/28/2023
+6: *10:39 AM 5/28/2023-10:40 AM 5/28/2023
+7: *10:40 AM 5/28/2023-11:10 AM 5/28/2023
+8: *11:10 AM 5/28/2023-11:31 AM 5/28/2023
+9: *11:31 AM 5/28/2023-11:56 AM 5/28/2023
+10: *11:56 AM 5/28/2023-12:42 PM 5/28/2023
+- kann es huebscher machen!!! ab num>11
+- genau dann wenn l%2 == 0 und m%2 == 1
+- zweite col! same d aber:
+way shorter!!!
+- zuerst mach aeussere col!
+- cols werden jetzt 1,2,or 3
+- pos=center	
+- print 2tes
+- was heisst print?
+print le,top mi,top+d re,top
+11: *12:42 PM 5/28/2023-7:07 PM 5/28/2023
+12: *7:07 PM 5/28/2023-7:07 PM 5/28/2023
+__________ mo 29.5.23 ...airport lib 31.5 6-14
+Game Name: Animal Numbers
+
+Objective: Be the first player to collect a predetermined number of sets (e.g., 5 sets) of matching animal-symbol cards with a sum of 20.
+
+Materials:
+A deck of 20 cards with numbers 1 to 20 printed on them
+Each card also has one of the following animal symbols: cat, dog, fish, bird, or elephant
+The distribution of animal symbols should be such that at least one set of cards with each symbol sums to 20
+
+Setup:
+Shuffle the deck of cards.
+Deal 5 cards to each player.
+Place the remaining cards face down in the center of the playing area to form a draw pile.
+Turn the top card of the draw pile face up to start a discard pile.
+
+Gameplay:
+The player to the left of the dealer goes first and play proceeds clockwise.
+On a player's turn, they can choose to draw the top card from either the draw pile or the discard pile.
+After drawing, the player can choose to lay down a set of cards with the same animal symbol and a sum of 20. If they do so, they place the set face up in front of them.
+The player ends their turn by discarding one card from their hand to the discard pile.
+The game continues with each player taking turns to draw, lay down sets, and discard.
+If the draw pile runs out, shuffle the discard pile (except the top card) to create a new draw pile.
+
+Winning:
+The first player to collect the predetermined number of sets (e.g., 5 sets) wins the game.
+If no player can reach the predetermined number of sets and all players agree, the player with the most sets wins.
+
+Variations:
+To make the game more challenging, you can require that the sum of the cards in a set must be a multiple of 10 (e.g., 10, 20, or 30).
+You can also introduce special action cards, such as "Steal a Set" or "Swap Hands", to add more strategic elements to the game.
+70: *7:07 PM 5/28/2023-7:07 PM 5/28/2023
+71: *7:08 PM 5/28/2023-8:51 PM 5/28/2023
+72: *8:51 PM 5/28/2023-6:51 AM 5/29/2023
+73: *6:51 AM 5/29/2023-6:53 AM 5/29/2023
+74: *6:53 AM 5/29/2023-6:54 AM 5/29/2023
+75: *6:54 AM 5/29/2023-6:55 AM 5/29/2023
+76: *6:55 AM 5/29/2023-6:59 AM 5/29/2023
+77: *6:59 AM 5/29/2023-7:03 AM 5/29/2023
+78: &7:03 AM 5/29/2023-7:43 AM 5/29/2023
+80: *7:43 AM 5/29/2023-7:43 AM 5/29/2023
+81: *7:43 AM 5/29/2023-7:49 AM 5/29/2023
+82: *7:49 AM 5/29/2023-7:50 AM 5/29/2023
+83: *7:50 AM 5/29/2023-8:05 AM 5/29/2023
+84: *8:05 AM 5/29/2023-8:07 AM 5/29/2023
+85: *8:08 AM 5/29/2023-8:09 AM 5/29/2023
+86: *8:09 AM 5/29/2023-8:15 AM 5/29/2023
+87: *8:15 AM 5/29/2023-8:17 AM 5/29/2023
+88: *8:17 AM 5/29/2023-8:18 AM 5/29/2023
+89: *8:18 AM 5/29/2023-8:29 AM 5/29/2023
+90: *8:29 AM 5/29/2023-8:29 AM 5/29/2023
+91: *8:29 AM 5/29/2023-8:39 AM 5/29/2023
+92: *8:39 AM 5/29/2023-8:40 AM 5/29/2023
+93: *8:40 AM 5/29/2023-8:53 AM 5/29/2023
+94: *8:53 AM 5/29/2023-8:55 AM 5/29/2023
+95: *8:55 AM 5/29/2023-9:01 AM 5/29/2023
+96: *9:01 AM 5/29/2023-9:28 AM 5/29/2023
+97: *9:28 AM 5/29/2023-
+- brauch die info bei jeder part in res welches kw am anfang war!!!
+goto code: splitAtAnyOf
+versuch: each function on a new line!!!!
+WHY????
+wenn ';' habe, kann ich alle linebreaks rausnehmen!!!
+assume ; placed after each statement!!!
+- mach ein codeFromFile
+- orig code ausgeben!
+- gibt es nicht eine viel bessere art das zu machen?
+- trial 3!
+- WTF???
+- remove semicolon!
+WAY SHORTER!!!
+- in C items muss mutiple white space entfernt werden!!!
+WTF?
+- goto outputcode
+- bei C item wird immer wenn ein \n rausgenommen wird ein ';' eingesetzt ausser last char war ein ';'
+wo war ich insgesamt?
+
+
+trip airport nach hause:
+9:35 am
+directions_walkstart walking from
+Seattle Tacoma International Airport, Seattle/Seatac
+0 min (0.0 miles)
+9:35 am
+directions_bus
+atStop P4080 @ SeaTac Airport Terminal - Bay 2
+Take 560 560E BELLEVUE via SEA-TAC AIRPORT (Sound Transit) from this stop.
+Exit at 67654 @ Bellevue Transit Center BAY 7 (WB)
+10:17 am
+directions_walkstart walking from
+Stop 67654 @ Bellevue Transit Center BAY 7 (WB)
+3 min (0.1 miles)
+10:30 am
+directions_bus
+atStop 68003 @ Bellevue Transit Center BAY 3 (EB)
+Take B Line RapidRide B Line To REDMOND TC (Metro) from this stop.
+Exit at 73391 @ 148th Ave Ne & Ne Old Redmond Rd (NB)
+10:55 am
+directions_walkstart walking from
+Stop 73391 @ 148th Ave Ne & Ne Old Redmond Rd (NB)
+6 min (0.2 miles)
+11:47 am
+directions_bus
+atStop 73380 @ 148th Ave Ne & Ne 66th St (NB)
+Take 221 221 EDUCATION HILL (Metro) from this stop.
+Exit at 74152 @ Ne 104th St & 170th Ave Ne (WB)
+12:11 pm
+directions_walkstart walking from
+Stop 74152 @ Ne 104th St & 170th Ave Ne (WB)
+5 min (0.2 miles)
+You will have arrived at your final destinationArrive at Current Location
 
 
 
@@ -10806,6 +11041,95 @@ __________ do 25.5.23 ...airport lib 31.5 6-14
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- bei 12 ist es so wie bei 6
+ungerade anzahl r,l
+
+- bis zur mitte schaut es nach oben
+- die mitte schaut auch nach oben!
+
+
+
+
+
+
+
+
+
+
+
+
+
+- die mitte ist -35
+- aeusserstes -135
+
+100/
+35,68,102,135
+- 12
+
+- 10
+
+- mach mal das Karte.card
+- Braced
+- brauch die grammar!!!
+- mach einen ast!
+- add params to codeToTokens
+- jetzt eine code erweiterung machen?
+
+
+
+
+
+
+
+
+
+airport: 150!
 
 
 

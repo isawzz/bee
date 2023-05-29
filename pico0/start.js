@@ -1,8 +1,113 @@
 
 async function start() {
-	//codeFormatter('../pico0/allglobals.js');
+
+	testPP2(); //testPP1_code_nobrace(); //testPP0(); //startest_cards();
+
 }
-async function codeFormatter(path){
+//#region cardtests
+async function startest_cards() {
+	await load_syms(); //console.log('SymKeys',SymKeys)
+	let k = rChoose(KeySets.animals);
+	dTable = mBy('div0'); mFlexWrap(dTable); mStyle(dTable, { gap: 10 });
+	test_calcSpecial(k); //test_primitive(k); //test_vicuna();
+}
+function test_calcSpecial(k) {
+	for (const num of range(2, 30)) {
+		let cols = calcSpecialCols(num);
+		//let sz = 70 -  (num>=9?Math.ceil((num-8)/3)*9 : 0);
+		let sz = 70;
+		if (num >= 12) {
+			let wieOft3 = Math.ceil((num - 11) / 3);
+			for (let i of range(wieOft3)) sz *= .9;
+			//console.log(num, wieOft3, sz);
+		}
+		let pos = calcSpecialPos(num, cols, sz);
+		//console.log(pos);
+		let c = cardGetObject(rChoose(KeySets.life), num, pos, sz);
+		mAppend(dTable, iDiv(c));
+		//console.log(num, cols, pos)
+	}
+}
+function test_vicuna() {
+	// Usage:
+	const cardWidth = 100; // Example card width
+	const cardHeight = 150; // Example card height
+	//const symbolCount = 9; // Example number of symbols on a card
+	for (const i of range(2, 20)) {
+		const positions = calculateSymbolPositions(cardWidth, cardHeight, i);
+		//console.log(positions);
+		let dp = mDiv(dTable, { w: cardWidth, h: cardHeight, border: 'black', position: 'relative' });
+		let sz = 10;
+		for (const pos of positions) {
+			let x = mDiv(dp, { bg: 'red', position: 'absolute', top: pos.y - sz / 2, left: pos.x - sz / 2, w: sz, h: sz })
+		}
+
+		// let x = cardGetSpecial(k, 120, i);
+		// mAppend(dTable, iDiv(x))
+	}
+}
+function test_primitive(k) {
+	for (const i of range(2, 11)) {
+		let x = cardGetPrimitive(k, 120, i);
+		mAppend(dTable, iDiv(x))
+	}
+	//testPP1_code_nobrace();//testPP0(); //testCodeFormatter('../pico0/allglobals.js');	//test_hallo(); //testLettersBefore();//test_littleParser(); //test_newline()	//test_lexer();
+}
+//#endregion
+async function testPP2() {
+	let s = await codeFromFile('../pico0/allf.js');
+	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
+	//remove all '\n'
+	//remove all '  '
+	let lines = s.split('\n');
+	let s1 = '';
+	for (const line of lines) {
+		let lt = line.trim();
+		let parts = lt.split('( '); lt = parts.join('(');
+		s1 += lt;
+	}
+	parts = s1.split('='); s1 = parts.join(' = ');
+	parts = s1.split(';'); s1 = parts.join('; ');
+	parts = s1.split(' '); s1 = parts.filter(x => x.trim().length >= 1).join(' ');
+
+	mBy('code1').innerHTML = `<xmp>` + s1 + `</xmp>`;
+}
+function muell() {
+	let tokenlist = codeToTokens(s, true);
+	//console.log('tokens', tokenlist)
+	let ast = codeAstFromTokens(tokenlist);
+	console.log('ast', ast);
+	let code = codePP1(tokenlist, ast);
+	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
+	console.log('DONE!');
+	//jetzt brauch ich pp! aber wie?
+	// let code = codeFromTokens(tokenlist);
+}
+async function testPP1_code_nobrace() {
+	let s = await codeFromFile('../pico0/source.js');
+	let tokenlist = codeToTokens(s, true);
+	//console.log('tokens', tokenlist)
+	let ast = codeAstFromTokens(tokenlist);
+	console.log('ast', ast);
+	let code = codePP1(tokenlist, ast);
+	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
+	console.log('DONE!');
+	//jetzt brauch ich pp! aber wie?
+	// let code = codeFromTokens(tokenlist);
+}
+async function testPP0() {
+	let s = await codeFromFile('../pico0/allf.js');
+	let tokenlist = codeToTokens(s, true);
+	//let tokenlist = await codeToTokens('../pico0/allf.js');
+
+	let code = codeFromTokens(tokenlist);
+	//console.log(code)
+	//downloadAsText(code,'mycode','js');
+	// mBy('code0').innerHTML = `&lt;div&gt;`+code+`&lt;/div&gt;`;
+	mBy('code0').innerHTML = `<xmp>` + code + `</xmp>`;
+	console.log('DONE!')
+}
+async function testCodeFormatter(path) {
 	input = await route_path_text(path);
 	input = replaceAllSpecialChars(input, '\t', '  ');
 	input = replaceAllSpecialChars(input, '\r', '');
@@ -20,7 +125,7 @@ async function codeFormatter(path){
 			prev = token;
 			token.line = tok.getpos().line;
 			tokenlist.push(token);
-			if (token.type == 'R') { rcount++; if (rcount > 1300) break; }
+			//if (token.type == 'R') { rcount++; if (rcount > 1300) break; }
 		} else { error('unexpected char ' + tok.get() + ', pos:' + tok.getpos().line); tok.next(); break; }
 	}
 	//tokenlist.map(x => {if (x.type == 'R') console.log(x)});
@@ -34,9 +139,9 @@ async function codeFormatter(path){
 		// if (prev == t.type) { console.log('FEHLER BEI', t); return; } prev = t.type;
 		if (t.type == 'C') {
 			code += t.val;
-		// } else if (t.type == 'S') {
-		// 	code += `'@@@${i++}@@@'`;
-		// 	slist.push(`${t.sep}${t.val}${t.sep}`);
+			// } else if (t.type == 'S') {
+			// 	code += `'@@@${i++}@@@'`;
+			// 	slist.push(`${t.sep}${t.val}${t.sep}`);
 		} else if (t.type == 'R' || t.type == 'S') {
 			i++;
 			code += `${t.sep}${t.val}${t.sep}`;
@@ -48,7 +153,7 @@ async function codeFormatter(path){
 	//slist.map(x => console.log(x))
 	console.log('liste hat', slist.length, 'entries')
 	//downloadAsYaml(slist,'mystrings');
-	downloadAsText(code,'mycode','js');
+	downloadAsText(code, 'mycode', 'js');
 	return;
 	//zusammenstueckeln!!!!
 	let res = '', rest = code; i = -1;
@@ -67,11 +172,6 @@ async function codeFormatter(path){
 
 	//test_hallo(); //testLettersBefore();//test_littleParser(); //test_newline()	//test_lexer();
 }
-
-
-
-
-
 function test_replaceAllSafe() {
 	let msg = '"hallo das ist gu"t"""';
 	let msg1 = msg.replace(/"/g, '');
@@ -80,7 +180,6 @@ function test_replaceAllSafe() {
 
 
 }
-
 function test_hallo() {
 	let s = '"hallo"';
 	tokens = tokenizer(s); console.log('tokens', tokens)

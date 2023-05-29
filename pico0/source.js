@@ -1,9 +1,7 @@
-let x = '12';
-let y = 13;
-let s1 = '\n\n \n \n hallo\n\n\n\n';
-return 'hhh'
-
-let x = 12;
-let y = 13;
-
-function isLetter(s) { return /^[a-zA-Z]$/i.test(s); }
+async function load_config_new() {      Config 
+	= await route_path_yaml_dict('../y/config.yaml');
+  let data          = await route_path_yaml_dict(
+		'../y/appdata.yaml');  for (const k in data) //das ist echt lustig!!!!!!!!!!
+	{    Config.apps[k].data = data[k];
+    }
+}

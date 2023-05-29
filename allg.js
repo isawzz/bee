@@ -9828,9 +9828,48 @@ class Karte {
 		if (nundef(fg)) fg = sym == 'spades' || sym == 'clubs' ? 'black' : sym == 'hearts' || sym == 'diamonds' ? 'red' : chooseRandom(Object.keys(ColorNames));
 		let cardKey = info.family == 'emoNoto' ? 'card0' : 'card52';
 		let basic = {
+			card2: `
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 
+        face="${info.E}${n}" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
+          <symbol id="${fg}${n}" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
+            <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="${fg}" style="font-size:1000px;font-weight:bold;">${n}</text>        
+          </symbol>
+          <symbol id="${info.E}" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
+            <text text-anchor="middle" dominant-baseline="middle" x="0" y="-150" fill="red" style="font-size:750px;font-family:${info.family};">${info.text}</text>        
+          </symbol>
+          <rect width="239" height="335" x="-119.5" y="-167.5" rx="12" ry="12" fill="white" stroke="black"></rect>
+          <use xlink:href="#${fg}${n}" height="42" x="-118" y="-156"></use>
+          <use xlink:href="#${info.E}" height="26.769" x="-111.784" y="-119"></use>
+          <use xlink:href="#${info.E}" height="70" x="-35" y="-135.588"></use>
+          <g transform="rotate(180)">
+            <use xlink:href="#${fg}${n}" height="42" x="-118" y="-156"></use>
+            <use xlink:href="#${info.E}" height="26.769" x="-111.784" y="-119"></use>
+            <use xlink:href="#${info.E}" height="70" x="-35" y="-135.588"></use>
+          </g>
+        </svg>`,
+			card3: `
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 
+			face="${info.E}${n}" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
+				<symbol id="${fg}${n}" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
+					<text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="${fg}" style="font-size:1000px;font-weight:bold;">${n}</text>        
+				</symbol>
+				<symbol id="${info.E}" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
+					<text text-anchor="middle" dominant-baseline="middle" x="0" y="-150" fill="red" style="font-size:750px;font-family:${info.family};">${info.text}</text>        
+				</symbol>
+				<rect width="239" height="335" x="-119.5" y="-167.5" rx="12" ry="12" fill="white" stroke="black"></rect>
+				<use xlink:href="#${fg}${n}" height="42" x="-118" y="-156"></use>
+				<use xlink:href="#${info.E}" height="26.769" x="-111.784" y="-119"></use>
+				<use xlink:href="#${info.E}" height="70" x="-35" y="-135.588"></use>
+				<use xlink:href="#${info.E}" height="70" x="-35" y="-35"></use>
+				<g transform="rotate(180)">
+					<use xlink:href="#${fg}${n}" height="42" x="-118" y="-156"></use>
+					<use xlink:href="#${info.E}" height="26.769" x="-111.784" y="-119"></use>
+					<use xlink:href="#${info.E}" height="70" x="-35" y="-135.588"></use>
+				</g>
+			</svg>`,
 			card0: `
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 
-        face="2C" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
+        face="${info.E}${n}" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
           <symbol id="${fg}${n}" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
             <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="${fg}" style="font-size:1000px;font-weight:bold;">${n}</text>        
           </symbol>
@@ -9868,7 +9907,7 @@ class Karte {
         </svg>`,
 			card7: `
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 
-        face="2C" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
+        face="3C" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
           <symbol id="VC2" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
             <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="red" style="font-size:750px;font-family:opensans;">A</text>        
           </symbol>
@@ -9932,37 +9971,6 @@ class Karte {
           <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="red" style="font-size:16px;font-family:opensans;">I love SVG!</text>        
           <text text-anchor="middle" dominant-baseline="hanging" x="0" y="-156" fill="blue" style="font-size:16px;font-family:opensans;">YES</text>        
           <text text-anchor="middle" dominant-baseline="hanging" x="0" y="-156" fill="green" transform="rotate(180)" style="font-size:16px;font-family:opensans;">YES</text>        
-        </svg>`,
-			card3: `
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 
-        face="2C" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
-          <rect width="239" height="335" x="-119.5" y="-167.5" rx="12" ry="12" fill="white" stroke="black"></rect>
-          <text dominant-baseline="hanging" x="-114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-          <text  text-anchor="end" dominant-baseline="hanging" x="114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-          <text text-anchor="middle" dominant-baseline="hanging" x="0" y="-156" fill="blue" style="font-size:16px;font-family:opensans;">YES</text>        
-          <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="red" style="font-size:16px;font-family:opensans;">I love SVG!</text>        
-          <g transform="rotate(180)">
-            <text dominant-baseline="hanging" x="-114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-            <text  text-anchor="end" dominant-baseline="hanging" x="114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-            <text text-anchor="middle" dominant-baseline="hanging" x="0" y="-156" fill="blue" style="font-size:16px;font-family:opensans;">YES</text>        
-          </g>
-        </svg>`,
-			card2: `
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 
-        face="2C" height="100%" preserveAspectRatio="none" viewBox="-120 -168 240 336" width="100%">
-          <symbol id="VC2" viewBox="-500 -500 1000 1000" preserveAspectRatio="xMinYMid">
-            <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="red" style="font-size:500px;font-family:${info.family};">${info.text}</text>        
-          </symbol>
-          <rect width="239" height="335" x="-119.5" y="-167.5" rx="12" ry="12" fill="white" stroke="black"></rect>
-          <text dominant-baseline="hanging" x="-114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-          <text  text-anchor="end" dominant-baseline="hanging" x="114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-          <text text-anchor="middle" dominant-baseline="hanging" x="0" y="-156" fill="blue" style="font-size:16px;font-family:opensans;">YES</text>        
-          <text text-anchor="middle" dominant-baseline="middle" x="0" y="0" fill="red" style="font-size:16px;font-family:opensans;">I love SVG!</text>        
-          <g transform="rotate(180)">
-            <text dominant-baseline="hanging" x="-114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-            <text  text-anchor="end" dominant-baseline="hanging" x="114" y="-156" fill="red" style="font-size:30px;font-family:${info.family};">${info.text}</text>        
-            <text text-anchor="middle" dominant-baseline="hanging" x="0" y="-156" fill="blue" style="font-size:16px;font-family:opensans;">YES</text>        
-          </g>
         </svg>`,
 			card1: `
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="card" 

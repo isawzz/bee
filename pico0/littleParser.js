@@ -1,13 +1,23 @@
 
+
+
 function tokutils(s) {
-	var _cursor = 0, _ch = s[0], line = 0, col = 0;
+	var _cursor = 0, _ch = s[0], line = 1, col = 1;
 	function get() { return _ch; }
 	function getpos() { return { line, col }; }
-	function next() { _ch = s[++_cursor]; if (_ch == '\n') { line++; col = 0; } else col++; }
+	function next() { _ch = s[++_cursor]; if (_ch == '\n') { line++; col = 1; } else col++; }
 	function peek(n) { return s[_cursor + n]; }
 	function peekline() { return s.subtring(_cursor, _cursor + s.indexOf('\n')); }
 	function peekstr(n) { return s.substring(_cursor, _cursor + n); }
-	function white() { while (/\s/.test(_ch)) next(); return null; }
+	function white() { while (/\s/.test(_ch)) { next(); } return null; }
+	function whitenl() {
+		let nl = false;
+		while (/\s/.test(_ch)) {
+			if (_ch == '\n') nl = true;
+			next();
+		}
+		return nl;
+	}
 	function error(msg) { console.log(msg); }
 
 	function lexchar(list) { let res = list.includes(_ch) ? { type: _ch, val: _ch } : null; if (res) next(); return res; }
@@ -32,8 +42,74 @@ function tokutils(s) {
 		return true;
 
 	}
-	function isComment(){return _ch=='/' && peek(1)=='/';}
+	function isComment() { return _ch == '/' && peek(1) == '/'; }
 
+	function isCode() {
+		let list = ['"', "'", '`', '{', '}'];
+		return _ch != undefined && !list.some(x => peekstr(x.length) == x) && !isRegexp() && !isComment();
+	}
+	function code_nobrace_BROKEN() {
+		let val = '';
+		let isCodeStart = true;
+		let nspace = 0;
+		let semi = false;
+		while (isCode()) {
+			if (_ch == ' ') {
+				if (!nspace) val += ' ';
+				nspace++;
+				semi = false;
+			} else if (_ch == '\n') {
+				if (!semi) { val += ';'; }
+				nspace = 0;
+				semi = true;
+			} else if (_ch == ';') {
+				nspace = 0;
+				if (!semi) { val += ';'; }
+				semi = true;
+			} else {
+				nspace = 0;
+				semi = false;
+				val += _ch;
+				isCodeStart = false;
+			}
+			next();
+		}
+		return val.length >= 1 ? { type: 'C', val: val.trim() } : null;
+		//return exceptstr(['"', "'", '`', '/'], 'C'); 
+		//exceptch("'`\"", 'C'); 
+	}
+	function code_nobraceBROKEN() {
+		let val = '';
+		let nspace = 1;
+		while (isCode()) {
+			if (_ch == ' ') {
+				if (!nspace) val += ' ';
+				nspace++;
+			} else if (_ch == '\n') {
+				val += _ch;
+				nspace = 0;
+			} else {
+				val += _ch;
+				nspace = 0;
+			}
+			next();
+		}
+		return val.length >= 1 ? { type: 'C', val } : null;
+	}
+	function code_nobrace() {
+		let val = '';
+		let nspace = 1;
+		let lastch = ' ';
+		while (isCode()) {
+			if (lastch != ' ' || _ch != ' ') val += _ch;
+			lastch = _ch;
+			next();
+			continue;
+			if (_ch == ' ') { if (nspace < 1) { nspace++; val += _ch; } next(); }
+			else { nspace = 0; val += _ch; next(); }
+		}
+		return val.length >= 1 ? { type: 'C', val } : null;
+	}
 	function code() {
 		let list = ['"', "'", '`'];
 		let val = '';
@@ -91,7 +167,7 @@ function tokutils(s) {
 			return { type: 'S', val, sep };
 		} else return null;
 	}
-	return { get, getpos, regexp, next, peek, peekstr, peekline, white, error, lexchar, exceptch, exceptstr, comment, code, number, string };
+	return { code_nobrace, get, getpos, regexp, next, peek, peekstr, peekline, white, error, lexchar, exceptch, exceptstr, comment, code, number, string };
 }
 
 function littleParser(s) {
@@ -143,7 +219,6 @@ function littleParser(s) {
 	}
 	var tokens, token, idx = 0;
 	function nextToken() { token = tokens[idx++]; }
-
 	function P() {
 		nextToken();
 		return EMPTY() ?? [Lit()].concat(P()); //reflects BNF exactly!!!!!!!
@@ -152,7 +227,6 @@ function littleParser(s) {
 	function Lit() { return N() ?? S(); }
 	function N() { return token && token.type == 'N' ? token : null; }
 	function S() { return token && token.type == 'S' ? token : null; }
-
 	function parse() {
 		tokens = tokenizer(s);
 		let ast = P(); //classic function P
