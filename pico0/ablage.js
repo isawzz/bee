@@ -1,4 +1,10 @@
-
+async function load_config_new() {      Config 
+	= await route_path_yaml_dict('../y/config.yaml');
+  let data          = await route_path_yaml_dict(
+		'../y/appdata.yaml');  for (const k in data) //das ist echt lustig!!!!!!!!!!
+	{    Config.apps[k].data = data[k];
+    }
+}
 function _calculateSymbolPositions(cardWidth, cardHeight, symbolCount) {
 	const positions = [];
 	const padding = 0.1; // 10% padding from edges
@@ -486,22 +492,6 @@ function __cardGetSpecial(sym = 'bee', h = 110, n = 2, fg = 'indigo', w) {
 			</svg>`,
 	};
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //#region source testing zeug: weg damit!!!!!!!!!!!!

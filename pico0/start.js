@@ -1,59 +1,39 @@
 
 async function start() {
 
-	testPP2(); //testPP1_code_nobrace(); //testPP0(); //startest_cards();
+	testPP3(); //testExtractStrings(); //testPP2(); //testPP1_code_nobrace(); //testPP0(); //startest_cards();
 
 }
-//#region cardtests
-async function startest_cards() {
-	await load_syms(); //console.log('SymKeys',SymKeys)
-	let k = rChoose(KeySets.animals);
-	dTable = mBy('div0'); mFlexWrap(dTable); mStyle(dTable, { gap: 10 });
-	test_calcSpecial(k); //test_primitive(k); //test_vicuna();
-}
-function test_calcSpecial(k) {
-	for (const num of range(2, 30)) {
-		let cols = calcSpecialCols(num);
-		//let sz = 70 -  (num>=9?Math.ceil((num-8)/3)*9 : 0);
-		let sz = 70;
-		if (num >= 12) {
-			let wieOft3 = Math.ceil((num - 11) / 3);
-			for (let i of range(wieOft3)) sz *= .9;
-			//console.log(num, wieOft3, sz);
-		}
-		let pos = calcSpecialPos(num, cols, sz);
-		//console.log(pos);
-		let c = cardGetObject(rChoose(KeySets.life), num, pos, sz);
-		mAppend(dTable, iDiv(c));
-		//console.log(num, cols, pos)
-	}
-}
-function test_vicuna() {
-	// Usage:
-	const cardWidth = 100; // Example card width
-	const cardHeight = 150; // Example card height
-	//const symbolCount = 9; // Example number of symbols on a card
-	for (const i of range(2, 20)) {
-		const positions = calculateSymbolPositions(cardWidth, cardHeight, i);
-		//console.log(positions);
-		let dp = mDiv(dTable, { w: cardWidth, h: cardHeight, border: 'black', position: 'relative' });
-		let sz = 10;
-		for (const pos of positions) {
-			let x = mDiv(dp, { bg: 'red', position: 'absolute', top: pos.y - sz / 2, left: pos.x - sz / 2, w: sz, h: sz })
-		}
+async function testPP3() {
+	let s = await codeFromFile('../pico0/source.js'); s = s.substring(0, 1000);
+	//mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
+	let tokenlist = codeToTokens(s);
+	let { code, slist } = codeExtractStrings(tokenlist);
+	codePresent('code1',code)
+	let tokenlist2=codeToTokens(code,true);
+	console.log('tokens2',tokenlist2);
+	return;
 
-		// let x = cardGetSpecial(k, 120, i);
-		// mAppend(dTable, iDiv(x))
-	}
+	
+	codePresent('code1', code);
+	let newcode = codeReplaceStrings(code, slist);
+	codePresent('code2', newcode);
 }
-function test_primitive(k) {
-	for (const i of range(2, 11)) {
-		let x = cardGetPrimitive(k, 120, i);
-		mAppend(dTable, iDiv(x))
-	}
-	//testPP1_code_nobrace();//testPP0(); //testCodeFormatter('../pico0/allglobals.js');	//test_hallo(); //testLettersBefore();//test_littleParser(); //test_newline()	//test_lexer();
+async function testExtractStrings() {
+	let s = await codeFromFile('../pico0/allf.js'); s = s.substring(0, 1000);
+	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
+	let tokenlist = codeToTokens(s);
+	let { code, slist } = codeExtractStrings(tokenlist);
+	codePresent('code1', code);
+	let newcode = codeReplaceStrings(code, slist);
+	codePresent('code2', newcode);
 }
-//#endregion
+async function testSplitBefore() {
+	let s = await codeFromFile('../pico0/allf.js'); //s = s.substring(0,1000);
+	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
+	let blocks = splitBeforeAny(s, ['function', 'async', 'class', 'var', 'const']);
+	console.log('blocks', blocks);
+}
 async function testPP2() {
 	let s = await codeFromFile('../pico0/allf.js');
 	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
@@ -72,6 +52,8 @@ async function testPP2() {
 
 	mBy('code1').innerHTML = `<xmp>` + s1 + `</xmp>`;
 }
+
+
 function muell() {
 	let tokenlist = codeToTokens(s, true);
 	//console.log('tokens', tokenlist)
@@ -307,6 +289,56 @@ function test_newline() {
 	console.log('code', input == input2, input == input3, input == i4)
 
 }
+//#region cardtests
+async function startest_cards() {
+	await load_syms(); //console.log('SymKeys',SymKeys)
+	let k = rChoose(KeySets.animals);
+	dTable = mBy('div0'); mFlexWrap(dTable); mStyle(dTable, { gap: 10 });
+	test_calcSpecial(k); //test_primitive(k); //test_vicuna();
+}
+function test_calcSpecial(k) {
+	for (const num of range(2, 30)) {
+		let cols = calcSpecialCols(num);
+		//let sz = 70 -  (num>=9?Math.ceil((num-8)/3)*9 : 0);
+		let sz = 70;
+		if (num >= 12) {
+			let wieOft3 = Math.ceil((num - 11) / 3);
+			for (let i of range(wieOft3)) sz *= .9;
+			//console.log(num, wieOft3, sz);
+		}
+		let pos = calcSpecialPos(num, cols, sz);
+		//console.log(pos);
+		let c = cardGetObject(rChoose(KeySets.life), num, pos, sz);
+		mAppend(dTable, iDiv(c));
+		//console.log(num, cols, pos)
+	}
+}
+function test_vicuna() {
+	// Usage:
+	const cardWidth = 100; // Example card width
+	const cardHeight = 150; // Example card height
+	//const symbolCount = 9; // Example number of symbols on a card
+	for (const i of range(2, 20)) {
+		const positions = calculateSymbolPositions(cardWidth, cardHeight, i);
+		//console.log(positions);
+		let dp = mDiv(dTable, { w: cardWidth, h: cardHeight, border: 'black', position: 'relative' });
+		let sz = 10;
+		for (const pos of positions) {
+			let x = mDiv(dp, { bg: 'red', position: 'absolute', top: pos.y - sz / 2, left: pos.x - sz / 2, w: sz, h: sz })
+		}
+
+		// let x = cardGetSpecial(k, 120, i);
+		// mAppend(dTable, iDiv(x))
+	}
+}
+function test_primitive(k) {
+	for (const i of range(2, 11)) {
+		let x = cardGetPrimitive(k, 120, i);
+		mAppend(dTable, iDiv(x))
+	}
+	//testPP1_code_nobrace();//testPP0(); //testCodeFormatter('../pico0/allglobals.js');	//test_hallo(); //testLettersBefore();//test_littleParser(); //test_newline()	//test_lexer();
+}
+//#endregion
 
 
 

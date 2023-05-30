@@ -10976,7 +10976,104 @@ You can also introduce special action cards, such as "Steal a Set" or "Swap Hand
 94: *8:53 AM 5/29/2023-8:55 AM 5/29/2023
 95: *8:55 AM 5/29/2023-9:01 AM 5/29/2023
 96: *9:01 AM 5/29/2023-9:28 AM 5/29/2023
-97: *9:28 AM 5/29/2023-
+97: *9:28 AM 5/29/2023-6:43 AM 5/30/2023
+__________ di 30.5.23 ...airport lib 31.5 6-14
+130: *6:43 AM 5/30/2023-6:50 AM 5/30/2023
+131: *6:50 AM 5/30/2023-6:52 AM 5/30/2023
+132: *6:53 AM 5/30/2023-6:56 AM 5/30/2023
+133: *6:56 AM 5/30/2023-7:04 AM 5/30/2023
+134: *7:04 AM 5/30/2023-7:05 AM 5/30/2023
+135: *7:05 AM 5/30/2023-7:06 AM 5/30/2023
+136: *7:06 AM 5/30/2023-7:09 AM 5/30/2023
+137: *7:09 AM 5/30/2023-7:10 AM 5/30/2023
+138: *7:10 AM 5/30/2023-7:11 AM 5/30/2023
+139: *7:11 AM 5/30/2023-7:13 AM 5/30/2023
+140: *7:13 AM 5/30/2023-7:17 AM 5/30/2023
+141: *7:17 AM 5/30/2023-7:18 AM 5/30/2023
+142: *7:18 AM 5/30/2023-7:23 AM 5/30/2023
+143: *7:23 AM 5/30/2023-7:42 AM 5/30/2023
+wie wuerd ich meinen tag gestalten wollen?
+*ew >kprog >v >?
+wenn ich niemanden versorgen muesste!
+- das hab ich schon geschrieben! aber wo?
+- als erstes alle strings und regs rausnehmen!!!
+codeExtractStrings(code) returns {newcode,stringlist}
+stringlist ... [{content,sep},...]
+144: *7:42 AM 5/30/2023-7:43 AM 5/30/2023
+145: *7:43 AM 5/30/2023-7:45 AM 5/30/2023
+146: *7:45 AM 5/30/2023-7:46 AM 5/30/2023
+147: *7:46 AM 5/30/2023-7:48 AM 5/30/2023
+148: *7:48 AM 5/30/2023-7:55 AM 5/30/2023
+149: *7:55 AM 5/30/2023-7:58 AM 5/30/2023
+150: *7:58 AM 5/30/2023-7:59 AM 5/30/2023
+151: *7:59 AM 5/30/2023-7:59 AM 5/30/2023
+152: *7:59 AM 5/30/2023-8:00 AM 5/30/2023
+codeExtractStrings ist gut! auch codeReplaceStrings!!!
+- wieso zeigt er nicht den neuen code?
+dh rest leben min aber genug=3hA+2hgehen,2hgu =7 ist max
+wieviel zeit pro tag will ich fuer mich? alle wie's scheint!
+3hvioline,3hklavier,5hprog = 11h
++4hpausen,3hgehen = 18h
+- der hat nicht replaced!!!
+153: *8:04 AM 5/30/2023-8:04 AM 5/30/2023
+154: *8:04 AM 5/30/2023-8:06 AM 5/30/2023
+155: *8:06 AM 5/30/2023-8:07 AM 5/30/2023
+156: *8:08 AM 5/30/2023-8:11 AM 5/30/2023
+157: *8:11 AM 5/30/2023-
+- im confused!!!
+- er schneidet comments raus aber nicht empty lines!!!!
+- nein er schenidet NICHT
+- das sollte der tokenizer machen!
+- schneidet er jetzt comments raus???
+
+
+dann alle zeilen bei comment abschneiden
+dann den rest des codes nochmal nur mit bracings parsen!
+
+{dsadsa{dasd}{}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- was soll ich mit function within function machen?
+nur 100
+- was macht stringFromTo
+- ich muss das pushen mit dem prefix von vorher machen?
+- test!
+sba(s,'\nfunction') '',\nfunction
+which muss auch returned werden! oder ich mach splitBeforeAny
+
+
 - brauch die info bei jeder part in res welches kw am anfang war!!!
 goto code: splitAtAnyOf
 versuch: each function on a new line!!!!
@@ -11011,6 +11108,13 @@ Exit at 67654 @ Bellevue Transit Center BAY 7 (WB)
 directions_walkstart walking from
 Stop 67654 @ Bellevue Transit Center BAY 7 (WB)
 3 min (0.1 miles)
+Stop 67654 @ Bellevue Transit Center BAY 7 (WB)
+3 min (0.1 miles)
+1. Walk a short distance E on Bellevue Tc Acrd.
+2. Walk straight on NE 6th St.
+3. Walk a short distance NE on NE 6th St.
+4. Walk straight on Bellevue Tc Acrd.
+5. Walk approx. 1 block W on Bellevue Tc Acrd.
 10:30 am
 directions_bus
 atStop 68003 @ Bellevue Transit Center BAY 3 (EB)
@@ -11020,6 +11124,7 @@ Exit at 73391 @ 148th Ave Ne & Ne Old Redmond Rd (NB)
 directions_walkstart walking from
 Stop 73391 @ 148th Ave Ne & Ne Old Redmond Rd (NB)
 6 min (0.2 miles)
+1. Walk approx. 2 blocks S on 148th Ave NE.
 11:47 am
 directions_bus
 atStop 73380 @ 148th Ave Ne & Ne 66th St (NB)
@@ -13485,7 +13590,8 @@ FRANKFURT INT.
 SEATTLE
 Condor DE2032
 
-
+Your Check-in Reference number	SVGHBU
+Your booking number:5418789
 
 
 

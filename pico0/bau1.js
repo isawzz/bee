@@ -1,20 +1,105 @@
 
-function splitAtAnyString(s,list){
-	let res=[];
+function splitBeforeAny(s, list, onlyLineStart = true) {
+	let res = [];
 	let rest = s;
-	while(rest.length>0){
-		let imin=s.length+100;
-		let best=null;
-		for(const kw of list){
-			let i=rest.indexOf(kw);
-			if (i>=0 && i<imin){best=kw;imin=i;}
+	let prefix = '';
+	while (rest.length > 0) {
+		let imin = s.length + 100;
+		let best = null;
+		for (const kw of list) {
+			let kw1 = (onlyLineStart ? '\n' : '') + kw;
+			let i = rest.indexOf(kw1);
+			if (i >= 0 && i < imin) { best = kw; imin = i; }
 		}
-		if (best){
-			let prefix = stringBefore(rest,best);
-			rest=stringAfter(rest,best);
-			res.push(prefix);
-		}else {res.push(rest);return res;}
+		if (best) {
+			let chunk = prefix + stringBefore(rest, best);
+			prefix = best;//remember new prefix!
+			rest = stringAfter(rest, best);
+			res.push(chunk);
+		} else { res.push(rest); return res; }
 	}
+	return res;
+}
+
+function codeExtractStrings(tokenlist) {
+	let code = '', i = 0, slist = [];
+	for (const t of tokenlist) {
+		if (t.type == 'C') {
+			code += t.val;
+		} else if (t.type == 'R' || t.type == 'S') {
+			slist.push(`${t.sep}${t.val}${t.sep}`);
+			code += `@@@${i}@@@`;
+			i++;
+		} else {
+			console.log('unknown tokentype', t.type, t)
+			break;
+		}
+	}
+	console.log('liste hat', slist.length, 'entries')
+	//downloadAsText(code, 'mycode', 'js');
+	return { code, slist };
+}
+function codeReplaceStrings(code,slist){
+	//console.log('slist',slist,code)
+	let res = '', rest = code; i = -1;
+	while (!isEmpty(rest) && ++i < slist.length) {
+		let tbr=`@@@${i}@@@`;
+		let chunk = stringBefore(rest, tbr);
+		console.log('chunk',chunk,'\n___________')
+		res += chunk;
+		res += slist[i];
+		rest = stringAfter(rest, tbr);
+	}
+	res += rest;
+	return res;
+}
+function codePresent(id='code1',res){
+	mBy(id).innerHTML = '__________________<br>'+res; //res.substring(0,100);
+	console.log('DONE!')
+}
+async function codeFormatter(path) {
+	input = await route_path_text(path);
+	input = replaceAllSpecialChars(input, '\t', '  ');
+	input = replaceAllSpecialChars(input, '\r', '');
+	console.clear();
+	let tok = tokutils(input);
+	let prev = null;
+	var tokenlist = []; let rcount = 0;
+	while (tok.get() !== undefined) {
+		let token = tok.string() ?? tok.code() ?? tok.regexp() ?? tok.comment();
+		if (token === true) { prev = null; continue; }
+		if (token) {
+			if (prev && prev.type == token.type) { console.log('BAD!!!', token, prev, tok.getpos()); break; }
+			prev = token;
+			token.line = tok.getpos().line;
+			tokenlist.push(token);
+			if (token.type == 'R') { rcount++; if (rcount > 1300) break; }
+		} else { error('unexpected char ' + tok.get() + ', pos:' + tok.getpos().line); tok.next(); break; }
+	}
+	console.log('stopped at', tok.getpos(), tok.peekstr(20))
+	tokenlist.push({ type: 'eof', val: null });
+	let code = '', i = 0, slist = [];
+	for (const t of tokenlist) {
+		if (t.type == 'C') {
+			code += t.val;
+		} else if (t.type == 'R' || t.type == 'S') {
+			i++;
+			code += `${t.sep}${t.val}${t.sep}`;
+		} else break;
+	}
+	console.log('liste hat', slist.length, 'entries')
+	downloadAsText(code, 'mycode', 'js');
+	return;
+	let res = '', rest = code; i = -1;
+	while (!isEmpty(rest) && ++i < slist.length) {
+		let chunk = stringBefore(rest, `'@@@`);
+		res += chunk;
+		res += slist[i];
+		rest = stringAfter(rest, `@@@'`);
+	}
+	res += rest;
+	mBy('code1').innerHTML = res; //res.substring(0,100);
+	console.log('DONE!')
 }
 
 function codePP1(ast, ind = 0) {
@@ -47,7 +132,7 @@ function codePP(ast, ind = 0) {
 		return (s.length == 1) ? s : ' '.repeat(ind) + s;
 	}
 }
-async function codeFromFile(path){
+async function codeFromFile(path) {
 	input = await route_path_text(path);
 	input = replaceAllSpecialChars(input, '\t', '  ');
 	input = replaceAllSpecialChars(input, '\r', '');
