@@ -15,10 +15,4 @@ async function __start() {
   computeClosure();
 }
 function _addFilterHighlight(mobj) { mobj.highC('green'); }
-function _addOnelineVars(superdi, o) {
-  let [code, type] = [o.code, o.type];
-  let crn = (code.match(/\r\n/g) || []).length;
-  let oneliner = crn == 1;
-  if (oneliner && type == 'var' && code.includes(',') && !code.includes('[') && !code.includes('{ ')) {
-    let othervars = stringAfter(code, 'var').trim().split(',');
-    othervars = othervar
+

@@ -5,28 +5,58 @@ async function start() {
 
 }
 async function testPP3() {
-	let s = await codeFromFile('../pico0/source.js'); s = s.substring(0, 1000);
+	let s = await codeFromFile('../pico0/allf.js'); //s = s.substring(0, 1000);
 	//mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
 	let tokenlist = codeToTokens(s);
 	let { code, slist } = codeExtractStrings(tokenlist);
-	codePresent('code1',code)
+	codePresent(code, 'code1')
 	let tokenlist2=codeToTokens(code,true);
-	console.log('tokens2',tokenlist2);
+	//console.log('tokens2',tokenlist2);
+
+	//in each C item, replace all newline by ;
+	for(const t of tokenlist2){
+		if (t.type !='C') continue;
+		let c = t.oldval = t.val;
+		c = replaceAllSpecialChars(c,'\n','$$$');
+		assertion(!c.includes('\n'))
+		//c = replaceAllSpecialChars(c,' ;',';');
+		assertion(c.length>0,`not a string ${c}`)
+		//console.log('...',isString(c),c.trim())
+		t.newcode = stringBefore(c,'//').trim();
+	}
+
+	let xlist = tokenlist2.filter(x=>x.type == 'C' && !isEmptyOrWhiteSpace(x.newcode) || x.type != 'C');
+	let code1 = xlist.filter(x=>x.type == 'C').map(x=>x.newcode).join('$$$');
+
+	//ich moecht jetzt wissen was alles nach $$$ oder vor $$$ kommen kann!!!
+	let parts = code1.split('$$$');
+	let newparts = parts.filter(x=>!isEmptyOrWhiteSpace(x)).map(x=>x.trim());
+	let davor=[],danach=[],nstart=2,nend=2;
+	for(const p of newparts){
+		assertion(!p.includes('\n'))
+		addIf(davor,p.substr(p.length-nend-1,nend))
+		addIf(danach,p.substr(0,nstart))
+	}
+	//nach einer newline sollen spaces geloescht werden
+	//console.log('danach',danach);
+	//console.log('davor',davor);
+	// codePresent(code1,'code1');
+	//assertion(!code1.includes('hallo'))
 	return;
 
 	
-	codePresent('code1', code);
+	codePresent(code, 'code1')
 	let newcode = codeReplaceStrings(code, slist);
-	codePresent('code2', newcode);
+	codePresent(newcode, 'code1')
 }
 async function testExtractStrings() {
 	let s = await codeFromFile('../pico0/allf.js'); s = s.substring(0, 1000);
 	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
 	let tokenlist = codeToTokens(s);
 	let { code, slist } = codeExtractStrings(tokenlist);
-	codePresent('code1', code);
+	codePresent(code, 'code1')
 	let newcode = codeReplaceStrings(code, slist);
-	codePresent('code2', newcode);
+	codePresent(newcode, 'code1')
 }
 async function testSplitBefore() {
 	let s = await codeFromFile('../pico0/allf.js'); //s = s.substring(0,1000);

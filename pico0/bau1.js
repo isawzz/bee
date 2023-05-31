@@ -31,11 +31,11 @@ function codeExtractStrings(tokenlist) {
 			code += `@@@${i}@@@`;
 			i++;
 		} else {
-			console.log('unknown tokentype', t.type, t)
+			if (t.type !='eof') console.log('unknown tokentype', t.type, t)
 			break;
 		}
 	}
-	console.log('liste hat', slist.length, 'entries')
+	//console.log('liste hat', slist.length, 'entries')
 	//downloadAsText(code, 'mycode', 'js');
 	return { code, slist };
 }
@@ -53,9 +53,9 @@ function codeReplaceStrings(code,slist){
 	res += rest;
 	return res;
 }
-function codePresent(id='code1',res){
-	mBy(id).innerHTML = '__________________<br>'+res; //res.substring(0,100);
-	console.log('DONE!')
+function codePresent(s,id='code1'){
+	mBy(id).innerHTML = '__________________<br>'+s; //res.substring(0,100);
+	//console.log('DONE!')
 }
 async function codeFormatter(path) {
 	input = await route_path_text(path);
@@ -139,7 +139,7 @@ async function codeFromFile(path) {
 	return input;
 }
 function codeToTokens(input, braceTokens = false) {
-	console.clear();
+	//console.clear();
 	//let s = ` hallo das "hallo ist ein "w"ort" aber 123 nicht!`
 	//input = `let match = html && /\bsrc="?([^"\s]+)"?\s*/.exec(html);`
 	let tok = tokutils(input);
@@ -150,7 +150,8 @@ function codeToTokens(input, braceTokens = false) {
 			: (tok.string() ?? tok.code() ?? tok.regexp() ?? tok.comment());
 		if (token === true) { prev = null; continue; } //break;
 		if (token) {
-			if (prev && prev.type == token.type) { console.log('BAD!!!', token, prev, tok.getpos()); break; }
+			//if (prev && prev.type == token.type) { console.log('BAD!!!', token, prev, tok.getpos()); break; }
+			//if (prev && prev.type == token.type) { console.log('BAD!!!', token, prev, tok.getpos()); break; }
 			prev = token;
 			token.line = tok.getpos().line;
 			tokenlist.push(token);
@@ -159,7 +160,7 @@ function codeToTokens(input, braceTokens = false) {
 	}
 	//tokenlist.map(x => {if (x.type == 'R') console.log(x)});
 	// tokenlist.map(x => console.log(x));
-	console.log('stopped at', tok.getpos(), tok.peekstr(20))
+	//console.log('stopped at', tok.getpos(), tok.peekstr(20))
 	tokenlist.push({ type: 'eof', val: null });
 	return tokenlist;
 }
