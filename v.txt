@@ -11024,23 +11024,33 @@ wieviel zeit pro tag will ich fuer mich? alle wie's scheint!
 301: *4:24 PM 5/30/2023-5:16 PM 5/30/2023
 302: *5:16 PM 5/30/2023-5:16 PM 5/30/2023
 303: *5:16 PM 5/30/2023-6:07 PM 5/30/2023
-310: *6:07 PM 5/30/2023-
-wie will ich die newlines machen?
-ich will erstmal alles ein 1 line schreiben
-dann 
+__________ mi 31.5.23 ...airport lib 31.5 6-14
+310: *6:07 PM 5/30/2023-7:15 AM 5/31/2023
+311: *7:15 AM 5/31/2023-7:26 AM 5/31/2023
+312: *7:26 AM 5/31/2023-7:26 AM 5/31/2023
+313: *7:26 AM 5/31/2023-7:37 AM 5/31/2023
+314: *7:37 AM 5/31/2023-7:39 AM 5/31/2023
+315: *7:39 AM 5/31/2023-7:40 AM 5/31/2023
+316: *7:40 AM 5/31/2023-7:55 AM 5/31/2023
+317: *7:55 AM 5/31/2023-7:55 AM 5/31/2023
+318: *7:55 AM 5/31/2023-8:01 AM 5/31/2023
+319: *8:01 AM 5/31/2023-8:02 AM 5/31/2023
+- jetzt kann ich eigentlich die strings wieder einsetzen!!!
+- eof soll val='' haben!
+- null soll weg!
+320: *8:02 AM 5/31/2023-8:04 AM 5/31/2023
+321: *8:04 AM 5/31/2023-8:05 AM 5/31/2023
+322: *8:05 AM 5/31/2023-8:05 AM 5/31/2023
+323: *8:05 AM 5/31/2023-8:08 AM 5/31/2023
+324: *8:08 AM 5/31/2023-8:09 AM 5/31/2023
+325: *8:09 AM 5/31/2023-8:11 AM 5/31/2023
+326: *8:11 AM 5/31/2023-5:50 PM 5/31/2023
+350: *5:50 PM 5/31/2023-
+- replace newline mit !
+- nimm code3
+- wenn 
 
 
-way shorter!!!!
-- $$$ steht jetzt fuer newline
-- 
-
-
-dann alle zeilen bei comment abschneiden
-dann den rest des codes nochmal nur mit bracings parsen!
-
-{dsadsa{dasd}{}}
-
-Amanda 5404 110399
 
 
 
@@ -12244,6 +12254,7 @@ kann man ein programm schreiben dass einem ein gutes durchschnittliches leben er
 
 mit sehr viel randomness drin
 
+Amanda 5404 110399
 
 
 

@@ -53,8 +53,8 @@ function codeReplaceStrings(code,slist){
 	res += rest;
 	return res;
 }
-function codePresent(s,id='code1'){
-	mBy(id).innerHTML = '__________________<br>'+s; //res.substring(0,100);
+function codePresent(s,id,title){
+	mBy(id).innerHTML = `______ ${title}<br>${s}`; //res.substring(0,100);
 	//console.log('DONE!')
 }
 async function codeFormatter(path) {
@@ -77,7 +77,7 @@ async function codeFormatter(path) {
 		} else { error('unexpected char ' + tok.get() + ', pos:' + tok.getpos().line); tok.next(); break; }
 	}
 	console.log('stopped at', tok.getpos(), tok.peekstr(20))
-	tokenlist.push({ type: 'eof', val: null });
+	tokenlist.push({ type: 'eof', val: '' });
 	let code = '', i = 0, slist = [];
 	for (const t of tokenlist) {
 		if (t.type == 'C') {
@@ -138,6 +138,34 @@ async function codeFromFile(path) {
 	input = replaceAllSpecialChars(input, '\r', '');
 	return input;
 }
+function codeReplaceNewlines(code) {
+
+	let tokenlist2 = codeToTokens(code, true);
+	//console.log('tokens2', tokenlist2);
+
+	//in each C item, replace all newline by ;
+	let code2 = '';
+	let tokens2 = [];
+	for (const t of tokenlist2) {
+		if (!['C','eof'].includes(t.type)) { if(isString(t.val)) t.newcode = t.val.trim(); tokens2.push(t); continue; }
+
+		t.val = stringBefore(t.val, '//').trim();
+		if (isEmpty(t.val) || isEmptyOrWhiteSpace(t.val)) continue;
+		let c = replaceAllSpecialChars(t.val, '\n', '$$$');
+		assertion(!c.includes('\n'))
+		//c = replaceAllSpecialChars(c,' ;',';');
+		assertion(c.length > 0, `not a string ${c}`)
+		//console.log('...',isString(c),c.trim())
+		t.newcode = c.trim();
+		tokens2.push(t);
+	}
+	for (const t of tokens2) {
+		code2 += t.newcode;
+	}
+	return { code: code2, tokens: tokens2 };
+
+
+}
 function codeToTokens(input, braceTokens = false) {
 	//console.clear();
 	//let s = ` hallo das "hallo ist ein "w"ort" aber 123 nicht!`
@@ -161,7 +189,7 @@ function codeToTokens(input, braceTokens = false) {
 	//tokenlist.map(x => {if (x.type == 'R') console.log(x)});
 	// tokenlist.map(x => console.log(x));
 	//console.log('stopped at', tok.getpos(), tok.peekstr(20))
-	tokenlist.push({ type: 'eof', val: null });
+	tokenlist.push({ type: 'eof', val: '' });
 	return tokenlist;
 }
 function codeAstFromTokens(tokenlist) {
