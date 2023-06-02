@@ -11082,6 +11082,9 @@ __________ fr 2.6.23 ...airport lib 31.5 6-14
 417: *10:35 AM 6/2/2023-10:44 AM 6/2/2023
 420: *10:44 AM 6/2/2023-
 
+fe: gu ionos? A 2K? haus??? wohn wien? schluessel ken/david?
+IONOS: 218261474 mptspw4tt_blast
+
 - wo ist das stringReplace?
 - schau mal was da rauskommen wuerde???
 for each line:
