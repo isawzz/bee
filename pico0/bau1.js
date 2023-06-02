@@ -1,4 +1,49 @@
 
+function replaceAround(s, sepch, trimlist) {
+	let parts = s.split(sepch); //splitAtAny(s,seplist);
+	let trimmed = [];
+	for (const p of parts) {
+		let p1 = trimBoth(p, trimlist);
+		trimmed.push(p1);
+	}
+	return trimmed.join(sepch);
+
+}
+function replaceAfter(s, sepch = ';', trimlist = '\n\t $') {
+	let parts = s.split(sepch); //splitAtAny(s,seplist);
+	let trimmed = [];
+	for (const p of parts) {
+		let p1 = trimStart(p, trimlist);
+		trimmed.push(p1);
+	}
+	return trimmed.join(sepch);
+
+}
+function replaceBefore(s, sepch = ';', trimlist = '\n\t $') {
+	let parts = s.split(sepch); //splitAtAny(s,seplist);
+	let trimmed = [];
+	for (const p of parts) {
+		let p1 = trimEnd(p, trimlist);
+		trimmed.push(p1);
+	}
+	return trimmed.join(sepch);
+
+}
+function trimBoth(s, chars) {
+	let res = trimStart(s, chars);
+	return trimEnd(res, chars);
+}
+function trimEnd(s, chars) {
+	let i = s.length - 1; let ch = s[i]; let res = '';
+	while (chars.includes(ch)) { ch = s[--i]; }
+	return s.substring(0, i + 1);
+}
+function trimStart(s, chars) {
+	let i = 0; let ch = s[i]; let res = '';
+	while (chars.includes(ch)) { ch = s[++i]; }
+	while (i < s.length) res += s[i++];
+	return res;
+}
 function splitBeforeAny(s, list, onlyLineStart = true) {
 	let res = [];
 	let rest = s;
@@ -13,14 +58,23 @@ function splitBeforeAny(s, list, onlyLineStart = true) {
 		}
 		if (best) {
 			let chunk = prefix + stringBefore(rest, best);
+			console.log('chunk', chunk)
 			prefix = best;//remember new prefix!
+			console.log('prefix', prefix)
 			rest = stringAfter(rest, best);
 			res.push(chunk);
-		} else { res.push(rest); return res; }
+		} else { res.push(prefix + rest); return res; }
 	}
 	return res;
 }
+function codeAddIndents(tokens2) {
+	let i = 0;
+	for (const t of tokens2) {
+		t.indent = i;
+		if (t.type == '{') i++; else if (t.type == '}') i--;
+	}
 
+}
 function codeExtractStrings(tokenlist) {
 	let code = '', i = 0, slist = [];
 	for (const t of tokenlist) {
@@ -31,7 +85,7 @@ function codeExtractStrings(tokenlist) {
 			code += `@@@${i}@@@`;
 			i++;
 		} else {
-			if (t.type !='eof') console.log('unknown tokentype', t.type, t)
+			if (t.type != 'eof') console.log('unknown tokentype', t.type, t)
 			break;
 		}
 	}
@@ -39,13 +93,13 @@ function codeExtractStrings(tokenlist) {
 	//downloadAsText(code, 'mycode', 'js');
 	return { code, slist };
 }
-function codeReplaceStrings(code,slist){
+function codeReplaceStrings(code, slist) {
 	//console.log('slist',slist,code)
 	let res = '', rest = code; i = -1;
 	while (!isEmpty(rest) && ++i < slist.length) {
-		let tbr=`@@@${i}@@@`;
+		let tbr = `@@@${i}@@@`;
 		let chunk = stringBefore(rest, tbr);
-		console.log('chunk',chunk,'\n___________')
+		console.log('chunk', chunk, '\n___________')
 		res += chunk;
 		res += slist[i];
 		rest = stringAfter(rest, tbr);
@@ -53,8 +107,21 @@ function codeReplaceStrings(code,slist){
 	res += rest;
 	return res;
 }
+function codeReplaceStrings(code, slist) {
+	//console.log('slist',slist,code)
+	let res = '', rest = code;
+	while (rest.includes('@@@')) {
+		let p1 = stringBefore(rest, '@@@');
+		rest = stringAfter(rest, '@@@'); //`${i}@@@`;
+		let i = firstNumber(rest);
+		res += p1 + slist[i];
+		rest = stringAfter(rest, '@@@');
+	}
+	res += rest;
+	return res;
+}
 function codePresent(s,id,title){
-	mBy(id).innerHTML = `______ ${title}<br>${s}`; //res.substring(0,100);
+	mBy(id).innerHTML = `______ ${ title } < br > ${ s }`; //res.substring(0,100);
 	//console.log('DONE!')
 }
 async function codeFormatter(path) {
@@ -84,7 +151,7 @@ async function codeFormatter(path) {
 			code += t.val;
 		} else if (t.type == 'R' || t.type == 'S') {
 			i++;
-			code += `${t.sep}${t.val}${t.sep}`;
+			code += `${ t.sep }${ t.val }${ t.sep }`;
 		} else break;
 	}
 	console.log('liste hat', slist.length, 'entries')
@@ -147,7 +214,7 @@ function codeReplaceNewlines(code) {
 	let code2 = '';
 	let tokens2 = [];
 	for (const t of tokenlist2) {
-		if (!['C','eof'].includes(t.type)) { if(isString(t.val)) t.newcode = t.val.trim(); tokens2.push(t); continue; }
+		if (!['C', 'eof'].includes(t.type)) { if (isString(t.val)) t.newcode = t.val.trim(); tokens2.push(t); continue; }
 
 		t.val = stringBefore(t.val, '//').trim();
 		if (isEmpty(t.val) || isEmptyOrWhiteSpace(t.val)) continue;

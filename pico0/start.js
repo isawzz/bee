@@ -15,12 +15,73 @@ async function testPP3() {
 	let o = codeReplaceNewlines(code);
 	let [code2, tokens2] = [o.code, o.tokens];
 	codePresent(code2, 'code2', 'after newline replacement:');
-	//console.log('tokens2',tokens2)
+	console.log('tokens2', tokens2)
 
-	let code3 = codeReplaceStrings(code2, slist);
-	codePresent(code3, 'code2', 'after replacing strings:');
+	let parts = splitBeforeAny(code2, ['function', 'async function'], false)
+	//console.log('parts',parts)
+	let code3 = parts.join('\n');
+	codePresent(code3, 'code3', 'after split');
 
-	//jetzt was???
+	codeAddIndents(tokens2);
+
+	for (const t of tokens2) {
+		if (t.type == 'C') {
+			let s = t.newcode;
+			for (const ch of ';=') { s = replaceAround(s, ch, '\n\t $'); } //console.log('ch',ch);}
+			// s = replaceAfter(s, ';', '\n\t $');
+			//s = replaceBefore(s, '=', '\n\t $');
+			t.c2 = s;
+
+			// let parts = s.split(';'); let trimmed = []; for (const p of parts) { let p1 = trimStart(p, '\n\t $'); trimmed.push(p1); } t.c2 = trimmed.join(';');
+		} else t.c2 = t.newcode;
+	}
+	let code4 = tokens2.map(x => x.c2).join('');
+	parts = splitBeforeAny(code4, ['function', 'async function'], false)
+	code4 = parts.join('\n');
+	codePresent(code4, 'code4', 'nach trim')
+
+	let lines = code4.split('\n');
+	let lineinfo = [];
+	for (const line of lines) {
+		let l1 = codeReplaceStrings(line, slist);
+		lineinfo.push({ line: line, final: l1, len: l1.length });
+	}
+
+	lineinfo.map(x => console.log(x));
+	const MAXLEN = 60;
+	let code6 = '';
+	for (const li of lineinfo) {
+		let res = recPP(li, slist, 30, 0);
+		console.log('res', res)
+		code6 += res;
+
+	}
+	codePresent(code6, 'code6', 'WEITERS');
+
+}
+function getLineinfo(s,slist) {
+	let final = codeReplaceStrings(s, slist);
+	let len = final.length;
+	return { line: s, final: final, len: len };
+}
+function recPP(li, slist, MAXLEN, indent = 0) {
+	if (li.len <= MAXLEN) { return li.final + '\n'; }
+
+	if (li.line.includes('{')) {
+		let line = li.line;
+		let p1 = stringBefore(line, '{');
+		p1 = recPP(getLineinfo(p1,slist), slist, MAXLEN, indent + 1);
+		let rest = stringAfter(line, '{');
+		let p2 = stringBeforeLast(rest, '}');
+		p2 = recPP(getLineinfo(p2,slist), slist, MAXLEN, indent + 1);
+		let p3 = stringAfterLast(rest, '}');
+		p3 = recPP(getLineinfo(p3,slist), slist, MAXLEN, indent + 1);
+
+		return p1 + '{\n' + p2 + '\n}\n' + p3 + '\n';
+	}
+
+	let parts = splitAtAnyOf(li.final, [';', '$$$']);
+	return parts.join('\n');
 
 }
 function muell() {
