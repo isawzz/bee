@@ -29,6 +29,32 @@ function replaceBefore(s, sepch = ';', trimlist = '\n\t $') {
 	return trimmed.join(sepch);
 
 }
+function trimAny(s, list) {
+	while(true){
+		let found=false;
+		for(const sub of list){
+			if (s.startWith(sub)) {
+				s=s.substring(sub.length);
+				found = true;
+				break;
+			}
+		}
+		if (!found) break;
+	} 
+	//jett das ende
+	while(true){
+		let found=false;
+		for(const sub of list){
+			if (s.endsWith(sub)) {
+				s=s.substring(0,s.length-sub.length);
+				found = true;
+				break;
+			}
+		}
+		if (!found) break;
+	} 
+	return s;
+}
 function trimBoth(s, chars) {
 	let res = trimStart(s, chars);
 	return trimEnd(res, chars);

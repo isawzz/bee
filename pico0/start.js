@@ -80,8 +80,10 @@ function recPP(li, slist, MAXLEN, indent = 0) {
 		return p1 + '{\n' + p2 + '\n}\n' + p3 + '\n';
 	}
 
-	let parts = splitAtAnyOf(li.final, [';', '$$$']);
-	return parts.join('\n');
+	let parts = splitBeforeAny(li.final, [';', '$$$'], false);
+	parts = parts.map(x=>trimBoth(x,' $;'))
+	console.log('...parts',parts)
+	return parts.map(x=>'  '.repeat(indent)+x).join(';\n')+';';
 
 }
 function muell() {
