@@ -11080,9 +11080,29 @@ __________ fr 2.6.23 ...airport lib 31.5 6-14
 415: *9:48 AM 6/2/2023-9:50 AM 6/2/2023
 416: *9:50 AM 6/2/2023-10:35 AM 6/2/2023
 417: *10:35 AM 6/2/2023-10:44 AM 6/2/2023
-420: *10:44 AM 6/2/2023-
+420: *10:44 AM 6/2/2023-12:36 PM 6/2/2023
+421: *12:36 PM 6/2/2023-12:42 PM 6/2/2023
+422: *12:42 PM 6/2/2023-12:44 PM 6/2/2023
+423: *12:44 PM 6/2/2023-12:45 PM 6/2/2023
+424: *12:46 PM 6/2/2023-12:48 PM 6/2/2023
+425: *12:48 PM 6/2/2023-12:54 PM 6/2/2023
+426: *12:54 PM 6/2/2023-12:56 PM 6/2/2023
+427: *12:56 PM 6/2/2023-
+es ist einfach VIEL ZU kompliziert!!!
 
-fe: gu ionos? A 2K? haus??? wohn wien? schluessel ken/david?
+I guess es waere einfacher,
+
+- test trimAny!
+
+- trimAny
+- splitList
+
+fe: 
+gu ionos? 
+A 2K? 
+haus??? 
+wohn wien? 
+schluessel ken/david?
 IONOS: 218261474 mptspw4tt_blast
 
 - wo ist das stringReplace?

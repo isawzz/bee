@@ -1,6 +1,8 @@
 function a(key, x) {
   let ch = i[key]
   let family = (ch[0] == 'f' || ch[0] == 'F') ? 'pictoFa' : 'pictoGame';
+	if (a == b){
+		console.log('das ist ein laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaanger string!!!!!!!!!')}
   let text = f('0x' + ch); //hallo
 }
 // async function start(){return 2;}
