@@ -17,3 +17,12 @@ function a(key, x) {
 // 	{    Config.apps[k].data = data[k];
 //     }
 // }
+
+// https://www.youtube.com/watch?v=VchuKL44s6E
+// https://www.youtube.com/watch?v=JeznW_7DlB0
+// https://www.youtube.com/watch?v=QQrcd_62VWM
+// https://www.techwithtim.net/tutorials/python-programming/beginner-python-tutorials/basic-operators-input/
+// C:\D\a04\py\twtbeginner
+//
+//
+

@@ -11087,10 +11087,16 @@ __________ fr 2.6.23 ...airport lib 31.5 6-14
 424: *12:46 PM 6/2/2023-12:48 PM 6/2/2023
 425: *12:48 PM 6/2/2023-12:54 PM 6/2/2023
 426: *12:54 PM 6/2/2023-12:56 PM 6/2/2023
-427: *12:56 PM 6/2/2023-
+427: *12:56 PM 6/2/2023-8:44 PM 6/2/2023
+__________ sa 3.6.23 ...airport lib 31.5 6-14
+450: *8:44 PM 6/2/2023-6:32 AM 6/3/2023
+https://www.youtube.com/watch?v=VchuKL44s6E
 es ist einfach VIEL ZU kompliziert!!!
-
+451: *6:32 AM 6/3/2023-6:32 AM 6/3/2023
+python as fast as possible!
+https://www.youtube.com/watch?v=VchuKL44s6E
 I guess es waere einfacher,
+
 
 - test trimAny!
 
