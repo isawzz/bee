@@ -11131,6 +11131,159 @@ ok =>prudential 2023 =>onedrive!
 __________ so 4.6.23 ...airport lib 31.5 6-14
 500: *7:59 PM 6/3/2023-7:59 PM 6/3/2023
 tutorial: https://www.youtube.com/watch?v=VchuKL44s6E
+501: *5:25 AM 6/4/2023-5:25 AM 6/4/2023
+data types int str bool float
+502: *5:25 AM 6/4/2023-5:31 AM 6/4/2023
+503: *5:31 AM 6/4/2023-5:34 AM 6/4/2023
+504: *5:34 AM 6/4/2023-5:34 AM 6/4/2023
+505: *5:35 AM 6/4/2023-5:46 AM 6/4/2023
+506: *5:46 AM 6/4/2023-5:52 AM 6/4/2023
+507: *5:52 AM 6/4/2023-6:00 AM 6/4/2023
+508: *6:00 AM 6/4/2023-6:09 AM 6/4/2023
+- vs code extensions disabled:
+autoDocstring
+AWS Toolkit
+Better Jinja
+Black
+C/C++
+Dev Containers
+Django
+Docker
+EJS language support
+IntelliCode
+isort
+Javascript Booster
+Jinja
+Jupyter
+Live Preview
+PostCSS Intellisense
+Pylance
+==>Python von Microsoft
+Python Environment Manager
+Python Extension Pack
+Python Paste and Indent
+Word Intellisense
+Angular Language Service
+Github Copilot
+Go
+Visual Studio Keymap
+WSL
+509: *6:09 AM 6/4/2023-6:09 AM 6/4/2023
+510: *6:10 AM 6/4/2023-6:16 AM 6/4/2023
+511: *6:16 AM 6/4/2023-6:17 AM 6/4/2023
+512: *6:17 AM 6/4/2023-6:17 AM 6/4/2023
+513: *6:17 AM 6/4/2023-6:23 AM 6/4/2023
+514: *6:23 AM 6/4/2023-6:26 AM 6/4/2023
+515: *6:26 AM 6/4/2023-6:26 AM 6/4/2023
+516: *6:26 AM 6/4/2023-6:27 AM 6/4/2023
+517: *6:27 AM 6/4/2023-6:28 AM 6/4/2023
+518: *6:28 AM 6/4/2023-6:28 AM 6/4/2023
+519: *6:28 AM 6/4/2023-6:28 AM 6/4/2023
+520: *6:28 AM 6/4/2023-6:32 AM 6/4/2023
+521: *6:32 AM 6/4/2023-6:40 AM 6/4/2023
+522: *6:41 AM 6/4/2023-6:41 AM 6/4/2023
+523: *6:41 AM 6/4/2023-6:42 AM 6/4/2023
+524: *6:42 AM 6/4/2023-6:43 AM 6/4/2023
+https://www.youtube.com/watch?v=ORrELERGIHs
+525: *6:44 AM 6/4/2023-6:50 AM 6/4/2023
+install vs code from https://code.visualstudio.com/docs/?dv=win64
+downloads, System 64 version!
+526: *6:52 AM 6/4/2023-6:52 AM 6/4/2023
+527: *6:52 AM 6/4/2023-6:58 AM 6/4/2023
+528: *6:58 AM 6/4/2023-6:59 AM 6/4/2023
+529: *6:59 AM 6/4/2023-7:00 AM 6/4/2023
+=> C:\Program Files\Microsoft VS Code
+=> C:\Users\tawzz\AppData\Roaming\Code
+=> C:\Users\tawzz\.vscode
+530: *7:00 AM 6/4/2023-7:02 AM 6/4/2023
+...hab Code dir hierher copiert: C:\DATA\tawzz\vscodeSettings2023
+531: *7:02 AM 6/4/2023-7:02 AM 6/4/2023
+532: *7:02 AM 6/4/2023-7:03 AM 6/4/2023
+- deleting .vscode zeug... 
+533: *7:05 AM 6/4/2023-7:05 AM 6/4/2023
+- deleting Code in tawzz...
+534: *7:05 AM 6/4/2023-7:07 AM 6/4/2023
+- uninstall vs code nochmal!...
+535: *7:08 AM 6/4/2023-7:08 AM 6/4/2023
+- uninstalling python 3.11...
+536: *7:08 AM 6/4/2023-7:09 AM 6/4/2023
+537: *7:09 AM 6/4/2023-7:10 AM 6/4/2023
+538: *7:10 AM 6/4/2023-7:11 AM 6/4/2023
+539: *7:11 AM 6/4/2023-7:41 AM 6/4/2023
+540: *7:41 AM 6/4/2023-7:42 AM 6/4/2023
+541: *7:42 AM 6/4/2023-7:43 AM 6/4/2023
+542: *7:43 AM 6/4/2023-7:45 AM 6/4/2023
+543: *7:45 AM 6/4/2023-7:45 AM 6/4/2023
+544: *7:45 AM 6/4/2023-7:48 AM 6/4/2023
+545: *7:48 AM 6/4/2023-7:49 AM 6/4/2023
+ok - delete Python311 in Porgram Files!!!
+ok - activate conda env: conda activate .conda
+=>auf die SSD!
+=>vs code zeug => SSD
+546: *7:49 AM 6/4/2023-7:50 AM 6/4/2023
+547: *7:50 AM 6/4/2023-7:51 AM 6/4/2023
+- was ist das fuer ein link???
+best py features in vs code:
+=> https://www.youtube.com/watch?v=HUtHp3duGbI
+548: *7:51 AM 6/4/2023-7:55 AM 6/4/2023
+549: *7:55 AM 6/4/2023-7:56 AM 6/4/2023
+550: *7:56 AM 6/4/2023-8:00 AM 6/4/2023
+551: *8:00 AM 6/4/2023-8:17 AM 6/4/2023
+552: *8:17 AM 6/4/2023-8:18 AM 6/4/2023
+553: *8:18 AM 6/4/2023-9:07 AM 6/4/2023
+=>wasser holen!!! fgu!!!
+555: *9:07 AM 6/4/2023-9:26 AM 6/4/2023
+556: *9:26 AM 6/4/2023-9:28 AM 6/4/2023
+557: *9:30 AM 6/4/2023-9:30 AM 6/4/2023
+558: *9:30 AM 6/4/2023-9:31 AM 6/4/2023
+- to move terminal panel: rightclick to of terminal, Panel Position, right
+- to activate .conda: only have to write: activate into terminal!
+559: *9:32 AM 6/4/2023-9:33 AM 6/4/2023
+560: *9:33 AM 6/4/2023-9:33 AM 6/4/2023
+- nochmal restart mit dem tutorial https://www.youtube.com/watch?v=HUtHp3duGbI
+561: *9:33 AM 6/4/2023-9:34 AM 6/4/2023
+562: *9:34 AM 6/4/2023-9:35 AM 6/4/2023
+563: *9:35 AM 6/4/2023-9:37 AM 6/4/2023
+564: *9:37 AM 6/4/2023-9:38 AM 6/4/2023
+565: *9:38 AM 6/4/2023-9:40 AM 6/4/2023
+open a .ipynb file
+ok - copy to One
+- select kernel vs code jupyter
+- click on Select kernel top right, install suggested extensions Python + Jupyter, nochmal, select .conda env
+566: *9:40 AM 6/4/2023-9:42 AM 6/4/2023
+567: *9:42 AM 6/4/2023-9:42 AM 6/4/2023
+568: *9:42 AM 6/4/2023-9:44 AM 6/4/2023
+ok - copy to One
+keyboard shortcuts:
+Ctrl+Enter within cell executes cell!
+- when press Run All: tells me to install ipykernel, do that!
+569: *9:45 AM 6/4/2023-9:46 AM 6/4/2023
+570: *9:46 AM 6/4/2023-10:38 AM 6/4/2023
+571: *10:39 AM 6/4/2023-10:41 AM 6/4/2023
+572: *10:41 AM 6/4/2023-10:42 AM 6/4/2023
+573: *10:42 AM 6/4/2023-10:44 AM 6/4/2023
+574: *10:44 AM 6/4/2023-10:50 AM 6/4/2023
+575: *10:50 AM 6/4/2023-10:52 AM 6/4/2023
+576: *10:52 AM 6/4/2023-10:54 AM 6/4/2023
+export interactive windows as jup nb: dann open nb, F10 to run by line
+- One
+- interactive window: type #%% on top of any block of python code, can run it like a cell!!!
+what was last?
+577: *10:54 AM 6/4/2023-
+
+
+
+
+
+
+
+=> short break: staubsaugen wohnzi
+u n i c o r n will be at 10K
+
+
+- tut weiter!!!
+- goto 
+- python extension ist installed, that's all!
 
 
 
@@ -11164,13 +11317,11 @@ tutorial: https://www.youtube.com/watch?v=VchuKL44s6E
 
 
 
-I guess es waere einfacher,
 
 
-- test trimAny!
 
-- trimAny
-- splitList
+
+
 
 fe: 
 gu ionos? 
@@ -11193,1156 +11344,18 @@ m
 line after last }
 
 
-
-
-- how to split bei {???
-
-
-
-
-rules:
-1- wenn ich kein ; habe kann ich NICHT das newline removen!!!
-2- newline nach ';' kann removed werden
-3- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- way shorter!!!
-- 1 satz oder 1 zeile code oder 1 frage
-
-- let go! it will happen automatically without your doing!!!
-- let go let go letgo!
-im code: wenn ; dann danach trim()
-- 
-- jetzt was???
-- hol mir das schraege teil!!!!
-
-ich muss am nachmittag music und prog machen!!!
-- wie mach ich das mit den tokens???
-- source mehr!
-- das indent sagt einfach nur die {} schachtelungstiefe
-- andre sache: ich koennt indent zu jedem token dazuschreiben!
-- newline vor function und async function
-vor string replacement:
-wenn ein newline nach ; ist, dann MUSS newline nach dem next } sind
-- new line nach ';' wen
-- einfach newline vor function und async function
-- replace newline mit !
-- nimm code3
-- wenn 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- was soll ich mit function within function machen?
-nur 100
-- was macht stringFromTo
-- ich muss das pushen mit dem prefix von vorher machen?
-- test!
-sba(s,'\nfunction') '',\nfunction
-which muss auch returned werden! oder ich mach splitBeforeAny
-
-
-- brauch die info bei jeder part in res welches kw am anfang war!!!
-goto code: splitAtAnyOf
-versuch: each function on a new line!!!!
-WHY????
-wenn ';' habe, kann ich alle linebreaks rausnehmen!!!
-assume ; placed after each statement!!!
-- mach ein codeFromFile
-- orig code ausgeben!
-- gibt es nicht eine viel bessere art das zu machen?
-- trial 3!
-- WTF???
-- remove semicolon!
-WAY SHORTER!!!
-- in C items muss mutiple white space entfernt werden!!!
-WTF?
-- goto outputcode
-- bei C item wird immer wenn ein \n rausgenommen wird ein ';' eingesetzt ausser last char war ein ';'
-wo war ich insgesamt?
-
-
-trip airport nach hause:
-9:35 am
-directions_walkstart walking from
-Seattle Tacoma International Airport, Seattle/Seatac
-0 min (0.0 miles)
-9:35 am
-directions_bus
-atStop P4080 @ SeaTac Airport Terminal - Bay 2
-Take 560 560E BELLEVUE via SEA-TAC AIRPORT (Sound Transit) from this stop.
-Exit at 67654 @ Bellevue Transit Center BAY 7 (WB)
-10:17 am
-directions_walkstart walking from
-Stop 67654 @ Bellevue Transit Center BAY 7 (WB)
-3 min (0.1 miles)
-Stop 67654 @ Bellevue Transit Center BAY 7 (WB)
-3 min (0.1 miles)
-1. Walk a short distance E on Bellevue Tc Acrd.
-2. Walk straight on NE 6th St.
-3. Walk a short distance NE on NE 6th St.
-4. Walk straight on Bellevue Tc Acrd.
-5. Walk approx. 1 block W on Bellevue Tc Acrd.
-10:30 am
-directions_bus
-atStop 68003 @ Bellevue Transit Center BAY 3 (EB)
-Take B Line RapidRide B Line To REDMOND TC (Metro) from this stop.
-Exit at 73391 @ 148th Ave Ne & Ne Old Redmond Rd (NB)
-10:55 am
-directions_walkstart walking from
-Stop 73391 @ 148th Ave Ne & Ne Old Redmond Rd (NB)
-6 min (0.2 miles)
-1. Walk approx. 2 blocks S on 148th Ave NE.
-11:47 am
-directions_bus
-atStop 73380 @ 148th Ave Ne & Ne 66th St (NB)
-Take 221 221 EDUCATION HILL (Metro) from this stop.
-Exit at 74152 @ Ne 104th St & 170th Ave Ne (WB)
-12:11 pm
-directions_walkstart walking from
-Stop 74152 @ Ne 104th St & 170th Ave Ne (WB)
-5 min (0.2 miles)
-You will have arrived at your final destinationArrive at Current Location
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- bei 12 ist es so wie bei 6
-ungerade anzahl r,l
-
-- bis zur mitte schaut es nach oben
-- die mitte schaut auch nach oben!
-
-
-
-
-
-
-
-
-
-
-
-
-
-- die mitte ist -35
-- aeusserstes -135
-
-100/
-35,68,102,135
-- 12
-
-- 10
-
-- mach mal das Karte.card
-- Braced
-- brauch die grammar!!!
-- mach einen ast!
-- add params to codeToTokens
-- jetzt eine code erweiterung machen?
-
-
-
-
-
-
-
-
-
-airport: 150!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-barcelona bogota buenos aires melbourne milan paris portland
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-NB kann nur am anfang oder nach { oder nach } kommen
-	
-
-
-- erstmal ohne strings!!! dazu
-- jetzt brauch ich strings!
-1a. comma after brace: keep it with the brace!
-1b. comma inside of NB
-- implement 
-1. comma, 
-2. colon
-3. newlines inside of NB
-- implement max linelength! dazu brauch ich eigentlich newline inside of NB
-- uses allfuncs
-- output tokens
-- wieso bricht er ab???
-- such mir ein minimized code!
-- no newline vor {
-
-
-
 - immer u n i c o r n
 
 
-
-
-
-
-costco tanken WENIG kaufen!!!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-grammar file!!!
-- next
-- naive approach
-change program
-- parser
-- export if
-start
-weiter
+___________________________ 7:57 AM 6/4/2023
 u n i c o r n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- justString
-- first pass: remove all comments from code!
-- delimiter!
-- auslagern zu done und bau1
-- can use consumeWhile!??
-- just (
-possible linebreak ist bei:
-{ wenn content bis match
-test consumeOtherThan(code, idx, arr) 
-- consumeOtherThan('\
-ich muss nur die { } matchen! erstmal!!!
-
-if ( CONDS ) { CODE }
-while ( CONDS ) { CODE }
-for (  ) { 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- schreib die grammar
-CODE := FUNC PARAMS BRACKEXP
- | class ID BRACKEXP
- | VARCONST ID OPTASSG
- | if CONDLIST BRACKEXP OPTELSE
-OPTELSE := '' | else BRACKEXP
-FUNC := function ID | async function ID
-PARAMS := ( IDLIST )
-BRACKEXP := { CODE }
-VARCONST := var | const | let
-OPTASSG := '' | = CODE
-IDLIST := ID | ID , IDLIST
-CONDLIST := ( COND ) | ( COND BOOLOP CONDLIST )
-COND := EXP COMPOP EXP
-
-
- | 
-WAY SHORTER!
-- consume
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mach eine kleine function fuer einen path!
-let p12=mCreateFrom('<svg><path d="M0 50 L200 50"></svg>');
-mAppend('pcontainer',p12);
-p12.id='mysvg';
-var path = anime.path('#mysvg path');
-
-- das ganze motionpath soll nocmal gemacht werden!
-und zwar so: anstatt dem keyboardhandler nix
-- keyboardhandler muss weg!!!
-- such aus paar path elements!
-- anime.path ist interessant! das muss scheinbat ein path element sein!
-
-- da ist code VOR dem /*DEMO*/ sign!!!
-- schau in das index.html file?
-- warum geht es nicht?
-- what should I do about that?
-- mit den callbacks gibt es probleme!
-- test more advanced mit rerun!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-way shorter!!!!!!!
-- super simple clevere art!!!
-- how to get back original??? that works!!!
-- REPAIR!!!
-- 
-- demo soll am anfang den orig code drin haben
-- statt dem code zeug soll click NUR das ta zeigen
-- bei update soll demo.code correct updated werden
-- 
-- was jetzt?
-- 
-- bau2
-way shorter!!!
-- remove code rest
-- richtig cool!!!!!
-- ich will eigentlich bei onclick update:
-nicht window[id]() sondern eval(ta.value)
-resetDemos() stops all running animations
-resetDemo() resets values of all demo elements
-
-- restart runs the demo
-- was will ich eigentlich?
-- add bau, start
-- hol mit allfuncs und allglobals
-- copy docsanime into new 
-- ich koennte ein dict draus machen!
-demos=list of el:el, id:x, anim:function
-- 
-- var x ist eine function
-- document.getElementById(x) ist eine div
-
-- hier ist wie es geht:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- welche namen gibt es bei anime?
-ease[In|Out|InOut]['Quad', 'Cubic', 'Quart', 'Quint', 'Sine', 'Expo', 'Circ', 'Back', 'Elastic']
-- vielleicht geht es garnicht!!!
-- use a custom easing function in js
-
-- easeInOutElastic
-- versuch es mit jq animate
-- new jQuery
-- js use function instead of string as easing in Element.animate
-- use animation timing function in Element.animate
-- kirupa
-- js how to use a custom easing function in elem.animate 
-- goto easings
-- schau in code wie elastic gemacht wird!
-- elastic: cubic-bezier(.65,1.88,.89,.64)
-- schau das gsap an
-- gsap is it worth it?
-- greensock
-- 
-- css elastic ease: cubic-bezier(.65,1.88,.89,.64)
-- schau ob das geht scheint nicht wirklich zu gehen!
-- ich moecht den easing code von anime nehmen!
-- 3hF5h
-- wie macht man ein callback?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- einfach nur noch schreiben!
-- normalize ohne minimize!
-- nimm base.css ini beethoven/base und normalize!
-- 
-- dazu brauch ich aber erstmal ein allcss.css!
-- mach dasselbe mit cssbaseExtend
-- codebaseextend functioniert!!!!!!!
-- ok, override allglobals!
-- check ob coloPalette in allfuncs.js drin ist! JA!!!!
-- im alten allglobals sind functions drin!!!!!!!
-- araxis compare allglobals
-- bug
-- wow!!!
-- output bytype
-- build extended codebase! extendedglobals,extendedfuncs
-- und jetzt? integrate but how????
-- was jetzt?
-- all new objects are now in olist (in reihenfolge des einlesenss!)
-
-- jetzt mach dasselbe fuer die neuen in coding
-=>mach bykey
-codebaseExtend(project)
-read globlist and funclist mach ein bykey und ein bytypedraus
-read each file in index.html =>newkeys
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- codebaseUpdate(project) soll alle einlesen und mit allfuncs und allglobals eine erweiterte basis bilden! die veraenderten duplicates sollen gezeigt werden!
-
-im moment macht er nur eine func-closure!
-er soll auch nur die globals die gebrauch werden importen!!!
-- was macht codeUpdateCodebase? es macht ein neues allfuncs das all die funcs added die im project sind und eine liste von changes ausgibt
-- was macht codeBuildClosure? es macht aus den files die als scripts included sind eine closure
-- dann brauch ich noch ein cssClosure und cssCodebase update
-- was macht 
-- er arbeitet mit ALTEM code!!!!
-- discord
-- das kann jetzt SEHR lange dauern!!!!!!!
-- D auf SSD
-- SSD
-- make a list
-['_addRelatives','_addFilterHighlight',
-- nachdem es nur funcs sind brauch ich mich nicht um order (also keys) kuemmern!!!
-if this is my last day I would like to spend it with music and lightness
-- bundle works, jetzt brauch ich closure!!!
-- test
-WAY SHORTER!!!
-- wenn jetzt noch neue keys sind, add to olist functions!
-- jetzt moecht ich all die included js files in einer liste
-
-- delete the following from z_all.yaml:
-load_Codebase
-_start_old
-load_codebase
-loadCodebase
-bundleGenerateFrom
-bundleGenFromProject
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- kathastrophe!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- mach neues allcode.yaml
-- open z_allcode und sch nach dynamicArea
-- changes die nur whitespaces involvieren sind NICHT significant changes!!!
-- mit allglobasl und allfuncs sollte es functionieren!
-- removeEmptyLines!
-- geh zu allcode 
-- geh zum fehler! toggle_tables_off
-- sieh es nur an und erkenne die irrelevanz
-- keine ahnung was das problem ist!
-- updateCodebase: nur allfuncs wird updated!!!
-- closure von allglobals und allfuncs
-- erstmal nur allcode!
-- way shorter!!!
-- in first line, if there is anything non-empty after ) { split
-- bau1 17
-- copy from server.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- server.js wie hab ich datetime gemacht?
-- first, just point out duplicates, do NOT update them in yaml files
-
-- updateCodebase(project) heisst: die codebase erweitern um neue funktionen
-in project.
-=> wie stelle ich sicher dass duplicates nicht incompatible werden?
--ch koennte bei jedem duplicate nachfragen
-override oder keep oder rename
-was will ich ueberhaupt?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- found the bug!
-- ok alles klar, der htmlbodyfile soll nur angegeben werden wenn DIFFERENT from htmlscriptsfile!!!!!!!!!!!!!!! (das gilt eh nur fuer belinda!!!
-- wieso parsed er alles 2x???
-- was ist da los?!?!?!?!?!?!?
-- fgu wae
-- was wenn path duplicated?
-- bundle hat jetzt den path! der path soll die history sein!
-
-
-
-
-
-10- gu schwimmen um 1h30
-10- bad
-10- A gemuese reingeben!
-10- wae aufh
-=>100AA
-
-
-
-
-- dann auch bei den alten functions duplicates aufgezeichnet und auf wunsch code upgraded wird
-- ich sollte ein sortfunctions haben das alle functions in einem file alpha sorted!!!
-- also brauch ich:
-- sie soll ALLE classes,ids und keyframes enthalten
-- die tags sollen von einem designated css file kommen!
-- mach eine riesige css base
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- was will ich ueberhaupt? 
-1. fuer jedes beliebige project will ich eine closure machen koennen
-2. ich will eine codebase und eine cssbase (jeweils 1 file + die yaml info)
-3. die codebase auf einfache art neu generieren koennen, starting von existing codebase!
-4. all das locally in javascript ohne node!
-5. spaeter auch mit node sodass er das komplette project generiert!
-6. danach eine UI die erlaubt code zu finden, zu editieren,..... all das zeug zu machen
-7. finally, web scraping for new code
-8. einen editor der mir erlaubt ganz schnell in vscode folders zu hiden oder zu showen
-
-- ausmusten von a04!!!!
-=>a04 ist mein neues vps mit node und py
-- eigentlich sollte das a04 sein! (auf github: vps)
-- das soll aber auch auf github kommen oder?
-- ich koennt ein neues a0root machen dass wirklich alles enthaelt
-was jetzt?
-
-
-- ich kann schon wiederall die relevanten projects in ein dev dir geben und dann weiter bearbeiten!
-
-- was kann ich jetzt machen waehrend das zeug laeuft?
-- how about that: 
-2. clear SSD500
-3. alte HD weggeben (!)
-4. 
-
-DATA/dev... hat insgesamt 136GB
-D hat 20GB
-OneDrive/dev hat 5GB
-=>alte HD hat 500GB free! 
-
-DATA hat wahrscheinlich weit ueber 100GB
-das ARBEIT dir soll NICHT am stick sein!!!
-=>compute how much I have in D and how much in DATA
-- ich wuerd sagen: SSD500 soll D und DATA von NIL halten
-
-
-
-
-
-
-=>ALLES von DATA dev... =>
-ALLES in aroot: dann kann ich 
-1. assets consolidieren
-2. common allcode haben
-3. common php code haben der basically auf mySQL zugreift und nur einfach web access provided
-4. common node modules haben, das grundlage fuer neue vps ist wenn wir eine bekommen
-5. serverX.js fuer all die node apps
-6. einlagern / auslagern muss auch gehen: manipulate .vscode settings!
-7. generate allcode
-8. generate closures fuer was immer ich will
-
-
-- oder: neuere sache: ALLES kommt in aroot
-was jetzt? wie will ich es organisieren?
-- eigentlich waer am besten 1 dev dir wo alles drin ist und in der root das coding das auf alles zugriefen kann!
-- wie waer es wenn ich einfach ALL das zeug in 1 grosses dev dir lade und DANACH im hauptdir das vs code laufen lasse und DANN davon alles mit live-server laufen lasse!
-
-- hole eine schachtel fuer sens, eine fuer mit, eine fuer trap
-
-fe sticks (in ziplock):
-Microsoft 16GB Kingston gross schwarz ist bootdisk von 2010
-
-HP sensadr
-
-lila Kingston 4GB guggi securer app
-
-HP bei tee: linux
-
-=>der duenne ist ein boot von 2017 16GB
-(versuch damit guggi's comp zu booten!)
-
-
-Lisa Schüller
-franzoesisch  Lisa Schüller ORF
-
-Name: Gunter Leeb 
-Routing number: 111000025
-Account Number: 004772782490
-SWIFT: BOFAUS3N 
-
-
-
-
-
-
+is my innermost wish
+please let A get well so that my life can be unicorn!!!!
+PLEASE because that is how it should be!
+and because life is good! and she is life!!! therefore she has the built-in ability to enjoy life and feel free!!!!!!
+let her feel loved and free and full of that spirit of life!!!!!
+remove the dark clouds and let her feel the sunshine!!!!!!!!!!!!!!!!
+PLEASE!
 
 ___________________________ 10:11 AM 10/4/2022
 es fuehlt sich schrecklich an jedoch wie genau?
