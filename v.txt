@@ -11120,30 +11120,6 @@ ok =>prudential 2023 =>onedrive!
 475: *10:33 AM 6/3/2023-12:09 PM 6/3/2023
 480: *12:09 PM 6/3/2023-12:13 PM 6/3/2023
 481: *12:13 PM 6/3/2023-12:14 PM 6/3/2023
-482: *12:14 PM 6/3/2023-12:27 PM 6/3/2023
-483: *12:27 PM 6/3/2023-
-
-- abfahrt!
-
-You can tell the US Postal Service (USPS) to retain your mail while you are on travel by filling out the USPS's travel form. You can do this online or in person at your local post office.
-
-To fill out the travel form online, you can follow these steps:
-
-Go to the USPS website at https://www.usps.gov/.
-Click on the "Mail" button in the top menu.
-Click on the "Travel" link in the left-hand menu.
-Select the form that you need to fill out (either the "Domestic Travel" form or the "International Travel" form).
-Fill out the form with your travel information, including the dates of your trip, the destination, and the names and addresses of any people or businesses that you will be visiting.
-Submit the form and print a copy for your records.
-Alternatively, you can fill out the travel form in person at your local post office. You will need to bring the following information with you:
-
-Your driver's license or passport
-A copy of the travel form (available at the post office or online)
-It is a good idea to inform your post office in advance of your trip if you will be traveling abroad. This will help ensure that your mail will be held for you while you are away.
-
-I hope this helps! Let me know if you have any questions.
-
-
 - github ist jetzt setup!!!
 - upload zeug auf LG
 - basis apy => LG
@@ -11151,25 +11127,13 @@ I hope this helps! Let me know if you have any questions.
 - git init
 - pycache nicht aber idea schon!!!
 - check ob in git vps pycaches sind!
+482: *12:14 PM 6/3/2023-12:27 PM 6/3/2023
+__________ so 4.6.23 ...airport lib 31.5 6-14
+500: *7:59 PM 6/3/2023-7:59 PM 6/3/2023
+tutorial: https://www.youtube.com/watch?v=VchuKL44s6E
 
 
 
-
-=>transfer to LG:
-ok - zNote.txt (txt extreme)
-- mach jetzt das apy weiter!nach standard, mit py
-
-
-
-- mach apy dir mit _muell,_other_weg
-- lost track! now what?
-=>_muell,_other, _weg sollte standard sein, sowie base/assets
-=>nodemaster =>erhaelt all das zeug von a04 das nicht py ist
-=>a04 becomes apy
-
-- how about renaming a04 to apy? and separating into
-- geh mal zu github!
-- journey into python!
 
 
 
