@@ -4,6 +4,7 @@ async function start() {
 	testPP3(); //testExtractStrings(); //testPP2(); //testPP1_code_nobrace(); //testPP0(); //startest_cards();
 
 }
+
 async function testPP3() {
 	let s = await codeFromFile('../pico0/source.js'); //s = s.substring(0, 1000);
 	codePresent(s, 'code0', 'original code:');
@@ -86,32 +87,6 @@ function recPP(li, slist, MAXLEN, indent = 0) {
 	return parts.map(x=>' '.repeat(indent)+x).join(';\n')+';';
 
 }
-function muell() {
-
-	let xlist = tokenlist2.filter(x => x.type == 'C' && !isEmptyOrWhiteSpace(x.newcode) || x.type != 'C');
-	let code1 = xlist.filter(x => x.type == 'C').map(x => x.newcode).join('$$$');
-
-	//ich moecht jetzt wissen was alles nach $$$ oder vor $$$ kommen kann!!!
-	let parts = code1.split('$$$');
-	let newparts = parts.filter(x => !isEmptyOrWhiteSpace(x)).map(x => x.trim());
-	let davor = [], danach = [], nstart = 2, nend = 2;
-	for (const p of newparts) {
-		assertion(!p.includes('\n'))
-		addIf(davor, p.substr(p.length - nend - 1, nend))
-		addIf(danach, p.substr(0, nstart))
-	}
-	//nach einer newline sollen spaces geloescht werden
-	//console.log('danach',danach);
-	//console.log('davor',davor);
-	// codePresent(code1,'code1');
-	//assertion(!code1.includes('hallo'))
-	return;
-
-
-	codePresent(code, 'code1')
-	let newcode = codeReplaceStrings(code, slist);
-	codePresent(newcode, 'code1')
-}
 async function testExtractStrings() {
 	let s = await codeFromFile('../pico0/allf.js'); s = s.substring(0, 1000);
 	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
@@ -144,19 +119,6 @@ async function testPP2() {
 	parts = s1.split(' '); s1 = parts.filter(x => x.trim().length >= 1).join(' ');
 
 	mBy('code1').innerHTML = `<xmp>` + s1 + `</xmp>`;
-}
-
-
-function muell() {
-	let tokenlist = codeToTokens(s, true);
-	//console.log('tokens', tokenlist)
-	let ast = codeAstFromTokens(tokenlist);
-	console.log('ast', ast);
-	let code = codePP1(tokenlist, ast);
-	mBy('code0').innerHTML = `<xmp>` + s + `</xmp>`;
-	console.log('DONE!');
-	//jetzt brauch ich pp! aber wie?
-	// let code = codeFromTokens(tokenlist);
 }
 async function testPP1_code_nobrace() {
 	let s = await codeFromFile('../pico0/source.js');
@@ -374,9 +336,9 @@ async function test_lexer() {
 function test_newline() {
 	const input = "-7737 23\n13a3003\n\n";
 	const input2 = `-7737 23
-13a3003
+		13a3003
 
-`;
+		`;
 	const input3 = "-7737 23\r\n13a3003\r\n\r\n";
 	let i4 = replaceAllSpecialChars(input3, '\r', '')
 	console.log('code', input == input2, input == input3, input == i4)
