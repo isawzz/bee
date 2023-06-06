@@ -11269,10 +11269,129 @@ export interactive windows as jup nb: dann open nb, F10 to run by line
 - One
 - interactive window: type #%% on top of any block of python code, can run it like a cell!!!
 what was last?
-577: *10:54 AM 6/4/2023-
+577: *10:54 AM 6/4/2023-10:55 AM 6/4/2023
+578: *10:55 AM 6/4/2023-9:02 PM 6/4/2023
+__________ mo 5.6.23 ...airport lib 31.5 6-14
+600: *5:19 AM 6/5/2023-5:19 AM 6/5/2023
+601: *5:19 AM 6/5/2023-5:22 AM 6/5/2023
+602: *5:22 AM 6/5/2023-5:26 AM 6/5/2023
+603: *5:26 AM 6/5/2023-5:31 AM 6/5/2023
+604: *5:31 AM 6/5/2023-5:56 AM 6/5/2023
+608: *5:56 AM 6/5/2023-6:01 AM 6/5/2023
+609: *6:01 AM 6/5/2023-6:05 AM 6/5/2023
+610: *6:05 AM 6/5/2023-6:05 AM 6/5/2023
+WAY SHORTER!
+611: *6:05 AM 6/5/2023-6:13 AM 6/5/2023
+612: *6:13 AM 6/5/2023-6:17 AM 6/5/2023
+613: *6:17 AM 6/5/2023-6:19 AM 6/5/2023
+create requirements.txt file: pip freeze > requirements.txt
+614: *6:19 AM 6/5/2023-6:24 AM 6/5/2023
+616: *6:24 AM 6/5/2023-6:24 AM 6/5/2023
+617: *6:24 AM 6/5/2023-6:25 AM 6/5/2023
+conda env list ... lists all available conda environments
+618: *6:25 AM 6/5/2023-6:26 AM 6/5/2023
+conda deactivate ... deactivates current environment
+619: *6:26 AM 6/5/2023-8:28 AM 6/5/2023
+- how to delete a conda env
+- how to create env from requirements.txt file?
+640: *8:28 AM 6/5/2023-8:30 AM 6/5/2023
+641: *8:30 AM 6/5/2023-8:39 AM 6/5/2023
+643: *8:40 AM 6/5/2023-12:13 PM 6/5/2023
+645: *12:14 PM 6/5/2023-12:14 PM 6/5/2023
+ok - kill anaconda on both LG and Nil
+ok - kill Python on both LG and Nil
+ok - install Python on both LG and Nil
+646: *12:14 PM 6/5/2023-12:19 PM 6/5/2023
+nil repair vss code
+647: *12:19 PM 6/5/2023-12:29 PM 6/5/2023
+648: *12:29 PM 6/5/2023-12:33 PM 6/5/2023
+649: *12:34 PM 6/5/2023-12:35 PM 6/5/2023
+upgrade pip for system: python -m pip install -U pip
+pip --version
+650: *12:35 PM 6/5/2023-12:37 PM 6/5/2023
+install numpy
+pip install --target="C:\Program Files\Python311\Lib\site-packages" numpy
+651: *12:37 PM 6/5/2023-12:38 PM 6/5/2023
+install matplotlib: 
+pip install --target="C:\Program Files\Python311\Lib\site-packages" matplotlib
+=>ja, numpy ist jetzt in C:\Program Files\Python311\Lib\site-packages!!!
+652: *12:38 PM 6/5/2023-12:42 PM 6/5/2023
+653: *12:42 PM 6/5/2023-12:46 PM 6/5/2023
+654: *12:46 PM 6/5/2023-12:50 PM 6/5/2023
+655: *12:50 PM 6/5/2023-12:57 PM 6/5/2023
+656: *12:57 PM 6/5/2023-12:58 PM 6/5/2023
+- hab nochmal das env recreated (Ctrl+Shift+P) Python: Create Environment, selected Python 311, requirements.txt
+657: *1:04 PM 6/5/2023-1:04 PM 6/5/2023
+ok, jetzt hat es geklappt!
+=>LG gram aufladen!
+#100 uber bestellen + post scannen
+=>scary post muss in den koffer!
+760: *5:32 PM 6/5/2023-5:32 PM 6/5/2023
+761: *5:32 PM 6/5/2023-5:34 PM 6/5/2023
+762: *5:34 PM 6/5/2023-6:05 PM 6/5/2023
+=> software und OneNote => LG
+770: *7:33 PM 6/5/2023-7:33 PM 6/5/2023
+
+=>replicate on LG gram,
+
+- how to reset Python path in vs code
+- where is the vs code settings file
+explain!
+install flask
+
+where does pip install on windows:
+\Users\tawzz\AppData\Local\Programs\
+\Program Files\
+
+pip install --target="C:\Program Files\Python311\Lib\site-packages" numpy
+- install package to directory:
+
+
+python.exe -m pip install --upgrade pip --target=
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 
+- export environment: conda env export > environment.yml
+- how to add conda env to git
+- hol mir den LG
+- how to use cmd instead of powershell in vs code terminal
+- how to add matplotlib to .conda env in vs code
+- versuch numpy zeug!
+try import numpy as np
+
+
+
+reality
 
 
 
