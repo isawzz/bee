@@ -11380,7 +11380,7 @@ F10 in einer cell
 
 
 
-
+do,fr,sa: 10-5 lib returns, ev milch klein
 
 
 
