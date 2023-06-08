@@ -11331,6 +11331,96 @@ ok, jetzt hat es geklappt!
 762: *5:34 PM 6/5/2023-6:05 PM 6/5/2023
 => software und OneNote => LG
 770: *7:33 PM 6/5/2023-7:33 PM 6/5/2023
+__________ di 6.6.23 ...airport lib 31.5 6-14
+771: *8:27 PM 6/5/2023-6:11 AM 6/6/2023
+772: *6:11 AM 6/6/2023-6:16 AM 6/6/2023
+773: *6:16 AM 6/6/2023-6:18 AM 6/6/2023
+774: *6:18 AM 6/6/2023-6:19 AM 6/6/2023
+775: *6:19 AM 6/6/2023-7:51 AM 6/6/2023
+776: *7:51 AM 6/6/2023-9:30 AM 6/6/2023
+777: *9:30 AM 6/6/2023-6:33 PM 6/6/2023
+__________ mi 7.6.23 ...airport lib 31.5 6-14
+800: *6:33 PM 6/6/2023-8:51 PM 6/6/2023
+801: *5:45 AM 6/7/2023-5:52 AM 6/7/2023
+802: *5:53 AM 6/7/2023-5:53 AM 6/7/2023
+803: *5:53 AM 6/7/2023-5:54 AM 6/7/2023
+804: *5:54 AM 6/7/2023-5:55 AM 6/7/2023
+805: *5:56 AM 6/7/2023-5:58 AM 6/7/2023
+806: *5:58 AM 6/7/2023-5:59 AM 6/7/2023
+807: *5:59 AM 6/7/2023-6:06 AM 6/7/2023
+808: *6:06 AM 6/7/2023-6:09 AM 6/7/2023
+- mach eine page fuer: windows 10 re-install auf factory reset PC
+TPM ... cryptographic module
+A TPM, or Trusted Platform Module, is a hardware-level security measure meant to protect your computer from hackers. Computers built within the past five years should have a TPM, but older machines do not. Though you're free to install Windows 11 on unsupported hardware, it's not recommended.
+A configuration change was requested to clear this computer's TPM
+=>randomness & bsteps
+https://www.thewindowsclub.com/your-pc-has-been-reset-but-we-couldnt-remove-all-your-personal-files
+- soll ich das machen?
+809: *6:09 AM 6/7/2023-6:14 AM 6/7/2023
+810: *6:14 AM 6/7/2023-6:16 AM 6/7/2023
+execute tpm.msc
+811: *6:16 AM 6/7/2023-6:18 AM 6/7/2023
+812: *6:18 AM 6/7/2023-6:19 AM 6/7/2023
+813: *6:20 AM 6/7/2023-6:20 AM 6/7/2023
+814: *6:20 AM 6/7/2023-6:21 AM 6/7/2023
+export interactive window as jupyter nb 
+- open test.py
+- run current file in interactive window (rechts oben start symbol)
+- im interactive window: save
+=>macht ein jupyter nb im selben dir!
+815: *6:21 AM 6/7/2023-6:22 AM 6/7/2023
+816: *6:22 AM 6/7/2023-6:23 AM 6/7/2023
+- run by line:
+nur in jupyter nb!
+F10 in einer cell
+817: *6:23 AM 6/7/2023-5:21 PM 6/7/2023
+818: *5:21 PM 6/7/2023-
+- was muss iich noch machen?
+- copy pandas code!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+short term 12
+the glass castle
+1T_*?Q|ftf
+the glass house
+things to come
+
+- fgu!
+- explore keller!
+- install pandas
+
+ADHD:
+Try body doubling for productivity. Body doubling refers to having another person present while trying to complete a task. They do not have to help with the task, but their presence can help cue you to finish what you started.
+
 
 =>replicate on LG gram,
 
@@ -11349,15 +11439,26 @@ pip install --target="C:\Program Files\Python311\Lib\site-packages" numpy
 
 python.exe -m pip install --upgrade pip --target=
 
+=>gu asus weg or secure
+=>koffer hinunter: check ob gut
 
 
+Was hilft bei ADHS im Alltag?
+Vermeiden Sie Stressfaktoren wie: Zeitdruck, Überlastung, Hunger, Lärm, Schlafmangel etc. Versuchen Sie die Mitte zu finden statt immer wieder die Extreme zu suchen. Es gibt mehr als schwarz oder weiß. Versuchen Sie auch ihre Mitmenschen zu verstehen.
 
+Was darf man mit ADHS nicht machen?
+Welche Berufe sind eher problematisch? Für ADHS-Betroffene sind Berufe problematisch, die große Genauigkeit erfordern oder in denen monotone Tätigkeiten wichtig sind. Langeweile und Unterforderung führen bei ADHS-lern zu einer schlechten Arbeitsmoral.
 
+hilfen bei ADHD:
+Routinen, klare Anweisungen und Regeln.
+Realistische Ziele setzen.
+Auf Reizsignale achten.
+Sport und Hobbys.
+Lob ist wichtig.
+Auf eigene Bedürfnisse achten, Hilfen in Anspruch nehmen.
 
-
-
-
-
+Wie erkennt man ADS bei Erwachsenen?
+Erwachsene mit ADS haben meistens Schwierigkeiten beim selbständigen, auf sich allein gestellten Arbeiten. Auch den Überblick behalten, sowie das Strukturieren und Planen machen oft Mühe. Ständig werden Sachen vergessen, Wichtiges wird aus den Augen verloren, man verliert / vertrödelt viel Zeit, schweift ab.
 
 
 
@@ -11441,26 +11542,6 @@ u n i c o r n will be at 10K
 
 
 
-
-fe: 
-gu ionos? 
-A 2K? 
-haus??? 
-wohn wien? 
-schluessel ken/david?
-IONOS: 218261474 mptspw4tt_blast
-
-- wo ist das stringReplace?
-- schau mal was da rauskommen wuerde???
-for each line:
-replaceStrings
-len
-if len <= MAXLEN leave it
-else:
-split line into
-line before first {
-m
-line after last }
 
 
 - immer u n i c o r n
