@@ -3,6 +3,16 @@
     "module": "commonjs",
     "target": "es6"
   },
-  //"include": ["../**/*"],
-  //"exclude": ["*MUELL*", "*FAIL.js", "*0", "base", "node_modules", "temp", "*UCODE*", "y*", "_ignore", "_weg", "_other", "*hallo*", "**/*closure.js","*muell"]
+  "include": [
+    "../*.js", "." //"../**/*"
+  ],
+  "exclude": [
+    "coding",
+    "node_modules",
+    "../*_*",
+    "../y/*",
+    "../base/*",
+    "../MUELL.js",
+    "../test.js"
+  ],
 }

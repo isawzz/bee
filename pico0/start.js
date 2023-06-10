@@ -2,7 +2,8 @@
 async function start() {
 
 	testPP3(); //testExtractStrings(); //testPP2(); //testPP1_code_nobrace(); //testPP0(); //startest_cards();
-
+	let x = 1;
+	if (isdef(x)) console.log('hallo')
 }
 
 async function testPP3() {
