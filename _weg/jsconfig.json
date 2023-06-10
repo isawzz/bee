@@ -3,6 +3,6 @@
     "module": "commonjs",
     "target": "es6"
   },
-  "include": ["**/*","../**/allfuncs.js","../allf.js","allfuncs.js"],
-  "exclude": ["../*_*","../base/*","../MUELL.js","../test.js"],
+  "include": ["../**/*", "allg.js", "allf.js"],
+  //"exclude": ["*MUELL*", "*FAIL.js", "*0", "base", "node_modules", "temp", "*UCODE*", "y*", "_ignore", "_weg", "_other", "*hallo*", "**/*closure.js","*muell"]
 }

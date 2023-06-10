@@ -11374,13 +11374,185 @@ export interactive window as jupyter nb
 nur in jupyter nb!
 F10 in einer cell
 817: *6:23 AM 6/7/2023-5:21 PM 6/7/2023
-818: *5:21 PM 6/7/2023-
+818: *5:21 PM 6/7/2023-8:47 PM 6/7/2023
 - was muss iich noch machen?
 - copy pandas code!
+__________ do 8.6.23 ...airport lib 31.5 6-14
+900: *8:48 PM 6/7/2023-5:48 AM 6/8/2023
+901: *5:48 AM 6/8/2023-7:25 AM 6/8/2023
+910: *7:25 AM 6/8/2023-7:29 AM 6/8/2023
+911: *7:29 AM 6/8/2023-7:32 AM 6/8/2023
+912: *7:32 AM 6/8/2023-7:42 AM 6/8/2023
+913: *7:42 AM 6/8/2023-7:44 AM 6/8/2023
+914: *7:44 AM 6/8/2023-7:44 AM 6/8/2023
+___ DataFrame viewer:
+in ipynb file Debug Cell (Ctrl+Alt+Shift+Enter)
+Variables has icon left of ndarray,DataFrame or Series
+click to view & search the data
+915: *7:44 AM 6/8/2023-7:45 AM 6/8/2023
+916: *7:45 AM 6/8/2023-7:47 AM 6/8/2023
+917: *7:47 AM 6/8/2023-7:47 AM 6/8/2023
+918: *7:47 AM 6/8/2023-7:51 AM 6/8/2023
+919: *7:51 AM 6/8/2023-7:51 AM 6/8/2023
+920: *7:51 AM 6/8/2023-8:02 AM 6/8/2023
+921: *8:02 AM 6/8/2023-8:04 AM 6/8/2023
+922: *8:05 AM 6/8/2023-8:07 AM 6/8/2023
+923: *8:07 AM 6/8/2023-8:08 AM 6/8/2023
+924: *8:08 AM 6/8/2023-9:35 PM 6/8/2023
+__________ fr 9.6.23 ...airport lib 31.5 6-14
+950: *9:35 PM 6/8/2023-6:22 AM 6/9/2023
+951: *6:22 AM 6/9/2023-6:28 AM 6/9/2023
+952: *6:28 AM 6/9/2023-6:29 AM 6/9/2023
+953: *6:29 AM 6/9/2023-6:29 AM 6/9/2023
+pip install sklearn-
+954: *6:30 AM 6/9/2023-6:31 AM 6/9/2023
+955: *6:31 AM 6/9/2023-6:34 AM 6/9/2023
+956: *6:34 AM 6/9/2023-6:36 AM 6/9/2023
+957: *6:36 AM 6/9/2023-6:36 AM 6/9/2023
+ERROR No module named 'sklearn'
+958: *6:36 AM 6/9/2023-6:37 AM 6/9/2023
+=> brauche: pip install scikit-learn!!!
+=> no need to restart kernel!
+959: *6:37 AM 6/9/2023-6:44 AM 6/9/2023
+960: *6:44 AM 6/9/2023-6:46 AM 6/9/2023
+961: *6:46 AM 6/9/2023-6:49 AM 6/9/2023
+962: *6:49 AM 6/9/2023-7:06 AM 6/9/2023
+963: *7:06 AM 6/9/2023-7:07 AM 6/9/2023
+964: *7:08 AM 6/9/2023-7:12 AM 6/9/2023
+965: *7:12 AM 6/9/2023-7:15 AM 6/9/2023
+966: *7:15 AM 6/9/2023-7:17 AM 6/9/2023
+=> mock coding interview
+pramp: https://www.pramp.com/#/ (google iwgajam)
+https://www.tryexponent.com/courses/software-engineering
+967: *7:20 AM 6/9/2023-7:27 AM 6/9/2023
+968: *7:27 AM 6/9/2023-7:47 AM 6/9/2023
+969: *7:47 AM 6/9/2023-8:35 AM 6/9/2023
+970: *8:35 AM 6/9/2023-8:36 AM 6/9/2023
+971: *8:36 AM 6/9/2023-8:39 AM 6/9/2023
+972: *8:39 AM 6/9/2023-8:45 AM 6/9/2023
+973: *8:45 AM 6/9/2023-8:49 AM 6/9/2023
+- confirm!
+- hat 
+- has bugs!
+- mach es zuerst in js
+- power set
+- target sum: count of subsets with sum == X
+- exponent is NOT free
+AlgoExpert
+- test
+- cmap values colormap matplotlib
+kann nochmal pip freeze requirements.txt 
+- code abschreiben!
+gather extension
+Gather extension
+- jetzt moecht ich diesen plot machen!
+try export again!
+___ ipynb export as Python Script, HTML or pdf
+=>Error: Jupyter nbconvert is not installed
+...run python -m jupyter nbconvert --version
+=>Error: Jupyter command `jupyter-nbconvert` not found
+...run pip install nbconvert
+>zeigt jupyter nb mit den ergebnissen, nicht interactive
+do,fr,sa: 10-5 lib returns, ev milch klein,jello key lime 3 oz
+=>qint 1: powerset of a list
+974: *8:49 AM 6/9/2023-8:50 AM 6/9/2023
+975: *8:50 AM 6/9/2023-8:51 AM 6/9/2023
+- what happens if list has duplicates: will treat as different! =>there will be multiple same sets!
+976: *8:51 AM 6/9/2023-8:52 AM 6/9/2023
+977: *8:52 AM 6/9/2023-8:54 AM 6/9/2023
+978: *8:54 AM 6/9/2023-8:56 AM 6/9/2023
+979: *8:56 AM 6/9/2023-9:35 AM 6/9/2023
+980: *9:35 AM 6/9/2023-9:46 AM 6/9/2023
+985: *9:46 AM 6/9/2023-11:26 AM 6/9/2023
+990: *11:26 AM 6/9/2023-12:50 PM 6/9/2023
+991: *12:50 PM 6/9/2023-5:01 PM 6/9/2023
+1000: *5:01 PM 6/9/2023-5:01 PM 6/9/2023
+__________ sa 10.6.23 ...airport lib 31.5 6-14
+1: *5:02 PM 6/9/2023-5:03 PM 6/9/2023
+ok - check library
+2: *5:03 PM 6/9/2023-5:04 PM 6/9/2023
+eintrag
+3: *5:04 PM 6/9/2023-5:56 AM 6/10/2023
+4: *5:56 AM 6/10/2023-5:59 AM 6/10/2023
+5: *5:59 AM 6/10/2023-6:03 AM 6/10/2023
+6: *6:03 AM 6/10/2023-6:20 AM 6/10/2023
+7: *6:20 AM 6/10/2023-6:33 AM 6/10/2023
+8: *6:33 AM 6/10/2023-6:35 AM 6/10/2023
+9: *6:35 AM 6/10/2023-6:56 AM 6/10/2023
+10: *6:56 AM 6/10/2023-6:56 AM 6/10/2023
+WAY SHORTER!
+11: *6:56 AM 6/10/2023-6:57 AM 6/10/2023
+tutorial: discord bot: https://www.youtube.com/watch?v=7rU_KyudGBY&t=238s
+- create a server
+- goto https://discord.com/developers/applications
+application id: 1117090673808658452
+public key: 4fe9081be934ab4015900ebd17057dfb2add8d66345843f142374f5e86adc4d8
+generated url: https://discord.com/api/oauth2/authorize?client_id=1117090673808658452&permissions=431644732480&scope=bot
+20: *7:14 AM 6/10/2023-7:32 AM 6/10/2023
+21: *7:32 AM 6/10/2023-7:32 AM 6/10/2023
+22: *7:32 AM 6/10/2023-7:38 AM 6/10/2023
+23: *7:38 AM 6/10/2023-7:39 AM 6/10/2023
+24: *7:39 AM 6/10/2023-7:40 AM 6/10/2023
+___ how to find my token?
+- goto https://discord.com/developers/applications
+- select bot
+- select BOT tab
+- reset token
+- copy token
+ERROR client.login(process.env.TOKEN)
+client.login(process.env.TOKEN)
+goto repl.it
+25: *7:40 AM 6/10/2023-8:03 AM 6/10/2023
+30: *8:03 AM 6/10/2023-8:18 AM 6/10/2023
+31: *8:18 AM 6/10/2023-8:26 AM 6/10/2023
+32: *8:26 AM 6/10/2023-8:27 AM 6/10/2023
+33: *8:27 AM 6/10/2023-8:35 AM 6/10/2023
+34: *8:36 AM 6/10/2023-8:45 AM 6/10/2023
+35: *8:45 AM 6/10/2023-8:47 AM 6/10/2023
+36: *8:47 AM 6/10/2023-
+- LG!
+one
+- github!
+https://replit.com/@tawzz/botcat-js
+https://www.youtube.com/watch?v=7rU_KyudGBY&t=238s
+
+- ok es geht!!!!!
+- ich schaffs einfach nicht!!!
+- vielleicht sollt ich ein tut von 2023 machen?
+- oder 
+- npm install discord.js@12.5.3
+- test
 
 
 
-do,fr,sa: 10-5 lib returns, ev milch klein
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- jsconfig.json tutorial
+- immer noch!
+- how do I include a specific file in jsconfig.json
+- test
+- check ob es geht
+- fix js f12
+
+mein beethoven!
+
+shortcut fuer 
+klavier
+samelist
 
 
 

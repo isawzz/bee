@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6"
-  },
-  //"include": ["../**/*", "allglobals.js", "allfuncs.js"],
-  //"exclude": ["*MUELL*", "*FAIL.js", "*0", "base", "node_modules", "temp", "*UCODE*", "y*", "_ignore", "_weg", "_other", "*hallo*", "**/*closure.js","*muell"]
-}
