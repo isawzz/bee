@@ -11623,19 +11623,113 @@ __________ mo 12.6.23 ...airport lib 31.5 6-14
 __________ di 13.6.23 ...airport lib 31.5 6-14
 249: *5:02 PM 6/12/2023-2:07 AM 6/13/2023
 250: *2:07 AM 6/13/2023-2:13 AM 6/13/2023
-251: *2:13 AM 6/13/2023-
-- wasser kocher, kaffee, 
-- tablett, tischerl, thermos, atee, adapter
-- platte fuer bett
-- besteck verstauen!
-- A bank, handy, handy gu, fahrkarte
-- karotten kochen, gu essen
-- fgu
-- gu spaz
-
-- kaufen: spinat, nudeln, muesli fuer gu
-- android time zone
+ok - android time zone
 ok - time zone
+251: *2:13 AM 6/13/2023-2:22 AM 6/13/2023
+252: *2:22 AM 6/13/2023-2:31 AM 6/13/2023
+253: *2:31 AM 6/13/2023-2:45 AM 6/13/2023
+254: *2:45 AM 6/13/2023-2:51 AM 6/13/2023
+255: *2:51 AM 6/13/2023-2:54 AM 6/13/2023
+256: *2:54 AM 6/13/2023-2:55 AM 6/13/2023
+- check code formatting js ... ok
+257: *2:56 AM 6/13/2023-2:59 AM 6/13/2023
+258: *2:59 AM 6/13/2023-3:00 AM 6/13/2023
+259: *3:00 AM 6/13/2023-3:01 AM 6/13/2023
+260: *3:01 AM 6/13/2023-3:02 AM 6/13/2023
+- check ob prettier is installed: JA!
+- black extension installed, try format py code: black macht 4 spaces!
+- check
+- check code formatting py
+- open apy und check ob er noch formatted!
+- check ob er die extensions geaendert hat!
+- goto users settings NOW and copy file!
+- start project!
+261: *3:02 AM 6/13/2023-3:23 AM 6/13/2023
+262: *3:23 AM 6/13/2023-3:24 AM 6/13/2023
+263: *3:24 AM 6/13/2023-3:24 AM 6/13/2023
+- vielleicht wars das update?!?
+- scheint zu gehen aber weiss nicht warum?!?!
+- check ob terminal opens right: NEIN! immer noch nicht!
+264: *3:24 AM 6/13/2023-3:24 AM 6/13/2023
+- open One
+- arbeite weiter am botcat!
+265: *3:54 AM 6/13/2023-3:55 AM 6/13/2023
+=>adapter von mediamarkt
+266: *4:11 AM 6/13/2023-4:30 AM 6/13/2023
+267: *4:30 AM 6/13/2023-4:43 AM 6/13/2023
+268: *4:43 AM 6/13/2023-4:44 AM 6/13/2023
+269: *4:44 AM 6/13/2023-4:46 AM 6/13/2023
+ok - vega key internet => bw
+ok - tischerl, thermos, 
+=>call nodemon mit -r: nodemon -r dotenv/config server.js
+270: *4:47 AM 6/13/2023-4:48 AM 6/13/2023
+271: *4:48 AM 6/13/2023-4:51 AM 6/13/2023
+272: *4:51 AM 6/13/2023-4:53 AM 6/13/2023
+273: *4:53 AM 6/13/2023-5:20 AM 6/13/2023
+274: *5:20 AM 6/13/2023-5:20 AM 6/13/2023
+ok - schneidemaschine WEG =>sessel holen zum raufsteigen!
+275: *5:20 AM 6/13/2023-5:21 AM 6/13/2023
+276: *5:22 AM 6/13/2023-5:22 AM 6/13/2023
+277: *5:22 AM 6/13/2023-5:25 AM 6/13/2023
+278: *5:25 AM 6/13/2023-7:08 AM 6/13/2023
+279: *7:13 AM 6/13/2023-7:17 AM 6/13/2023
+280: *7:17 AM 6/13/2023-7:36 AM 6/13/2023
+281: *7:36 AM 6/13/2023-
+- was soll jetzt passieren? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- schuhe holen
+- batterie holen
+- gu fruehstueck vorb?
+- maedi + ikea tasche! handy / LG
+- besteck weg!!! orangepresse weg!!!
+- OG ausgepresst kaufen fuer die oben!
+- suche AA batterie!
+- frage mac/sheeba bez verguenstigungen billa...?
+
+
+
+
+
+- 5- wasser kocher, kaffee, 
+- 5- atee, 
+- 5- AA batterie!
+- 5- mac notebook tablett: ausborgen, woher hat er es? fuer maedi sowas kaufen!
+- 5- platte / gefaess fuer zeug am bett
+- 15- besteck verstauen! =>einfacheres aktivieren!
+- 150- A bank, handy, handy gu, fahrkarte++
+- => falls gertraut wohnen MUSS ueberlege was brauche! >daily 500
+- 10- karotten kochen, gu essen kochen
+- 10- fgu garten!
+- 25- gu spaz
+- 10/25- einkaufen (ev mit gu!): spinat, nudeln, muesli fuer gu
+- 10- dm: deo? putztuecher? AA batterie!
 
 
 
