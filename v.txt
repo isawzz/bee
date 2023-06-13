@@ -11523,6 +11523,7 @@ spazier,spazier
 66: *3:50 PM 6/10/2023-3:50 PM 6/10/2023
 https://replit.com/@tawzz/botcat-js
 https://www.youtube.com/watch?v=7rU_KyudGBY&t=238s
+https://discord.com/developers/applications/1117090673808658452/information
 - ok es geht!!!!!
 - ich schaffs einfach nicht!!!
 - vielleicht sollt ich ein tut von 2023 machen?
@@ -11530,7 +11531,111 @@ https://www.youtube.com/watch?v=7rU_KyudGBY&t=238s
 - npm install discord.js@12.5.3
 - test
 __________ so 11.6.23 ...airport lib 31.5 6-14
-100: *9:37 PM 6/10/2023-
+100: *9:37 PM 6/10/2023-5:08 AM 6/11/2023
+101: *5:08 AM 6/11/2023-5:14 AM 6/11/2023
+102: *5:14 AM 6/11/2023-5:20 AM 6/11/2023
+103: *5:20 AM 6/11/2023-5:22 AM 6/11/2023
+open replit at
+- das mit den permissions braucht er nicht wirklich
+104: *5:22 AM 6/11/2023-5:27 AM 6/11/2023
+105: *5:27 AM 6/11/2023-5:28 AM 6/11/2023
+106: *5:28 AM 6/11/2023-5:30 AM 6/11/2023
+107: *5:30 AM 6/11/2023-5:35 AM 6/11/2023
+108: *5:35 AM 6/11/2023-5:42 AM 6/11/2023
+109: *5:42 AM 6/11/2023-5:46 AM 6/11/2023
+110: *5:46 AM 6/11/2023-5:54 AM 6/11/2023
+- open nodemaster und a04
+- wie hab ich das mit den env variables in node js gemacht???
+- brauch v12 von discord.js 
+- woher bekomm ich das token?
+- add jsconfig.json
+- mach ein botcat project in beethoven
+111: *5:54 AM 6/11/2023-5:54 AM 6/11/2023
+WAY SHORTER!
+112: *5:54 AM 6/11/2023-5:55 AM 6/11/2023
+113: *5:55 AM 6/11/2023-5:56 AM 6/11/2023
+114: *5:56 AM 6/11/2023-5:58 AM 6/11/2023
+115: *5:59 AM 6/11/2023-6:11 AM 6/11/2023
+116: *6:11 AM 6/11/2023-6:12 AM 6/11/2023
+117: *6:12 AM 6/11/2023-6:12 AM 6/11/2023
+118: *6:13 AM 6/11/2023-6:22 AM 6/11/2023
+119: *6:22 AM 6/11/2023-6:24 AM 6/11/2023
+120: *6:24 AM 6/11/2023-6:27 AM 6/11/2023
+One
+nodemon -r dotenv/config server.js
+WAY SHORTER!
+finally!
+___ use variable defined in .env vscode
+Install dotenv npm i dotenv
+Create .env file and your variables inside
+run: nodemon -r dotenv/config server.js
+schreibe .env in das .gitignore rein!!!!!!
+schreibe TOKEN1='... in das env file hinein
+ok versuch es
+121: *6:27 AM 6/11/2023-6:28 AM 6/11/2023
+122: *6:28 AM 6/11/2023-6:29 AM 6/11/2023
+123: *6:29 AM 6/11/2023-6:29 AM 6/11/2023
+124: *7:20 AM 6/11/2023-7:21 AM 6/11/2023
+weiter gepackt
+125: *7:21 AM 6/11/2023-7:27 AM 6/11/2023
+npm install node-fetch
+const fetch = require("node-fetch")
+=>fetch quotes from zenquote API
+126: *7:27 AM 6/11/2023-7:27 AM 6/11/2023
+127: *7:28 AM 6/11/2023-7:28 AM 6/11/2023
+128: *7:28 AM 6/11/2023-7:39 AM 6/11/2023
+129: *7:39 AM 6/11/2023-7:45 AM 6/11/2023
+- wie kann ich chatgpt api in discord verwenden?
+- create array of sad words
+130: *7:45 AM 6/11/2023-7:46 AM 6/11/2023
+next part is about using a replit database (key value store)
+do I really need this? I am not sure
+ich geh lieber bisschen klavierspielen!
+- try to stay awake until tomorrow!
+230: *9:09 PM 6/11/2023-9:10 PM 6/11/2023
+231: *9:10 PM 6/11/2023-9:30 PM 6/11/2023
+235: *9:30 PM 6/11/2023-11:27 PM 6/11/2023
+herumgehen, kurz ruhen
+236: *11:27 PM 6/11/2023-11:35 PM 6/11/2023
+237: *11:35 PM 6/11/2023-11:49 PM 6/11/2023
+238: *11:49 PM 6/11/2023-11:51 PM 6/11/2023
+239: *11:51 PM 6/11/2023-12:01 AM 6/12/2023
+- strings cannot be modified! => huge difference to js!!!!
+test that!
+- swap value: x,y = y,x ... das geht!!!!
+240: *12:01 AM 6/12/2023-12:05 AM 6/12/2023
+241: *12:06 AM 6/12/2023-1:33 AM 6/12/2023
+- NEIN!!! auch in js sind strings immutable!
+nodemon -r dotenv/config server.js
+242: *1:33 AM 6/12/2023-1:35 AM 6/12/2023
+243: *1:35 AM 6/12/2023-1:38 AM 6/12/2023
+- ja, by default splitted er into words. macht js das auch???
+- test split() in py
+244: *1:38 AM 6/12/2023-1:39 AM 6/12/2023
+- nein, da muss ich x='hallo das ist\r\n\f\tkomisch'.split(/\s+/)
+aufrufen um words zu bekommen!
+=>wie geht spaces oder punktuation chars?
+245: *1:54 AM 6/12/2023-2:09 AM 6/12/2023
+246: *2:09 AM 6/12/2023-2:31 AM 6/12/2023
+247: *2:31 AM 6/12/2023-2:31 AM 6/12/2023
+248: *2:32 AM 6/12/2023-1:04 PM 6/12/2023
+__________ mo 12.6.23 ...airport lib 31.5 6-14
+__________ di 13.6.23 ...airport lib 31.5 6-14
+249: *5:02 PM 6/12/2023-2:07 AM 6/13/2023
+250: *2:07 AM 6/13/2023-2:13 AM 6/13/2023
+251: *2:13 AM 6/13/2023-
+- wasser kocher, kaffee, 
+- tablett, tischerl, thermos, atee, adapter
+- platte fuer bett
+- besteck verstauen!
+- A bank, handy, handy gu, fahrkarte
+- karotten kochen, gu essen
+- fgu
+- gu spaz
+
+- kaufen: spinat, nudeln, muesli fuer gu
+- android time zone
+ok - time zone
 
 
 
@@ -11538,6 +11643,43 @@ __________ so 11.6.23 ...airport lib 31.5 6-14
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- check ob man strip auch mit list verwenden kann!
+- check ob man maketrans auch mit lists verwenden kann
+- check if js has ltrim rtrim and what they do
+- strip vs trim in js
+tuples
+open jupyter nb
+
+
+Ich möchte am Sonntag, den 2. Juli, einen Bananenmousse-Kuchen für eine Party bestellen. Ich sehe auf Ihrer Website die Möglichkeit, diesen Kuchen zu bestellen, aber nur in einzelnen Schnitten. Wäre es möglich, einen ganzen Kuchen zu bestellen? Wäre außerdem eine Abholung am Sonntag möglich, vielleicht im Der Mann in der Billrothstraße 32?
+
+Vielen Dank für Ihre Zeit und ich freue mich darauf, bald von Ihnen zu hören.
+
+Mit freundlichen Grüßen,
+Lauren Martini
+
+
+K14USOsXQAlqUC
 
 
 
