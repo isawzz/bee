@@ -11674,7 +11674,110 @@ ok - schneidemaschine WEG =>sessel holen zum raufsteigen!
 278: *5:25 AM 6/13/2023-7:08 AM 6/13/2023
 279: *7:13 AM 6/13/2023-7:17 AM 6/13/2023
 280: *7:17 AM 6/13/2023-7:36 AM 6/13/2023
-281: *7:36 AM 6/13/2023-
+281: *7:36 AM 6/13/2023-7:41 AM 6/13/2023
+282: *7:41 AM 6/13/2023-7:41 AM 6/13/2023
+283: *7:41 AM 6/13/2023-7:41 AM 6/13/2023
+link: https://www.youtube.com/watch?v=CB76_GDrPsE
+- goto my discord.com/developers/applications
+284: *7:42 AM 6/13/2023-7:44 AM 6/13/2023
+- create aibot1
+285: *7:45 AM 6/13/2023-7:47 AM 6/13/2023
+286: *7:47 AM 6/13/2023-7:48 AM 6/13/2023
+- in developers / aibot1, click on oauth - url generator
+287: *7:48 AM 6/13/2023-7:49 AM 6/13/2023
+- kurz zum dm / billa
+__________ mi 14.6.23 ...airport sl:22h-1h30 = 3.5h
+500: *9:59 PM 6/13/2023-3:05 AM 6/14/2023
+501: *3:05 AM 6/14/2023-3:06 AM 6/14/2023
+502: *3:06 AM 6/14/2023-3:08 AM 6/14/2023
+503: *3:09 AM 6/14/2023-3:11 AM 6/14/2023
+bot heisst aibot1
+click oauth, scopes: bot, application commands
+capabilities: Send Messages
+504: *3:11 AM 6/14/2023-3:11 AM 6/14/2023
+copy link
+505: *3:11 AM 6/14/2023-3:12 AM 6/14/2023
+goto server, was jetzt?
+506: *3:13 AM 6/14/2023-3:19 AM 6/14/2023
+copy link, paste into palm server, press add bot =>bot will show offline
+507: *3:19 AM 6/14/2023-3:22 AM 6/14/2023
+goto platform.openai.com, sign in
+508: *3:22 AM 6/14/2023-3:24 AM 6/14/2023
+goto account, manage account: fe hat $120 pro monat!
+509: *3:24 AM 6/14/2023-3:28 AM 6/14/2023
+510: *3:28 AM 6/14/2023-3:28 AM 6/14/2023
+npm install openai
+511: *3:29 AM 6/14/2023-3:29 AM 6/14/2023
+512: *3:29 AM 6/14/2023-3:30 AM 6/14/2023
+513: *3:30 AM 6/14/2023-3:31 AM 6/14/2023
+goto developers, bot, reset, copy token,
+paste into .env like so:
+TOKEN = [token without quotes]
+514: *3:31 AM 6/14/2023-3:32 AM 6/14/2023
+goto openai, account, API keys
+515: *3:34 AM 6/14/2023-3:35 AM 6/14/2023
+create new API key, copy, paste as API_KEY into .env
+516: *3:35 AM 6/14/2023-3:37 AM 6/14/2023
+goto discord server, palm
+rightclick on general channel, copy channel ID
+in .env, past as CHANNEL_ID
+517: *3:38 AM 6/14/2023-3:40 AM 6/14/2023
+518: *3:40 AM 6/14/2023-3:42 AM 6/14/2023
+519: *3:42 AM 6/14/2023-3:42 AM 6/14/2023
+520: *3:42 AM 6/14/2023-3:44 AM 6/14/2023
+521: *3:46 AM 6/14/2023-3:48 AM 6/14/2023
+522: *3:49 AM 6/14/2023-
+need to npm install newes version of discord.js!
+- creat aibot1.js:
+require('dotenv/config')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+still sein (mute!): mutter,mac+fam
+masking (kindergarden teacher): gu
+direct: A,fe,diana,tage
+mutter besuch 18.6: 300#
+mutter schlafen: 1000#/tag+actions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- versuch einen ai bot zu machen!
 - was soll jetzt passieren? 
 
 
@@ -11754,7 +11857,8 @@ ok - schneidemaschine WEG =>sessel holen zum raufsteigen!
 
 
 
-
+iban mac iban AT222011100036716596
+markus gaengl-ehrenwerth
 
 
 - check ob man strip auch mit list verwenden kann!
@@ -11767,7 +11871,7 @@ open jupyter nb
 
 Ich möchte am Sonntag, den 2. Juli, einen Bananenmousse-Kuchen für eine Party bestellen. Ich sehe auf Ihrer Website die Möglichkeit, diesen Kuchen zu bestellen, aber nur in einzelnen Schnitten. Wäre es möglich, einen ganzen Kuchen zu bestellen? Wäre außerdem eine Abholung am Sonntag möglich, vielleicht im Der Mann in der Billrothstraße 32?
 
-Vielen Dank für Ihre Zeit und ich freue mich darauf, bald von Ihnen zu hören.
+Vielen Dankb  b für Ihre Zeit und ich freue mich darauf, bald von Ihnen zu hören.
 
 Mit freundlichen Grüßen,
 Lauren Martini
