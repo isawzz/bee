@@ -11726,10 +11726,117 @@ in .env, past as CHANNEL_ID
 519: *3:42 AM 6/14/2023-3:42 AM 6/14/2023
 520: *3:42 AM 6/14/2023-3:44 AM 6/14/2023
 521: *3:46 AM 6/14/2023-3:48 AM 6/14/2023
-522: *3:49 AM 6/14/2023-
+522: *3:49 AM 6/14/2023-3:55 AM 6/14/2023
+523: *3:55 AM 6/14/2023-4:25 AM 6/14/2023 v-4h20
+525: *4:26 AM 6/14/2023-4:27 AM 6/14/2023
+526: *4:27 AM 6/14/2023-4:37 AM 6/14/2023
+527: *4:37 AM 6/14/2023-4:39 AM 6/14/2023
+528: *4:39 AM 6/14/2023-5:10 AM 6/14/2023
+529: *5:10 AM 6/14/2023-5:25 AM 6/14/2023
+530: *5:25 AM 6/14/2023-5:27 AM 6/14/2023
+oeffnung mediamarkt millenium city 9am-7pm
+licht aendern
+weiter coding
+531: *5:27 AM 6/14/2023-5:52 AM 6/14/2023
+532: *5:52 AM 6/14/2023-5:53 AM 6/14/2023
+533: *5:53 AM 6/14/2023-6:05 AM 6/14/2023
+534: *6:05 AM 6/14/2023-6:07 AM 6/14/2023
+535: *6:07 AM 6/14/2023-6:07 AM 6/14/2023
+536: *6:07 AM 6/14/2023-6:10 AM 6/14/2023
+537: *6:10 AM 6/14/2023-6:13 AM 6/14/2023
+login
+const { Client, IntentBitField } =require('discord.js')
+- back to code!
 need to npm install newes version of discord.js!
+- create new dir: botai1, darinnen: npm init, npm install discord.js
 - creat aibot1.js:
 require('dotenv/config')
+538: *6:13 AM 6/14/2023-6:15 AM 6/14/2023
+539: *6:16 AM 6/14/2023-6:16 AM 6/14/2023
+const {Configuration, OpenAIApi } require('openai');
+540: *6:16 AM 6/14/2023-6:18 AM 6/14/2023
+const config = new Configuration({apiKey: process.env.API_KEY,});
+541: *6:20 AM 6/14/2023-6:21 AM 6/14/2023
+542: *6:21 AM 6/14/2023-6:23 AM 6/14/2023
+543: *6:23 AM 6/14/2023-6:24 AM 6/14/2023
+544: *6:24 AM 6/14/2023-6:25 AM 6/14/2023
+541: *6:25 AM 6/14/2023-6:27 AM 6/14/2023
+542: *6:27 AM 6/14/2023-6:28 AM 6/14/2023
+543: *6:28 AM 6/14/2023-6:31 AM 6/14/2023
+conversationLog.push({
+role:'user',
+content:message.content
+});
+await message.channel.sendTyping(
+bis jetzt ist da nichts!
+check ob die openai site irgendwas verrechnet hat!
+let conversationLog = [{role:'system',content:'you are an encouraging chatbot'});
+startsWith
+- check Channel id
+if (message.author.bot) return;
+544: *6:31 AM 6/14/2023-6:33 AM 6/14/2023
+const result = openai.createChatCompletion({
+model:'gpt-3.5-turbo',
+messages: conversationLog,
+});
+message.reply(result.data.choices[0]);
+545: *6:33 AM 6/14/2023-6:34 AM 6/14/2023
+546: *6:34 AM 6/14/2023-6:40 AM 6/14/2023
+547: *6:40 AM 6/14/2023-6:42 AM 6/14/2023
+548: *6:42 AM 6/14/2023-6:54 AM 6/14/2023
+549: *6:55 AM 6/14/2023-9:27 AM 6/14/2023
+550: *9:27 AM 6/14/2023-2:42 AM 6/15/2023
+__________ do 15.6.23 ...airport sl:22h-2h10 = 4.2h v4h30
+700: *2:43 AM 6/15/2023-2:48 AM 6/15/2023
+701: *2:48 AM 6/15/2023-2:50 AM 6/15/2023
+702: *2:50 AM 6/15/2023-2:58 AM 6/15/2023
+703: *2:58 AM 6/15/2023-2:59 AM 6/15/2023
+704: *2:59 AM 6/15/2023-3:03 AM 6/15/2023
+705: *3:03 AM 6/15/2023-3:13 AM 6/15/2023
+706: *3:13 AM 6/15/2023-3:21 AM 6/15/2023
+707: *3:21 AM 6/15/2023-3:22 AM 6/15/2023
+708: *3:22 AM 6/15/2023-3:29 AM 6/15/2023
+709: *3:29 AM 6/15/2023-3:30 AM 6/15/2023
+710: *3:30 AM 6/15/2023-3:33 AM 6/15/2023
+711: *3:33 AM 6/15/2023-3:33 AM 6/15/2023
+712: *3:33 AM 6/15/2023-3:35 AM 6/15/2023
+713: *3:35 AM 6/15/2023-3:39 AM 6/15/2023
+714: *3:39 AM 6/15/2023-3:50 AM 6/15/2023
+715: *3:50 AM 6/15/2023-3:51 AM 6/15/2023
+716: *3:51 AM 6/15/2023-4:20 AM 6/15/2023
+720: *4:20 AM 6/15/2023-4:41 AM 6/15/2023 v
+721: *4:42 AM 6/15/2023-4:44 AM 6/15/2023
+722: *4:45 AM 6/15/2023-4:49 AM 6/15/2023
+723: *4:49 AM 6/15/2023-4:49 AM 6/15/2023
+discord.js API: https://discordjs.guide/
+- discord js api anschauen: welche events gibt es? ready, message, messageCreate
+- code anschauen!
+- compare code with code from previous one
+- was will ich ueberhaupt von dem ai bot????
+way shorter!
+- ist der client der bot???
+- bug!
+- count awaits!
+- bot reagiert nicht!!!
+- start bot
+wer ist der client?
+forEach
+let prevMessages = await message.channel.messages.fetch
+- wieso verrechnet der kein usage???
+goto discord, type message: hi, what are you up to today?
+724: *4:50 AM 6/15/2023-4:51 AM 6/15/2023
+725: *4:51 AM 6/15/2023-4:54 AM 6/15/2023
+___ richtig coole js links:
+Eloquent JavaScript, a free online book: https://eloquentjavascript.net/
+JavaScript.info, a modern javascript tutorial: https://javascript.info/
+Codecademy's interactive JavaScript course: https://www.codecademy.com/learn/introduction-to-javascript
+Nodeschool, for both JavaScript and Node.js lessons: https://nodeschool.io/
+MDN's JavaScript guide and full documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+Google, your best friend: https://www.google.com/
+- was fuer einen discord bot will ich machen???
+726: *4:56 AM 6/15/2023-4:56 AM 6/15/2023
+727: *4:56 AM 6/15/2023-
+- erstmal discord API lernen!!!
 
 
 
@@ -11748,6 +11855,78 @@ require('dotenv/config')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4367761674908
+
+
+
+
+
+
+
+
+
+
+
+wien interessant:
+- ausstaffierung clown
+- edelbert garten gnom
+- mac magic gemacht 
+- mac stress 2 tag denial +shee / garten kopfhoerer / nasi chaos red flag
+- nasi attempt + vorankuendigung / ich ganz anders als frueher
+- my behavior detached, merkwuerdig kurz angebunden
+- finde gertraut cool (complete switch neg > pos
+- tage dress relevant / luftig / ambivalent / mag den gu / not recog / gut reden
+- tage / ed grosse aehnl ich / gu
+- toxmasc vs self sacrifice theme A / sarah
+- gleichmut ana mac fe aehnlich
+- emo A sarah aehnlich (A weiss) weltschmerz, red pill
+- A ams / konto / ... suffering but still thrive gefuehl - clearly wien dec right
+- erstaunliche energie A
+- shee A garten ruhe und friedliche stimmung
+- wien very livable / gute athmos / leute weniger masking (A bemerk)
+- gu extreme frugality / aber ablenkung sofort
 
 
 
@@ -11763,7 +11942,7 @@ masking (kindergarden teacher): gu
 direct: A,fe,diana,tage
 mutter besuch 18.6: 300#
 mutter schlafen: 1000#/tag+actions
-
+tel nr an tage,mac,fe,A,di,gu
 
 
 

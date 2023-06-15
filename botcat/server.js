@@ -1,7 +1,7 @@
 const discord = require("discord.js")
 //const fetch = require("node-fetch")
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const client = new discord.Client()
+const bot = new discord.Client()
 const sadWords = ['sad','depressed','anxious','stress']
 const encouragements = [
   'hang in there!',
@@ -19,11 +19,11 @@ function getQuote() {
     })
 }
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+bot.on("ready", () => {
+  console.log(`Logged in as ${bot.user.tag}!`)
 })
 
-client.on("message", msg => {
+bot.on("message", msg => {
   console.log(`content ${msg.content} author:${msg.author.bot}`)
   if (msg.content === "?") {
     //msg.reply("yes, still here!")
@@ -37,7 +37,7 @@ client.on("message", msg => {
 })
 
 var TOKEN1 = process.env.TOKEN1
-client.login(TOKEN1)
+bot.login(TOKEN1)
 
 
 
