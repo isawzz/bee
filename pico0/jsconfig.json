@@ -4,7 +4,8 @@
     "target": "es6"
   },
   "include": [
-    "../*.js", "." //"../**/*"
+    "../*.js", 
+    "."
   ],
   "exclude": [
     "coding",
@@ -14,5 +15,5 @@
     "../base/*",
     "../MUELL.js",
     "../test.js"
-  ],
+  ]
 }

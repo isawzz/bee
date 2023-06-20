@@ -621,6 +621,26 @@ appdata:
     - d: 9.6.23
       steps: 12
       e: 5-14
+    - d: 10.6.23
+      steps: 12
+    - d: 11.6.23
+      steps: 12
+    - d: 12.6.23
+      steps: 20
+    - d: 13.6.23
+      steps: 20
+    - d: 14.6.23
+      steps: 20
+    - d: 15.6.23
+      steps: 17
+    - d: 16.6.23
+      steps: 20
+    - d: 17.6.23
+      steps: 20
+    - d: 18.6.23
+      steps: 17
+    - d: 19.6.23
+      steps: 12
   howto:
     - kw: k92
       c: hallo92

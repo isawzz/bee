@@ -11835,8 +11835,477 @@ MDN's JavaScript guide and full documentation: https://developer.mozilla.org/en-
 Google, your best friend: https://www.google.com/
 - was fuer einen discord bot will ich machen???
 726: *4:56 AM 6/15/2023-4:56 AM 6/15/2023
-727: *4:56 AM 6/15/2023-
+727: *4:56 AM 6/15/2023-5:01 AM 6/15/2023
+728: *5:01 AM 6/15/2023-5:03 AM 6/15/2023
+v14
 - erstmal discord API lernen!!!
+729: *5:03 AM 6/15/2023-5:07 AM 6/15/2023
+- check node version: node -v >16.17.1
+730: *5:07 AM 6/15/2023-5:08 AM 6/15/2023
+___ create a bot
+Open the Discord developer portal and log into your account.
+Click on the "New Application" button.
+Enter a name and confirm the pop-up window by clicking the "Create" button.
+731: *5:08 AM 6/15/2023-5:18 AM 6/15/2023
+- schoenbichler tees 
+732: *5:18 AM 6/15/2023-7:14 AM 6/15/2023
+733: *7:14 AM 6/15/2023-5:06 PM 6/15/2023
+735: *5:06 PM 6/15/2023-3:20 AM 6/16/2023
+__________ fr 16.6.23 ...airport sl:22h30-3h (12) = 4.5h v5h10
+880: *3:21 AM 6/16/2023-3:22 AM 6/16/2023
+881: *3:22 AM 6/16/2023-3:26 AM 6/16/2023
+882: *3:26 AM 6/16/2023-3:28 AM 6/16/2023
+883: *3:28 AM 6/16/2023-3:29 AM 6/16/2023
+884: *3:29 AM 6/16/2023-3:31 AM 6/16/2023
+885: *3:31 AM 6/16/2023-3:33 AM 6/16/2023
+886: *3:33 AM 6/16/2023-3:35 AM 6/16/2023
+- dirs
+- .gitignore update
+- dir struct
+- eintraege
+- _other
+- open b
+- settnings
+- neue website machen => aroot
+887: *3:36 AM 6/16/2023-3:41 AM 6/16/2023
+888: *3:41 AM 6/16/2023-3:43 AM 6/16/2023
+git
+889: *3:43 AM 6/16/2023-3:44 AM 6/16/2023
+890: *3:44 AM 6/16/2023-3:46 AM 6/16/2023
+community cafe kommin codename comm
+891: *3:49 AM 6/16/2023-3:53 AM 6/16/2023
+892: *3:53 AM 6/16/2023-4:09 AM 6/16/2023
+900: *4:10 AM 6/16/2023-4:10 AM 6/16/2023
+- browser open
+- allf, allg
+901: *4:10 AM 6/16/2023-4:11 AM 6/16/2023
+902: *4:11 AM 6/16/2023-4:19 AM 6/16/2023
+903: *4:19 AM 6/16/2023-4:26 AM 6/16/2023
+904: *4:26 AM 6/16/2023-4:30 AM 6/16/2023
+905: *4:30 AM 6/16/2023-4:38 AM 6/16/2023
+906: *4:38 AM 6/16/2023-4:39 AM 6/16/2023
+=>what helped with F12 was override .vscode AND Code in roaming w/ freshSettings
+- remove .vscode und AUCH User
+- hat nix geholfen!!!
+- remove all extensions and reset User
+- beethoven jsconfig.json in coding
+907: *4:39 AM 6/16/2023-4:43 AM 6/16/2023
+- sollte jetzt losgehen! finally!!!
+908: *4:43 AM 6/16/2023-4:53 AM 6/16/2023
+910: *4:53 AM 6/16/2023-4:57 AM 6/16/2023
+911: *4:57 AM 6/16/2023-4:57 AM 6/16/2023
+912: *5:19 AM 6/16/2023-5:19 AM 6/16/2023 v
+913: *5:19 AM 6/16/2023-5:20 AM 6/16/2023
+- jetzt muss ich schon wieder das Ctrl+Shift+S einstellen!!!
+- vs code only shows 3 open files in editor tabs and replaces open file
+- not registered
+==> start tut: https://www.youtube.com/watch?v=kffivnAYUAY
+914: *5:20 AM 6/16/2023-5:22 AM 6/16/2023
+915: *5:22 AM 6/16/2023-5:25 AM 6/16/2023
+916: *5:25 AM 6/16/2023-5:25 AM 6/16/2023
+- open phpMyAdmin: make sure localhost:8080 is not used!!!, start xampp, localhost:8080/phpmyadmin
+917: *5:25 AM 6/16/2023-5:26 AM 6/16/2023
+918: *5:26 AM 6/16/2023-5:30 AM 6/16/2023
+919: *5:30 AM 6/16/2023-5:31 AM 6/16/2023
+920: *5:31 AM 6/16/2023-5:32 AM 6/16/2023
+- look at sql file
+- copy paste reglog.sql into mychat_db / SQL, and Go
+921: *5:32 AM 6/16/2023-5:35 AM 6/16/2023
+- same for telecave: login to IONOS, Hosting, Databases, open phpmyadmin
+922: *5:35 AM 6/16/2023-5:36 AM 6/16/2023
+923: *5:36 AM 6/16/2023-5:39 AM 6/16/2023
+>jetzt hab ich eine tb_user db, connect to it!
+924: *5:39 AM 6/16/2023-5:40 AM 6/16/2023
+- goto localhost:8080/aroot/reglog
+925: *5:40 AM 6/16/2023-5:43 AM 6/16/2023
+- install FileZilla from https://filezilla-project.org/download.php#close
+926: *5:43 AM 6/16/2023-5:45 AM 6/16/2023
+- geht! start FileZilla
+- configure filezilla: One! TODO php
+927: *5:46 AM 6/16/2023-5:49 AM 6/16/2023
+928: *5:49 AM 6/16/2023-5:50 AM 6/16/2023
+929: *5:50 AM 6/16/2023-5:54 AM 6/16/2023
+930: *5:54 AM 6/16/2023-5:54 AM 6/16/2023
+- klar, wegen dbconnect ist zu localhost in config.php
+- geht nicht!
+- goto www.telecave.net/aroot/reglog
+931: *5:54 AM 6/16/2023-5:57 AM 6/16/2023
+- it works!!!
+932: *5:57 AM 6/16/2023-5:57 AM 6/16/2023
+933: *5:58 AM 6/16/2023-6:00 AM 6/16/2023
+934: *6:00 AM 6/16/2023-6:14 AM 6/16/2023
+- ok jetzt wird es bisschen komplizierter!
+- schau erstmal wie ich es bei games gemacht habe mit dem php code?
+- mach das ganze mit localhost!
+935: *6:14 AM 6/16/2023-6:31 AM 6/16/2023
+936: *6:31 AM 6/16/2023-10:06 AM 6/16/2023
+937: *10:06 AM 6/16/2023-5:59 PM 6/16/2023
+1000: *5:59 PM 6/16/2023-5:59 PM 6/16/2023
+__________ sa 17.6.23 ...airport sl: 11-3 =4h -2
+120: *3:17 AM 6/17/2023-3:19 AM 6/17/2023
+121: *3:20 AM 6/17/2023-3:21 AM 6/17/2023
+122: *3:21 AM 6/17/2023-3:28 AM 6/17/2023
+123: *3:28 AM 6/17/2023-3:40 AM 6/17/2023
+124: *3:41 AM 6/17/2023-3:50 AM 6/17/2023
+125: *3:50 AM 6/17/2023-3:50 AM 6/17/2023
+126: *3:50 AM 6/17/2023-3:51 AM 6/17/2023
+127: *3:51 AM 6/17/2023-3:58 AM 6/17/2023
+128: *3:58 AM 6/17/2023-4:01 AM 6/17/2023
+129: *4:01 AM 6/17/2023-4:24 AM 6/17/2023
+130: *4:24 AM 6/17/2023-4:31 AM 6/17/2023
+135: *4:31 AM 6/17/2023-4:34 AM 6/17/2023
+http://localhost:8080/aroot/comm/index.html
+- new index.php das alles php handled
+http://localhost:8080/aroot/comm/index.html?name=name%20a
+- wie krieg ich die js get URL params
+localhost:8080/aroot/reglog
+localhost:8080/aroot/comm/index.php
+- wenn ich es mit liveserver lade dann will ich einen fake user mit dem UI
+- test
+136: *4:48 AM 6/17/2023-4:50 AM 6/17/2023
+137: *4:51 AM 6/17/2023-4:51 AM 6/17/2023
+- check welches er nimmt php nimmt php, live nimmt html
+138: *4:51 AM 6/17/2023-4:57 AM 6/17/2023
+139: *4:57 AM 6/17/2023-5:01 AM 6/17/2023
+140: *5:01 AM 6/17/2023-5:02 AM 6/17/2023
+141: *5:02 AM 6/17/2023-5:08 AM 6/17/2023
+142: *5:08 AM 6/17/2023-5:08 AM 6/17/2023
+143: *5:08 AM 6/17/2023-5:09 AM 6/17/2023
+144: *5:09 AM 6/17/2023-5:16 AM 6/17/2023
+145: *5:16 AM 6/17/2023-5:20 AM 6/17/2023
+146: *5:20 AM 6/17/2023-5:21 AM 6/17/2023
+147: *5:21 AM 6/17/2023-5:21 AM 6/17/2023
+148: *5:21 AM 6/17/2023-5:27 AM 6/17/2023
+149: *5:27 AM 6/17/2023-5:31 AM 6/17/2023
+150: *5:32 AM 6/17/2023-5:37 AM 6/17/2023
+151: *5:37 AM 6/17/2023-5:45 AM 6/17/2023
+152: *5:45 AM 6/17/2023-5:48 AM 6/17/2023
+153: *5:48 AM 6/17/2023-5:50 AM 6/17/2023
+154: *5:51 AM 6/17/2023-5:52 AM 6/17/2023
+155: *5:52 AM 6/17/2023-5:57 AM 6/17/2023
+156: *5:58 AM 6/17/2023-6:01 AM 6/17/2023
+157: *6:01 AM 6/17/2023-6:04 AM 6/17/2023
+- rename to codename combu
+- filezilla
+- show query compact in dStatus
+- schau ob es ein 
+- rowLayout('auto 1fr auto')
+- jetzt mach ich die api die die session vars setzt!
+- js extract key value from URL params
+ok jetzt die session vars extracten!
+http://localhost:8080/aroot/comm/index.html?login=1&id=a&
+- nochmal
+http://localhost:8080/aroot/comm/index.html
+- php loop through $_SESSION keys and values
+$stuff = array('name' => 'Joe', 'email' => 'joe@example.com');
+foreach ($stuff as $key => $value) {
+    echo "$key: $value\n";
+}
+- for each in php
+mach das php so dass er immer als erstes die SESSION vars eintraegt
+158: *6:04 AM 6/17/2023-6:04 AM 6/17/2023
+159: *6:04 AM 6/17/2023-6:16 AM 6/17/2023
+160: *6:16 AM 6/17/2023-6:17 AM 6/17/2023
+- starte mit der api jetzt!
+161: *6:17 AM 6/17/2023-6:20 AM 6/17/2023
+162: *6:21 AM 6/17/2023-6:23 AM 6/17/2023
+163: *6:23 AM 6/17/2023-6:39 AM 6/17/2023
+164: *6:39 AM 6/17/2023-6:46 AM 6/17/2023
+165: *6:46 AM 6/17/2023-6:53 AM 6/17/2023
+166: *6:53 AM 6/17/2023-6:55 AM 6/17/2023
+167: *6:55 AM 6/17/2023-7:38 AM 6/17/2023
+168: *7:38 AM 6/17/2023-7:46 AM 6/17/2023
+169: *7:46 AM 6/17/2023-8:28 AM 6/17/2023
+170: *8:28 AM 6/17/2023-8:45 PM 6/17/2023
+__________ so 18.6.23 ...airport sl: 9-1h30 =4h30 -1 v4h30
+300: *8:45 PM 6/17/2023-2:06 AM 6/18/2023
+301: *2:06 AM 6/18/2023-2:14 AM 6/18/2023
+302: *2:14 AM 6/18/2023-2:20 AM 6/18/2023
+302: *2:20 AM 6/18/2023-2:31 AM 6/18/2023
+303: *2:31 AM 6/18/2023-2:32 AM 6/18/2023
+304: *2:32 AM 6/18/2023-2:37 AM 6/18/2023
+305: *2:37 AM 6/18/2023-2:38 AM 6/18/2023
+test
+306: *2:42 AM 6/18/2023-2:42 AM 6/18/2023
+307: *2:42 AM 6/18/2023-2:46 AM 6/18/2023
+308: *2:46 AM 6/18/2023-2:48 AM 6/18/2023
+309: *2:48 AM 6/18/2023-2:53 AM 6/18/2023
+310: *2:53 AM 6/18/2023-3:00 AM 6/18/2023
+311: *3:00 AM 6/18/2023-3:04 AM 6/18/2023
+315: *3:04 AM 6/18/2023-3:20 AM 6/18/2023
+316: *3:20 AM 6/18/2023-3:52 AM 6/18/2023
+320: *3:52 AM 6/18/2023-4:22 AM 6/18/2023
+- irgendein WEIREDER fehler!!!!!!!!!!!!!!!!!
+- how can I detect if running in live-server mode?
+- files show handle onclick done
+- UI braucht showError dError
+- test not registered!
+- geht! jetzt mach ich fall 3 wrong pwd
+- was ist das fuer ein object?
+- POST FALSCH
+cleanup
+handleResult
+WAY SHORTER!!!
+- look at db was gibt es fuer fields?
+- db_connect
+http://localhost:8080/aroot/combu/index.html?login=1&id=a&
+=>flughafen20
+- login line!!!
+- login line header
+- mach fg contrast!
+- if not logged in show landing page with essay loneliness...
+- not logged in => show login + erste seite
+- wie soll es gehen wenn keine id da ist? schau wann id reinkommt
+330: *4:22 AM 6/18/2023-6:09 AM 6/18/2023
+331: *6:09 AM 6/18/2023-6:12 AM 6/18/2023
+332: *6:12 AM 6/18/2023-6:14 AM 6/18/2023
+333: *6:14 AM 6/18/2023-6:22 AM 6/18/2023
+334: *6:22 AM 6/18/2023-6:27 AM 6/18/2023
+335: *6:27 AM 6/18/2023-6:28 AM 6/18/2023
+336: *6:28 AM 6/18/2023-6:29 AM 6/18/2023
+337: *6:29 AM 6/18/2023-6:38 AM 6/18/2023
+338: *6:38 AM 6/18/2023-7:00 AM 6/18/2023
+340: *7:00 AM 6/18/2023-7:14 AM 6/18/2023
+342: *7:15 AM 6/18/2023-7:23 AM 6/18/2023
+343: *7:24 AM 6/18/2023-7:29 AM 6/18/2023
+344: *7:29 AM 6/18/2023-8:35 AM 6/18/2023
+345: *8:35 AM 6/18/2023-9:04 AM 6/18/2023
+346: *9:04 AM 6/18/2023-9:09 AM 6/18/2023
+347: *9:09 AM 6/18/2023-5:51 PM 6/18/2023
+547: *5:51 PM 6/18/2023-5:55 PM 6/18/2023
+548: *5:55 PM 6/18/2023-6:11 PM 6/18/2023
+549: *6:11 PM 6/18/2023-2:33 AM 6/19/2023
+__________ mo 19.6.23 ...airport sl: 9-1h30 =4h30 -1 v4h30
+550: *2:34 AM 6/19/2023-2:45 AM 6/19/2023
+551: *2:45 AM 6/19/2023-2:47 AM 6/19/2023
+552: *2:47 AM 6/19/2023-2:52 AM 6/19/2023
+553: *2:52 AM 6/19/2023-2:55 AM 6/19/2023
+554: *2:55 AM 6/19/2023-3:07 AM 6/19/2023
+555: *3:07 AM 6/19/2023-3:07 AM 6/19/2023
+way shorter
+556: *3:07 AM 6/19/2023-3:16 AM 6/19/2023
+557: *3:17 AM 6/19/2023-3:28 AM 6/19/2023
+558: *3:28 AM 6/19/2023-4:11 AM 6/19/2023
+559: *4:11 AM 6/19/2023-4:12 AM 6/19/2023
+570: *4:12 AM 6/19/2023-4:18 AM 6/19/2023
+571: *4:19 AM 6/19/2023-4:54 AM 6/19/2023
+572: *4:55 AM 6/19/2023-5:03 AM 6/19/2023
+573: *5:03 AM 6/19/2023-5:04 AM 6/19/2023
+574: *5:04 AM 6/19/2023-5:05 AM 6/19/2023
+575: *5:05 AM 6/19/2023-5:09 AM 6/19/2023
+576: *5:09 AM 6/19/2023-5:11 AM 6/19/2023
+577: *5:11 AM 6/19/2023-6:11 AM 6/19/2023
+578: *6:12 AM 6/19/2023-6:15 AM 6/19/2023
+579: *6:15 AM 6/19/2023-6:15 AM 6/19/2023
+580: *6:15 AM 6/19/2023-6:18 AM 6/19/2023
+581: *6:18 AM 6/19/2023-6:18 AM 6/19/2023
+582: *6:18 AM 6/19/2023-6:20 AM 6/19/2023
+583: *6:20 AM 6/19/2023-6:22 AM 6/19/2023
+584: *6:22 AM 6/19/2023-6:24 AM 6/19/2023
+585: *6:24 AM 6/19/2023-6:25 AM 6/19/2023
+586: *6:25 AM 6/19/2023-6:25 AM 6/19/2023
+587: *6:25 AM 6/19/2023-6:30 AM 6/19/2023
+588: *6:30 AM 6/19/2023-6:31 AM 6/19/2023
+589: *6:31 AM 6/19/2023-6:34 AM 6/19/2023
+590: *6:34 AM 6/19/2023-6:34 AM 6/19/2023
+591: *6:34 AM 6/19/2023-6:35 AM 6/19/2023
+592: *6:35 AM 6/19/2023-6:41 AM 6/19/2023
+- test
+- rem start register popup
+- goto onclickRegister
+- goto handleRegister
+test
+- rem ROW COL
+test
+- waiting for departure...
+- ganz regelmaessig und rhythmisch!
+- bei mLine mach ich einen lineholder rein: fg transparent '|' span
+- jetzt maht er es schon wieder dass die zeile nicht hoch genug ist!!!
+- test
+- min
+- goto init
+- moechte nur fg rot oder gruen machen!
+- clear database!
+- goto 
+- goto api.php
+- daten
+- sende daten: o
+- validation? was passiert jetzt?
+- autofillregister
+- not registered
+- user data
+- was schickt er bei logout
+- logged in as a
+- select text on enter
+- suche nooutline
+- suche 
+- input fehlt in css!
+- wie kann ich pwd value clearen?
+- wie macht man ein pwd field?
+- jetzt brauch ich ein pwd field!
+- cloneNode
+- kann ich irgendwie die actualHeight von dem ding bekommen? measureClone(d)
+- align in middle
+- html space char
+- it is removing dError???
+- turn on yt
+- id alle divs! dann schau wieso das fade nicht geht!!!
+- eigene line fuer info und test
+- showError mFade
+- what is a user?
+593: *6:41 AM 6/19/2023-6:43 AM 6/19/2023
+594: *6:43 AM 6/19/2023-6:44 AM 6/19/2023
+595: *6:44 AM 6/19/2023-6:44 AM 6/19/2023
+596: *6:45 AM 6/19/2023-6:46 AM 6/19/2023
+597: *6:46 AM 6/19/2023-6:47 AM 6/19/2023
+598: *6:47 AM 6/19/2023-6:49 AM 6/19/2023
+599: *6:49 AM 6/19/2023-6:50 AM 6/19/2023
+600: *6:51 AM 6/19/2023-6:52 AM 6/19/2023
+601: *6:52 AM 6/19/2023-6:54 AM 6/19/2023
+602: *6:54 AM 6/19/2023-6:54 AM 6/19/2023
+603: *6:55 AM 6/19/2023-6:55 AM 6/19/2023
+604: *6:55 AM 6/19/2023-6:56 AM 6/19/2023
+605: *6:56 AM 6/19/2023-6:57 AM 6/19/2023
+606: *6:57 AM 6/19/2023-6:58 AM 6/19/2023
+607: *6:58 AM 6/19/2023-7:01 AM 6/19/2023
+608: *7:01 AM 6/19/2023-7:05 AM 6/19/2023
+609: *7:05 AM 6/19/2023-7:08 AM 6/19/2023
+610: *7:08 AM 6/19/2023-7:08 AM 6/19/2023
+- msg div soll align center
+- test
+- login success!
+- test
+- wo ist das genister html?
+- reg onclick select: onclick="this.select();" 
+- rem cons
+- test
+- goto show
+- showLogin(user,pwd)
+- restart test
+- check data
+611: *7:09 AM 6/19/2023-7:10 AM 6/19/2023
+612: *7:11 AM 6/19/2023-7:11 AM 6/19/2023
+613: *7:11 AM 6/19/2023-7:12 AM 6/19/2023
+614: *7:12 AM 6/19/2023-9:30 AM 6/19/2023
+615: *11:49 AM 6/19/2023-1:13 PM 6/19/2023
+617: *1:13 PM 6/19/2023-5:48 PM 6/19/2023
+__________ di 20.6.23 ...airport sl: 9-1h30 =4h30 -1 v4h30
+670: *6:03 PM 6/19/2023-6:06 PM 6/19/2023
+671: *6:06 PM 6/19/2023-6:25 PM 6/19/2023
+672: *6:25 PM 6/19/2023-6:50 PM 6/19/2023
+675: *6:51 PM 6/19/2023-7:01 PM 6/19/2023
+676: *2:34 AM 6/20/2023-2:34 AM 6/20/2023
+677: *2:35 AM 6/20/2023-2:37 AM 6/20/2023
+678: *2:37 AM 6/20/2023-2:40 AM 6/20/2023
+679: *2:40 AM 6/20/2023-2:42 AM 6/20/2023
+680: *2:42 AM 6/20/2023-2:45 AM 6/20/2023
+- repl basejs durch coding/cb
+- kommt basejs/schoen.css wo vor?
+- kann ich es ersetzen durch coding/codebase?
+- kommt basejs irgendwo vor?
+=>basejs is eliminated!!!
+681: *2:45 AM 6/20/2023-2:46 AM 6/20/2023
+682: *2:46 AM 6/20/2023-2:46 AM 6/20/2023
+- combu copy ist weg!
+683: *2:46 AM 6/20/2023-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- jetzt muss ich einfach den code zusammenstellen auf eine art die wirklich modular ist!
+  <div id="results"></div>
+- wie geht so eine section?
+- mach so ein shield
+- testvor ams?
+- retrieve bei showLogin
+- save bei startLoggedIn
+- koennte username am localstorage saven und retrieven in showLogin!
+
+
+ÖGK Kundenservice Wien Döbling - Österreichische Gesundheitskasse
+Heiligenstädter Str. 31, 1190 Wien
+050 7661 18000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=>need to cleanup basejs, angleichen zu beethoven!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
