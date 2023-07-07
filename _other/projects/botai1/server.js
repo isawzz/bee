@@ -14,13 +14,11 @@ bot.on("ready", () => {
   console.log("aibot is ready!");
 });
 
-const config = new Configuration({
-  apiKey: process.env.API_KEY,
-});
+const config = new Configuration({ apiKey: process.env.API_KEY, });
 const openai = new OpenAIApi(config);
 
-async function handleMessage0(message){console.log("msg:", message.content);}
-async function handleMessage1(message){
+async function handleMessage0(message) { console.log("msg:", message.content); }
+async function handleMessage1(message) {
   if (message.author.bot) return;
   if (message.channel.id != process.env.CHANNEL_ID) return;
   if (message.content.startsWith("!")) return;
@@ -38,7 +36,7 @@ async function handleMessage1(message){
   });
   message.reply(result.data.choices[0].message);
 }
-async function handleMessage(message){
+async function handleMessage(message) {
   if (message.author.bot) return;
   if (message.channel.id != process.env.CHANNEL_ID) return;
   if (message.content.startsWith("!")) return;
@@ -47,9 +45,9 @@ async function handleMessage(message){
   ];
   await message.channel.sendTyping();
 
-  let prevMessages = await message.channel.messages.fetch({limit:15});
+  let prevMessages = await message.channel.messages.fetch({ limit: 15 });
   prevMessages.reverse()
-  prevMessages.forEach(msg=>{
+  prevMessages.forEach(msg => {
     if (msg.content.startsWith("!")) return;
     if (msg.author.id !== bot.user.id || msg.author.bot) return;
     if (msg.author.id !== message.author.id) return;

@@ -12207,7 +12207,1147 @@ __________ di 20.6.23 ...airport sl: 9-1h30 =4h30 -1 v4h30
 681: *2:45 AM 6/20/2023-2:46 AM 6/20/2023
 682: *2:46 AM 6/20/2023-2:46 AM 6/20/2023
 - combu copy ist weg!
-683: *2:46 AM 6/20/2023-
+683: *2:46 AM 6/20/2023-2:47 AM 6/20/2023
+684: *2:47 AM 6/20/2023-2:51 AM 6/20/2023
+685: *2:51 AM 6/20/2023-2:52 AM 6/20/2023
+686: *2:52 AM 6/20/2023-3:03 AM 6/20/2023
+687: *3:03 AM 6/20/2023-3:05 AM 6/20/2023
+688: *3:05 AM 6/20/2023-3:08 AM 6/20/2023
+689: *3:08 AM 6/20/2023-3:09 AM 6/20/2023
+690: *3:09 AM 6/20/2023-3:11 AM 6/20/2023
+691: *3:11 AM 6/20/2023-3:11 AM 6/20/2023
+- mach ein eigenes github fuer combu?
+- rename combu to combu_old
+- es koennte einen essays folder geben in data
+- structuring data
+- essays
+- link rel
+- wie werden die assets geladen?
+- die questions sollen extra sein! mach ich ein data.
+- github
+692: *3:11 AM 6/20/2023-3:30 AM 6/20/2023
+693: *3:30 AM 6/20/2023-3:32 AM 6/20/2023
+694: *3:32 AM 6/20/2023-3:39 AM 6/20/2023
+695: *3:39 AM 6/20/2023-3:40 AM 6/20/2023
+- als erstes geb ich ALLE questions in einen grossen array
+- jedes element soll haben:
+i,k,q,a
+700: *4:06 AM 6/20/2023-4:06 AM 6/20/2023
+701: *4:06 AM 6/20/2023-4:07 AM 6/20/2023
+702: *4:07 AM 6/20/2023-4:39 AM 6/20/2023
+703: *4:39 AM 6/20/2023-4:39 AM 6/20/2023
+challenge 1: display 10 random questions
+704: *4:39 AM 6/20/2023-5:00 AM 6/20/2023
+706: *5:00 AM 6/20/2023-5:10 AM 6/20/2023
+707: *5:10 AM 6/20/2023-5:14 AM 6/20/2023
+715: *6:32 AM 6/20/2023-6:48 AM 6/20/2023
+717: *6:48 AM 6/20/2023-7:47 AM 6/20/2023
+720: *7:47 AM 6/20/2023-7:50 AM 6/20/2023
+721: *7:50 AM 6/20/2023-8:00 AM 6/20/2023
+722: *8:00 AM 6/20/2023-4:13 AM 6/21/2023
+__________ mi 21.6.23 ...airport sl: 9-1h30 =4h30 -1 v4h30
+900: *4:14 AM 6/21/2023-4:20 AM 6/21/2023
+901: *4:20 AM 6/21/2023-4:25 AM 6/21/2023
+902: *4:25 AM 6/21/2023-4:30 AM 6/21/2023
+903: *4:31 AM 6/21/2023-4:41 AM 6/21/2023
+904: *4:41 AM 6/21/2023-4:42 AM 6/21/2023
+905: *4:42 AM 6/21/2023-4:45 AM 6/21/2023
+906: *4:45 AM 6/21/2023-4:46 AM 6/21/2023
+907: *4:46 AM 6/21/2023-4:50 AM 6/21/2023
+908: *4:50 AM 6/21/2023-4:51 AM 6/21/2023
+909: *4:51 AM 6/21/2023-5:13 AM 6/21/2023
+910: *5:13 AM 6/21/2023-5:14 AM 6/21/2023
+- everything falls into place!
+911: *5:14 AM 6/21/2023-5:42 AM 6/21/2023
+912: *5:42 AM 6/21/2023-5:47 AM 6/21/2023
+913: *5:47 AM 6/21/2023-6:07 AM 6/21/2023
+914: *6:07 AM 6/21/2023-6:27 AM 6/21/2023
+915: *6:27 AM 6/21/2023-6:35 AM 6/21/2023
+916: *6:35 AM 6/21/2023-6:41 AM 6/21/2023
+917: *6:41 AM 6/21/2023-6:47 AM 6/21/2023
+918: *6:47 AM 6/21/2023-6:55 AM 6/21/2023
+919: *6:55 AM 6/21/2023-7:03 AM 6/21/2023
+920: *7:03 AM 6/21/2023-7:20 AM 6/21/2023
+921: *7:21 AM 6/21/2023-7:22 AM 6/21/2023
+922: *7:22 AM 6/21/2023-7:22 AM 6/21/2023
+923: *7:22 AM 6/21/2023-7:26 AM 6/21/2023
+- sitzen stehen liegen gehen
+- semmel,topfengol,bananen,saft,
+- es existiert nicht
+- wie kann ich height aendern?
+- event={text:text,day:day,time:time}
+- wenn input schliesse (enter) soll er ein div in dem deiv machen mit text
+- wenn er enter macht, soll genau da wo das input ist ein termin kommen!
+soll genau dasselbe passieren wie vorher!
+- w3schools contentEditable
+- wie mach ich input onEnter soll er das modal zeug aufmachen und zusatzinfo reinschreiben!
+- wenn auf day clicke tue das eventModal ding auf diesen day
+- jeder tag hat fixe groesse 100px x 100px
+- open styles!
+- gib es in ein kleineres div!
+- remove setTimeout
+- styles!!!
+- wie organisier ich es?
+- was als erstes?
+
+924: *7:26 AM 6/21/2023-7:27 AM 6/21/2023
+925: *7:27 AM 6/21/2023-7:30 AM 6/21/2023
+__________ do 22.6.23 ...airport sl: 9-1h30 =4h30 -1 v4h30
+1000: *7:30 AM 6/21/2023-3:33 AM 6/22/2023
+1: *3:33 AM 6/22/2023-3:36 AM 6/22/2023
+2: *3:36 AM 6/22/2023-3:45 AM 6/22/2023
+3: *3:45 AM 6/22/2023-3:48 AM 6/22/2023
+4: *3:48 AM 6/22/2023-3:58 AM 6/22/2023
+5: *3:59 AM 6/22/2023-4:02 AM 6/22/2023
+6: *4:02 AM 6/22/2023-4:07 AM 6/22/2023
+7: *4:07 AM 6/22/2023-4:27 AM 6/22/2023
+8: *4:27 AM 6/22/2023-5:03 AM 6/22/2023
+9: *5:03 AM 6/22/2023-5:14 AM 6/22/2023
+10: *5:14 AM 6/22/2023-5:21 AM 6/22/2023
+11: *5:21 AM 6/22/2023-5:30 AM 6/22/2023
+12: *5:30 AM 6/22/2023-5:52 AM 6/22/2023
+13: *5:52 AM 6/22/2023-6:11 AM 6/22/2023
+20: *6:11 AM 6/22/2023-7:01 AM 6/22/2023
+21: *7:01 AM 6/22/2023-5:43 PM 6/22/2023
+22: *5:43 PM 6/22/2023-5:53 PM 6/22/2023
+23: *5:53 PM 6/22/2023-
+__________ fr 23.6.23 ..airport22 T 10.7. 14h Ertl
+123: *7:14 PM 6/22/2023-7:15 PM 6/22/2023
+124: *2:47 AM 6/23/2023-2:49 AM 6/23/2023
+125: *2:49 AM 6/23/2023-3:23 AM 6/23/2023
+130: *3:23 AM 6/23/2023-3:31 AM 6/23/2023
+135: *3:31 AM 6/23/2023-3:32 AM 6/23/2023
+136: *3:32 AM 6/23/2023-3:38 AM 6/23/2023
+- prev click und month == january goto dec of last year
+- next und month == december: goto january next year
+- mach es besser!
+- add buttons next prev
+- mach die date editable
+140: *3:38 AM 6/23/2023-3:46 AM 6/23/2023
+142: *3:47 AM 6/23/2023-3:47 AM 6/23/2023
+143: *3:47 AM 6/23/2023-3:50 AM 6/23/2023
+144: *3:50 AM 6/23/2023-3:52 AM 6/23/2023
+145: *3:52 AM 6/23/2023-3:52 AM 6/23/2023
+146: *3:53 AM 6/23/2023-3:54 AM 6/23/2023
+147: *3:54 AM 6/23/2023-3:57 AM 6/23/2023
+148: *3:57 AM 6/23/2023-3:59 AM 6/23/2023
+149: *3:59 AM 6/23/2023-4:02 AM 6/23/2023
+150: *4:02 AM 6/23/2023-4:06 AM 6/23/2023
+151: *4:06 AM 6/23/2023-4:09 AM 6/23/2023
+152: *4:09 AM 6/23/2023-4:12 AM 6/23/2023
+153: *4:12 AM 6/23/2023-4:14 AM 6/23/2023
+- set date correctly!
+- set to June 23
+- mach das mit dem click!
+- h of weekdays soll 25 sein!
+- spread out weekdays
+- style von weekday div
+- div mit style von weekdays zu container
+- const weekdays array holen
+- muss zu css weekdays gehen!
+- wie hab ich das mit den weekdays gemacht?
+- brauch die weekdays
+- add grid!
+154: *4:14 AM 6/23/2023-4:21 AM 6/23/2023
+155: *4:21 AM 6/23/2023-4:24 AM 6/23/2023
+156: *4:24 AM 6/23/2023-4:31 AM 6/23/2023
+158: *4:31 AM 6/23/2023-4:39 AM 6/23/2023
+160: *4:39 AM 6/23/2023-5:22 AM 6/23/2023
+170: *5:22 AM 6/23/2023-7:32 AM 6/23/2023
+181: *7:32 AM 6/23/2023-8:21 AM 6/23/2023
+185: *8:21 AM 6/23/2023-8:23 AM 6/23/2023
+186: *8:23 AM 6/23/2023-4:00 PM 6/23/2023
+286: *4:51 PM 6/23/2023-7:10 PM 6/23/2023
+__________ sa 24.6.23 ..airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+300: *7:10 PM 6/23/2023-4:07 AM 6/24/2023
+301: *4:07 AM 6/24/2023-4:08 AM 6/24/2023
+302: *4:08 AM 6/24/2023-4:09 AM 6/24/2023
+303: *4:09 AM 6/24/2023-4:11 AM 6/24/2023
+304: *4:11 AM 6/24/2023-4:12 AM 6/24/2023
+305: *4:12 AM 6/24/2023-4:14 AM 6/24/2023
+305: *4:14 AM 6/24/2023-4:15 AM 6/24/2023
+306: *4:15 AM 6/24/2023-4:17 AM 6/24/2023
+307: *4:17 AM 6/24/2023-4:19 AM 6/24/2023
+308: *4:19 AM 6/24/2023-4:21 AM 6/24/2023
+309: *4:21 AM 6/24/2023-4:23 AM 6/24/2023
+310: *4:23 AM 6/24/2023-4:26 AM 6/24/2023
+311: *4:26 AM 6/24/2023-4:32 AM 6/24/2023
+312: *4:32 AM 6/24/2023-4:32 AM 6/24/2023
+313: *4:32 AM 6/24/2023-4:42 AM 6/24/2023
+314: *4:42 AM 6/24/2023-4:44 AM 6/24/2023
+315: *4:44 AM 6/24/2023-4:45 AM 6/24/2023
+316: *4:45 AM 6/24/2023-4:46 AM 6/24/2023
+- bug: DiQuestions not defined in combu loggedin as e
+317: *4:46 AM 6/24/2023-4:48 AM 6/24/2023
+- muss die assets laden!
+- test login e
+- test
+bsts!
+- login to ionos
+- open filezilla
+- update in localhost
+- open in reglog.sql
+- open explorer
+- open sql file and modify
+- user soll profile (=fen) bekommen!
+- open phpmyadmin
+tb_user, tb_events
+- add record in php to db
+- save file in php
+- goto code!
+318: *4:48 AM 6/24/2023-4:48 AM 6/24/2023
+319: *4:48 AM 6/24/2023-4:51 AM 6/24/2023
+320: *4:51 AM 6/24/2023-4:51 AM 6/24/2023
+321: *4:51 AM 6/24/2023-4:52 AM 6/24/2023
+322: *4:52 AM 6/24/2023-4:58 AM 6/24/2023
+323: *4:58 AM 6/24/2023-4:59 AM 6/24/2023
+324: *4:59 AM 6/24/2023-5:01 AM 6/24/2023
+325: *5:01 AM 6/24/2023-5:02 AM 6/24/2023
+326: *5:02 AM 6/24/2023-5:05 AM 6/24/2023
+327: *5:05 AM 6/24/2023-5:25 AM 6/24/2023
+328: *5:25 AM 6/24/2023-5:25 AM 6/24/2023
+- gib ein allfplus.js in das qtest
+329: *5:26 AM 6/24/2023-5:27 AM 6/24/2023
+- von extra copy to alfplus
+330: *5:27 AM 6/24/2023-5:28 AM 6/24/2023
+- format alfplus
+331: *5:28 AM 6/24/2023-5:28 AM 6/24/2023
+- open games. api.php
+332: *5:28 AM 6/24/2023-5:30 AM 6/24/2023
+- assets part => combu php
+333: *5:30 AM 6/24/2023-5:32 AM 6/24/2023
+- copy php dir from combu to qtest
+334: *5:32 AM 6/24/2023-5:33 AM 6/24/2023
+- rem users und tables from $result in assets part
+335: *5:33 AM 6/24/2023-5:33 AM 6/24/2023
+- for now, rem config.yaml also
+336: *5:34 AM 6/24/2023-5:35 AM 6/24/2023
+337: *5:35 AM 6/24/2023-5:36 AM 6/24/2023
+338: *5:36 AM 6/24/2023-5:38 AM 6/24/2023
+339: *5:38 AM 6/24/2023-5:41 AM 6/24/2023
+340: *5:41 AM 6/24/2023-5:45 AM 6/24/2023
+341: *5:45 AM 6/24/2023-5:48 AM 6/24/2023
+342: *5:48 AM 6/24/2023-5:50 AM 6/24/2023
+343: *5:50 AM 6/24/2023-5:51 AM 6/24/2023
+344: *5:51 AM 6/24/2023-5:53 AM 6/24/2023
+345: *5:53 AM 6/24/2023-5:54 AM 6/24/2023
+346: *5:55 AM 6/24/2023-5:55 AM 6/24/2023
+347: *5:55 AM 6/24/2023-6:00 AM 6/24/2023
+348: *6:00 AM 6/24/2023-6:01 AM 6/24/2023
+349: *6:01 AM 6/24/2023-6:01 AM 6/24/2023
+=>beides klappt!
+- test live
+- ja hat geklappt!
+- test php
+- handle.js
+- kann ich noch das php load assets machen???
+- include alfplus.js in index.html
+- test live
+- live loadAssets => extras == allfplus
+- load_assets???
+- set DA.sessionType
+- sessionType anders loesen!
+- find phpPost in combu
+- in start mach den php call!
+- brauche ein load users und load events und load assets sowie in games
+- set PHP
+- ich hab es mit set runstate gemacht! wie bekomm ich die url? location?
+ich moechte mit index.html starten und in start wissen ob auf php oder live bin
+ich moechte mit index.html starten und die assets in start laden
+formuliere das ziel!
+back to qtest => need api.php!
+350: *6:01 AM 6/24/2023-6:02 AM 6/24/2023
+351: *6:02 AM 6/24/2023-6:44 AM 6/24/2023
+360: *6:44 AM 6/24/2023-6:45 AM 6/24/2023
+__________ so 25.6.23 ..airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+600: *7:51 PM 6/24/2023-3:28 AM 6/25/2023
+601: *3:28 AM 6/25/2023-3:44 AM 6/25/2023
+602: *3:45 AM 6/25/2023-4:01 AM 6/25/2023
+603: *4:01 AM 6/25/2023-4:02 AM 6/25/2023
+604: *4:02 AM 6/25/2023-4:11 AM 6/25/2023
+605: *4:11 AM 6/25/2023-4:39 AM 6/25/2023
+610: *4:39 AM 6/25/2023-4:40 AM 6/25/2023
+611: *4:40 AM 6/25/2023-4:48 AM 6/25/2023
+614: *4:48 AM 6/25/2023-4:49 AM 6/25/2023
+615: *4:49 AM 6/25/2023-4:55 AM 6/25/2023
+617: *4:55 AM 6/25/2023-4:59 AM 6/25/2023
+618: *5:00 AM 6/25/2023-5:34 AM 6/25/2023
+625: *8:15 AM 6/25/2023-8:17 AM 6/25/2023
+626: *8:17 AM 6/25/2023-8:42 AM 6/25/2023
+630: *8:42 AM 6/25/2023-12:25 AM 6/26/2023
+__________ mo 26.6.23 ..airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+850: *12:26 AM 6/26/2023-12:29 AM 6/26/2023
+851: *12:29 AM 6/26/2023-12:32 AM 6/26/2023
+852: *12:32 AM 6/26/2023-12:42 AM 6/26/2023
+853: *12:42 AM 6/26/2023-12:54 AM 6/26/2023
+854: *12:54 AM 6/26/2023-1:02 AM 6/26/2023
+855: *1:02 AM 6/26/2023-1:07 AM 6/26/2023
+856: *1:07 AM 6/26/2023-1:09 AM 6/26/2023
+857: *1:09 AM 6/26/2023-1:11 AM 6/26/2023
+858: *1:11 AM 6/26/2023-1:13 AM 6/26/2023
+859: *1:13 AM 6/26/2023-1:17 AM 6/26/2023
+860: *1:17 AM 6/26/2023-1:17 AM 6/26/2023
+861: *1:17 AM 6/26/2023-1:21 AM 6/26/2023
+862: *1:21 AM 6/26/2023-1:26 AM 6/26/2023
+863: *1:26 AM 6/26/2023-1:29 AM 6/26/2023
+864: *1:29 AM 6/26/2023-1:30 AM 6/26/2023
+865: *1:30 AM 6/26/2023-1:31 AM 6/26/2023
+866: *1:31 AM 6/26/2023-1:32 AM 6/26/2023
+867: *1:32 AM 6/26/2023-1:33 AM 6/26/2023
+868: *1:33 AM 6/26/2023-1:34 AM 6/26/2023
+- copy to aroot and beethoven
+869: *1:34 AM 6/26/2023-1:44 AM 6/26/2023
+870: *1:44 AM 6/26/2023-1:47 AM 6/26/2023
+871: *1:47 AM 6/26/2023-1:50 AM 6/26/2023
+872: *1:50 AM 6/26/2023-1:57 AM 6/26/2023
+873: *1:57 AM 6/26/2023-2:00 AM 6/26/2023
+874: *2:00 AM 6/26/2023-2:04 AM 6/26/2023
+875: *2:04 AM 6/26/2023-2:05 AM 6/26/2023
+- leaflet version 1.9.2
+876: *2:05 AM 6/26/2023-2:06 AM 6/26/2023
+877: *2:07 AM 6/26/2023-2:12 AM 6/26/2023
+leaflet GeometryUtil: http://makinacorpus.github.io/Leaflet.GeometryUtil/
+878: *2:12 AM 6/26/2023-2:32 AM 6/26/2023 vsll
+879: *2:32 AM 6/26/2023-2:38 AM 6/26/2023
+880: *2:39 AM 6/26/2023-2:40 AM 6/26/2023
+881: *2:40 AM 6/26/2023-2:41 AM 6/26/2023
+882: *2:41 AM 6/26/2023-2:51 AM 6/26/2023
+883: *2:51 AM 6/26/2023-3:06 AM 6/26/2023
+884: *3:06 AM 6/26/2023-3:07 AM 6/26/2023
+- mir ist sehr heiss! geh aus der decke raus
+ok - blumen giessen, wasser geholt
+890: *3:07 AM 6/26/2023-3:08 AM 6/26/2023
+- mir ist nicht mehr heiss! nur noch 16 tage durchhalten!
+- how many deg lat 
+- how many km is 1 degree latitude? 111
+- leaflet 
+- ll2meters, meters2LL
+- be radical: dont judge, dont speak, remain somewhere else
+- type: "Feature": type:'Feature',geometry:{},id:34,properties:{}
+- leaflet Feature
+- allf.js
+- base assets cities.yaml?
+- cities.yaml
+- open nodemaster
+- gibt es ein base/mapdata NEIN!
+- cities
+- L.geoJSON: https://docs.eegeo.com/eegeo.js/v0.1.780/docs/leaflet/L.GeoJson/
+condense
+features are defined in helpers.js
+nur coors
+something else...
+faster...
+something else...
+myFeatures is not defined
+liveserver port?
+891: *3:09 AM 6/26/2023-3:10 AM 6/26/2023
+close all
+892: *3:10 AM 6/26/2023-3:17 AM 6/26/2023
+893: *3:17 AM 6/26/2023-3:18 AM 6/26/2023
+mir wird schon wieder heiss! sobald es hell ist geh ich raus!
+894: *3:18 AM 6/26/2023-3:20 AM 6/26/2023
+895: *3:20 AM 6/26/2023-3:20 AM 6/26/2023
+896: *3:20 AM 6/26/2023-3:24 AM 6/26/2023
+897: *3:24 AM 6/26/2023-3:26 AM 6/26/2023
+- how to do date in sql?
+- heft: events: tags,date,text,title,fen
+- users, events, subscribed!
+- mach weiter an qtest
+was will ich jetzt?
+898: *3:26 AM 6/26/2023-3:33 AM 6/26/2023
+899: *3:33 AM 6/26/2023-3:37 AM 6/26/2023
+900: *3:37 AM 6/26/2023-3:37 AM 6/26/2023
+901: *3:37 AM 6/26/2023-3:38 AM 6/26/2023
+902: *3:38 AM 6/26/2023-3:40 AM 6/26/2023
+- sql
+- login to IONOS
+- mach die tables auf ionos
+- enter in phpmyadmin
+- emptyness
+903: *3:40 AM 6/26/2023-3:42 AM 6/26/2023
+925: *10:05 AM 6/26/2023-10:11 AM 6/26/2023
+926: *10:11 AM 6/26/2023-10:14 AM 6/26/2023
+927: *10:14 AM 6/26/2023-10:19 AM 6/26/2023
+928: *10:19 AM 6/26/2023-10:20 AM 6/26/2023
+929: *10:21 AM 6/26/2023-10:24 AM 6/26/2023
+- format date from timestamp
+var d = new Date(1382086394000); let x=formatDate3(d);console.log(x);return;
+930: *10:25 AM 6/26/2023-10:32 AM 6/26/2023
+931: *10:32 AM 6/26/2023-11:47 AM 6/26/2023
+951: *11:47 AM 6/26/2023-11:52 AM 6/26/2023
+952: *11:52 AM 6/26/2023-11:55 AM 6/26/2023
+953: *11:55 AM 6/26/2023-11:59 AM 6/26/2023
+954: *11:59 AM 6/26/2023-12:02 PM 6/26/2023
+956: *12:03 PM 6/26/2023-12:49 PM 6/26/2023
+958: *12:49 PM 6/26/2023-4:26 PM 6/26/2023
+970: *4:26 PM 6/26/2023-4:30 PM 6/26/2023
+971: *4:30 PM 6/26/2023-8:21 PM 6/26/2023
+1000: *8:22 PM 6/26/2023-9:04 PM 6/26/2023
+__________ di 27.6.23 ..airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+200: *9:09 PM 6/26/2023-9:18 PM 6/26/2023
+201: *9:18 PM 6/26/2023-3:06 AM 6/27/2023
+202: *3:06 AM 6/27/2023-3:07 AM 6/27/2023
+203: *3:07 AM 6/27/2023-3:08 AM 6/27/2023
+204: *3:08 AM 6/27/2023-3:25 AM 6/27/2023
+205: *3:25 AM 6/27/2023-3:44 AM 6/27/2023
+206: *3:44 AM 6/27/2023-3:56 AM 6/27/2023
+207: *3:56 AM 6/27/2023-4:00 AM 6/27/2023
+208: *4:01 AM 6/27/2023-4:14 AM 6/27/2023
+289: *4:14 AM 6/27/2023-4:29 AM 6/27/2023
+290: *4:29 AM 6/27/2023-5:00 AM 6/27/2023
+291: *5:00 AM 6/27/2023-6:27 AM 6/27/2023
+__________ mi 28.6.23 ..airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+500: *9:35 PM 6/27/2023-3:42 AM 6/28/2023
+501: *3:42 AM 6/28/2023-3:46 AM 6/28/2023
+502: *3:46 AM 6/28/2023-3:47 AM 6/28/2023
+503: *3:47 AM 6/28/2023-3:47 AM 6/28/2023
+504: *3:47 AM 6/28/2023-4:00 AM 6/28/2023
+505: *4:00 AM 6/28/2023-4:02 AM 6/28/2023
+506: *4:02 AM 6/28/2023-4:05 AM 6/28/2023
+507: *4:05 AM 6/28/2023-4:07 AM 6/28/2023
+508: *4:07 AM 6/28/2023-4:07 AM 6/28/2023
+509: *4:07 AM 6/28/2023-4:08 AM 6/28/2023
+- js how to get timestamp of a date object? const timestamp = currentDate. getTime();
+510: *4:09 AM 6/28/2023-4:10 AM 6/28/2023
+511: *4:10 AM 6/28/2023-4:12 AM 6/28/2023
+512: *4:12 AM 6/28/2023-4:14 AM 6/28/2023
+513: *4:14 AM 6/28/2023-4:15 AM 6/28/2023
+514: *4:15 AM 6/28/2023-4:19 AM 6/28/2023
+515: *4:19 AM 6/28/2023-4:20 AM 6/28/2023
+516: *4:20 AM 6/28/2023-4:22 AM 6/28/2023
+517: *4:23 AM 6/28/2023-4:23 AM 6/28/2023
+518: *4:23 AM 6/28/2023-4:27 AM 6/28/2023
+519: *4:27 AM 6/28/2023-4:36 AM 6/28/2023
+520: *4:36 AM 6/28/2023-4:38 AM 6/28/2023
+521: *4:38 AM 6/28/2023-4:39 AM 6/28/2023
+522: *4:39 AM 6/28/2023-4:43 AM 6/28/2023
+523: *4:43 AM 6/28/2023-4:45 AM 6/28/2023
+524: *4:45 AM 6/28/2023-4:46 AM 6/28/2023
+525: *4:46 AM 6/28/2023-4:46 AM 6/28/2023
+526: *4:46 AM 6/28/2023-4:49 AM 6/28/2023
+$query = "INSERT INTO tb_event VALUES('','$title','$text',null,'$date')";
+  $result->success = mysqli_query($conn, $query);
+  $result->id = mysqli_insert_id();
+527: *4:49 AM 6/28/2023-4:49 AM 6/28/2023
+id	title	text	fen	date	
+- hat nix eingetragen!
+- test id
+- was bekomm ich zurueck von einer INSERT query? id
+- isNumber: Number check ob numbers string oder number sind!
+- wo werden events gelesen?
+- wo hab ich bei read date umgewandelt?
+in unpack_table:
+	if (isdef(table.modified)) { table.modified = Number(table.modified); table.timestamp = new Date(table.modified); table.stime = stringBeforeLast(table.timestamp.toString(), 'G').trim(); }
+- bei write will ich timestamp senden!
+- wo hab ich bei write to db date into timestamp umgewandelt? garnie gemacht!
+- type of date arg: string
+- when adding a new event, id should be
+- addEditable
+- config.events
+- modal braucht mehr padding! inspect
+- add event
+528: *4:49 AM 6/28/2023-4:55 AM 6/28/2023
+- mysqli_query returns true or false
+mysqli_insert_id($conn); returns id of last entry
+530: *4:56 AM 6/28/2023-4:56 AM 6/28/2023
+531: *4:57 AM 6/28/2023-4:57 AM 6/28/2023
+532: *4:57 AM 6/28/2023-4:59 AM 6/28/2023
+533: *5:00 AM 6/28/2023-5:02 AM 6/28/2023
+534: *5:02 AM 6/28/2023-5:03 AM 6/28/2023
+535: *5:03 AM 6/28/2023-5:08 AM 6/28/2023
+536: *5:08 AM 6/28/2023-5:23 AM 6/28/2023
+537: *5:23 AM 6/28/2023-5:23 AM 6/28/2023
+538: *5:23 AM 6/28/2023-5:24 AM 6/28/2023
+539: *5:24 AM 6/28/2023-5:25 AM 6/28/2023
+540: *5:25 AM 6/28/2023-5:25 AM 6/28/2023
+541: *5:25 AM 6/28/2023-5:26 AM 6/28/2023
+542: *5:26 AM 6/28/2023-10:31 AM 6/28/2023
+_____ do 29.6.23 v0at.airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+770: *10:31 AM 6/28/2023-3:20 AM 6/29/2023
+771: *3:20 AM 6/29/2023-3:24 AM 6/29/2023
+772: *3:24 AM 6/29/2023-3:26 AM 6/29/2023
+773: *3:26 AM 6/29/2023-3:30 AM 6/29/2023
+774: *3:30 AM 6/29/2023-3:31 AM 6/29/2023
+775: *3:32 AM 6/29/2023-3:33 AM 6/29/2023
+- ich muss handle ausloesen bei allen cmds
+776: *3:33 AM 6/29/2023-3:33 AM 6/29/2023
+777: *3:33 AM 6/29/2023-3:35 AM 6/29/2023
+778: *3:35 AM 6/29/2023-3:40 AM 6/29/2023
+779: *3:40 AM 6/29/2023-3:44 AM 6/29/2023
+780: *3:44 AM 6/29/2023-3:44 AM 6/29/2023
+781: *3:45 AM 6/29/2023-3:45 AM 6/29/2023
+- gibt es eine Session var??? JA var Session = {};
+782: *3:46 AM 6/29/2023-3:46 AM 6/29/2023
+783: *3:46 AM 6/29/2023-3:48 AM 6/29/2023
+784: *3:48 AM 6/29/2023-3:51 AM 6/29/2023
+785: *3:51 AM 6/29/2023-3:55 AM 6/29/2023
+- was will ich jetzt eigentlich? 
+786: *3:55 AM 6/29/2023-3:58 AM 6/29/2023
+choices:
+1. weiter mit dem calendar: subscribe to event
+2. calendar: add event: live saving
+3. calendar: delete event
+4. calendar: edit event
+5. calendar: load data
+6. questionnaire: save data
+7. questionnaire: load data
+8: qtest: add user.js fuer login, register, logout
+9: qtest: ui.js (uihelpers soll in allfplus.js gehen!
+10. qtest: menu: events,blog,questionnaire,tracking,advice
+787: *3:59 AM 6/29/2023-3:59 AM 6/29/2023
+788: *3:59 AM 6/29/2023-4:00 AM 6/29/2023
+==>1. weiter mit dem calendar: subscribe to event
+das saving geht ja noch garnicht!
+789: *4:00 AM 6/29/2023-4:03 AM 6/29/2023
+- live event saving
+790: *4:03 AM 6/29/2023-4:13 AM 6/29/2023
+791: *4:13 AM 6/29/2023-4:13 AM 6/29/2023
+792: *4:13 AM 6/29/2023-4:16 AM 6/29/2023
+793: *4:16 AM 6/29/2023-4:19 AM 6/29/2023
+794: *4:19 AM 6/29/2023-4:19 AM 6/29/2023
+- try setting another date! geht!
+795: *4:19 AM 6/29/2023-4:20 AM 6/29/2023
+- test
+- way shorter!!!
+796: *4:22 AM 6/29/2023-4:22 AM 6/29/2023
+797: *4:22 AM 6/29/2023-4:25 AM 6/29/2023
+798: *4:25 AM 6/29/2023-4:34 AM 6/29/2023
+- add an event in live!
+- show events
+- load existing events
+- trace/doc event saving cycle!
+800: *4:35 AM 6/29/2023-4:39 AM 6/29/2023
+801: *4:39 AM 6/29/2023-4:45 AM 6/29/2023
+802: *4:45 AM 6/29/2023-4:49 AM 6/29/2023
+- how to js clear an array? add.length=0
+- exercise: nice calendar api design!
+uiTypeCalendar
+- cal.getDate(), getMonth(), getYear()
+- cal.setDate(mo,yr), setMonth(), setYear()
+- cal.getDay(12) =>should return {div,events}
+803: *4:49 AM 6/29/2023-5:33 AM 6/29/2023
+at
+903: *5:34 AM 6/29/2023-8:54 AM 6/29/2023
+904: *8:54 AM 6/29/2023-1:37 AM 6/30/2023
+_____ fr 30.6.23 v0at.airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+204: *1:38 AM 6/30/2023-1:42 AM 6/30/2023
+wow! this is the ego - but it is dead already! it never existed
+205: *1:42 AM 6/30/2023-1:44 AM 6/30/2023
+206: *1:44 AM 6/30/2023-1:48 AM 6/30/2023
+207: *1:48 AM 6/30/2023-1:49 AM 6/30/2023
+208: *1:49 AM 6/30/2023-1:51 AM 6/30/2023
+209: *1:51 AM 6/30/2023-1:52 AM 6/30/2023
+210: *1:53 AM 6/30/2023-1:53 AM 6/30/2023
+211: *1:53 AM 6/30/2023-1:53 AM 6/30/2023
+212: *1:54 AM 6/30/2023-2:11 AM 6/30/2023
+213: *2:11 AM 6/30/2023-2:16 AM 6/30/2023
+214: *2:16 AM 6/30/2023-2:18 AM 6/30/2023
+215: *2:18 AM 6/30/2023-9:08 AM 6/30/2023
+220: *9:08 AM 6/30/2023-9:09 AM 6/30/2023
+221: *9:09 AM 6/30/2023-9:16 AM 6/30/2023
+222: *9:16 AM 6/30/2023-9:18 AM 6/30/2023
+223: *9:18 AM 6/30/2023-9:20 AM 6/30/2023
+224: *9:20 AM 6/30/2023-9:29 AM 6/30/2023
+225: *9:29 AM 6/30/2023-9:30 AM 6/30/2023
+226: *9:30 AM 6/30/2023-9:50 AM 6/30/2023
+227: *9:50 AM 6/30/2023-9:53 AM 6/30/2023
+228: *9:53 AM 6/30/2023-9:56 AM 6/30/2023
+229: *9:56 AM 6/30/2023-9:57 AM 6/30/2023
+230: *9:57 AM 6/30/2023-10:05 AM 6/30/2023
+231: *10:05 AM 6/30/2023-8:59 PM 6/30/2023
+_____ sa 1.6.23 v0at.airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+531: *8:59 PM 6/30/2023-2:16 AM 7/1/2023
+yesterday there was no mistake everything was fine!
+ich wuerde jetzt programmieren und erst um ca 4h kaffee trinken
+- wie wuerde ich einen tag verbringen wenn ich ganz alleine waere?
+ich wuerde jetzt losfahren
+- ist der fehler bei localStorage.setItem?
+532: *2:16 AM 7/1/2023-2:23 AM 7/1/2023
+- rem cons allfplus 71
+- do not clear at load!
+- arrMax ist mist!
+- id must be a number!
+- kommt er nicht zu phpSim???
+- muss event property verwenden
+- eigentlich will ich das alles nicht, ich will alleine sein
+- mach einen downloadButton fuer events
+- ich mach die transfo erst NACH dem storen!
+- find max id in current events list
+- add event live mode
+- need to add an event
+- check downloaded compare to config
+- download events
+- load existing events into cal
+- eintrag
+- should be passing the events!
+533: *2:23 AM 7/1/2023-2:25 AM 7/1/2023
+534: *2:25 AM 7/1/2023-2:27 AM 7/1/2023
+535: *2:28 AM 7/1/2023-2:34 AM 7/1/2023
+536: *2:34 AM 7/1/2023-2:48 AM 7/1/2023
+10 mal  schlafen
+- test
+- reading back events hat funktioniert!
+add another events
+wenn ich alleine waere
+1. ego is the dragon that has to be slayed
+ego ist based on desire and fear
+desiring has to be slayed
+ego death means: letting go of time and space
+I might never come back. they will all leave. nothing will remain.
+537: *2:48 AM 7/1/2023-2:56 AM 7/1/2023
+538: *2:56 AM 7/1/2023-3:19 AM 7/1/2023
+- JSON.parse('[{"hallo":1685829600000}]')
+JSON.parse('[{"date":1685829600000}]')
+- wo passiert es?
+JSON.parse('[{"date":1685829600000,"text":"das","title":"das","id":1}]')
+typeof 1685829600000
+'[{"date":1685829600000,"text":"das","title":"das","id":1}]'
+539: *3:19 AM 7/1/2023-3:25 AM 7/1/2023
+- ok fehler gefunden! wieso mach ich das???
+540: *3:25 AM 7/1/2023-3:26 AM 7/1/2023
+541: *3:26 AM 7/1/2023-3:44 AM 7/1/2023
+- from Config.events, load the matching events into calendar month!
+542: *3:44 AM 7/1/2023-3:56 AM 7/1/2023
+543: *3:56 AM 7/1/2023-6:59 AM 7/1/2023
+544: *6:59 AM 7/1/2023-7:05 AM 7/1/2023
+545: *7:05 AM 7/1/2023-7:16 AM 7/1/2023
+546: *7:16 AM 7/1/2023-6:26 PM 7/1/2023
+_____ so 2.6.23 v0at.airport20 T 10.7. 14h Ertl,11.7.17h Gleussner
+850: *8:15 PM 7/1/2023-4:34 AM 7/2/2023
+851: *4:34 AM 7/2/2023-6:00 AM 7/2/2023
+852: *6:00 AM 7/2/2023-6:02 AM 7/2/2023
+853: *6:02 AM 7/2/2023-6:03 AM 7/2/2023
+854: *6:03 AM 7/2/2023-6:05 AM 7/2/2023
+855: *6:05 AM 7/2/2023-6:11 AM 7/2/2023
+856: *6:11 AM 7/2/2023-6:13 AM 7/2/2023
+_____ mo 3.6.23 v0at.airport10 T 10.7. 14h Ertl,11.7.17h Gleussner
+100: *6:13 AM 7/2/2023-5:42 AM 7/3/2023
+101: *5:42 AM 7/3/2023-5:50 AM 7/3/2023
+102: *5:50 AM 7/3/2023-5:57 AM 7/3/2023
+103: *5:57 AM 7/3/2023-6:12 AM 7/3/2023
+104: *6:13 AM 7/3/2023-6:17 AM 7/3/2023
+105: *6:17 AM 7/3/2023-6:22 AM 7/3/2023
+106: *6:22 AM 7/3/2023-6:22 AM 7/3/2023
+107: *6:22 AM 7/3/2023-6:26 AM 7/3/2023
+108: *6:27 AM 7/3/2023-6:31 AM 7/3/2023
+109: *6:31 AM 7/3/2023-6:33 AM 7/3/2023
+110: *6:33 AM 7/3/2023-6:33 AM 7/3/2023
+111: *6:33 AM 7/3/2023-6:36 AM 7/3/2023
+112: *6:36 AM 7/3/2023-6:37 AM 7/3/2023
+113: *6:37 AM 7/3/2023-6:58 AM 7/3/2023
+114: *7:03 AM 7/3/2023-9:08 AM 7/3/2023
+115: *9:08 AM 7/3/2023-9:34 AM 7/3/2023
+116: *9:34 AM 7/3/2023-9:45 PM 7/3/2023
+117: *9:45 PM 7/3/2023-7:20 AM 7/4/2023
+_____ di 4.6.23 v0at.airport7 T 10.7. 14h Ertl,11.7.17h Gleussner
+400: *7:20 AM 7/4/2023-7:22 AM 7/4/2023
+401: *7:22 AM 7/4/2023-7:26 AM 7/4/2023
+402: *7:26 AM 7/4/2023-7:27 AM 7/4/2023
+403: *7:27 AM 7/4/2023-7:28 AM 7/4/2023
+404: *7:28 AM 7/4/2023-7:28 AM 7/4/2023
+405: *7:28 AM 7/4/2023-7:30 AM 7/4/2023
+406: *7:30 AM 7/4/2023-. yes, created event!
+407: *7:30 AM 7/4/2023-7:31 AM 7/4/2023
+408: *7:31 AM 7/4/2023-7:33 AM 7/4/2023
+409: *7:33 AM 7/4/2023-7:37 AM 7/4/2023
+410: *7:37 AM 7/4/2023-7:38 AM 7/4/2023
+411: *7:38 AM 7/4/2023-7:40 AM 7/4/2023
+412: *7:40 AM 7/4/2023-7:41 AM 7/4/2023
+413: *7:42 AM 7/4/2023-7:43 AM 7/4/2023
+414: *7:43 AM 7/4/2023-7:43 AM 7/4/2023
+415: *7:44 AM 7/4/2023-8:19 AM 7/4/2023
+416: *8:20 AM 7/4/2023-8:40 AM 7/4/2023
+417: *8:40 AM 7/4/2023-8:40 AM 7/4/2023
+418: *8:40 AM 7/4/2023-8:47 AM 7/4/2023
+419: *8:47 AM 7/4/2023-8:58 AM 7/4/2023
+420: *8:58 AM 7/4/2023-1:02 PM 7/4/2023
+421: *1:02 PM 7/4/2023-1:03 PM 7/4/2023
+422: *1:04 PM 7/4/2023-1:19 PM 7/4/2023
+nothing will come out of it drop it
+423: *1:19 PM 7/4/2023-1:27 PM 7/4/2023
+424: *1:27 PM 7/4/2023-1:39 PM 7/4/2023
+425: *1:39 PM 7/4/2023-1:42 PM 7/4/2023
+426: *1:43 PM 7/4/2023-3:15 PM 7/4/2023
+427: *3:15 PM 7/4/2023-3:51 PM 7/4/2023
+- wo ist das simple interface fuer wise?
+_____ mi 5.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
+700: *9:52 PM 7/4/2023-8:20 AM 7/5/2023
+701: *8:20 AM 7/5/2023-8:23 AM 7/5/2023
+702: *8:23 AM 7/5/2023-8:40 AM 7/5/2023
+703: *8:40 AM 7/5/2023-8:44 AM 7/5/2023
+704: *8:44 AM 7/5/2023-8:45 AM 7/5/2023
+i wish for her to get well and i wish for me peace and quiet
+leave it all open, let it all go
+eigentlich das schwerste ist vorbei nur noch heute und mo
+705: *8:45 AM 7/5/2023-
+es ist so wunderschoen einfach nur in ruhe zu sein
+es sind nur noch 6 tage,dann 3, dann 6, dann 20, dann ruhe fuer sehr lange zeit
+nach spaz gehe zu libro und kaufe ein heft
+_____ do 6.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
+1: *9:24 PM 7/5/2023-7:46 AM 7/6/2023
+10: *7:46 AM 7/6/2023-7:47 AM 7/6/2023
+11: *7:47 AM 7/6/2023-8:06 AM 7/6/2023
+12: *8:06 AM 7/6/2023-9:24 AM 7/6/2023
+13: *9:24 AM 7/6/2023-8:12 PM 7/6/2023
+_____ fr 7.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
+230: *8:12 PM 7/6/2023-5:14 AM 7/7/2023
+231: *5:14 AM 7/7/2023-5:18 AM 7/7/2023
+232: *5:18 AM 7/7/2023-5:19 AM 7/7/2023
+233: *5:19 AM 7/7/2023-5:20 AM 7/7/2023
+234: *5:20 AM 7/7/2023-5:24 AM 7/7/2023
+235: *5:24 AM 7/7/2023-5:26 AM 7/7/2023
+236: *5:26 AM 7/7/2023-5:29 AM 7/7/2023
+237: *5:29 AM 7/7/2023-5:30 AM 7/7/2023
+- onclickFa geht nicht!
+- start iviewerFull
+- rename to iviewerFull
+- close all
+- ich wollte iviewerFull nehmen!!!
+- wo hab ich die wise genommen?
+goto onclick_fa
+238: *5:30 AM 7/7/2023-5:33 AM 7/7/2023
+239: *5:33 AM 7/7/2023-5:35 AM 7/7/2023
+240: *5:35 AM 7/7/2023-5:36 AM 7/7/2023
+choices:
+==>1. ganz neues project: iviewer neu!
+2. mach es mit gpt4
+3. yt anschauen
+4. weiter herumbasteln
+241: *5:36 AM 7/7/2023-5:45 AM 7/7/2023
+242: *5:45 AM 7/7/2023-5:53 AM 7/7/2023
+243: *5:53 AM 7/7/2023-5:55 AM 7/7/2023
+244: *5:55 AM 7/7/2023-6:02 AM 7/7/2023
+245: *6:02 AM 7/7/2023-6:10 AM 7/7/2023
+246: *6:10 AM 7/7/2023-
+- 
+- way shorter!!!
+- was ist schon wieder mit jsconfig.json los?
+- close all
+- get most recent project from other
+- start beethoven
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+poetry words.yaml
+- brauch neue structure! wo sind die wise cards?
+- poetry game!
+Poetry for Neanderthals
+- lookup poetry for neanderthals cards
+- in db brauch ich noch ein modified timestamp!!!
+==>die input id muss gesetzt werden wenn click on day
+- open handleEvent
+- was jetzt?
+- start live
+- fuer live brauch ich eine uid vergabe
+- goto handleEvent
+- bei handle event soll style zu unfocused setzen
+- localhost: create an event!
+- open phpmyadmin!
+- zuerst mach ich das uiTypeCalendar => go there
+- start
+- nochmal von vorne: ablauf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- merke mir diese id im cal object
+- brauche ein 
+- wo werden die dDay children gemacht???
+- inpToEvent: mBy(
+- von input to event, von event to input
+- goto handle code!
+- sollte nur ev id in dem 
+- nein so ist es nicht, something not correct
+- eigentlich muesst es einen fehler geben bei dem edit existing event!
+- statt o.div=dDay sollte ich o.div = inp machen!
+
+die zeit tickt dahin it is as it is
+- los gehts!!!
+- 37
+- displayEvents geht nicht!
+
+- das ziel muss sein: testen mit live soll actually (bis auf php) funktionieren!
+- mitnehmen: lg,phone,wasser
+- how does this tie in?
+- gib ein fertiges edit da rein!
+- getDate vs getDay
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- who should be logged in when no one logged in?
+- register
+- setze Session var so wie es bei PHP server gemacht wird!
+- restart live server
+T
+- phpSim(
+- find DA.sessionType
+- adding a user: where? 
+- what should happen w/ subscribed? users? same
+- loaden
+- eigentlich sollte ich nach add new event ein read events machen!!! fuer year,month
+- now try updating event!
+- adding new event geht!
+- test
+- calendar.js
+- event is only added to Config after returns from php call!!!!
+- call
+- php mysqli how to get newly entered record?
+- php soll new event returnen!!!
+- rem console.log
+- delete events
+- 
+
+
+
+
+mi haare machen
+leebs einladen fuer do 16h
+do 16h (einkaufen, obst, gemuese)=>gu hilft mit!
+fr 8h30 in vega: schoenbrunn fe
+sa diana
+so hochzeit (frueh haare nochmal!)
+
+
+
+gudrun.schuhfried@gmx.at
+Vivaldi The Four Seasons Trevor Pinnock
+Dmitri Shostakovich -  Waltz No. 2
+
+
+
+heilingbrunner: 406 59 38
+
+- simplendar
+- fix it!
+- fix it!
+- vereinfachen! aber wie???
+- do NOT save event twice on server! (and for real!)
+- wo wird das styling von day gemacht?
+- wo bekomm ich es?
+- geht das?
+- wie macht er es bei php loading table?
+- wie geh ich von timestamp zu date? date format?
+- open a table with datetime
+- open phpadmin
+- woher nehm ich users, events, subscribed when working live? ganz einfach from DB.yaml
+- load users, events, subscribed from db
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- kann sagen: Geo.places.vegagasse
+- open allg.js
+- bin zu muede!!! weiss nicht wie?
+- jetzt versuch cities zu machen!
+- jetzt schu weiter
+- jetzt 99
+- ok start von leaf100
+- some working map example von all
+- versuch tt api
+- mach eine google map view von umgebung
+
+
+- ab sofort einfach nur noch 3h schlafen das reicht auch
+=>runde medium!
+create a table for events
+weiter: load users and events
+- posting to php
+
+
+salm:
+brauche: tablett,mistbehaelter,missackerln,milch,sackerln alle,pims
+wenn G hier: 600 pro tag, wenn nicht: 300
+mache: auf 12+,kkv,bis hell wird arbeit,
+6h dann spazier (H,katze,einkaufen),[sbLG]
+8h f+gu+kochen (kueche),
+9h mit gu spaz (+LG,H,katze,einkaufen), 
+ev bluman giessen/garten giessen
+10h vega/stadt/A erled
+2h gu essen / nap bis 4 (kann auch bei maedi sein oder in vega)
+dann nochmal spaz / spiel
+6-8h>nachhause, schlafengehen
+
+mobil: LG+kabel,maus,handy+kabel,fitbit,stecker!,heft,taschentuch,buch
+=>bei maedi muss kaffee+milch sein!
+=>am besten waer so haltbar milch
+
+waesche aufhaenger!
+
+
+
+
+
+
+gertraut A1 netz: puboha3483 > togitale6322
+
+01 310 4606 dr. rossmanith
+Weitere Kontaktmöglichkeiten
+https://www.sigrunrossmanith.at
+praxis@sigrunrossmanith.at
+
+
+Dr. Gerald Pail
+4,8
+(143)
+Psychiater, Psychotherapeut
+01/3618884
+Zimmermanngasse 1A/2/8, 1090 Wien
+Weitere Kontaktmöglichkeiten
+https://www.geraldpail.net
+office@geraldpail.net
+
+Dipl. Ing. DDr. Gabriele Wörgötter
+Psychiaterin
+01/5058549
+Brahmsplatz 7/8, 1040 Wien
+Weitere Kontaktmöglichkeiten
+https://www.neuro-psychiatrie.at
+ordination@neuro-psychiatrie.at
+01/505854911
+
+Dr. Michaela Gleußner
+Psychiaterin
+019296563
+Strohmayergasse 7/26-27, 1060 Wien
+di 11.juli 17h
+Weitere Kontaktmöglichkeiten
+019134080
+https://www.neurofeedback-institut.at
+https://www.meine-neurologin.at
+office@neurofeedback-institut.at
+ordination@meine-neurologin.at
+
+160
+29.6
+
+Sehr geehrte Frau Dr. ...
+
+Ich benoetige psychologische und psychiatrische Betreuung für meine schwere chronische Depression, Angststörung, ADS, und chronische Suizidalität. Ich bin 24 Jahre alt, und vor kurzem allein aus dem Ausland nach Wien zurueckgezogen. 
+
+Wenn Sie Platz haben, eine neue Patientin anzunehmen würde es mich freuen einen Termin zu einem Erstgespräch auszumachen.
+
+Vielen Dank, mit freundlichen Grüßen,
+
+Amanda Leeb
+
+
+
+
+für meine schwere chronische Depression, Angstörung, Ads, und chronische Suizidalität
+
+
+
+
+
+
+
+
+
+
+- zuerst das neue!
+- openmodal
+- mittig
+- openmodal!
+- css calendar!
+- put numbers on restl days!
+- paddingdays sind opacity 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=> 24-13 20 tage no more no less what ever happens happens daily 300
+Prim. Dr. Michael Ertl
+1,0
+(1)
+Psychiater, Psychiater
+0664/2349040
+Klostergasse 12/12a, 1180 Wien
+
+challenge 2: save user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -12967,7 +14107,12 @@ Carrier delivers accumulated mail
 Additional Instructions
 please leave accumulated mail in one of the boxes on the front porch if possible, do not deliver (or retain) advertising flyers and unsolicitated advertisements. THANK YOU
 
-
+ORDER#	ITEMS	ORDER PLACED	STATUS	
+o1990614612	Hold Mail	06/03/2023	Order Complete	View Details
+Edit
+USPS Hold Mail Details
+Confirmation #:
+CAH462396760
 
 
 
