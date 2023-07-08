@@ -12952,7 +12952,21 @@ _____ sa 8.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
 npx live-server --port=5001
 https://www.youtube.com/watch?v=mKpdsQe0sO8
 - I want the syntax to be:
-510: *7:06 AM 7/8/2023-
+510: *7:06 AM 7/8/2023-9:02 AM 7/8/2023
+511: *9:02 AM 7/8/2023-9:03 AM 7/8/2023
+512: *9:03 AM 7/8/2023-9:12 AM 7/8/2023
+513: *9:12 AM 7/8/2023-9:13 AM 7/8/2023
+514: *9:13 AM 7/8/2023-10:05 AM 7/8/2023
+515: *10:06 AM 7/8/2023-10:08 AM 7/8/2023
+516: *10:08 AM 7/8/2023-
+- I have to use conventions, to use flask and nodejs only on specific ports!
+- also to use sockets only on 3000 ports
+- flask: 4000,nodejs?
+- bstps heisst: steps so small that they appear to be fun!
+- nodejs would use
+- live would be using port 5001 or other 5xxx
+- php would be using 8080 or telecave
+- use detectBackend. should be able to detect live server, php, nodejs, or flask
 mFetch(url) or mFetch(url,o) and it should wait before continuing
 
 

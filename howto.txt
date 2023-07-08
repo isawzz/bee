@@ -1,9 +1,7 @@
 short summary of all I learned and how to do it
 
 ____ npx live-server --port=5001
-
-
-____ 
+____ (override from local) git push -f origin master
 
 
 ____ 
