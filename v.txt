@@ -12958,14 +12958,24 @@ https://www.youtube.com/watch?v=mKpdsQe0sO8
 513: *9:12 AM 7/8/2023-9:13 AM 7/8/2023
 514: *9:13 AM 7/8/2023-10:05 AM 7/8/2023
 515: *10:06 AM 7/8/2023-10:08 AM 7/8/2023
-516: *10:08 AM 7/8/2023-
+516: *10:08 AM 7/8/2023-10:25 AM 7/8/2023
+517: *10:25 AM 7/8/2023-10:30 AM 7/8/2023
+git push -f origin master
+518: *10:30 AM 7/8/2023-10:35 AM 7/8/2023
+519: *10:35 AM 7/8/2023-10:38 AM 7/8/2023
+- ai hatte recht!!!!
+- echt geht das???
 - I have to use conventions, to use flask and nodejs only on specific ports!
 - also to use sockets only on 3000 ports
-- flask: 4000,nodejs?
+- nodejs=40xx, flask: 60xx
 - bstps heisst: steps so small that they appear to be fun!
 - nodejs would use
 - live would be using port 5001 or other 5xxx
 - php would be using 8080 or telecave
+520: *10:38 AM 7/8/2023-10:43 AM 7/8/2023
+521: *10:43 AM 7/8/2023-10:51 AM 7/8/2023
+522: *10:51 AM 7/8/2023-
+- mach mich fix fertig, wenn done, gehts los!
 - use detectBackend. should be able to detect live server, php, nodejs, or flask
 mFetch(url) or mFetch(url,o) and it should wait before continuing
 

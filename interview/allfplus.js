@@ -15,13 +15,16 @@ function addEditable(dParent, styles = {}, opts = {}) {
   return x;
 }
 function detectSessionType() {
-
+  //port convention: flask:60xx, nodejs:40xx, live:50xx, sockets:3000, php:8080 | telecave
   //console.log('window.location', window.location.href);
   let loc = window.location.href;
-  DA.sessionType = loc.includes('telecave') ? 'telecave' : loc.includes('8080') ? 'php' : 'live';
+  DA.sessionType =
+    loc.includes('telecave') || loc.includes('8080') ? 'php'
+      : loc.includes(':40') ? 'nodejs'
+        : loc.includes(':60') ? 'flask' : 'live';
   return DA.sessionType;
 }
-function getCorrectMonth(s,val){
+function getCorrectMonth(s, val) {
   const months = [
     "January",
     "February",
@@ -36,12 +39,12 @@ function getCorrectMonth(s,val){
     "November",
     "December"
   ];
-  let n=firstNumber(s); 
-  if (n>=1 && n<=12) return [n-1,months[n-1]];
-  s=s.substring(0,3).toLowerCase();
-  for(const m of months){
-    let m1=m.substring(0,3).toLowerCase();
-    if (s == m1) return [months.indexOf(m),m];
+  let n = firstNumber(s);
+  if (n >= 1 && n <= 12) return [n - 1, months[n - 1]];
+  s = s.substring(0, 3).toLowerCase();
+  for (const m of months) {
+    let m1 = m.substring(0, 3).toLowerCase();
+    if (s == m1) return [months.indexOf(m), m];
   }
   return val;
 }
@@ -56,17 +59,17 @@ function getQuerystring(key) {
   }
   return null;
 }
-function getUIDRelativeTo(arr){
-  let max = isEmpty(arr)?0:arrMax(arr,x=>x.id);
+function getUIDRelativeTo(arr) {
+  let max = isEmpty(arr) ? 0 : arrMax(arr, x => x.id);
   //console.log('max',max,typeof max)
-  return Number(max)+1;
+  return Number(max) + 1;
 }
-function handleAddEvent(obj){
+function handleAddEvent(obj) {
   //erst hier hat das event ein id!
   //dieses id muss jetzt id von seinem input object sein
   //inp ist lastChild vom children[0] vom dDays
   //diese children[0] koennt ich nennen: d_[month]_[day]
-  Config.events.push(obj.event); 
+  Config.events.push(obj.event);
   //console.log('event',obj)
   localStorage.setItem('events', JSON.stringify(Config.events));
   //console.log('storage:',JSON.parse(localStorage.getItem('events')));
@@ -135,7 +138,7 @@ function handleResult(result, cmd) {
       }
   }
 }
-function isCorrectMonth(s){
+function isCorrectMonth(s) {
   const months = [
     "January",
     "February",
@@ -150,12 +153,12 @@ function isCorrectMonth(s){
     "November",
     "December"
   ];
-  let n=firstNumber(s);
+  let n = firstNumber(s);
 
-  if (n>=1 && n<=12) return months[n-1];
-  s=s.substring(0,3).toLowerCase();
-  for(const m of months){
-    let m1=m.substring(0,3).toLowerCase();
+  if (n >= 1 && n <= 12) return months[n - 1];
+  s = s.substring(0, 3).toLowerCase();
+  for (const m of months) {
+    let m1 = m.substring(0, 3).toLowerCase();
     if (s == m1) return m;
   }
   return false;
@@ -214,13 +217,13 @@ function maButton(caption, handler, dParent, styles, classes) {
 function makeContentEditable(elem, setter) {
   if (nundef(mBy('dummy'))) addDummy(document.body, 'cc');
   elem.contentEditable = true;
-  elem.addEventListener('keydown', ev => { 
-    if (ev.key == 'Enter') { 
+  elem.addEventListener('keydown', ev => {
+    if (ev.key == 'Enter') {
       ev.preventDefault();
-      mBy('dummy').focus(); 
+      mBy('dummy').focus();
       if (setter) setter(ev);
-    } 
-  }); 
+    }
+  });
 }
 function mFlexLine(d, bg = 'white', fg = 'contrast') {
   //console.log('h',d.clientHeight,d.innerHTML,d.offsetHeight);
@@ -247,7 +250,7 @@ function _phpPost(data, cmd) {
   xml.open("POST", "php/api.php", true);
   xml.send(o);
 }
-function phpSim(data,cmd){
+function phpSim(data, cmd) {
   //der macht genau das was normal der phpServer macht und verwendet als
   //SESSION die global Session var
   var o = {};
@@ -258,7 +261,7 @@ function phpSim(data,cmd){
   let result = {};
   if (cmd == 'addEvent') {
     //find max id in existing events, add 1 to it
-    let ev=jsCopy(data);
+    let ev = jsCopy(data);
     ev.id = getUIDRelativeTo(Config.events);
     result.event = ev;
     console.log(result)
