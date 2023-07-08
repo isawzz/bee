@@ -12918,13 +12918,89 @@ choices:
 243: *5:53 AM 7/7/2023-5:55 AM 7/7/2023
 244: *5:55 AM 7/7/2023-6:02 AM 7/7/2023
 245: *6:02 AM 7/7/2023-6:10 AM 7/7/2023
-246: *6:10 AM 7/7/2023-
-- 
+246: *6:10 AM 7/7/2023-6:20 AM 7/7/2023
 - way shorter!!!
 - was ist schon wieder mit jsconfig.json los?
 - close all
 - get most recent project from other
 - start beethoven
+247: *6:20 AM 7/7/2023-6:27 AM 7/7/2023
+248: *6:27 AM 7/7/2023-6:28 AM 7/7/2023
+249: *6:28 AM 7/7/2023-6:32 AM 7/7/2023
+250: *6:32 AM 7/7/2023-7:46 AM 7/7/2023
+- mach ein cheatsheet fuer interview!
+251: *7:46 AM 7/7/2023-7:49 AM 7/7/2023
+=>do the challenges! in very little time!
+252: *7:49 AM 7/7/2023-8:28 AM 7/7/2023
+253: *8:29 AM 7/7/2023-8:29 AM 7/7/2023
+254: *leave!!!
+A3_GXSEHRYQKCTPFMNKEWUAPCFCVLXG
+- fetch returns a Promise
+- mach den challenge
+warning14Guggi!
+500: *6:43 PM 7/7/2023-6:43 PM 7/7/2023
+_____ sa 8.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
+501: *6:43 PM 7/7/2023-6:14 AM 7/8/2023
+502: *6:14 AM 7/8/2023-6:31 AM 7/8/2023
+503: *6:31 AM 7/8/2023-6:32 AM 7/8/2023
+504: *6:32 AM 7/8/2023-6:40 AM 7/8/2023
+- I want a setTimeout that actually can be awaited!
+- so there are 3 things: async functions, promises, calback functions
+- convert function to promise
+505: *6:40 AM 7/8/2023-6:49 AM 7/8/2023
+506: *6:49 AM 7/8/2023-7:06 AM 7/8/2023
+npx live-server --port=5001
+https://www.youtube.com/watch?v=mKpdsQe0sO8
+- I want the syntax to be:
+510: *7:06 AM 7/8/2023-
+mFetch(url) or mFetch(url,o) and it should wait before continuing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- fetch / post how does it work? =>tutorial
+- soll ich wieder ein apiserver haben? fuer alles was mit backend zu tun hat?
+- load from php host!
 
 
 

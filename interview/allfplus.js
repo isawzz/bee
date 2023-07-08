@@ -19,6 +19,7 @@ function detectSessionType() {
   //console.log('window.location', window.location.href);
   let loc = window.location.href;
   DA.sessionType = loc.includes('telecave') ? 'telecave' : loc.includes('8080') ? 'php' : 'live';
+  return DA.sessionType;
 }
 function getCorrectMonth(s,val){
   const months = [
