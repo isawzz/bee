@@ -12974,10 +12974,146 @@ git push -f origin master
 - php would be using 8080 or telecave
 520: *10:38 AM 7/8/2023-10:43 AM 7/8/2023
 521: *10:43 AM 7/8/2023-10:51 AM 7/8/2023
-522: *10:51 AM 7/8/2023-
+522: *10:51 AM 7/8/2023-10:54 AM 7/8/2023
+523: *10:54 AM 7/8/2023-
+_____ so 9.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
+800: *6:08 AM 7/9/2023-6:12 AM 7/9/2023
+801: *6:12 AM 7/9/2023-6:14 AM 7/9/2023
+802: *6:14 AM 7/9/2023-6:16 AM 7/9/2023
+803: *6:16 AM 7/9/2023-6:21 AM 7/9/2023
+804: *6:21 AM 7/9/2023-6:21 AM 7/9/2023
+885: *6:22 AM 7/9/2023-6:29 AM 7/9/2023
+886: *6:29 AM 7/9/2023-6:32 AM 7/9/2023
+887: *6:33 AM 7/9/2023-6:34 AM 7/9/2023
+886: *6:34 AM 7/9/2023-6:37 AM 7/9/2023
+887: *6:37 AM 7/9/2023-6:46 AM 7/9/2023
+888: *6:47 AM 7/9/2023-6:49 AM 7/9/2023
+889: *6:49 AM 7/9/2023-6:51 AM 7/9/2023
+890: *6:51 AM 7/9/2023-6:54 AM 7/9/2023
+891: *6:55 AM 7/9/2023-6:57 AM 7/9/2023
+892: *6:57 AM 7/9/2023-6:59 AM 7/9/2023
+893: *6:59 AM 7/9/2023-7:11 AM 7/9/2023
+894: *7:11 AM 7/9/2023-7:13 AM 7/9/2023
+- reinschrift!
+- leider brauch ich es in aroot!!!
+- mach es mit text file
+- mach es fuer php: url ist php/api.php
+- test mFetch
+- stnadard aalSyms
+- wieso geht es nicht???
+- unterscheide erstmal nur text oder json
+- if get yaml, yaml dict, 
+- if get txt, text dict,
+- sonst json dict
+- wie route_path_yaml_dict
+- openai
+- test0_sleep
+- fetch mit callback:
+- sync geht schneller!!!
 - mach mich fix fertig, wenn done, gehts los!
 - use detectBackend. should be able to detect live server, php, nodejs, or flask
 mFetch(url) or mFetch(url,o) and it should wait before continuing
+895: *7:13 AM 7/9/2023-7:13 AM 7/9/2023
+896: *7:14 AM 7/9/2023-7:14 AM 7/9/2023
+897: *7:14 AM 7/9/2023-7:19 AM 7/9/2023
+898: *7:19 AM 7/9/2023-7:27 AM 7/9/2023
+899: *7:27 AM 7/9/2023-7:28 AM 7/9/2023
+900: *7:28 AM 7/9/2023-9:16 AM 7/9/2023
+- how can I disable strict mime type checking?
+- probier aus ob ich trotzdem noch von einem paralell dir zu aroot zugreifen kann!
+- probier mal aus: ALLES von beethoven/nodemodules zu aroot node_modules zu copy
+901: *9:17 AM 7/9/2023-9:25 AM 7/9/2023
+902: *9:25 AM 7/9/2023-9:25 AM 7/9/2023
+903: *9:25 AM 7/9/2023-10:27 AM 7/9/2023
+904: *10:27 AM 7/9/2023-10:49 AM 7/9/2023
+neuer plan:
+1. usa bis dezember++ warten
+2a. gu nach wien, ich haus sale or prep / move org, danach ich auch wien 1way (ca april)
+oder 
+2b. beide 1way nach wien (in dem fall haus bleibt noch einfach so - tbd)
+3. in wien Gu kann wohnen wo will ich in der naehe billigst miete
+*** das ist aenderung von vorige version: wir beide in Grinzingerstrasse ***
+*** ich kuemmer mich um Gu aber wohne in eigener wohnung ***
+damit koennen wir es so effizient wie gewuenscht machen: naemlich: ich will auf einem 100% legalen status sein damit ich mir alle infos und hilfe die in oesterreich moeglich ist verschaffen kann und nicht irgendwelche sketchy sachen immer bedenken und verschweigen muss. 
+jeder von uns kann mieten oder kaufen. ich werd mieten im bereich unter 700. gibt super viel fuer 1 person. wenn der guggi in der grinzingerstrasse wohnen will, also vom horst mietet, ist ok, und auf seine verantwortung, es ist eine konstruktion und als solche nicht legal, auch wenn es den behoerden nicht auffaellt.
+falls ich je in die lage kommen sollte, dass ich sehr wohl eine staatliche hilfe brauche dann moecht ich nicht mit so sketchy zeug mir das verbauen
+905: *10:49 AM 7/9/2023-11:15 AM 7/9/2023
+- jetzt geht es weiter
+906: *11:16 AM 7/9/2023-11:25 AM 7/9/2023
+907: *11:25 AM 7/9/2023-11:33 AM 7/9/2023
+908: *11:33 AM 7/9/2023-11:46 AM 7/9/2023
+909: *11:46 AM 7/9/2023-
+- alles wird sich irgendwie ergeben und ich bin auf einem flughafen!
+- was will ich eigentlich?
+- MIME type live server
+- mime types immer noh nicht resolved!
+_____ mo 10.7.23 airport6 T 10.7. 14h Ertl,11.7.17h Gleussner
+200: *4:47 AM 7/10/2023-4:54 AM 7/10/2023
+201: *4:54 AM 7/10/2023-4:56 AM 7/10/2023
+202: *4:56 AM 7/10/2023-5:00 AM 7/10/2023
+203: *5:00 AM 7/10/2023-5:04 AM 7/10/2023
+204: *5:04 AM 7/10/2023-5:05 AM 7/10/2023
+205: *5:06 AM 7/10/2023-5:07 AM 7/10/2023
+206: *5:07 AM 7/10/2023-5:17 AM 7/10/2023
+207: *5:17 AM 7/10/2023-5:24 AM 7/10/2023
+208: *5:24 AM 7/10/2023-5:43 AM 7/10/2023
+209: *5:43 AM 7/10/2023-5:45 AM 7/10/2023
+210: *5:45 AM 7/10/2023-5:50 AM 7/10/2023
+211: *5:50 AM 7/10/2023-5:51 AM 7/10/2023
+212: *5:51 AM 7/10/2023-5:54 AM 7/10/2023
+213: *5:54 AM 7/10/2023-5:54 AM 7/10/2023
+- allf, allg, allsafecss ==>base
+- aroot find allcode
+- test belinda house und maze
+- brauche nicht: beautify!
+- am wird neues root!
+in am gibt es base
+- mach eines: 
+- find Roobert
+- soll ich einfach ein komplett neues machen das portfolio heisst?
+- start araxis
+- wieviel ist in assets+alibs?
+- ang ich geb alles dahin: py,node,portfolio,php,assets
+vorteil: nie mehr assets updaten!
+nachteil: riesiges github, aber macht das was? denk nicht!
+nachteil: in vs code seh ich zuviel: kann was dagegen tun!
+kann ich eigentlich bis auf assets und alibs 
+dir structure:
+portfolio
+214: *5:54 AM 7/10/2023-5:56 AM 7/10/2023
+215: *5:56 AM 7/10/2023-6:00 AM 7/10/2023
+216: *6:00 AM 7/10/2023-6:00 AM 7/10/2023
+portfolio:
+- m
+- coding
+- perlen
+- belinda
+- games
+- canyonglen
+- fractals
+- iviewer
+- leaflet irgendwas
+=>combu
+- discord bot
+- aibot
+- ?
+- brauche auch: flask,node,php,
+=>moecht eine lib im portfolio haben: m
+217: *6:01 AM 7/10/2023-6:06 AM 7/10/2023
+218: *6:06 AM 7/10/2023-6:07 AM 7/10/2023
+219: *6:07 AM 7/10/2023-6:09 AM 7/10/2023
+git remote add origin https://github.com/isawzz/am
+- git am
+220: *6:09 AM 7/10/2023-6:53 AM 7/10/2023
+221: *6:53 AM 7/10/2023-
+- ab sofort arbeite ich PERFECT in am
+
+
+- plan heute:
+- warten auf A
+- martinstrasse 100 bei de rocco
+- mit A zu klostergasse 12 Ertl 14h
+- frei! schlafen in grinz?
 
 
 
@@ -12986,6 +13122,86 @@ mFetch(url) or mFetch(url,o) and it should wait before continuing
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mime.json:
+{
+  "*.js": "text/js",
+  "*.json": "text/html",
+  "*.yaml": "text/html",
+  "*.txt": "text/html",
+}
+- versuch ob es mit live-server ueberhaupt geht!!!
+- neues github: am 
+- casual prog style:
+
+
+Montag bis Freitag von 8 bis 11.30 Uhr ohne Terminreservierung
+18., Martinstraße 100
+
+
+mo 14h
+Prim. Dr. Michael Ertl
+Psychiater, Psychiater
+0664/2349040
+Klostergasse 12/12a, 1180 Wien
+
+di 17h
+Dr. Michaela Gleußner
+Psychiaterin
+019296563
+Strohmayergasse 7/26-27, 1060 Wien
+
+
+https://www.wienerwohnen.at/mieterin/mietende/wohnungsweitergabe/mietrechtsgesetz.html#:~:text=Die%20Weitergabe%20laut%20Mietrechtsgesetz%20betrifft,zu%20%C3%BCbernehmen.
+wiener-wohnen.at
+Wiener Wohnen - Gemeindewohnungen
+Wiener Wohnen - Gemeindewohnungen - Wohnungsweitergabe laut Mietrechtsgesetz
+Image
+[8:32 AM]tawzz: schau dir das mal an, ich glaub nicht wirklich das wir die voraussetzungen erfuellen
+[8:33 AM]tawzz: speziell diese frage: Welche Voraussetzung müssen Sie erfüllen, um eine Wohnung übernehmen zu können?
+Für Sie muss ein dringendes Wohnbedürfnis bestehen und Sie müssen in einem gemeinsamen Haushalt mit der verstorbenen Person gewohnt haben. Wenn Sie als Lebensgefährtin oder Lebensgefährte die Wohnung übernehmen wollen, müssen Sie mindestens drei Jahre lang die Wohnung gemeinsam mit der ehemaligen Hauptmieterin bzw. mit dem ehemaligen Hauptmieter bewohnt haben.
 
 
 

@@ -242,7 +242,7 @@ function _phpPost(data, cmd) {
   o = JSON.stringify(o);
 
   var xml = new XMLHttpRequest();
-  xml.onload = function () {
+  xml.onload = () => {
     if (xml.readyState == 4 || xml.status == 200) {
       handleResult(xml.responseText, cmd);
     } else { console.log('WTF?????') }
